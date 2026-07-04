@@ -1,0 +1,14 @@
+[project]
+name = "try-ai-scientist"
+version = "0.1.0"
+description = "AI-Scientist-style research workflow artifacts and experiments."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "kaggle>=1.7.4.5",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.6.1",
+]
+
+[tool.uv]
+package = false

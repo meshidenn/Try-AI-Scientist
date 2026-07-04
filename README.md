@@ -14,6 +14,11 @@ PC環境:
 - home-server
 - thinkstation
 
+# Python依存管理
+Python packageはrepo rootの `pyproject.toml` と `uv.lock` で管理する。新しい依存を追加するときは `uv add <package>` を使い、実験やscriptは `uv run python ...` または `uv run <command>` で実行する。
+
+個別projectやexperimentの `requirements.txt` は作らない。生成データ、submission、仮想環境などは必要な内容をartifactに要約し、原則git管理しない。
+
 # ディレクトリ構成
 `.agents/` はcoding agentに直接読ませるsub-agent/skill定義を置く。実際の役割指示はここに置き、Codex、Claude Code、Gemini CLIなどのagentが参照する。
 
@@ -85,6 +90,89 @@ projects/
 `.agents/` は実際のsub-agent定義、`ai_scientist/` はそれを支えるcontrol planeとして扱う。
 
 `python -m ai_scientist ...` のようなCLIは将来の自動化案であり、MVPでは必須ではない。最初はcoding agentが `.agents/subagents/<role>.md` を読み、その役割としてproject内のartifactを更新する。
+
+全体の流れは以下のイメージ。sub-agentは独立した常駐プロセスではなく、MVPではcoding agentが `.agents/subagents/*.md` の役割定義を読んで、その役割としてproject内のartifactを更新する想定にする。
+
+```mermaid
+flowchart TD
+    Human["Human researcher"] --> Project["projects/<project-name>"]
+    Agents[".agents/subagents/*.md<br/>role definitions"] --> CodingAgent["coding agent<br/>Codex / Claude Code / Gemini CLI"]
+    Skills[".agents/skills/*<br/>reusable procedures"] --> CodingAgent
+    Core["ai_scientist/<br/>contracts, templates, future runner"] --> CodingAgent
+
+    Project --> SurveyDir["survey/"]
+    CodingAgent --> Surveyor["surveyor"]
+    Surveyor --> SurveyDir
+
+    SurveyDir --> Spec["experiments/<exp-id>/spec.yaml"]
+    Spec --> ExperimentRunner["experiment-runner"]
+    CodingAgent --> ExperimentRunner
+    ExperimentRunner --> RunArtifacts["workspace/<br/>results.md<br/>scores.json<br/>figures/<br/>logs/"]
+
+    RunArtifacts --> ArtifactAuditor["artifact-auditor"]
+    ArtifactAuditor --> ArtifactAudit["review/artifact-audit.md"]
+
+    RunArtifacts --> ResultInterpreter["result-interpreter"]
+    ArtifactAudit --> ResultInterpreter
+    ResultInterpreter --> Interpretation["review/result-interpretation.md<br/>review/next-plan.md"]
+
+    Interpretation --> PaperDecision{"paperを書く?"}
+    PaperDecision -- "no" --> ClaimAuditor["claim-auditor"]
+    PaperDecision -- "yes" --> PaperDraft["paper/"]
+    PaperDraft --> PaperReviewer["paper-reviewer"]
+    PaperReviewer --> PaperReview["review/paper-review.md"]
+    PaperReview --> ClaimAuditor
+
+    RunArtifacts --> ClaimAuditor
+    ClaimAuditor --> ClaimAudit["results/claims.json<br/>review/claim-audit.md"]
+
+    ClaimAudit --> Archivist["archivist"]
+    Interpretation --> Archivist
+    Archivist --> ArchiveManifest["manifest.json<br/>archived snapshot"]
+
+    classDef role fill:#eef6ff,stroke:#1677ff
+    classDef artifact fill:#f6ffed,stroke:#52c41a
+    classDef control fill:#fff7e6,stroke:#fa8c16
+    class Surveyor,ExperimentRunner,ArtifactAuditor,ResultInterpreter,PaperReviewer,ClaimAuditor,Archivist role
+    class SurveyDir,Spec,RunArtifacts,ArtifactAudit,Interpretation,PaperDraft,PaperReview,ClaimAudit,ArchiveManifest artifact
+    class Agents,Skills,Core,CodingAgent control
+```
+
+sub-agentとskillの関係は以下にする。実線は現在の主要なskill依存、点線は専用skillではなく、role定義と既存artifactを読む関係を表す。
+
+```mermaid
+flowchart LR
+    subgraph Subagents["Sub-agents (.agents/subagents)"]
+        Surveyor["surveyor"]
+        ExperimentRunner["experiment-runner"]
+        ArtifactAuditor["artifact-auditor"]
+        ResultInterpreter["result-interpreter"]
+        ClaimAuditor["claim-auditor"]
+        PaperReviewer["paper-reviewer<br/>optional"]
+        Archivist["archivist"]
+    end
+
+    subgraph Skills["Skills (.agents/skills)"]
+        LiteratureSearch["literature-search"]
+        SurveyUpdate["survey-update"]
+        ExperimentLogging["experiment-logging"]
+        ArtifactAuditSkill["artifact-audit"]
+        ResultVerification["result-verification"]
+        ArchiveRun["archive-run"]
+    end
+
+    Surveyor --> LiteratureSearch
+    Surveyor --> SurveyUpdate
+    ExperimentRunner --> ExperimentLogging
+    ArtifactAuditor --> ArtifactAuditSkill
+    ClaimAuditor --> ResultVerification
+    Archivist --> ArchiveRun
+
+    ResultInterpreter -. "role-only for now<br/>uses artifact-audit output" .-> ArtifactAuditSkill
+    PaperReviewer -. "role-only for now<br/>paper-specific review" .-> ResultVerification
+```
+
+現時点では `result-interpreter` と `paper-reviewer` は専用skillを持たず、sub-agentのrole定義側に判断基準を置く。繰り返し使う形式や検証手順が固まってきたら、`interpret-results` や `paper-review` のようなskillとして切り出す。
 
 ```text
 projects/<project-name>/survey/
