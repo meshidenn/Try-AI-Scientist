@@ -1,0 +1,22 @@
+name: gemma4-fp8-mtp-acceptance
+title: Gemma 4 FP8 MTP acceptance-rate slowdown
+created: 2026-07-04
+status: active
+objective: >
+  Confirm whether Gemma 4 26B A4B with FP8 quantization reduces speculative
+  decoding acceptance rate and end-to-end throughput when using the official
+  Gemma 4 26B assistant drafter, then explore fixes.
+primary_question: >
+  Does FP8 quantization of the target Gemma 4 model lower MTP/draft acceptance
+  enough to make speculative decoding slower than the original target model?
+models:
+  bf16_target: google/gemma-4-26B-A4B-it
+  fp8_target: RedHatAI/gemma-4-26B-A4B-it-FP8-Dynamic
+  assistant_drafter: google/gemma-4-26B-A4B-it-assistant
+artifact_policy:
+  - Keep measured results under experiments/<exp-id>/results and logs.
+  - Do not treat planned variants as measured.
+  - Record failed launches and partial runs explicitly.
+notes:
+  - The assistant model is the official Gemma 4 26B MTP drafter.
+  - The first experiment is only a baseline confirmation before mitigation work.

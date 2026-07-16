@@ -1,0 +1,50 @@
+{
+  "experiment_id": "exp-001",
+  "claims": [
+    {
+      "claim": "FP8 target can lower MTP acceptance rate compared with the original target under some conditions.",
+      "source": "review/final-report.md",
+      "artifacts": [
+        "results/results.md",
+        "results/*.benchmark.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Observed in baseline, spec depth sweep, long IO, and concurrency=2 cases."
+    },
+    {
+      "claim": "FP8 acceptance degradation did not produce a stable throughput slowdown across the random benchmark conditions.",
+      "source": "review/final-report.md",
+      "artifacts": [
+        "results/results.md",
+        "results/*.benchmark.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "FP8 output throughput exceeded BF16 in most measured settings."
+    },
+    {
+      "claim": "A small FP8 throughput slowdown was reproduced for in1024/out1024/spec_tokens=4/concurrency=2.",
+      "source": "review/final-report.md",
+      "artifacts": [
+        "results/bf16_s4_in1024_out1024_c2.benchmark.json",
+        "results/fp8_s4_in1024_out1024_c2.benchmark.json",
+        "results/results.md"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "FP8 output throughput 67.24 tok/s vs BF16 67.90 tok/s; FP8 acceptance 29.83% vs BF16 51.82%."
+    },
+    {
+      "claim": "Agent-specific slowdown is more likely tied to structured short generation, stop behavior, low concurrency, or assistant/target mismatch than to long prefill alone.",
+      "source": "review/final-report.md",
+      "artifacts": [
+        "results/results.md",
+        "review/final-report.md"
+      ],
+      "status": "partially_supported",
+      "support_level": "weak",
+      "notes": "This is a hypothesis motivated by the measured random benchmark; it still requires agent trace replay."
+    }
+  ]
+}

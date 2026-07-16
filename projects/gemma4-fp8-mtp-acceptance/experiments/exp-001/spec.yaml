@@ -1,0 +1,54 @@
+experiment_id: exp-001
+title: Baseline Gemma 4 26B MTP throughput and acceptance under BF16 vs FP8 target
+status: completed
+created: 2026-07-04
+objective: >
+  Measure serving throughput and speculative decoding acceptance behavior for
+  original Gemma 4 26B A4B and FP8 Gemma 4 26B A4B when using the same official
+  Gemma 4 26B assistant drafter.
+hypothesis:
+  primary: >
+    The FP8 target model will show lower draft acceptance rate than the original
+    target and may lose enough speculative-decoding efficiency to reduce
+    output throughput or increase TPOT.
+variants:
+  - name: bf16_target_mtp
+    target_model: google/gemma-4-26B-A4B-it
+    assistant_model: google/gemma-4-26B-A4B-it-assistant
+    target_precision: bf16_or_auto
+  - name: fp8_dynamic_target_mtp
+    target_model: RedHatAI/gemma-4-26B-A4B-it-FP8-Dynamic
+    assistant_model: google/gemma-4-26B-A4B-it-assistant
+    target_precision: fp8_dynamic
+fixed_variables:
+  serving_stack: vllm_openai
+  docker_image: vllm/vllm-openai:v0.24.0
+  benchmark_dataset: random
+  input_len: 128
+  output_len: 128
+  num_prompts: 10
+  num_warmups: 3
+  max_concurrency: 1
+  request_rate: inf
+  num_speculative_tokens: 4
+  speculative_method: mtp
+  assistant_model_field: google/gemma-4-26B-A4B-it-assistant
+metrics:
+  primary:
+    name: output_throughput_tokens_per_second
+    higher_is_better: true
+  secondary:
+    - request_throughput_requests_per_second
+    - total_token_throughput_tokens_per_second
+    - mean_ttft_ms
+    - mean_tpot_ms
+    - mean_e2el_ms
+    - speculative_acceptance_rate
+    - accepted_draft_tokens_per_request
+constraints:
+  - "Use the same assistant drafter for both target variants."
+  - "Do not compare 26B target against a mismatched 31B speculator."
+  - "Record failed model downloads or server launches as failures, not missing data."
+  - "Keep benchmark JSON and logs under this experiment directory."
+reproduction:
+  command: "bash projects/gemma4-fp8-mtp-acceptance/experiments/exp-001/workspace/run_baseline.sh"

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "exp-001",
+  "status": "planned",
+  "metrics": {
+    "primary": {
+      "name": "output_throughput_tokens_per_second",
+      "value": null,
+      "higher_is_better": true
+    }
+  },
+  "variants": {},
+  "artifacts": {
+    "results_md": "results/results.md",
+    "figures": [],
+    "logs": []
+  }
+}
