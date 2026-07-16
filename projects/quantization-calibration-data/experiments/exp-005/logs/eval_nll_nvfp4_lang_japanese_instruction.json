@@ -1,0 +1,1026 @@
+{
+  "model": "nvfp4_lang_japanese_instruction",
+  "model_ref": "/home/hiroki/work/Try-AI-Scientist/projects/quantization-calibration-data/experiments/exp-005/artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-lang-japanese_instruction",
+  "rows": [
+    {
+      "model": "nvfp4_lang_japanese_instruction",
+      "evaluation_language": "english_instruction",
+      "samples": 100,
+      "tokens": 15993,
+      "mean_nll": 2.3510717001267207,
+      "perplexity": 10.496813134836197,
+      "per_sample": [
+        {
+          "sample_id": 0,
+          "nll": 2.423628091812134,
+          "tokens": 30
+        },
+        {
+          "sample_id": 1,
+          "nll": 1.0167465209960938,
+          "tokens": 364
+        },
+        {
+          "sample_id": 2,
+          "nll": 2.5368800163269043,
+          "tokens": 155
+        },
+        {
+          "sample_id": 3,
+          "nll": 3.1672699451446533,
+          "tokens": 107
+        },
+        {
+          "sample_id": 4,
+          "nll": 4.539708614349365,
+          "tokens": 45
+        },
+        {
+          "sample_id": 5,
+          "nll": 1.8580191135406494,
+          "tokens": 66
+        },
+        {
+          "sample_id": 6,
+          "nll": 1.008642315864563,
+          "tokens": 322
+        },
+        {
+          "sample_id": 7,
+          "nll": 2.1774768829345703,
+          "tokens": 86
+        },
+        {
+          "sample_id": 8,
+          "nll": 1.4924249649047852,
+          "tokens": 137
+        },
+        {
+          "sample_id": 9,
+          "nll": 2.497959852218628,
+          "tokens": 532
+        },
+        {
+          "sample_id": 10,
+          "nll": 2.0537381172180176,
+          "tokens": 28
+        },
+        {
+          "sample_id": 11,
+          "nll": 1.9337377548217773,
+          "tokens": 160
+        },
+        {
+          "sample_id": 12,
+          "nll": 2.715290069580078,
+          "tokens": 768
+        },
+        {
+          "sample_id": 13,
+          "nll": 2.04470157623291,
+          "tokens": 216
+        },
+        {
+          "sample_id": 14,
+          "nll": 2.9055325984954834,
+          "tokens": 31
+        },
+        {
+          "sample_id": 15,
+          "nll": 2.2559008598327637,
+          "tokens": 274
+        },
+        {
+          "sample_id": 16,
+          "nll": 2.0599942207336426,
+          "tokens": 53
+        },
+        {
+          "sample_id": 17,
+          "nll": 3.151268720626831,
+          "tokens": 245
+        },
+        {
+          "sample_id": 18,
+          "nll": 2.668388843536377,
+          "tokens": 104
+        },
+        {
+          "sample_id": 19,
+          "nll": 2.5133116245269775,
+          "tokens": 78
+        },
+        {
+          "sample_id": 20,
+          "nll": 1.5773543119430542,
+          "tokens": 408
+        },
+        {
+          "sample_id": 21,
+          "nll": 2.215594530105591,
+          "tokens": 49
+        },
+        {
+          "sample_id": 22,
+          "nll": 3.307016372680664,
+          "tokens": 35
+        },
+        {
+          "sample_id": 23,
+          "nll": 2.627315044403076,
+          "tokens": 102
+        },
+        {
+          "sample_id": 24,
+          "nll": 2.778167724609375,
+          "tokens": 68
+        },
+        {
+          "sample_id": 25,
+          "nll": 2.3401660919189453,
+          "tokens": 165
+        },
+        {
+          "sample_id": 26,
+          "nll": 3.7669026851654053,
+          "tokens": 34
+        },
+        {
+          "sample_id": 27,
+          "nll": 2.759995698928833,
+          "tokens": 70
+        },
+        {
+          "sample_id": 28,
+          "nll": 2.5533254146575928,
+          "tokens": 51
+        },
+        {
+          "sample_id": 29,
+          "nll": 1.1249048709869385,
+          "tokens": 98
+        },
+        {
+          "sample_id": 30,
+          "nll": 2.479367971420288,
+          "tokens": 165
+        },
+        {
+          "sample_id": 31,
+          "nll": 4.513096809387207,
+          "tokens": 24
+        },
+        {
+          "sample_id": 32,
+          "nll": 2.764145612716675,
+          "tokens": 499
+        },
+        {
+          "sample_id": 33,
+          "nll": 2.402271270751953,
+          "tokens": 434
+        },
+        {
+          "sample_id": 34,
+          "nll": 2.619960308074951,
+          "tokens": 44
+        },
+        {
+          "sample_id": 35,
+          "nll": 2.784210443496704,
+          "tokens": 199
+        },
+        {
+          "sample_id": 36,
+          "nll": 5.046363830566406,
+          "tokens": 46
+        },
+        {
+          "sample_id": 37,
+          "nll": 3.632758140563965,
+          "tokens": 38
+        },
+        {
+          "sample_id": 38,
+          "nll": 2.584102153778076,
+          "tokens": 275
+        },
+        {
+          "sample_id": 39,
+          "nll": 1.6667927503585815,
+          "tokens": 69
+        },
+        {
+          "sample_id": 40,
+          "nll": 2.674760103225708,
+          "tokens": 360
+        },
+        {
+          "sample_id": 41,
+          "nll": 2.156388521194458,
+          "tokens": 146
+        },
+        {
+          "sample_id": 42,
+          "nll": 1.9391250610351562,
+          "tokens": 150
+        },
+        {
+          "sample_id": 43,
+          "nll": 2.0858142375946045,
+          "tokens": 103
+        },
+        {
+          "sample_id": 44,
+          "nll": 2.0096263885498047,
+          "tokens": 196
+        },
+        {
+          "sample_id": 45,
+          "nll": 1.843688726425171,
+          "tokens": 58
+        },
+        {
+          "sample_id": 46,
+          "nll": 5.63807487487793,
+          "tokens": 18
+        },
+        {
+          "sample_id": 47,
+          "nll": 2.722951889038086,
+          "tokens": 50
+        },
+        {
+          "sample_id": 48,
+          "nll": 2.7309415340423584,
+          "tokens": 175
+        },
+        {
+          "sample_id": 49,
+          "nll": 1.9895074367523193,
+          "tokens": 367
+        },
+        {
+          "sample_id": 50,
+          "nll": 1.2031666040420532,
+          "tokens": 237
+        },
+        {
+          "sample_id": 51,
+          "nll": 3.169929027557373,
+          "tokens": 169
+        },
+        {
+          "sample_id": 52,
+          "nll": 3.531808853149414,
+          "tokens": 30
+        },
+        {
+          "sample_id": 53,
+          "nll": 2.9479432106018066,
+          "tokens": 299
+        },
+        {
+          "sample_id": 54,
+          "nll": 2.529130697250366,
+          "tokens": 141
+        },
+        {
+          "sample_id": 55,
+          "nll": 2.09629225730896,
+          "tokens": 464
+        },
+        {
+          "sample_id": 56,
+          "nll": 1.5176721811294556,
+          "tokens": 206
+        },
+        {
+          "sample_id": 57,
+          "nll": 2.5791354179382324,
+          "tokens": 122
+        },
+        {
+          "sample_id": 58,
+          "nll": 2.0790371894836426,
+          "tokens": 39
+        },
+        {
+          "sample_id": 59,
+          "nll": 1.3998748064041138,
+          "tokens": 256
+        },
+        {
+          "sample_id": 60,
+          "nll": 1.0841710567474365,
+          "tokens": 220
+        },
+        {
+          "sample_id": 61,
+          "nll": 2.1188173294067383,
+          "tokens": 218
+        },
+        {
+          "sample_id": 62,
+          "nll": 2.0686826705932617,
+          "tokens": 107
+        },
+        {
+          "sample_id": 63,
+          "nll": 2.900007963180542,
+          "tokens": 40
+        },
+        {
+          "sample_id": 64,
+          "nll": 1.9212185144424438,
+          "tokens": 199
+        },
+        {
+          "sample_id": 65,
+          "nll": 5.019341945648193,
+          "tokens": 20
+        },
+        {
+          "sample_id": 66,
+          "nll": 2.4159207344055176,
+          "tokens": 42
+        },
+        {
+          "sample_id": 67,
+          "nll": 2.1917054653167725,
+          "tokens": 102
+        },
+        {
+          "sample_id": 68,
+          "nll": 3.9602322578430176,
+          "tokens": 42
+        },
+        {
+          "sample_id": 69,
+          "nll": 2.3408095836639404,
+          "tokens": 104
+        },
+        {
+          "sample_id": 70,
+          "nll": 2.1461446285247803,
+          "tokens": 193
+        },
+        {
+          "sample_id": 71,
+          "nll": 2.3395769596099854,
+          "tokens": 93
+        },
+        {
+          "sample_id": 72,
+          "nll": 3.515082597732544,
+          "tokens": 32
+        },
+        {
+          "sample_id": 73,
+          "nll": 3.026169776916504,
+          "tokens": 35
+        },
+        {
+          "sample_id": 74,
+          "nll": 2.217350721359253,
+          "tokens": 201
+        },
+        {
+          "sample_id": 75,
+          "nll": 1.7528843879699707,
+          "tokens": 144
+        },
+        {
+          "sample_id": 76,
+          "nll": 3.0465283393859863,
+          "tokens": 289
+        },
+        {
+          "sample_id": 77,
+          "nll": 2.7467031478881836,
+          "tokens": 78
+        },
+        {
+          "sample_id": 78,
+          "nll": 2.696845769882202,
+          "tokens": 35
+        },
+        {
+          "sample_id": 79,
+          "nll": 1.9883702993392944,
+          "tokens": 79
+        },
+        {
+          "sample_id": 80,
+          "nll": 2.913541555404663,
+          "tokens": 98
+        },
+        {
+          "sample_id": 81,
+          "nll": 2.848891496658325,
+          "tokens": 734
+        },
+        {
+          "sample_id": 82,
+          "nll": 2.3426084518432617,
+          "tokens": 136
+        },
+        {
+          "sample_id": 83,
+          "nll": 3.111724853515625,
+          "tokens": 28
+        },
+        {
+          "sample_id": 84,
+          "nll": 2.9162065982818604,
+          "tokens": 87
+        },
+        {
+          "sample_id": 85,
+          "nll": 2.7609164714813232,
+          "tokens": 64
+        },
+        {
+          "sample_id": 86,
+          "nll": 2.1195425987243652,
+          "tokens": 220
+        },
+        {
+          "sample_id": 87,
+          "nll": 3.163071870803833,
+          "tokens": 391
+        },
+        {
+          "sample_id": 88,
+          "nll": 2.4107718467712402,
+          "tokens": 36
+        },
+        {
+          "sample_id": 89,
+          "nll": 3.851353883743286,
+          "tokens": 35
+        },
+        {
+          "sample_id": 90,
+          "nll": 2.0254666805267334,
+          "tokens": 89
+        },
+        {
+          "sample_id": 91,
+          "nll": 2.1192283630371094,
+          "tokens": 91
+        },
+        {
+          "sample_id": 92,
+          "nll": 2.605635404586792,
+          "tokens": 172
+        },
+        {
+          "sample_id": 93,
+          "nll": 2.717780351638794,
+          "tokens": 36
+        },
+        {
+          "sample_id": 94,
+          "nll": 2.0924689769744873,
+          "tokens": 385
+        },
+        {
+          "sample_id": 95,
+          "nll": 3.1470143795013428,
+          "tokens": 27
+        },
+        {
+          "sample_id": 96,
+          "nll": 2.4077839851379395,
+          "tokens": 421
+        },
+        {
+          "sample_id": 97,
+          "nll": 2.232208251953125,
+          "tokens": 274
+        },
+        {
+          "sample_id": 98,
+          "nll": 4.021216869354248,
+          "tokens": 60
+        },
+        {
+          "sample_id": 99,
+          "nll": 1.6028385162353516,
+          "tokens": 76
+        }
+      ]
+    },
+    {
+      "model": "nvfp4_lang_japanese_instruction",
+      "evaluation_language": "japanese_instruction",
+      "samples": 100,
+      "tokens": 34777,
+      "mean_nll": 2.3624315937052764,
+      "perplexity": 10.616735678995488,
+      "per_sample": [
+        {
+          "sample_id": 0,
+          "nll": 2.51739501953125,
+          "tokens": 558
+        },
+        {
+          "sample_id": 1,
+          "nll": 2.5013904571533203,
+          "tokens": 153
+        },
+        {
+          "sample_id": 2,
+          "nll": 2.665452241897583,
+          "tokens": 120
+        },
+        {
+          "sample_id": 3,
+          "nll": 2.443959951400757,
+          "tokens": 103
+        },
+        {
+          "sample_id": 4,
+          "nll": 2.699904441833496,
+          "tokens": 353
+        },
+        {
+          "sample_id": 5,
+          "nll": 2.663015127182007,
+          "tokens": 584
+        },
+        {
+          "sample_id": 6,
+          "nll": 2.4304301738739014,
+          "tokens": 693
+        },
+        {
+          "sample_id": 7,
+          "nll": 3.201080322265625,
+          "tokens": 270
+        },
+        {
+          "sample_id": 8,
+          "nll": 2.5925416946411133,
+          "tokens": 596
+        },
+        {
+          "sample_id": 9,
+          "nll": 1.6656930446624756,
+          "tokens": 704
+        },
+        {
+          "sample_id": 10,
+          "nll": 1.8805758953094482,
+          "tokens": 164
+        },
+        {
+          "sample_id": 11,
+          "nll": 2.0526766777038574,
+          "tokens": 443
+        },
+        {
+          "sample_id": 12,
+          "nll": 2.5668530464172363,
+          "tokens": 743
+        },
+        {
+          "sample_id": 13,
+          "nll": 2.5317227840423584,
+          "tokens": 184
+        },
+        {
+          "sample_id": 14,
+          "nll": 2.116786241531372,
+          "tokens": 333
+        },
+        {
+          "sample_id": 15,
+          "nll": 1.3916573524475098,
+          "tokens": 310
+        },
+        {
+          "sample_id": 16,
+          "nll": 2.499016523361206,
+          "tokens": 268
+        },
+        {
+          "sample_id": 17,
+          "nll": 3.1646761894226074,
+          "tokens": 447
+        },
+        {
+          "sample_id": 18,
+          "nll": 2.583925247192383,
+          "tokens": 220
+        },
+        {
+          "sample_id": 19,
+          "nll": 3.214632511138916,
+          "tokens": 251
+        },
+        {
+          "sample_id": 20,
+          "nll": 1.8198963403701782,
+          "tokens": 310
+        },
+        {
+          "sample_id": 21,
+          "nll": 2.882554292678833,
+          "tokens": 176
+        },
+        {
+          "sample_id": 22,
+          "nll": 1.4447365999221802,
+          "tokens": 266
+        },
+        {
+          "sample_id": 23,
+          "nll": 2.759275197982788,
+          "tokens": 574
+        },
+        {
+          "sample_id": 24,
+          "nll": 2.3824803829193115,
+          "tokens": 173
+        },
+        {
+          "sample_id": 25,
+          "nll": 1.8164169788360596,
+          "tokens": 680
+        },
+        {
+          "sample_id": 26,
+          "nll": 2.7552669048309326,
+          "tokens": 392
+        },
+        {
+          "sample_id": 27,
+          "nll": 2.5601353645324707,
+          "tokens": 287
+        },
+        {
+          "sample_id": 28,
+          "nll": 2.2013309001922607,
+          "tokens": 266
+        },
+        {
+          "sample_id": 29,
+          "nll": 2.7392005920410156,
+          "tokens": 304
+        },
+        {
+          "sample_id": 30,
+          "nll": 2.348473072052002,
+          "tokens": 211
+        },
+        {
+          "sample_id": 31,
+          "nll": 3.148707628250122,
+          "tokens": 149
+        },
+        {
+          "sample_id": 32,
+          "nll": 1.6426054239273071,
+          "tokens": 510
+        },
+        {
+          "sample_id": 33,
+          "nll": 2.3403589725494385,
+          "tokens": 192
+        },
+        {
+          "sample_id": 34,
+          "nll": 2.1059744358062744,
+          "tokens": 524
+        },
+        {
+          "sample_id": 35,
+          "nll": 2.492455244064331,
+          "tokens": 123
+        },
+        {
+          "sample_id": 36,
+          "nll": 2.3356857299804688,
+          "tokens": 289
+        },
+        {
+          "sample_id": 37,
+          "nll": 2.039579391479492,
+          "tokens": 271
+        },
+        {
+          "sample_id": 38,
+          "nll": 2.7401435375213623,
+          "tokens": 254
+        },
+        {
+          "sample_id": 39,
+          "nll": 1.8067004680633545,
+          "tokens": 118
+        },
+        {
+          "sample_id": 40,
+          "nll": 2.360456943511963,
+          "tokens": 207
+        },
+        {
+          "sample_id": 41,
+          "nll": 2.168682098388672,
+          "tokens": 368
+        },
+        {
+          "sample_id": 42,
+          "nll": 2.516423463821411,
+          "tokens": 401
+        },
+        {
+          "sample_id": 43,
+          "nll": 2.4421961307525635,
+          "tokens": 283
+        },
+        {
+          "sample_id": 44,
+          "nll": 2.7295758724212646,
+          "tokens": 480
+        },
+        {
+          "sample_id": 45,
+          "nll": 2.0359058380126953,
+          "tokens": 729
+        },
+        {
+          "sample_id": 46,
+          "nll": 2.5358941555023193,
+          "tokens": 517
+        },
+        {
+          "sample_id": 47,
+          "nll": 2.9470982551574707,
+          "tokens": 137
+        },
+        {
+          "sample_id": 48,
+          "nll": 2.0332164764404297,
+          "tokens": 219
+        },
+        {
+          "sample_id": 49,
+          "nll": 2.5554239749908447,
+          "tokens": 768
+        },
+        {
+          "sample_id": 50,
+          "nll": 2.107877731323242,
+          "tokens": 419
+        },
+        {
+          "sample_id": 51,
+          "nll": 2.10768985748291,
+          "tokens": 575
+        },
+        {
+          "sample_id": 52,
+          "nll": 2.6089272499084473,
+          "tokens": 138
+        },
+        {
+          "sample_id": 53,
+          "nll": 2.8829545974731445,
+          "tokens": 414
+        },
+        {
+          "sample_id": 54,
+          "nll": 2.5095553398132324,
+          "tokens": 264
+        },
+        {
+          "sample_id": 55,
+          "nll": 1.3077454566955566,
+          "tokens": 448
+        },
+        {
+          "sample_id": 56,
+          "nll": 2.3842692375183105,
+          "tokens": 284
+        },
+        {
+          "sample_id": 57,
+          "nll": 2.302205801010132,
+          "tokens": 422
+        },
+        {
+          "sample_id": 58,
+          "nll": 2.692167043685913,
+          "tokens": 324
+        },
+        {
+          "sample_id": 59,
+          "nll": 2.746005058288574,
+          "tokens": 250
+        },
+        {
+          "sample_id": 60,
+          "nll": 2.587857723236084,
+          "tokens": 384
+        },
+        {
+          "sample_id": 61,
+          "nll": 2.0893607139587402,
+          "tokens": 440
+        },
+        {
+          "sample_id": 62,
+          "nll": 1.7889971733093262,
+          "tokens": 388
+        },
+        {
+          "sample_id": 63,
+          "nll": 2.408411741256714,
+          "tokens": 325
+        },
+        {
+          "sample_id": 64,
+          "nll": 1.8804268836975098,
+          "tokens": 227
+        },
+        {
+          "sample_id": 65,
+          "nll": 2.578583002090454,
+          "tokens": 461
+        },
+        {
+          "sample_id": 66,
+          "nll": 2.9094953536987305,
+          "tokens": 87
+        },
+        {
+          "sample_id": 67,
+          "nll": 2.5616583824157715,
+          "tokens": 340
+        },
+        {
+          "sample_id": 68,
+          "nll": 2.621413230895996,
+          "tokens": 315
+        },
+        {
+          "sample_id": 69,
+          "nll": 1.779571533203125,
+          "tokens": 768
+        },
+        {
+          "sample_id": 70,
+          "nll": 2.1070525646209717,
+          "tokens": 239
+        },
+        {
+          "sample_id": 71,
+          "nll": 2.7785749435424805,
+          "tokens": 252
+        },
+        {
+          "sample_id": 72,
+          "nll": 2.408196449279785,
+          "tokens": 768
+        },
+        {
+          "sample_id": 73,
+          "nll": 2.305859088897705,
+          "tokens": 263
+        },
+        {
+          "sample_id": 74,
+          "nll": 1.9135433435440063,
+          "tokens": 391
+        },
+        {
+          "sample_id": 75,
+          "nll": 2.7046754360198975,
+          "tokens": 400
+        },
+        {
+          "sample_id": 76,
+          "nll": 3.441181182861328,
+          "tokens": 157
+        },
+        {
+          "sample_id": 77,
+          "nll": 2.3729958534240723,
+          "tokens": 194
+        },
+        {
+          "sample_id": 78,
+          "nll": 2.5428366661071777,
+          "tokens": 456
+        },
+        {
+          "sample_id": 79,
+          "nll": 2.703162670135498,
+          "tokens": 295
+        },
+        {
+          "sample_id": 80,
+          "nll": 2.430295705795288,
+          "tokens": 303
+        },
+        {
+          "sample_id": 81,
+          "nll": 2.1403279304504395,
+          "tokens": 344
+        },
+        {
+          "sample_id": 82,
+          "nll": 2.8455729484558105,
+          "tokens": 289
+        },
+        {
+          "sample_id": 83,
+          "nll": 1.6607059240341187,
+          "tokens": 163
+        },
+        {
+          "sample_id": 84,
+          "nll": 3.131584882736206,
+          "tokens": 352
+        },
+        {
+          "sample_id": 85,
+          "nll": 2.129530191421509,
+          "tokens": 245
+        },
+        {
+          "sample_id": 86,
+          "nll": 1.9294708967208862,
+          "tokens": 374
+        },
+        {
+          "sample_id": 87,
+          "nll": 2.245675563812256,
+          "tokens": 483
+        },
+        {
+          "sample_id": 88,
+          "nll": 2.834679365158081,
+          "tokens": 201
+        },
+        {
+          "sample_id": 89,
+          "nll": 2.1363377571105957,
+          "tokens": 260
+        },
+        {
+          "sample_id": 90,
+          "nll": 1.9944039583206177,
+          "tokens": 326
+        },
+        {
+          "sample_id": 91,
+          "nll": 1.750560998916626,
+          "tokens": 767
+        },
+        {
+          "sample_id": 92,
+          "nll": 2.9112839698791504,
+          "tokens": 127
+        },
+        {
+          "sample_id": 93,
+          "nll": 2.7774105072021484,
+          "tokens": 440
+        },
+        {
+          "sample_id": 94,
+          "nll": 2.5168049335479736,
+          "tokens": 337
+        },
+        {
+          "sample_id": 95,
+          "nll": 2.641270160675049,
+          "tokens": 230
+        },
+        {
+          "sample_id": 96,
+          "nll": 2.6159474849700928,
+          "tokens": 365
+        },
+        {
+          "sample_id": 97,
+          "nll": 2.727008104324341,
+          "tokens": 230
+        },
+        {
+          "sample_id": 98,
+          "nll": 2.1919896602630615,
+          "tokens": 223
+        },
+        {
+          "sample_id": 99,
+          "nll": 3.123199224472046,
+          "tokens": 355
+        }
+      ]
+    }
+  ]
+}

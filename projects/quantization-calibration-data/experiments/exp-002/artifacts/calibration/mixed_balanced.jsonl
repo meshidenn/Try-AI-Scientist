@@ -1,0 +1,18 @@
+{"text": "User: 旅行の持ち物リストを短く作って。\nAssistant:", "sample_id": 0}
+{"text": "User: Explain why sleep matters in simple terms.\nAssistant:", "sample_id": 1}
+{"text": "User: 旅行の持ち物リストを短く作って。\nAssistant:", "sample_id": 2}
+{"text": "User: 旅行の持ち物リストを短く作って。\nAssistant:", "sample_id": 3}
+{"text": "User: 旅行の持ち物リストを短く作って。\nAssistant:", "sample_id": 4}
+{"text": "User: What are practical tips for staying focused during work?\nAssistant:", "sample_id": 5}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 0}
+{"text": "Explain the bug in this JavaScript async code and fix it:\n\nasync function main() { return await items.map(fetchItem); }\n", "sample_id": 1}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 2}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 3}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 4}
+{"text": "Given a SQL table orders(user_id, amount), write a query for total spend per user.\n", "sample_id": 5}
+{"text": "A store discounts an item by 20%, then adds 10% tax. If original price is 50, final price?\n", "sample_id": 0}
+{"text": "Solve step by step: if 3x + 7 = 31, what is x?\n", "sample_id": 1}
+{"text": "A store discounts an item by 20%, then adds 10% tax. If original price is 50, final price?\n", "sample_id": 2}
+{"text": "A store discounts an item by 20%, then adds 10% tax. If original price is 50, final price?\n", "sample_id": 3}
+{"text": "A store discounts an item by 20%, then adds 10% tax. If original price is 50, final price?\n", "sample_id": 4}
+{"text": "Prove briefly why the sum of two even numbers is even.\n", "sample_id": 5}

@@ -1,0 +1,30 @@
+name: quantization-calibration-data
+title: Quantization Calibration Data Accuracy Study
+status: active
+created: 2026-07-04
+question: "LLMのpost-training quantizationで、calibration dataのドメイン選択が量子化後の得手不得手と劣化量をどの程度変えるか。"
+scope:
+  primary_target: "LLM quantization calibration data sensitivity"
+  calibration_domains:
+    - general_chat
+    - code
+    - math_reasoning
+    - long_documents
+    - multilingual
+    - mixed_balanced
+  language_comparison:
+    - english_instruction
+    - japanese_instruction
+    - bilingual_mixed
+  target_metrics:
+    - domain_specific_score_drop_from_unquantized_baseline
+    - perplexity_or_nll_by_domain
+    - generation_quality_by_domain
+  first_llm_experiment: "exp-002"
+  historical_toy_experiment: "exp-001"
+notes:
+  - "このprojectでは「量子化するデータ」をpost-training quantizationのcalibration dataとして扱う。"
+  - "主目的はLLMで、一般会話、コード、数学・推論、長文文書、多言語のcalibration dataが、それぞれの評価ドメインにおける量子化劣化をどう変えるかを測ること。"
+  - "exp-001は実験パイプライン確認用のtoy分類器であり、projectの中心的claimには使わない。"
+  - "Red Hat Gemma 4 FP8系のようなdata-free FP8 quantizationは、calibration data依存のAWQ/GPTQ系とは別軸の比較対象として扱う。"
+  - "exp-004では、calibration dataの言語を英語、日本語、日英混合に変え、評価言語ごとの量子化劣化を比較する。"

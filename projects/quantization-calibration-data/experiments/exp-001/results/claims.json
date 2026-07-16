@@ -1,0 +1,49 @@
+{
+  "claims": [
+    {
+      "claim": "In exp-001, all non-pathological 8-bit calibration variants matched the FP32 baseline test accuracy of 0.9733.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/results.md",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "The result table shows 0.9733 for each non-blank 8-bit calibration condition."
+    },
+    {
+      "claim": "In exp-001, non-pathological 4-bit calibration variants ranged from 0.9622 to 0.9689 test accuracy.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/results.md",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "The lowest non-blank 4-bit result is representative_200 at 0.9622 and the best is small_20/high_intensity_200 at 0.9689."
+    },
+    {
+      "claim": "The pathological blank calibration set collapsed both 4-bit and 8-bit accuracy to 0.0978.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/results.md",
+        "results/scores.json",
+        "logs/run.log"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "scores.json records blank_zeros_200 as the worst condition for both bit widths."
+    },
+    {
+      "claim": "The experiment is not sufficient to generalize to LLM-scale quantization.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "review/artifact-audit.md",
+        "results/results.md"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Both files state the task is a small sklearn digits MVP and list generalization limits."
+    }
+  ]
+}

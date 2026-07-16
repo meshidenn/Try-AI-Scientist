@@ -1,0 +1,289 @@
+{
+  "experiment_id": "exp-003",
+  "status": "completed_nll_and_task_real_pilot",
+  "metrics": {
+    "primary": {
+      "name": "real_corpus_mean_nll_by_domain",
+      "value": null,
+      "higher_is_better": false,
+      "unit": "nats_per_token",
+      "note": "Primary result is a model x domain matrix in metrics.evaluation_matrix."
+    },
+    "quantization_success_rate": 1.0,
+    "completed_variants": 3,
+    "attempted_variants": 3,
+    "quality_evaluation_status": "completed_real_corpus_nll",
+    "task_evaluation_status": "completed_small_task_pilot",
+    "datasets": {
+      "general_chat": {
+        "status": "completed",
+        "resolved_dataset": {
+          "dataset": "HuggingFaceH4/ultrachat_200k",
+          "config": null,
+          "split": "train_sft"
+        },
+        "calibration_file": "artifacts/calibration/general_chat.jsonl",
+        "evaluation_file": "artifacts/evaluation/general_chat.jsonl",
+        "num_calibration_samples": 64,
+        "num_eval_samples": 12,
+        "nonfatal_load_errors": []
+      },
+      "code": {
+        "status": "completed",
+        "resolved_dataset": {
+          "dataset": "google-research-datasets/mbpp",
+          "config": "full",
+          "split": "train"
+        },
+        "calibration_file": "artifacts/calibration/code.jsonl",
+        "evaluation_file": "artifacts/evaluation/code.jsonl",
+        "num_calibration_samples": 64,
+        "num_eval_samples": 12,
+        "nonfatal_load_errors": []
+      },
+      "math_reasoning": {
+        "status": "completed",
+        "resolved_dataset": {
+          "dataset": "openai/gsm8k",
+          "config": "main",
+          "split": "train"
+        },
+        "calibration_file": "artifacts/calibration/math_reasoning.jsonl",
+        "evaluation_file": "artifacts/evaluation/math_reasoning.jsonl",
+        "num_calibration_samples": 64,
+        "num_eval_samples": 12,
+        "nonfatal_load_errors": []
+      }
+    },
+    "evaluation": {
+      "max_samples_per_domain": 12,
+      "max_length": 768,
+      "metric": "mean next-token negative log likelihood over real held-out evaluation texts"
+    },
+    "evaluation_matrix": [
+      {
+        "model": "base",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 8962,
+        "mean_nll": 1.9802801607975176,
+        "perplexity": 7.244772402080207,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "base",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 1632,
+        "mean_nll": 1.460431863791218,
+        "perplexity": 4.307819517954122,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "base",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 2440,
+        "mean_nll": 1.2192399249457921,
+        "perplexity": 3.3846141948862845,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "nvfp4_real_general_chat",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 8962,
+        "mean_nll": 2.040297389269886,
+        "perplexity": 7.692896643647536,
+        "delta_nll_vs_base": 0.060017228472368345,
+        "relative_ppl_vs_base": 1.0618548405245496
+      },
+      {
+        "model": "nvfp4_real_general_chat",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 1632,
+        "mean_nll": 1.5615278664318955,
+        "perplexity": 4.766097645642241,
+        "delta_nll_vs_base": 0.10109600264067753,
+        "relative_ppl_vs_base": 1.106382852340519
+      },
+      {
+        "model": "nvfp4_real_general_chat",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 2440,
+        "mean_nll": 1.3065070073379845,
+        "perplexity": 3.6932506578358546,
+        "delta_nll_vs_base": 0.08726708239219239,
+        "relative_ppl_vs_base": 1.0911880779250644
+      },
+      {
+        "model": "nvfp4_real_code",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 8962,
+        "mean_nll": 2.046985501025676,
+        "perplexity": 7.744520035202301,
+        "delta_nll_vs_base": 0.06670534022815833,
+        "relative_ppl_vs_base": 1.06898044622887
+      },
+      {
+        "model": "nvfp4_real_code",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 1632,
+        "mean_nll": 1.577951015283664,
+        "perplexity": 4.845018265398257,
+        "delta_nll_vs_base": 0.11751915149244607,
+        "relative_ppl_vs_base": 1.1247031694817295
+      },
+      {
+        "model": "nvfp4_real_code",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 2440,
+        "mean_nll": 1.2848020922453678,
+        "perplexity": 3.613952657182341,
+        "delta_nll_vs_base": 0.06556216729957565,
+        "relative_ppl_vs_base": 1.0677591149509913
+      },
+      {
+        "model": "nvfp4_real_math_reasoning",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 8962,
+        "mean_nll": 2.0301758768408993,
+        "perplexity": 7.61542561800398,
+        "delta_nll_vs_base": 0.04989571604338172,
+        "relative_ppl_vs_base": 1.0511614713827788
+      },
+      {
+        "model": "nvfp4_real_math_reasoning",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 1632,
+        "mean_nll": 1.5647024331139583,
+        "perplexity": 4.781251981930135,
+        "delta_nll_vs_base": 0.10427056932274037,
+        "relative_ppl_vs_base": 1.109900719378526
+      },
+      {
+        "model": "nvfp4_real_math_reasoning",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 2440,
+        "mean_nll": 1.29789042372684,
+        "perplexity": 3.661564165449275,
+        "delta_nll_vs_base": 0.0786504987810479,
+        "relative_ppl_vs_base": 1.0818261564291216
+      }
+    ],
+    "best_quantized_by_domain": {
+      "general_chat": {
+        "model": "nvfp4_real_math_reasoning",
+        "mean_nll": 2.0301758768408993,
+        "delta_nll_vs_base": 0.04989571604338172
+      },
+      "code": {
+        "model": "nvfp4_real_general_chat",
+        "mean_nll": 1.5615278664318955,
+        "delta_nll_vs_base": 0.10109600264067753
+      },
+      "math_reasoning": {
+        "model": "nvfp4_real_code",
+        "mean_nll": 1.2848020922453678,
+        "delta_nll_vs_base": 0.06556216729957565
+      }
+    },
+    "task_evaluation": {
+      "max_samples_per_task": 4,
+      "tasks": [
+        "gsm8k_exact_match",
+        "mbpp_pass_at_1_restricted"
+      ],
+      "gsm8k_max_new_tokens": 64,
+      "mbpp_max_new_tokens": 96,
+      "code_timeout_s": 2,
+      "notes": "MBPP generated code is executed in a restricted subprocess with timeout; this is a small pilot metric. An earlier 8-sample longer-generation run was manually interrupted due to Transformers/compressed-tensors NVFP4 A4 generation made MBPP accuracy evaluation impractically slow."
+    },
+    "task_metrics_by_model": [
+      {
+        "model": "base",
+        "gsm8k_exact_match": 0.25,
+        "gsm8k_correct": 1,
+        "gsm8k_total": 4,
+        "mbpp_pass_at_1": 1.0,
+        "mbpp_passed": 4,
+        "mbpp_total": 4
+      },
+      {
+        "model": "nvfp4_real_general_chat",
+        "gsm8k_exact_match": 0.25,
+        "gsm8k_correct": 1,
+        "gsm8k_total": 4,
+        "mbpp_pass_at_1": 1.0,
+        "mbpp_passed": 4,
+        "mbpp_total": 4
+      },
+      {
+        "model": "nvfp4_real_code",
+        "gsm8k_exact_match": 0.0,
+        "gsm8k_correct": 0,
+        "gsm8k_total": 4,
+        "mbpp_pass_at_1": 0.75,
+        "mbpp_passed": 3,
+        "mbpp_total": 4
+      },
+      {
+        "model": "nvfp4_real_math_reasoning",
+        "gsm8k_exact_match": 0.25,
+        "gsm8k_correct": 1,
+        "gsm8k_total": 4,
+        "mbpp_pass_at_1": 0.5,
+        "mbpp_passed": 2,
+        "mbpp_total": 4
+      }
+    ]
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "eval_nll": "results/eval_nll.json",
+    "figures": [],
+    "logs": [
+      "logs/build_real_datasets.json",
+      "logs/quantize_general_chat.json",
+      "logs/quantize_code.json",
+      "logs/quantize_math_reasoning.json",
+      "logs/eval_nll_base.json",
+      "logs/eval_nll_nvfp4_real_general_chat.json",
+      "logs/eval_nll_nvfp4_real_code.json",
+      "logs/eval_nll_nvfp4_real_math_reasoning.json",
+      "logs/eval_tasks_base.json",
+      "logs/eval_tasks_nvfp4_real_general_chat.json",
+      "logs/eval_tasks_nvfp4_real_code.json",
+      "logs/eval_tasks_nvfp4_real_math_reasoning.json"
+    ],
+    "calibration": [
+      "artifacts/calibration/general_chat.jsonl",
+      "artifacts/calibration/code.jsonl",
+      "artifacts/calibration/math_reasoning.jsonl",
+      "artifacts/calibration/manifest.json"
+    ],
+    "evaluation": [
+      "artifacts/evaluation/general_chat.jsonl",
+      "artifacts/evaluation/code.jsonl",
+      "artifacts/evaluation/math_reasoning.jsonl",
+      "artifacts/evaluation/manifest.json"
+    ],
+    "models": [
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-real-general_chat",
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-real-code",
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-real-math_reasoning"
+    ],
+    "eval_tasks": "results/eval_tasks.json"
+  }
+}

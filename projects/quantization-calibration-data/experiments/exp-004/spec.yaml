@@ -1,0 +1,75 @@
+experiment_id: exp-004
+title: NVFP4 W4A4 Japanese-vs-English calibration language sensitivity pilot
+status: completed_nll_language_pilot
+created: 2026-07-12
+objective: >
+  Quantize the same LLM with NVFP4 W4A4 while changing only the calibration
+  language between English, Japanese, and bilingual mixed instruction data,
+  then measure language-specific degradation against the unquantized baseline.
+hypothesis:
+  primary: >
+    Calibration text in the same language as the evaluation text will reduce
+    quantization-induced NLL degradation for that language compared with
+    mismatched-language calibration.
+  caution: >
+    Calibration data is not fine-tuning data. A better matched calibration
+    language should be interpreted as lower quantization error on that input
+    distribution, not as language learning.
+method:
+  quantization: llmcompressor.oneshot
+  scheme: NVFP4
+  targets: Linear
+  ignore:
+    - lm_head
+  weight_precision: FP4
+  activation_precision: FP4
+base_model: Qwen/Qwen3-4B-Instruct-2507
+calibration_languages:
+  - english_instruction
+  - japanese_instruction
+  - bilingual_mixed
+calibration_settings:
+  num_calibration_samples: 64
+  max_seq_length: 2048
+  fixed_seed: 20260712
+candidate_datasets:
+  english_instruction:
+    primary: databricks/databricks-dolly-15k
+    fallbacks:
+      - HuggingFaceH4/ultrachat_200k
+  japanese_instruction:
+    primary: kunishou/databricks-dolly-15k-ja
+    fallbacks:
+      - elyza/ELYZA-tasks-100
+  bilingual_mixed:
+    construction: first 32 English + first 32 Japanese calibration rows
+evaluation_datasets:
+  english_instruction:
+    source: held-out rows from resolved English instruction dataset
+    samples: 24
+  japanese_instruction:
+    source: held-out rows from resolved Japanese instruction dataset
+    samples: 24
+metrics:
+  primary:
+    name: mean_nll_by_evaluation_language
+    higher_is_better: false
+  secondary:
+    - perplexity_by_evaluation_language
+    - delta_nll_vs_base
+    - best_quantized_by_language
+controls:
+  - Keep base model, quantization recipe, sample count, max sequence length, and evaluation sets fixed across calibration languages.
+  - Change only calibration language.
+  - Use NLL as the first accuracy metric to avoid generation-speed confounds.
+execution_notes:
+  - This is an accuracy experiment, not a speed benchmark.
+  - If generation-based accuracy metrics are later blocked by Transformers/compressed-tensors decode time, use vLLM only as an execution backend for accuracy evaluation, not as a speed target.
+constraints:
+  - Use repo-level uv dependencies only.
+  - Store generated model checkpoints under artifacts/models/ and keep them out of git.
+  - Do not report unexecuted variants as results.
+reproduction:
+  build_language_datasets: "uv run python projects/quantization-calibration-data/experiments/exp-004/workspace/build_language_datasets.py --num-calibration-samples 64 --num-eval-samples 24"
+  quantize_one: "uv run python projects/quantization-calibration-data/experiments/exp-004/workspace/quantize_nvfp4.py --language english_instruction"
+  evaluate_nll: "uv run python projects/quantization-calibration-data/experiments/exp-004/workspace/evaluate_nll.py --max-samples 24 --max-length 768"

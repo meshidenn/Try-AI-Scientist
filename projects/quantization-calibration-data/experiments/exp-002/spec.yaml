@@ -1,0 +1,141 @@
+experiment_id: exp-002
+title: NVFP4 W4A4 calibration-domain sensitivity pilot for LLMs
+status: completed_synthetic_pilot
+created: 2026-07-04
+objective: >
+  Quantize the same LLM with NVFP4 W4A4 while changing only the calibration
+  data domain, then measure domain-specific degradation against the unquantized
+  baseline and against data-free baselines where available.
+hypothesis:
+  primary: >
+    Calibration data whose domain matches the evaluation domain will reduce
+    quantization-induced degradation for that domain compared with mismatched
+    calibration data.
+method:
+  quantization: llmcompressor.oneshot
+  scheme: NVFP4
+  targets: Linear
+  ignore:
+    - lm_head
+  weight_precision: FP4
+  activation_precision: FP4
+  blackwell_requirement: "SM100 or newer for vLLM activation quantization path; below SM100 vLLM may run weight-only."
+base_models:
+  pilot: Qwen/Qwen3-4B-Instruct-2507
+  full_candidate: Qwen/Qwen3-32B
+  reference_existing_nvfp4:
+    - nvidia/Qwen3-32B-NVFP4
+    - nvidia/Qwen3-30B-A3B-NVFP4
+calibration_domains:
+  pilot:
+    - general_chat
+    - code
+    - math_reasoning
+  full:
+    - general_chat
+    - code
+    - math_reasoning
+    - long_documents
+    - multilingual
+    - mixed_balanced
+calibration_settings:
+  pilot_num_calibration_samples: 20
+  full_num_calibration_samples: 128
+  max_seq_length: 2048
+  fixed_seed: 20260704
+calibration_datasets:
+  current_pilot:
+    status: synthetic_prompt_jsonl_generated
+    generator: workspace/build_calibration_sets.py
+    generated_manifest: artifacts/calibration/manifest.json
+    generated_at: 2026-07-04
+    note: >
+      These are small synthetic pilot prompts for pipeline validation only.
+      They are not final evidence for real calibration-domain effects.
+    domains:
+      general_chat:
+        file: artifacts/calibration/general_chat.jsonl
+        num_samples: 20
+        source: "Synthetic prompts written in workspace/build_calibration_sets.py"
+        content_style: "Japanese/English daily chat, short QA, advice, short assistant-style responses"
+      code:
+        file: artifacts/calibration/code.jsonl
+        num_samples: 20
+        source: "Synthetic prompts written in workspace/build_calibration_sets.py"
+        content_style: "Python, JavaScript, SQL, bug fixing, code explanation, programming completion"
+      math_reasoning:
+        file: artifacts/calibration/math_reasoning.jsonl
+        num_samples: 20
+        source: "Synthetic prompts written in workspace/build_calibration_sets.py"
+        content_style: "Arithmetic word problems, algebra, probability, short proof prompts"
+      mixed_balanced:
+        file: artifacts/calibration/mixed_balanced.jsonl
+        num_samples: 18
+        source: "Balanced mix generated from the three pilot domains"
+        content_style: "Round-robin mixture of general_chat, code, and math_reasoning"
+  planned_real_datasets:
+    general_chat:
+      candidate: HuggingFaceH4/ultrachat_200k
+      reason: "Matches Red Hat Qwen3 NVFP4 reference recipe and represents instruction/chat data."
+    code:
+      candidate: "MBPP, HumanEval prompts, or permissive code-instruction corpus"
+      reason: "Tests whether code calibration preserves code-generation quality better than chat calibration."
+    math_reasoning:
+      candidate: "GSM8K train or similar math reasoning corpus"
+      reason: "Tests whether reasoning calibration preserves math/reasoning behavior."
+    long_documents:
+      candidate: "Long-document QA/RAG corpus or synthetic long-context documents"
+      reason: "Tests activation behavior for long context."
+    multilingual:
+      candidate: "Japanese/English mixed instruction and translation corpus"
+      reason: "Tests multilingual and Japanese/English mixed prompts."
+evaluation_domains:
+  - general_chat
+  - code
+  - math_reasoning
+  - long_documents
+  - multilingual
+evaluation_datasets:
+  current_pilot:
+    status: synthetic_heldout_jsonl_generated_and_evaluated
+    generator: workspace/build_evaluation_sets.py
+    generated_manifest: artifacts/evaluation/manifest.json
+    result_file: results/eval_nll.json
+    note: >
+      These are small held-out synthetic evaluation texts, separate from the
+      calibration JSONL files. They are useful for pilot smoke testing but are
+      not final evidence for real calibration-domain effects.
+    domains:
+      general_chat:
+        file: artifacts/evaluation/general_chat.jsonl
+        num_samples: 12
+      code:
+        file: artifacts/evaluation/code.jsonl
+        num_samples: 12
+      math_reasoning:
+        file: artifacts/evaluation/math_reasoning.jsonl
+        num_samples: 12
+metrics:
+  primary:
+    name: heldout_synthetic_mean_nll_by_domain
+    higher_is_better: false
+    status: completed_for_pilot
+  secondary:
+    - perplexity_or_nll_by_domain
+    - exact_match_or_pass_rate_by_domain_not_run
+    - quantization_success
+    - model_artifact_size_gb
+controls:
+  - Keep base model, quantization recipe, sample count, max sequence length, and evaluation set fixed across calibration domains.
+  - Change only calibration data domain.
+  - Treat data-free FP8/NVFP4A16/MXFP4 baselines as separate controls, not as calibration-domain experiments.
+constraints:
+  - Use repo-level uv dependencies only.
+  - Store generated model checkpoints under artifacts/models/ and keep them out of git.
+  - Do not report unexecuted variants as results.
+reproduction:
+  preflight: "uv run python projects/quantization-calibration-data/experiments/exp-002/workspace/preflight.py"
+  build_calibration: "uv run python projects/quantization-calibration-data/experiments/exp-002/workspace/build_calibration_sets.py --pilot"
+  quantize_one: "uv run python projects/quantization-calibration-data/experiments/exp-002/workspace/quantize_nvfp4.py --domain general_chat --pilot"
+  build_evaluation: "uv run python projects/quantization-calibration-data/experiments/exp-002/workspace/build_evaluation_sets.py --pilot"
+  evaluate_nll: "uv run python projects/quantization-calibration-data/experiments/exp-002/workspace/evaluate_nll.py --max-samples 12 --max-length 512"

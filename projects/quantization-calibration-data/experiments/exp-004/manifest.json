@@ -1,0 +1,53 @@
+{
+  "project": "quantization-calibration-data",
+  "experiment_id": "exp-004",
+  "status": "completed_nll_language_pilot",
+  "objective": "Run a Japanese-vs-English NVFP4 W4A4 calibration language sensitivity pilot for LLM accuracy.",
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/",
+    "logs": "logs/",
+    "calibration": "artifacts/calibration/",
+    "evaluation": "artifacts/evaluation/",
+    "models": "artifacts/models/",
+    "eval_nll": "results/eval_nll.json"
+  },
+  "summary": "English/Japanese language datasets were generated, three NVFP4 W4A4 Qwen3-4B variants were produced, and held-out English/Japanese NLL evaluation completed. All quantized variants were worse than base; English calibration won on English eval, bilingual mixed won on Japanese eval.",
+  "agent_runs": [
+    {
+      "role": "experiment-runner",
+      "status": "completed",
+      "notes": "Generated language datasets, quantized three variants, and evaluated NLL."
+    },
+    {
+      "role": "artifact-auditor",
+      "status": "completed",
+      "notes": "Artifact audit verdict PASS."
+    },
+    {
+      "role": "result-interpreter",
+      "status": "completed",
+      "notes": "Interpretation updated with language NLL matrix."
+    },
+    {
+      "role": "claim-auditor",
+      "status": "completed",
+      "notes": "Claim audit verdict PASS."
+    }
+  ],
+  "next_actions": [
+    "Increase evaluation size beyond 24 examples per language.",
+    "Use more parallel English/Japanese evaluation data.",
+    "Repeat quantization with 128 or 256 calibration samples.",
+    "Add generation accuracy if needed, using vLLM only as an execution backend if Transformers generation is impractically slow."
+  ]
+}

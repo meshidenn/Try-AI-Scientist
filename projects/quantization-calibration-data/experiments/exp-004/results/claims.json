@@ -1,0 +1,62 @@
+{
+  "claims": [
+    {
+      "claim": "exp-004 generated English, Japanese, and bilingual mixed calibration data and English/Japanese evaluation data.",
+      "source": "results/results.md",
+      "artifacts": [
+        "artifacts/calibration/manifest.json",
+        "artifacts/evaluation/manifest.json",
+        "logs/build_language_datasets.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Manifest records 64 calibration samples for each condition and 24 evaluation samples for English and Japanese."
+    },
+    {
+      "claim": "exp-004 produced three NVFP4 W4A4 Qwen3-4B variants calibrated on English, Japanese, and bilingual mixed instruction data.",
+      "source": "results/results.md",
+      "artifacts": [
+        "logs/quantize_english_instruction.json",
+        "logs/quantize_japanese_instruction.json",
+        "logs/quantize_bilingual_mixed.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Each quantization log has status=completed."
+    },
+    {
+      "claim": "All exp-004 NVFP4 variants had higher NLL than the base model on both English and Japanese evaluation text.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Every non-base row has positive delta_nll_vs_base."
+    },
+    {
+      "claim": "English calibration was the best quantized variant on English evaluation text.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "best_quantized_by_language.english_instruction is nvfp4_lang_english_instruction."
+    },
+    {
+      "claim": "Bilingual mixed calibration was the best quantized variant on Japanese evaluation text in this pilot.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "best_quantized_by_language.japanese_instruction is nvfp4_lang_bilingual_mixed; the margin over Japanese-only is small."
+    }
+  ]
+}

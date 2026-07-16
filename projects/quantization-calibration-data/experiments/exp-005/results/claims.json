@@ -1,0 +1,48 @@
+{
+  "claims": [
+    {
+      "claim": "exp-005 used llm-jp/llm-jp-instructions as the Japanese calibration and evaluation source.",
+      "source": "results/results.md",
+      "artifacts": [
+        "artifacts/calibration/manifest.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": ""
+    },
+    {
+      "claim": "All exp-005 NVFP4 variants had higher NLL than the base model on both English and Japanese evaluation text.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json",
+        "results/eval_nll.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": ""
+    },
+    {
+      "claim": "Japanese calibration was the best quantized variant on LLM-jp Japanese evaluation text.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json",
+        "results/eval_nll.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": ""
+    },
+    {
+      "claim": "Bilingual mixed calibration was slightly best among quantized variants on English evaluation text.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json",
+        "results/eval_nll.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Gap to English-only calibration is small."
+    }
+  ]
+}

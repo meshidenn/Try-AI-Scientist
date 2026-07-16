@@ -1,0 +1,185 @@
+{
+  "experiment_id": "exp-004",
+  "status": "completed_nll_language_pilot",
+  "metrics": {
+    "primary": {
+      "name": "mean_nll_by_evaluation_language",
+      "value": null,
+      "higher_is_better": false,
+      "unit": "nats_per_token",
+      "note": "Primary result is a model x language matrix in metrics.evaluation_matrix."
+    },
+    "dataset_status": "completed",
+    "quantization_status": "completed",
+    "evaluation_status": "completed_nll",
+    "datasets": {
+      "english_instruction": {
+        "status": "completed",
+        "resolved_dataset": {
+          "dataset": "databricks/databricks-dolly-15k",
+          "config": null,
+          "split": "train"
+        },
+        "calibration_file": "artifacts/calibration/english_instruction.jsonl",
+        "evaluation_file": "artifacts/evaluation/english_instruction.jsonl",
+        "num_calibration_samples": 64,
+        "num_eval_samples": 24,
+        "nonfatal_load_errors": []
+      },
+      "japanese_instruction": {
+        "status": "completed",
+        "resolved_dataset": {
+          "dataset": "kunishou/databricks-dolly-15k-ja",
+          "config": null,
+          "split": "train"
+        },
+        "calibration_file": "artifacts/calibration/japanese_instruction.jsonl",
+        "evaluation_file": "artifacts/evaluation/japanese_instruction.jsonl",
+        "num_calibration_samples": 64,
+        "num_eval_samples": 24,
+        "nonfatal_load_errors": []
+      },
+      "bilingual_mixed": {
+        "status": "completed",
+        "resolved_dataset": {
+          "construction": "first English half plus first Japanese half"
+        },
+        "calibration_file": "artifacts/calibration/bilingual_mixed.jsonl",
+        "evaluation_file": null,
+        "num_calibration_samples": 64,
+        "num_eval_samples": 0,
+        "nonfatal_load_errors": []
+      }
+    },
+    "evaluation": {
+      "max_samples_per_language": 24,
+      "max_length": 768,
+      "metric": "mean next-token negative log likelihood over held-out instruction texts by language"
+    },
+    "evaluation_matrix": [
+      {
+        "model": "base",
+        "evaluation_language": "english_instruction",
+        "samples": 24,
+        "tokens": 4395,
+        "mean_nll": 2.134045671548724,
+        "perplexity": 8.448979556638593,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "base",
+        "evaluation_language": "japanese_instruction",
+        "samples": 24,
+        "tokens": 5705,
+        "mean_nll": 2.232135086828528,
+        "perplexity": 9.319743313316014,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "nvfp4_lang_english_instruction",
+        "evaluation_language": "english_instruction",
+        "samples": 24,
+        "tokens": 4395,
+        "mean_nll": 2.1893188687314757,
+        "perplexity": 8.9291291338854,
+        "delta_nll_vs_base": 0.05527319718275159,
+        "relative_ppl_vs_base": 1.05682929802683
+      },
+      {
+        "model": "nvfp4_lang_english_instruction",
+        "evaluation_language": "japanese_instruction",
+        "samples": 24,
+        "tokens": 5705,
+        "mean_nll": 2.2649203395342012,
+        "perplexity": 9.63035741179613,
+        "delta_nll_vs_base": 0.03278525270567334,
+        "relative_ppl_vs_base": 1.033328610889563
+      },
+      {
+        "model": "nvfp4_lang_japanese_instruction",
+        "evaluation_language": "english_instruction",
+        "samples": 24,
+        "tokens": 4395,
+        "mean_nll": 2.1942779252689175,
+        "perplexity": 8.97351916545776,
+        "delta_nll_vs_base": 0.06023225372019336,
+        "relative_ppl_vs_base": 1.0620831906744317
+      },
+      {
+        "model": "nvfp4_lang_japanese_instruction",
+        "evaluation_language": "japanese_instruction",
+        "samples": 24,
+        "tokens": 5705,
+        "mean_nll": 2.259589238379944,
+        "perplexity": 9.579153609876293,
+        "delta_nll_vs_base": 0.02745415155141595,
+        "relative_ppl_vs_base": 1.0278344894102003
+      },
+      {
+        "model": "nvfp4_lang_bilingual_mixed",
+        "evaluation_language": "english_instruction",
+        "samples": 24,
+        "tokens": 4395,
+        "mean_nll": 2.204521014042139,
+        "perplexity": 9.065908085037824,
+        "delta_nll_vs_base": 0.07047534249341503,
+        "relative_ppl_vs_base": 1.0730181111533752
+      },
+      {
+        "model": "nvfp4_lang_bilingual_mixed",
+        "evaluation_language": "japanese_instruction",
+        "samples": 24,
+        "tokens": 5705,
+        "mean_nll": 2.2541687191420747,
+        "perplexity": 9.527370097007303,
+        "delta_nll_vs_base": 0.022033632313546825,
+        "relative_ppl_vs_base": 1.0222781654720718
+      }
+    ],
+    "best_quantized_by_language": {
+      "english_instruction": {
+        "model": "nvfp4_lang_english_instruction",
+        "mean_nll": 2.1893188687314757,
+        "delta_nll_vs_base": 0.05527319718275159
+      },
+      "japanese_instruction": {
+        "model": "nvfp4_lang_bilingual_mixed",
+        "mean_nll": 2.2541687191420747,
+        "delta_nll_vs_base": 0.022033632313546825
+      }
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "eval_nll": "results/eval_nll.json",
+    "figures": [],
+    "logs": [
+      "logs/build_language_datasets.json",
+      "logs/quantize_english_instruction.json",
+      "logs/quantize_japanese_instruction.json",
+      "logs/quantize_bilingual_mixed.json",
+      "logs/eval_nll_base.json",
+      "logs/eval_nll_nvfp4_lang_english_instruction.json",
+      "logs/eval_nll_nvfp4_lang_japanese_instruction.json",
+      "logs/eval_nll_nvfp4_lang_bilingual_mixed.json"
+    ],
+    "calibration": [
+      "artifacts/calibration/english_instruction.jsonl",
+      "artifacts/calibration/japanese_instruction.jsonl",
+      "artifacts/calibration/bilingual_mixed.jsonl",
+      "artifacts/calibration/manifest.json"
+    ],
+    "evaluation": [
+      "artifacts/evaluation/english_instruction.jsonl",
+      "artifacts/evaluation/japanese_instruction.jsonl",
+      "artifacts/evaluation/manifest.json"
+    ],
+    "models": [
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-lang-english_instruction",
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-lang-japanese_instruction",
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-lang-bilingual_mixed"
+    ]
+  }
+}

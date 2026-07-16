@@ -1,0 +1,77 @@
+{
+  "claims": [
+    {
+      "claim": "exp-003 generated real calibration and evaluation JSONL files for general_chat, code, and math_reasoning.",
+      "source": "results/results.md",
+      "artifacts": [
+        "artifacts/calibration/manifest.json",
+        "artifacts/evaluation/manifest.json",
+        "logs/build_real_datasets.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Manifest status is completed and records 64 calibration plus 12 evaluation samples per domain."
+    },
+    {
+      "claim": "exp-003 produced three real-calibrated NVFP4 W4A4 Qwen3-4B variants.",
+      "source": "results/results.md",
+      "artifacts": [
+        "logs/quantize_general_chat.json",
+        "logs/quantize_code.json",
+        "logs/quantize_math_reasoning.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Each quantize log has status=completed and scores.json records 3/3 completed variants."
+    },
+    {
+      "claim": "All real-calibrated NVFP4 variants had higher NLL than the base model on all three evaluated domains.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Every non-base row has positive delta_nll_vs_base."
+    },
+    {
+      "claim": "Matched-domain calibration did not produce the best quantized NLL in any evaluated domain.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Best quantized variants are math_reasoning for general_chat, general_chat for code, and code for math_reasoning."
+    },
+    {
+      "claim": "exp-003 ran a 4-sample-per-task GSM8K/MBPP task smoke pilot for base and all three NVFP4 variants.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_tasks.json",
+        "results/scores.json",
+        "logs/eval_tasks_base.json",
+        "logs/eval_tasks_nvfp4_real_general_chat.json",
+        "logs/eval_tasks_nvfp4_real_code.json",
+        "logs/eval_tasks_nvfp4_real_math_reasoning.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "eval_tasks.json status is completed and records 4 GSM8K plus 4 MBPP samples per model."
+    },
+    {
+      "claim": "The small task pilot did not show a matched-domain advantage.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_tasks.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "code calibration scored 3/4 on MBPP versus base and general_chat calibration at 4/4; math_reasoning calibration scored 1/4 on GSM8K, tied with base and general_chat, while code calibration scored 0/4."
+    }
+  ]
+}

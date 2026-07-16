@@ -1,0 +1,43 @@
+experiment_id: exp-001
+title: Calibration data choice for simulated PTQ on sklearn digits
+status: completed
+created: 2026-07-04
+objective: >
+  Measure how different calibration datasets affect post-training quantized
+  classification accuracy while keeping the trained model and test split fixed.
+hypothesis:
+  primary: >
+    Representative calibration data will preserve accuracy better than biased,
+    tiny, or out-of-distribution calibration data, especially at 4-bit.
+independent_variables:
+  - calibration_dataset
+  - quantization_bits
+fixed_variables:
+  dataset: sklearn_digits
+  train_test_split: stratified_train_test_split_random_state_42
+  model: sklearn.neural_network.MLPClassifier_hidden64_random_state_7
+  weight_quantization: per_tensor_symmetric_fake_quantization
+  activation_quantization: per_layer_affine_fake_quantization_from_calibration_ranges
+calibration_datasets:
+  - representative_200
+  - small_20
+  - class0_only
+  - low_intensity_200
+  - high_intensity_200
+  - gaussian_noise_200
+  - blank_zeros_200
+metrics:
+  primary:
+    name: test_accuracy
+    higher_is_better: true
+  secondary:
+    - accuracy_drop_from_fp32
+    - input_clip_rate_on_test
+    - hidden_clip_rate_on_test
+constraints:
+  - "Use existing repo dependencies via uv; do not add a project-local requirements file."
+  - "Keep generated artifacts under this experiment directory."
+  - "Do not treat unrun variants as measured."
+  - "`blank_zeros_200` is a pathological sanity-check calibration set, not a deployment candidate."
+reproduction:
+  command: "uv run python projects/quantization-calibration-data/experiments/exp-001/workspace/run_experiment.py"

@@ -1,0 +1,12 @@
+{"sample_id": 0, "text": "Task: Write a Python function that returns the squares of even numbers from a list.\nAnswer:\n```python\ndef even_squares(values: list[int]) -> list[int]:\n    return [x * x for x in values if x % 2 == 0]\n```"}
+{"sample_id": 1, "text": "Task: Explain why this code is slow: for each user it scans the whole orders list.\nAnswer: The code repeats a full scan for every user, so the runtime grows with users times orders. Building a dictionary keyed by user_id makes each lookup cheaper."}
+{"sample_id": 2, "text": "Task: Write SQL to count orders per customer from orders(customer_id, id).\nAnswer:\n```sql\nSELECT customer_id, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer_id;\n```"}
+{"sample_id": 3, "text": "Task: Fix the JavaScript promise usage: const data = urls.map(fetch);\nAnswer:\n```javascript\nconst data = await Promise.all(urls.map((url) => fetch(url)));\n```"}
+{"sample_id": 4, "text": "Task: Implement a guard clause for None in Python.\nAnswer:\n```python\ndef normalize(text: str | None) -> str:\n    if text is None:\n        return \"\"\n    return text.strip().lower()\n```"}
+{"sample_id": 5, "text": "Task: What does Big O describe?\nAnswer: Big O describes how the cost of an algorithm grows as the input size grows, usually ignoring constant factors."}
+{"sample_id": 6, "text": "Task: Write a TypeScript type for a user with id and email.\nAnswer:\n```typescript\ntype User = {\n  id: string;\n  email: string;\n};\n```"}
+{"sample_id": 7, "text": "Task: Explain a race condition in one paragraph.\nAnswer: A race condition happens when the result depends on the timing of concurrent operations, such as two workers updating shared state without coordination."}
+{"sample_id": 8, "text": "Task: Write Python code to safely open and read a UTF-8 file.\nAnswer:\n```python\nfrom pathlib import Path\ntext = Path(\"notes.txt\").read_text(encoding=\"utf-8\")\n```"}
+{"sample_id": 9, "text": "Task: Give a simple unit test for add(a, b).\nAnswer:\n```python\ndef test_add():\n    assert add(2, 3) == 5\n```"}
+{"sample_id": 10, "text": "Task: Refactor repeated condition checks into a helper function.\nAnswer: Move the shared condition into a named function, call that function from each branch, and keep the branch-specific behavior separate."}
+{"sample_id": 11, "text": "Task: Write a Python function that filters empty strings.\nAnswer:\n```python\ndef non_empty(items: list[str]) -> list[str]:\n    return [item for item in items if item]\n```"}

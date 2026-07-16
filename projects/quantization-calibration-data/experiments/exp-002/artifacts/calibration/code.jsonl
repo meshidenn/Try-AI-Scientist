@@ -1,0 +1,20 @@
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 0}
+{"text": "Explain the bug in this JavaScript async code and fix it:\n\nasync function main() { return await items.map(fetchItem); }\n", "sample_id": 1}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 2}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 3}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 4}
+{"text": "Given a SQL table orders(user_id, amount), write a query for total spend per user.\n", "sample_id": 5}
+{"text": "Explain the bug in this JavaScript async code and fix it:\n\nasync function main() { return await items.map(fetchItem); }\n", "sample_id": 6}
+{"text": "Write a Python function that merges overlapping intervals.\n\n```python\n", "sample_id": 7}
+{"text": "Implement binary search in Python with type hints.\n\n```python\n", "sample_id": 8}
+{"text": "Write a Python function that merges overlapping intervals.\n\n```python\n", "sample_id": 9}
+{"text": "Given a SQL table orders(user_id, amount), write a query for total spend per user.\n", "sample_id": 10}
+{"text": "Implement binary search in Python with type hints.\n\n```python\n", "sample_id": 11}
+{"text": "Implement binary search in Python with type hints.\n\n```python\n", "sample_id": 12}
+{"text": "Explain the bug in this JavaScript async code and fix it:\n\nasync function main() { return await items.map(fetchItem); }\n", "sample_id": 13}
+{"text": "Given a SQL table orders(user_id, amount), write a query for total spend per user.\n", "sample_id": 14}
+{"text": "Given a SQL table orders(user_id, amount), write a query for total spend per user.\n", "sample_id": 15}
+{"text": "Write a Python function that merges overlapping intervals.\n\n```python\n", "sample_id": 16}
+{"text": "Implement binary search in Python with type hints.\n\n```python\n", "sample_id": 17}
+{"text": "Refactor this Python loop into a list comprehension and explain tradeoffs.\n", "sample_id": 18}
+{"text": "Explain the bug in this JavaScript async code and fix it:\n\nasync function main() { return await items.map(fetchItem); }\n", "sample_id": 19}

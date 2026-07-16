@@ -1,0 +1,32 @@
+{
+  "experiment_id": "exp-002",
+  "platform": "Linux-6.14.0-1015-nvidia-aarch64-with-glibc2.39",
+  "python": "3.12.12",
+  "modules": {
+    "torch": true,
+    "transformers": true,
+    "datasets": true,
+    "llmcompressor": true,
+    "compressed_tensors": true,
+    "vllm": false
+  },
+  "nvidia_smi": {
+    "returncode": 0,
+    "stdout": "Sun Jul  5 08:12:03 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GB10                    On  |   0000000F:01:00.0 Off |                  N/A |\n| N/A   51C    P8              4W /  N/A  | Not Supported          |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A         3678948      G   /usr/lib/xorg/Xorg                      126MiB |\n|    0   N/A  N/A         3679061      G   /usr/bin/gnome-shell                     18MiB |\n+-----------------------------------------------------------------------------------------+",
+    "stderr": ""
+  },
+  "local_qwen4b_cache_exists": true,
+  "qwen4b_snapshot_file_count_sampled": 10,
+  "qwen4b_snapshot_files_sample": [
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/config.json",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/generation_config.json",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/merges.txt",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/model-00001-of-00003.safetensors",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/model-00002-of-00003.safetensors",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/model-00003-of-00003.safetensors",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/model.safetensors.index.json",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/tokenizer.json",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/tokenizer_config.json",
+    "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554/vocab.json"
+  ]
+}

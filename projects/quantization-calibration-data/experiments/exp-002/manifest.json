@@ -1,0 +1,58 @@
+{
+  "project": "quantization-calibration-data",
+  "experiment_id": "exp-002",
+  "status": "completed",
+  "objective": "Run an NVFP4 W4A4 calibration-domain sensitivity pilot for LLMs.",
+  "agent_runs": [
+    {
+      "role": "experiment-runner",
+      "status": "completed",
+      "notes": "Generated three NVFP4 W4A4 Qwen3-4B pilot variants and ran held-out synthetic NLL evaluation."
+    },
+    {
+      "role": "artifact-auditor",
+      "status": "completed",
+      "notes": "Artifact audit verdict PASS after evaluation."
+    },
+    {
+      "role": "result-interpreter",
+      "status": "completed",
+      "notes": "Interpretation updated with NLL matrix and pilot limitations."
+    },
+    {
+      "role": "claim-auditor",
+      "status": "completed",
+      "notes": "Claim audit verdict PASS."
+    },
+    {
+      "role": "archivist",
+      "status": "completed",
+      "notes": "Manifest updated after evaluation."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/",
+    "logs": "logs/",
+    "calibration": "artifacts/calibration/",
+    "models": "artifacts/models/",
+    "evaluation": "artifacts/evaluation/",
+    "eval_nll": "results/eval_nll.json"
+  },
+  "summary": "Three NVFP4 W4A4 Qwen3-4B pilot variants were generated and evaluated with held-out synthetic NLL across general_chat, code, and math_reasoning. Matched calibration did not win in this tiny synthetic pilot.",
+  "next_actions": [
+    "Replace synthetic pilot calibration and evaluation data with real corpora.",
+    "Add task metrics such as MBPP/HumanEval pass@1 and GSM8K exact match.",
+    "Add data-free LLM Compressor baselines for comparison.",
+    "Expand to long-document and multilingual domains."
+  ]
+}

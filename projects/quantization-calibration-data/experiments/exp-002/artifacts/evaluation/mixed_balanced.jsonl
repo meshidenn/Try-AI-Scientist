@@ -1,0 +1,18 @@
+{"sample_id": 0, "text": "User: 明日の朝を気持ちよく始めるための小さな習慣を3つ教えて。\nAssistant: 1. 寝る前に水を用意する。2. 起きたらカーテンを開ける。3. 最初の5分だけ軽く体を動かす。"}
+{"sample_id": 1, "text": "Task: Write a Python function that returns the squares of even numbers from a list.\nAnswer:\n```python\ndef even_squares(values: list[int]) -> list[int]:\n    return [x * x for x in values if x % 2 == 0]\n```"}
+{"sample_id": 2, "text": "Problem: A box has 3 red balls and 2 blue balls. What fraction are red?\nSolution: There are 5 balls total and 3 are red, so the fraction is 3/5."}
+{"sample_id": 3, "text": "User: Write a friendly thank-you note to a coworker who helped debug an issue.\nAssistant: Thanks for jumping in and helping track down the issue. Your careful debugging saved us a lot of time, and I really appreciate it."}
+{"sample_id": 4, "text": "Task: Explain why this code is slow: for each user it scans the whole orders list.\nAnswer: The code repeats a full scan for every user, so the runtime grows with users times orders. Building a dictionary keyed by user_id makes each lookup cheaper."}
+{"sample_id": 5, "text": "Problem: If 4 notebooks cost 800 yen, how much do 7 notebooks cost at the same price?\nSolution: One notebook costs 800 / 4 = 200 yen. Seven notebooks cost 7 * 200 = 1400 yen."}
+{"sample_id": 6, "text": "User: 夕食の献立を考えるのが面倒です。簡単な案をください。\nAssistant: ごはん、味噌汁、焼き魚か豆腐、冷凍野菜の炒め物にすると、短時間で栄養のバランスも取りやすいです。"}
+{"sample_id": 7, "text": "Task: Write SQL to count orders per customer from orders(customer_id, id).\nAnswer:\n```sql\nSELECT customer_id, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer_id;\n```"}
+{"sample_id": 8, "text": "Problem: Solve for x: 2x + 5 = 17.\nSolution: Subtract 5 from both sides to get 2x = 12, then divide by 2, so x = 6."}
+{"sample_id": 9, "text": "User: Explain cloud storage to a beginner in two sentences.\nAssistant: Cloud storage lets you save files on remote computers run by a provider instead of only on your own device. You can access those files from different devices when you sign in."}
+{"sample_id": 10, "text": "Task: Fix the JavaScript promise usage: const data = urls.map(fetch);\nAnswer:\n```javascript\nconst data = await Promise.all(urls.map((url) => fetch(url)));\n```"}
+{"sample_id": 11, "text": "Problem: A train travels 90 km in 1.5 hours. What is its average speed?\nSolution: Speed is distance divided by time, so 90 / 1.5 = 60 km/h."}
+{"sample_id": 12, "text": "User: 友人の誕生日に送る短いメッセージを書いて。\nAssistant: 誕生日おめでとう。いつも楽しい時間をありがとう。新しい一年が穏やかで実り多いものになりますように。"}
+{"sample_id": 13, "text": "Task: Implement a guard clause for None in Python.\nAnswer:\n```python\ndef normalize(text: str | None) -> str:\n    if text is None:\n        return \"\"\n    return text.strip().lower()\n```"}
+{"sample_id": 14, "text": "Problem: What is the next number in 2, 4, 8, 16?\nSolution: Each number is doubled, so the next number is 32."}
+{"sample_id": 15, "text": "User: Give three practical ways to reduce screen fatigue.\nAssistant: Take short breaks, increase text size when needed, and keep the screen brightness close to the room brightness."}
+{"sample_id": 16, "text": "Task: What does Big O describe?\nAnswer: Big O describes how the cost of an algorithm grows as the input size grows, usually ignoring constant factors."}
+{"sample_id": 17, "text": "Problem: A rectangle has width 6 and height 9. What is its area?\nSolution: Area is width times height, so 6 * 9 = 54."}

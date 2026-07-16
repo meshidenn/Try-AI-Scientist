@@ -1,0 +1,53 @@
+{
+  "project": "quantization-calibration-data",
+  "experiment_id": "exp-001",
+  "status": "completed",
+  "objective": "Measure how calibration dataset choice affects simulated PTQ classification accuracy on sklearn digits.",
+  "agent_runs": [
+    {
+      "role": "experiment-runner",
+      "status": "completed",
+      "notes": "Implemented and ran simulated PTQ experiment."
+    },
+    {
+      "role": "artifact-auditor",
+      "status": "completed",
+      "notes": "Artifact audit verdict PASS."
+    },
+    {
+      "role": "result-interpreter",
+      "status": "completed",
+      "notes": "Created interpretation and next plan."
+    },
+    {
+      "role": "claim-auditor",
+      "status": "completed",
+      "notes": "Claim audit verdict PASS."
+    },
+    {
+      "role": "archivist",
+      "status": "completed",
+      "notes": "Created manifest."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/",
+    "logs": "logs/"
+  },
+  "summary": "FP32 test accuracy was 0.9733. Non-pathological 8-bit calibration variants matched FP32, while non-pathological 4-bit variants ranged from 0.9622 to 0.9689. A pathological blank calibration set collapsed both bit widths to 0.0978.",
+  "next_actions": [
+    "Repeat random calibration sampling to estimate variance.",
+    "Add systematic distribution-shift calibration conditions.",
+    "Repeat with a production quantization backend."
+  ]
+}

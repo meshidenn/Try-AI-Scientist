@@ -1,0 +1,195 @@
+{
+  "experiment_id": "exp-002",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "heldout_synthetic_mean_nll_by_domain",
+      "value": null,
+      "higher_is_better": false,
+      "unit": "nats_per_token",
+      "note": "Primary evaluation is a matrix by model and evaluation domain; see metrics.evaluation_matrix."
+    },
+    "quantization_success_rate": 1.0,
+    "completed_variants": 3,
+    "attempted_variants": 3,
+    "quality_evaluation_status": "completed_synthetic_pilot",
+    "evaluation": {
+      "dataset": "artifacts/evaluation/*.jsonl",
+      "split": "synthetic_pilot_heldout",
+      "max_samples_per_domain": 12,
+      "max_length": 512,
+      "metric": "mean next-token negative log likelihood over held-out synthetic evaluation texts"
+    },
+    "evaluation_matrix": [
+      {
+        "model": "base",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 559,
+        "mean_nll": 3.559927279279569,
+        "perplexity": 35.16064014505213,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "base",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 486,
+        "mean_nll": 2.2927279671033225,
+        "perplexity": 9.90191296342735,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "base",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 544,
+        "mean_nll": 1.200917773606146,
+        "perplexity": 3.323165437126594,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "nvfp4_general_chat",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 559,
+        "mean_nll": 3.430749155327758,
+        "perplexity": 30.899782817766635,
+        "delta_nll_vs_base": -0.12917812395181105,
+        "relative_ppl_vs_base": 0.8788174131725788
+      },
+      {
+        "model": "nvfp4_general_chat",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 486,
+        "mean_nll": 2.4600888009915134,
+        "perplexity": 11.705850985002273,
+        "delta_nll_vs_base": 0.1673608338881909,
+        "relative_ppl_vs_base": 1.1821807592369027
+      },
+      {
+        "model": "nvfp4_general_chat",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 544,
+        "mean_nll": 1.383243495160166,
+        "perplexity": 3.987815132810541,
+        "delta_nll_vs_base": 0.18232572155401994,
+        "relative_ppl_vs_base": 1.2000049977224856
+      },
+      {
+        "model": "nvfp4_code",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 559,
+        "mean_nll": 3.352889645718078,
+        "perplexity": 28.585215560359035,
+        "delta_nll_vs_base": -0.20703763356149096,
+        "relative_ppl_vs_base": 0.8129890537383063
+      },
+      {
+        "model": "nvfp4_code",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 486,
+        "mean_nll": 2.461434437659542,
+        "perplexity": 11.721613410188358,
+        "delta_nll_vs_base": 0.16870647055621957,
+        "relative_ppl_vs_base": 1.183772615804851
+      },
+      {
+        "model": "nvfp4_code",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 544,
+        "mean_nll": 1.384606164167909,
+        "perplexity": 3.9932529090037403,
+        "delta_nll_vs_base": 0.183688390561763,
+        "relative_ppl_vs_base": 1.2016413219729871
+      },
+      {
+        "model": "nvfp4_math_reasoning",
+        "evaluation_domain": "general_chat",
+        "samples": 12,
+        "tokens": 559,
+        "mean_nll": 3.4714037885819438,
+        "perplexity": 32.181887316372,
+        "delta_nll_vs_base": -0.0885234906976251,
+        "relative_ppl_vs_base": 0.9152816098799241
+      },
+      {
+        "model": "nvfp4_math_reasoning",
+        "evaluation_domain": "code",
+        "samples": 12,
+        "tokens": 486,
+        "mean_nll": 2.4698060939831987,
+        "perplexity": 11.82015463031345,
+        "delta_nll_vs_base": 0.17707812687987623,
+        "relative_ppl_vs_base": 1.1937243514431113
+      },
+      {
+        "model": "nvfp4_math_reasoning",
+        "evaluation_domain": "math_reasoning",
+        "samples": 12,
+        "tokens": 544,
+        "mean_nll": 1.3924664348802145,
+        "perplexity": 4.024764641020485,
+        "delta_nll_vs_base": 0.19154866127406844,
+        "relative_ppl_vs_base": 1.2111237665316281
+      }
+    ],
+    "best_quantized_by_domain": {
+      "general_chat": {
+        "model": "nvfp4_code",
+        "mean_nll": 3.352889645718078,
+        "delta_nll_vs_base": -0.20703763356149096
+      },
+      "code": {
+        "model": "nvfp4_general_chat",
+        "mean_nll": 2.4600888009915134,
+        "delta_nll_vs_base": 0.1673608338881909
+      },
+      "math_reasoning": {
+        "model": "nvfp4_general_chat",
+        "mean_nll": 1.383243495160166,
+        "delta_nll_vs_base": 0.18232572155401994
+      }
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "eval_nll": "results/eval_nll.json",
+    "figures": [],
+    "logs": [
+      "logs/preflight.json",
+      "logs/quantize_general_chat.json",
+      "logs/quantize_code.json",
+      "logs/quantize_math_reasoning.json",
+      "logs/eval_nll_base.json",
+      "logs/eval_nll_nvfp4_general_chat.json",
+      "logs/eval_nll_nvfp4_code.json",
+      "logs/eval_nll_nvfp4_math_reasoning.json"
+    ],
+    "calibration": [
+      "artifacts/calibration/general_chat.jsonl",
+      "artifacts/calibration/code.jsonl",
+      "artifacts/calibration/math_reasoning.jsonl",
+      "artifacts/calibration/manifest.json"
+    ],
+    "evaluation": [
+      "artifacts/evaluation/general_chat.jsonl",
+      "artifacts/evaluation/code.jsonl",
+      "artifacts/evaluation/math_reasoning.jsonl",
+      "artifacts/evaluation/manifest.json"
+    ],
+    "models": [
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-general_chat",
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-code",
+      "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-math_reasoning"
+    ]
+  }
+}

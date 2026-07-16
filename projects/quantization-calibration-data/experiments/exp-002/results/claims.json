@@ -1,0 +1,68 @@
+{
+  "claims": [
+    {
+      "claim": "exp-002 successfully produced three NVFP4 W4A4 pilot quantized Qwen3-4B variants for general_chat, code, and math_reasoning calibration domains.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/results.md",
+        "results/scores.json",
+        "logs/quantize_general_chat.json",
+        "logs/quantize_code.json",
+        "logs/quantize_math_reasoning.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Each quantize log has status=completed and scores.json records 3/3 completed variants."
+    },
+    {
+      "claim": "Each completed pilot variant used 20 synthetic calibration samples and max_seq_length=2048.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/results.md",
+        "results/scores.json",
+        "artifacts/calibration/manifest.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "The calibration manifest and quantize logs record the sample count and max sequence length."
+    },
+    {
+      "claim": "A held-out synthetic NLL evaluation was run for base and all three NVFP4 variants on general_chat, code, and math_reasoning.",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json",
+        "logs/eval_nll_base.json",
+        "logs/eval_nll_nvfp4_general_chat.json",
+        "logs/eval_nll_nvfp4_code.json",
+        "logs/eval_nll_nvfp4_math_reasoning.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "eval_nll.json has 12 model/domain rows: 4 models times 3 domains."
+    },
+    {
+      "claim": "Matched calibration did not produce the best quantized NLL in any of the three synthetic evaluation domains.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/eval_nll.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Best quantized variants are nvfp4_code for general_chat, nvfp4_general_chat for code, and nvfp4_general_chat for math_reasoning."
+    },
+    {
+      "claim": "The current pilot is not final evidence about real calibration-domain effects.",
+      "source": "results/results.md",
+      "artifacts": [
+        "artifacts/calibration/manifest.json",
+        "artifacts/evaluation/manifest.json",
+        "results/results.md"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Both calibration and evaluation manifests identify the data as synthetic pilot data."
+    }
+  ]
+}

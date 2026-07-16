@@ -1,0 +1,49 @@
+{
+  "status": "completed",
+  "generated_by": "workspace/build_real_datasets.py",
+  "seed": 20260707,
+  "num_calibration_samples_requested": 64,
+  "num_eval_samples_requested": 12,
+  "domains": {
+    "general_chat": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "HuggingFaceH4/ultrachat_200k",
+        "config": null,
+        "split": "train_sft"
+      },
+      "calibration_file": "artifacts/calibration/general_chat.jsonl",
+      "evaluation_file": "artifacts/evaluation/general_chat.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 12,
+      "nonfatal_load_errors": []
+    },
+    "code": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "google-research-datasets/mbpp",
+        "config": "full",
+        "split": "train"
+      },
+      "calibration_file": "artifacts/calibration/code.jsonl",
+      "evaluation_file": "artifacts/evaluation/code.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 12,
+      "nonfatal_load_errors": []
+    },
+    "math_reasoning": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "openai/gsm8k",
+        "config": "main",
+        "split": "train"
+      },
+      "calibration_file": "artifacts/calibration/math_reasoning.jsonl",
+      "evaluation_file": "artifacts/evaluation/math_reasoning.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 12,
+      "nonfatal_load_errors": []
+    }
+  },
+  "failures": {}
+}

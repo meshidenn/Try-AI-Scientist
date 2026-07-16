@@ -1,0 +1,12 @@
+{"sample_id": 0, "text": "Problem: A box has 3 red balls and 2 blue balls. What fraction are red?\nSolution: There are 5 balls total and 3 are red, so the fraction is 3/5."}
+{"sample_id": 1, "text": "Problem: If 4 notebooks cost 800 yen, how much do 7 notebooks cost at the same price?\nSolution: One notebook costs 800 / 4 = 200 yen. Seven notebooks cost 7 * 200 = 1400 yen."}
+{"sample_id": 2, "text": "Problem: Solve for x: 2x + 5 = 17.\nSolution: Subtract 5 from both sides to get 2x = 12, then divide by 2, so x = 6."}
+{"sample_id": 3, "text": "Problem: A train travels 90 km in 1.5 hours. What is its average speed?\nSolution: Speed is distance divided by time, so 90 / 1.5 = 60 km/h."}
+{"sample_id": 4, "text": "Problem: What is the next number in 2, 4, 8, 16?\nSolution: Each number is doubled, so the next number is 32."}
+{"sample_id": 5, "text": "Problem: A rectangle has width 6 and height 9. What is its area?\nSolution: Area is width times height, so 6 * 9 = 54."}
+{"sample_id": 6, "text": "Problem: If a price drops from 100 to 80, what is the percent decrease?\nSolution: The decrease is 20 out of 100, so the percent decrease is 20%."}
+{"sample_id": 7, "text": "Problem: There are 12 apples split equally among 4 people. How many apples per person?\nSolution: 12 divided by 4 is 3, so each person gets 3 apples."}
+{"sample_id": 8, "text": "Problem: Which is larger, 3/4 or 2/3?\nSolution: Compare cross products: 3 * 3 = 9 and 2 * 4 = 8, so 3/4 is larger."}
+{"sample_id": 9, "text": "Problem: If x is even, is x + 3 even or odd?\nSolution: Adding an odd number to an even number gives an odd number, so x + 3 is odd."}
+{"sample_id": 10, "text": "Problem: A bag has 5 coins. You add 7 and remove 3. How many coins remain?\nSolution: Start with 5, add 7 to get 12, then remove 3 to get 9."}
+{"sample_id": 11, "text": "Problem: What is 15% of 200?\nSolution: 10% of 200 is 20 and 5% is 10, so 15% is 30."}

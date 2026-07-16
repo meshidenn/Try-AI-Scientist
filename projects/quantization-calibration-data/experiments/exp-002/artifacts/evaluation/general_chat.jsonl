@@ -1,0 +1,12 @@
+{"sample_id": 0, "text": "User: 明日の朝を気持ちよく始めるための小さな習慣を3つ教えて。\nAssistant: 1. 寝る前に水を用意する。2. 起きたらカーテンを開ける。3. 最初の5分だけ軽く体を動かす。"}
+{"sample_id": 1, "text": "User: Write a friendly thank-you note to a coworker who helped debug an issue.\nAssistant: Thanks for jumping in and helping track down the issue. Your careful debugging saved us a lot of time, and I really appreciate it."}
+{"sample_id": 2, "text": "User: 夕食の献立を考えるのが面倒です。簡単な案をください。\nAssistant: ごはん、味噌汁、焼き魚か豆腐、冷凍野菜の炒め物にすると、短時間で栄養のバランスも取りやすいです。"}
+{"sample_id": 3, "text": "User: Explain cloud storage to a beginner in two sentences.\nAssistant: Cloud storage lets you save files on remote computers run by a provider instead of only on your own device. You can access those files from different devices when you sign in."}
+{"sample_id": 4, "text": "User: 友人の誕生日に送る短いメッセージを書いて。\nAssistant: 誕生日おめでとう。いつも楽しい時間をありがとう。新しい一年が穏やかで実り多いものになりますように。"}
+{"sample_id": 5, "text": "User: Give three practical ways to reduce screen fatigue.\nAssistant: Take short breaks, increase text size when needed, and keep the screen brightness close to the room brightness."}
+{"sample_id": 6, "text": "User: 会議の冒頭で使える一言を考えて。\nAssistant: 本日はお時間ありがとうございます。まず目的と進め方を確認してから、各論点に入っていきます。"}
+{"sample_id": 7, "text": "User: What is a polite way to ask for a deadline extension?\nAssistant: You can say that you want to deliver good work, explain the reason briefly, and propose a specific new deadline."}
+{"sample_id": 8, "text": "User: 雨の日の通勤を少し快適にする工夫は？\nAssistant: 防水の靴を選び、替えの靴下を持ち、混雑を避けられるよう少し早めに出ると快適になります。"}
+{"sample_id": 9, "text": "User: Summarize why daily planning can help productivity.\nAssistant: Daily planning turns vague work into concrete next steps, which reduces decision fatigue and makes progress easier to track."}
+{"sample_id": 10, "text": "User: 新しい趣味を始めたい人に短く助言して。\nAssistant: 最初から上手くやろうとせず、週に一度だけ試すくらいの小ささで始めると続けやすいです。"}
+{"sample_id": 11, "text": "User: How should I respond if I do not know the answer in a meeting?\nAssistant: Be honest, say you will check, and give a clear follow-up time so the group knows when to expect an answer."}

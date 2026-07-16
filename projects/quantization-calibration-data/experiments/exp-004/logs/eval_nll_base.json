@@ -1,0 +1,266 @@
+{
+  "model": "base",
+  "model_ref": "Qwen/Qwen3-4B-Instruct-2507",
+  "rows": [
+    {
+      "model": "base",
+      "evaluation_language": "english_instruction",
+      "samples": 24,
+      "tokens": 4395,
+      "mean_nll": 2.134045671548724,
+      "perplexity": 8.448979556638593,
+      "per_sample": [
+        {
+          "sample_id": 0,
+          "nll": 2.1019110679626465,
+          "tokens": 30
+        },
+        {
+          "sample_id": 1,
+          "nll": 0.9649185538291931,
+          "tokens": 364
+        },
+        {
+          "sample_id": 2,
+          "nll": 2.510158061981201,
+          "tokens": 155
+        },
+        {
+          "sample_id": 3,
+          "nll": 3.1059927940368652,
+          "tokens": 107
+        },
+        {
+          "sample_id": 4,
+          "nll": 3.967513084411621,
+          "tokens": 45
+        },
+        {
+          "sample_id": 5,
+          "nll": 1.8369126319885254,
+          "tokens": 66
+        },
+        {
+          "sample_id": 6,
+          "nll": 1.0600566864013672,
+          "tokens": 322
+        },
+        {
+          "sample_id": 7,
+          "nll": 2.0335888862609863,
+          "tokens": 86
+        },
+        {
+          "sample_id": 8,
+          "nll": 1.456850528717041,
+          "tokens": 137
+        },
+        {
+          "sample_id": 9,
+          "nll": 2.4892053604125977,
+          "tokens": 532
+        },
+        {
+          "sample_id": 10,
+          "nll": 1.9059255123138428,
+          "tokens": 28
+        },
+        {
+          "sample_id": 11,
+          "nll": 1.873630404472351,
+          "tokens": 160
+        },
+        {
+          "sample_id": 12,
+          "nll": 2.6495330333709717,
+          "tokens": 768
+        },
+        {
+          "sample_id": 13,
+          "nll": 1.9588335752487183,
+          "tokens": 216
+        },
+        {
+          "sample_id": 14,
+          "nll": 2.602607250213623,
+          "tokens": 31
+        },
+        {
+          "sample_id": 15,
+          "nll": 2.2588870525360107,
+          "tokens": 274
+        },
+        {
+          "sample_id": 16,
+          "nll": 1.8600865602493286,
+          "tokens": 53
+        },
+        {
+          "sample_id": 17,
+          "nll": 3.0765035152435303,
+          "tokens": 245
+        },
+        {
+          "sample_id": 18,
+          "nll": 2.650545358657837,
+          "tokens": 104
+        },
+        {
+          "sample_id": 19,
+          "nll": 2.5262949466705322,
+          "tokens": 78
+        },
+        {
+          "sample_id": 20,
+          "nll": 1.4936845302581787,
+          "tokens": 408
+        },
+        {
+          "sample_id": 21,
+          "nll": 2.1989541053771973,
+          "tokens": 49
+        },
+        {
+          "sample_id": 22,
+          "nll": 2.775313377380371,
+          "tokens": 35
+        },
+        {
+          "sample_id": 23,
+          "nll": 2.485534906387329,
+          "tokens": 102
+        }
+      ]
+    },
+    {
+      "model": "base",
+      "evaluation_language": "japanese_instruction",
+      "samples": 24,
+      "tokens": 5705,
+      "mean_nll": 2.232135086828528,
+      "perplexity": 9.319743313316014,
+      "per_sample": [
+        {
+          "sample_id": 0,
+          "nll": 2.6173806190490723,
+          "tokens": 35
+        },
+        {
+          "sample_id": 1,
+          "nll": 1.6090294122695923,
+          "tokens": 453
+        },
+        {
+          "sample_id": 2,
+          "nll": 2.6007533073425293,
+          "tokens": 208
+        },
+        {
+          "sample_id": 3,
+          "nll": 2.6819114685058594,
+          "tokens": 146
+        },
+        {
+          "sample_id": 4,
+          "nll": 3.005868434906006,
+          "tokens": 88
+        },
+        {
+          "sample_id": 5,
+          "nll": 1.940558910369873,
+          "tokens": 103
+        },
+        {
+          "sample_id": 6,
+          "nll": 1.5897877216339111,
+          "tokens": 417
+        },
+        {
+          "sample_id": 7,
+          "nll": 2.8344788551330566,
+          "tokens": 119
+        },
+        {
+          "sample_id": 8,
+          "nll": 1.9638315439224243,
+          "tokens": 205
+        },
+        {
+          "sample_id": 9,
+          "nll": 2.220425605773926,
+          "tokens": 733
+        },
+        {
+          "sample_id": 10,
+          "nll": 2.7888121604919434,
+          "tokens": 41
+        },
+        {
+          "sample_id": 11,
+          "nll": 2.029961347579956,
+          "tokens": 244
+        },
+        {
+          "sample_id": 12,
+          "nll": 2.4110095500946045,
+          "tokens": 768
+        },
+        {
+          "sample_id": 13,
+          "nll": 2.6907870769500732,
+          "tokens": 227
+        },
+        {
+          "sample_id": 14,
+          "nll": 2.6680781841278076,
+          "tokens": 46
+        },
+        {
+          "sample_id": 15,
+          "nll": 2.117917537689209,
+          "tokens": 377
+        },
+        {
+          "sample_id": 16,
+          "nll": 2.331362009048462,
+          "tokens": 71
+        },
+        {
+          "sample_id": 17,
+          "nll": 2.754389524459839,
+          "tokens": 344
+        },
+        {
+          "sample_id": 18,
+          "nll": 3.219088077545166,
+          "tokens": 118
+        },
+        {
+          "sample_id": 19,
+          "nll": 1.8179742097854614,
+          "tokens": 146
+        },
+        {
+          "sample_id": 20,
+          "nll": 1.9779564142227173,
+          "tokens": 564
+        },
+        {
+          "sample_id": 21,
+          "nll": 1.9973654747009277,
+          "tokens": 59
+        },
+        {
+          "sample_id": 22,
+          "nll": 3.033094644546509,
+          "tokens": 53
+        },
+        {
+          "sample_id": 23,
+          "nll": 2.433847665786743,
+          "tokens": 140
+        }
+      ]
+    }
+  ]
+}

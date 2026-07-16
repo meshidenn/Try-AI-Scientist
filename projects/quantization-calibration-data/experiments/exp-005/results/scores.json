@@ -1,0 +1,163 @@
+{
+  "experiment_id": "exp-005",
+  "status": "completed_nll_llmjp_language_eval",
+  "metrics": {
+    "primary": {
+      "name": "mean_next_token_nll",
+      "higher_is_better": false,
+      "evaluation_samples_per_language": 100,
+      "max_length": 768
+    },
+    "evaluation_status": "completed_nll",
+    "evaluation_matrix": [
+      {
+        "model": "base",
+        "evaluation_language": "english_instruction",
+        "samples": 100,
+        "tokens": 15993,
+        "mean_nll": 2.273086626355423,
+        "perplexity": 9.709323664302433,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "base",
+        "evaluation_language": "japanese_instruction",
+        "samples": 100,
+        "tokens": 34777,
+        "mean_nll": 2.3388922112941755,
+        "perplexity": 10.36974271366868,
+        "delta_nll_vs_base": 0.0,
+        "relative_ppl_vs_base": 1.0
+      },
+      {
+        "model": "nvfp4_lang_english_instruction",
+        "evaluation_language": "english_instruction",
+        "samples": 100,
+        "tokens": 15993,
+        "mean_nll": 2.339034127062066,
+        "perplexity": 10.37121444809741,
+        "delta_nll_vs_base": 0.06594750070664324,
+        "relative_ppl_vs_base": 1.068170637490282
+      },
+      {
+        "model": "nvfp4_lang_english_instruction",
+        "evaluation_language": "japanese_instruction",
+        "samples": 100,
+        "tokens": 34777,
+        "mean_nll": 2.374047669858571,
+        "perplexity": 10.740779545843813,
+        "delta_nll_vs_base": 0.03515545856439539,
+        "relative_ppl_vs_base": 1.0357807172675613
+      },
+      {
+        "model": "nvfp4_lang_japanese_instruction",
+        "evaluation_language": "english_instruction",
+        "samples": 100,
+        "tokens": 15993,
+        "mean_nll": 2.3510717001267207,
+        "perplexity": 10.496813134836197,
+        "delta_nll_vs_base": 0.07798507377129793,
+        "relative_ppl_vs_base": 1.0811065217064573
+      },
+      {
+        "model": "nvfp4_lang_japanese_instruction",
+        "evaluation_language": "japanese_instruction",
+        "samples": 100,
+        "tokens": 34777,
+        "mean_nll": 2.3624315937052764,
+        "perplexity": 10.616735678995488,
+        "delta_nll_vs_base": 0.023539382411100984,
+        "relative_ppl_vs_base": 1.023818620398483
+      },
+      {
+        "model": "nvfp4_lang_bilingual_mixed",
+        "evaluation_language": "english_instruction",
+        "samples": 100,
+        "tokens": 15993,
+        "mean_nll": 2.3367499217213052,
+        "perplexity": 10.347551500469201,
+        "delta_nll_vs_base": 0.06366329536588244,
+        "relative_ppl_vs_base": 1.065733500935116
+      },
+      {
+        "model": "nvfp4_lang_bilingual_mixed",
+        "evaluation_language": "japanese_instruction",
+        "samples": 100,
+        "tokens": 34777,
+        "mean_nll": 2.3718853962648683,
+        "perplexity": 10.71758013263427,
+        "delta_nll_vs_base": 0.03299318497069281,
+        "relative_ppl_vs_base": 1.0335434955880916
+      }
+    ],
+    "best_quantized_by_language": {
+      "english_instruction": {
+        "model": "nvfp4_lang_bilingual_mixed",
+        "mean_nll": 2.3367499217213052,
+        "delta_nll_vs_base": 0.06366329536588244
+      },
+      "japanese_instruction": {
+        "model": "nvfp4_lang_japanese_instruction",
+        "mean_nll": 2.3624315937052764,
+        "delta_nll_vs_base": 0.023539382411100984
+      }
+    }
+  },
+  "datasets": {
+    "english_instruction": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "databricks/databricks-dolly-15k",
+        "config": null,
+        "data_dir": null,
+        "split": "train"
+      },
+      "calibration_file": "artifacts/calibration/english_instruction.jsonl",
+      "evaluation_file": "artifacts/evaluation/english_instruction.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 100,
+      "nonfatal_load_errors": []
+    },
+    "japanese_instruction": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "llm-jp/llm-jp-instructions",
+        "config": "v1.0",
+        "split": "train",
+        "loader": "parquet_url",
+        "parquet_url": "https://huggingface.co/datasets/llm-jp/llm-jp-instructions/resolve/refs%2Fconvert%2Fparquet/v1.0/train/0000.parquet"
+      },
+      "calibration_file": "artifacts/calibration/japanese_instruction.jsonl",
+      "evaluation_file": "artifacts/evaluation/japanese_instruction.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 100,
+      "nonfatal_load_errors": []
+    },
+    "bilingual_mixed": {
+      "status": "completed",
+      "resolved_dataset": {
+        "construction": "first English half plus first Japanese half"
+      },
+      "calibration_file": "artifacts/calibration/bilingual_mixed.jsonl",
+      "evaluation_file": null,
+      "num_calibration_samples": 64,
+      "num_eval_samples": 0,
+      "nonfatal_load_errors": []
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "eval_nll": "results/eval_nll.json",
+    "logs": [
+      "logs/build_language_datasets.json",
+      "logs/eval_nll_base.json",
+      "logs/eval_nll_nvfp4_lang_bilingual_mixed.json",
+      "logs/eval_nll_nvfp4_lang_english_instruction.json",
+      "logs/eval_nll_nvfp4_lang_japanese_instruction.json",
+      "logs/quantize_bilingual_mixed.json",
+      "logs/quantize_english_instruction.json",
+      "logs/quantize_japanese_instruction.json"
+    ]
+  }
+}

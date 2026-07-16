@@ -1,0 +1,54 @@
+{
+  "project": "quantization-calibration-data",
+  "experiment_id": "exp-003",
+  "status": "completed_nll_and_task_real_pilot",
+  "objective": "Run a real-corpus NVFP4 W4A4 calibration-domain sensitivity pilot for LLMs.",
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "review": "review/",
+    "logs": "logs/",
+    "calibration": "artifacts/calibration/",
+    "evaluation": "artifacts/evaluation/",
+    "models": "artifacts/models/",
+    "eval_nll": "results/eval_nll.json",
+    "claims": "results/claims.json",
+    "eval_tasks": "results/eval_tasks.json",
+    "figures": "figures/",
+    "paper": "paper/"
+  },
+  "summary": "Real-corpus calibration datasets were generated, three NVFP4 W4A4 Qwen3-4B variants were produced, held-out real-corpus NLL evaluation was completed, and a 4-sample GSM8K/MBPP task smoke pilot was completed. All quantized variants were worse than base on NLL; matched calibration did not win in NLL or the small task pilot.",
+  "agent_runs": [
+    {
+      "role": "experiment-runner",
+      "status": "completed",
+      "notes": "Generated real datasets, quantized three variants, evaluated NLL, and ran a 4-sample GSM8K/MBPP task smoke pilot."
+    },
+    {
+      "role": "artifact-auditor",
+      "status": "completed",
+      "notes": "Artifact audit verdict PASS after NLL and task-pilot artifacts."
+    },
+    {
+      "role": "result-interpreter",
+      "status": "completed",
+      "notes": "Interpretation updated with real-corpus NLL matrix and task smoke metrics."
+    },
+    {
+      "role": "claim-auditor",
+      "status": "completed",
+      "notes": "Claim audit verdict PASS after task-pilot claims."
+    }
+  ],
+  "next_actions": [
+    "Increase task evaluation size beyond 4 samples per task.",
+    "Increase held-out NLL evaluation size.",
+    "Repeat quantization with 128 or 256 calibration samples.",
+    "Add data-free baselines."
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  }
+}

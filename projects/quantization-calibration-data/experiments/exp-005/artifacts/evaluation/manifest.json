@@ -1,0 +1,50 @@
+{
+  "status": "completed",
+  "generated_by": "workspace/build_language_datasets.py",
+  "seed": 20260712,
+  "num_calibration_samples_requested": 64,
+  "num_eval_samples_requested": 100,
+  "languages": {
+    "english_instruction": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "databricks/databricks-dolly-15k",
+        "config": null,
+        "data_dir": null,
+        "split": "train"
+      },
+      "calibration_file": "artifacts/calibration/english_instruction.jsonl",
+      "evaluation_file": "artifacts/evaluation/english_instruction.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 100,
+      "nonfatal_load_errors": []
+    },
+    "japanese_instruction": {
+      "status": "completed",
+      "resolved_dataset": {
+        "dataset": "llm-jp/llm-jp-instructions",
+        "config": "v1.0",
+        "split": "train",
+        "loader": "parquet_url",
+        "parquet_url": "https://huggingface.co/datasets/llm-jp/llm-jp-instructions/resolve/refs%2Fconvert%2Fparquet/v1.0/train/0000.parquet"
+      },
+      "calibration_file": "artifacts/calibration/japanese_instruction.jsonl",
+      "evaluation_file": "artifacts/evaluation/japanese_instruction.jsonl",
+      "num_calibration_samples": 64,
+      "num_eval_samples": 100,
+      "nonfatal_load_errors": []
+    },
+    "bilingual_mixed": {
+      "status": "completed",
+      "resolved_dataset": {
+        "construction": "first English half plus first Japanese half"
+      },
+      "calibration_file": "artifacts/calibration/bilingual_mixed.jsonl",
+      "evaluation_file": null,
+      "num_calibration_samples": 64,
+      "num_eval_samples": 0,
+      "nonfatal_load_errors": []
+    }
+  },
+  "failures": {}
+}

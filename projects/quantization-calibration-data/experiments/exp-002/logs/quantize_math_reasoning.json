@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "domain": "math_reasoning",
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "scheme": "NVFP4",
+  "num_calibration_samples": 20,
+  "max_seq_length": 2048,
+  "output_dir": "artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-math_reasoning"
+}

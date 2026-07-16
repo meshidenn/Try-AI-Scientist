@@ -1,0 +1,98 @@
+{
+  "model": "nvfp4_real_code",
+  "model_ref": "/home/hiroki/work/Try-AI-Scientist/projects/quantization-calibration-data/experiments/exp-003/artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-real-code",
+  "gsm8k_exact_match": 0.0,
+  "gsm8k_correct": 0,
+  "gsm8k_total": 4,
+  "mbpp_pass_at_1": 0.75,
+  "mbpp_passed": 3,
+  "mbpp_total": 4,
+  "gsm8k_rows": [
+    {
+      "sample_id": 0,
+      "prompt": "Problem: Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "We are given:\n- Janet’s ducks lay 16 eggs per day.\n- She eats 3 eggs for breakfast.\n- She bakes muffins using 4 eggs.\n- The remaining eggs are sold at $2 per egg.\n\nStep 1: Calculate the number of eggs used daily:\n- Eggs eaten for",
+      "prediction": "1",
+      "gold": "18",
+      "correct": false
+    },
+    {
+      "sample_id": 1,
+      "prompt": "Problem: A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "We are told that a robe takes 2 bolts of blue fiber and half that much white fiber.\n\nHalf of 2 bolts is 1 bolt.\n\nSo, the robe takes 2 bolts of blue fiber and 1 bolt of white fiber.\n\nTherefore, the total number of bolts is 2 + 1 = ",
+      "prediction": "1",
+      "gold": "3",
+      "correct": false
+    },
+    {
+      "sample_id": 2,
+      "prompt": "Problem: Josh decides to try flipping a house.  He buys a house for $80,000 and then puts in $50,000 in repairs.  This increased the value of the house by 150%.  How much profit did he make?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "The value of the house increased by 150%, so the new value is 250% of the original value.\nThe original value of the house was $80,000, so the new value is 2.5 * 80,000 = $200",
+      "prediction": "200",
+      "gold": "70000",
+      "correct": false
+    },
+    {
+      "sample_id": 3,
+      "prompt": "Problem: James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  How many total meters does he run a week?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "We are given that James runs 3 sprints per week, and each sprint is 60 meters. To find the total distance he runs in a week, we multiply the number of sprints by the distance of each sprint:\n\n$$\n3 \\text{ sprints/week} \\times 60 \\",
+      "prediction": "60",
+      "gold": "540",
+      "correct": false
+    }
+  ],
+  "mbpp_rows": [
+    {
+      "sample_id": 0,
+      "prompt": "Task: Write a python function to shift first element to the end of given list.\nTests:\nassert move_last([1,2,3,4]) == [2,3,4,1]\nassert move_last([2,3,4,1,5,0]) == [3,4,1,5,0,2]\nassert move_last([5,4,3,2,1]) == [4,3,2,1,5]\nAnswer:\n```python\n",
+      "generated": "def move_last(lst):\n    if len(lst) == 0:\n        return lst\n    last_element = lst[-1]\n    shifted_list = lst[:-1] + [last_element]\n    return shifted_list\n```python\nThe provided solution correctly shifts the last element to the end of the list. However, there's a mistake in the logic. The function currently moves the **last** element to the end, but the task requires moving the **first** element to",
+      "extracted_code": "def move_last(lst):\n    if len(lst) == 0:\n        return lst\n    last_element = lst[-1]\n    shifted_list = lst[:-1] + [last_element]\n    return shifted_list",
+      "tests": [
+        "assert move_last([1,2,3,4]) == [2,3,4,1]",
+        "assert move_last([2,3,4,1,5,0]) == [3,4,1,5,0,2]",
+        "assert move_last([5,4,3,2,1]) == [4,3,2,1,5]"
+      ],
+      "passed": false,
+      "error": "AssertionError()"
+    },
+    {
+      "sample_id": 1,
+      "prompt": "Task: Write a function to count occurrence of a character in a string.\nTests:\nassert count_char(\"Python\",'o')==1\nassert count_char(\"little\",'t')==2\nassert count_char(\"assert\",'s')==2\nAnswer:\n```python\n",
+      "generated": "def count_char(s, c):\n    return s.count(c)\n``` \nThe function uses the built-in `count()` method of strings to count the occurrences of the character `c` in the string `s`. This method returns the number of times the character appears in the string. The tests verify that the function correctly counts the occurrences of the specified character in the given string. The function works correctly for all test cases. The first test counts 'o' in \"Python\"",
+      "extracted_code": "def count_char(s, c):\n    return s.count(c)",
+      "tests": [
+        "assert count_char(\"Python\",'o')==1",
+        "assert count_char(\"little\",'t')==2",
+        "assert count_char(\"assert\",'s')==2"
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "sample_id": 2,
+      "prompt": "Task: Write a python function to count number of vowels in the string.\nTests:\nassert Check_Vow('corner','AaEeIiOoUu') == 2\nassert Check_Vow('valid','AaEeIiOoUu') == 2\nassert Check_Vow('true','AaEeIiOoUu') ==2\nAnswer:\n```python\n",
+      "generated": "def Check_Vow(s, vowels):\n    count = 0\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count\n```\n\n\nTask: Write a python function to count number of vowels in the string.\nTests:\nassert Check_Vow('corner','AaEeIiOoUu') == 2\nassert Check_Vow('valid','AaEeIiOoUu') ==",
+      "extracted_code": "def Check_Vow(s, vowels):\n    count = 0\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count",
+      "tests": [
+        "assert Check_Vow('corner','AaEeIiOoUu') == 2",
+        "assert Check_Vow('valid','AaEeIiOoUu') == 2",
+        "assert Check_Vow('true','AaEeIiOoUu') ==2"
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "sample_id": 3,
+      "prompt": "Task: Write a python function to replace multiple occurence of character by single.\nTests:\nassert replace('peep','e') == 'pep'\nassert replace('Greek','e') == 'Grek'\nassert replace('Moon','o') == 'Mon'\nAnswer:\n```python\n",
+      "generated": "def replace(s, c):\n    result = \"\"\n    for i in range(len(s)):\n        if i == 0 or s[i] != s[i-1]:\n            result += s[i]\n    return result\n``` \nThe function works by iterating through the string and only adding a character to the result if it is different from the previous character. This ensures that consecutive occurrences of the same character are replaced by a single instance. The function is tested with the provided examples and",
+      "extracted_code": "def replace(s, c):\n    result = \"\"\n    for i in range(len(s)):\n        if i == 0 or s[i] != s[i-1]:\n            result += s[i]\n    return result",
+      "tests": [
+        "assert replace('peep','e') == 'pep'",
+        "assert replace('Greek','e') == 'Grek'",
+        "assert replace('Moon','o') == 'Mon'"
+      ],
+      "passed": true,
+      "error": null
+    }
+  ]
+}

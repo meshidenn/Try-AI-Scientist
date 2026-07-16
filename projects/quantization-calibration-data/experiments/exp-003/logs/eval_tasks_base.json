@@ -1,0 +1,98 @@
+{
+  "model": "base",
+  "model_ref": "Qwen/Qwen3-4B-Instruct-2507",
+  "gsm8k_exact_match": 0.25,
+  "gsm8k_correct": 1,
+  "gsm8k_total": 4,
+  "mbpp_pass_at_1": 1.0,
+  "mbpp_passed": 4,
+  "mbpp_total": 4,
+  "gsm8k_rows": [
+    {
+      "sample_id": 0,
+      "prompt": "Problem: Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "Thought: She has 16 - 3 - 4 = 9 eggs left after eating and baking. She sells 9 eggs at $2 per egg, so she makes 9 * 2 = $18 every day at the farmers' market.\n####18####\n\nProblem: A group of",
+      "prediction": "18",
+      "gold": "18",
+      "correct": true
+    },
+    {
+      "sample_id": 1,
+      "prompt": "Problem: A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "####\n\nThe problem states that a robe takes 2 bolts of blue fiber and half that much white fiber.\n\nFirst, find how much white fiber is needed:\nHalf of 2 bolts is 1 bolt.\n\nNow, add the blue and white fiber together:\n2 bolts (blue) + 1 bolt (white)",
+      "prediction": "1",
+      "gold": "3",
+      "correct": false
+    },
+    {
+      "sample_id": 2,
+      "prompt": "Problem: Josh decides to try flipping a house.  He buys a house for $80,000 and then puts in $50,000 in repairs.  This increased the value of the house by 150%.  How much profit did he make?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "####\n\n####\n\nLet's break down the problem step by step:\n\n1. **Initial cost of the house**: $80,000  \n2. **Amount spent on repairs**: $50,000  \n3. **Total cost (purchase + repairs)**:  \n   $80,",
+      "prediction": "80",
+      "gold": "70000",
+      "correct": false
+    },
+    {
+      "sample_id": 3,
+      "prompt": "Problem: James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  How many total meters does he run a week?\nSolution:\nGive the final answer after ####.\n",
+      "generated": "####\n\n####\n\nWe are given:\n\n- James runs 3 sprints per day.\n- Each sprint is 60 meters.\n- He runs this 3 times a week.\n\nStep 1: Calculate the total meters per sprint session.\nEach sprint is 60 meters, and he runs 3 sprints",
+      "prediction": "3",
+      "gold": "540",
+      "correct": false
+    }
+  ],
+  "mbpp_rows": [
+    {
+      "sample_id": 0,
+      "prompt": "Task: Write a python function to shift first element to the end of given list.\nTests:\nassert move_last([1,2,3,4]) == [2,3,4,1]\nassert move_last([2,3,4,1,5,0]) == [3,4,1,5,0,2]\nassert move_last([5,4,3,2,1]) == [4,3,2,1,5]\nAnswer:\n```python\n",
+      "generated": "def move_last(lst):\n    if len(lst) == 0:\n        return lst\n    return lst[1:] + [lst[0]]\n```python\nThe function `move_last` takes a list as input and returns a new list where the first element is moved to the end. It handles the edge case of an empty list by returning it unchanged. For non-empty lists, it slices the list from the second element onwards (`lst[1:]`) and appends",
+      "extracted_code": "def move_last(lst):\n    if len(lst) == 0:\n        return lst\n    return lst[1:] + [lst[0]]",
+      "tests": [
+        "assert move_last([1,2,3,4]) == [2,3,4,1]",
+        "assert move_last([2,3,4,1,5,0]) == [3,4,1,5,0,2]",
+        "assert move_last([5,4,3,2,1]) == [4,3,2,1,5]"
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "sample_id": 1,
+      "prompt": "Task: Write a function to count occurrence of a character in a string.\nTests:\nassert count_char(\"Python\",'o')==1\nassert count_char(\"little\",'t')==2\nassert count_char(\"assert\",'s')==2\nAnswer:\n```python\n",
+      "generated": "def count_char(s, c):\n    count = 0\n    for char in s:\n        if char == c:\n            count += 1\n    return count\n``` \n\nThe function `count_char` takes two arguments: a string `s` and a character `c`. It initializes a counter to zero and iterates through each character in the string. If the current character matches the target character `c`, the counter is incremented. Finally, the function returns the",
+      "extracted_code": "def count_char(s, c):\n    count = 0\n    for char in s:\n        if char == c:\n            count += 1\n    return count",
+      "tests": [
+        "assert count_char(\"Python\",'o')==1",
+        "assert count_char(\"little\",'t')==2",
+        "assert count_char(\"assert\",'s')==2"
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "sample_id": 2,
+      "prompt": "Task: Write a python function to count number of vowels in the string.\nTests:\nassert Check_Vow('corner','AaEeIiOoUu') == 2\nassert Check_Vow('valid','AaEeIiOoUu') == 2\nassert Check_Vow('true','AaEeIiOoUu') ==2\nAnswer:\n```python\n",
+      "generated": "def Check_Vow(s, vowels):\n    count = 0\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count\n```",
+      "extracted_code": "def Check_Vow(s, vowels):\n    count = 0\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count",
+      "tests": [
+        "assert Check_Vow('corner','AaEeIiOoUu') == 2",
+        "assert Check_Vow('valid','AaEeIiOoUu') == 2",
+        "assert Check_Vow('true','AaEeIiOoUu') ==2"
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "sample_id": 3,
+      "prompt": "Task: Write a python function to replace multiple occurence of character by single.\nTests:\nassert replace('peep','e') == 'pep'\nassert replace('Greek','e') == 'Grek'\nassert replace('Moon','o') == 'Mon'\nAnswer:\n```python\n",
+      "generated": "def replace(s, c):\n    result = \"\"\n    for i in range(len(s)):\n        if i == 0 or s[i] != s[i-1]:\n            result += s[i]\n    return result\n```The provided solution has a logical error. It does not correctly replace multiple occurrences of a character with a single one. Let's fix it.\n\nThe correct approach is to iterate through the string and only add a character to the result if it is different from the",
+      "extracted_code": "def replace(s, c):\n    result = \"\"\n    for i in range(len(s)):\n        if i == 0 or s[i] != s[i-1]:\n            result += s[i]\n    return result",
+      "tests": [
+        "assert replace('peep','e') == 'pep'",
+        "assert replace('Greek','e') == 'Grek'",
+        "assert replace('Moon','o') == 'Mon'"
+      ],
+      "passed": true,
+      "error": null
+    }
+  ]
+}

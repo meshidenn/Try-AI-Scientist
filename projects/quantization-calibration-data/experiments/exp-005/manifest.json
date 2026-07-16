@@ -1,0 +1,31 @@
+{
+  "experiment_id": "exp-005",
+  "status": "completed_nll_llmjp_language_eval",
+  "summary": "LLM-jp Japanese data was used for the Japanese calibration/evaluation axis. Three NVFP4 W4A4 variants were quantized and evaluated with 100 held-out samples per language. All quantized variants were worse than base; Japanese calibration won on Japanese eval, bilingual mixed was slightly best on English eval.",
+  "primary_results": {
+    "english_instruction": {
+      "model": "nvfp4_lang_bilingual_mixed",
+      "mean_nll": 2.3367499217213052,
+      "delta_nll_vs_base": 0.06366329536588244
+    },
+    "japanese_instruction": {
+      "model": "nvfp4_lang_japanese_instruction",
+      "mean_nll": 2.3624315937052764,
+      "delta_nll_vs_base": 0.023539382411100984
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "eval_nll": "results/eval_nll.json",
+    "logs": [
+      "logs/build_language_datasets.json",
+      "logs/eval_nll_base.json",
+      "logs/eval_nll_nvfp4_lang_bilingual_mixed.json",
+      "logs/eval_nll_nvfp4_lang_english_instruction.json",
+      "logs/eval_nll_nvfp4_lang_japanese_instruction.json",
+      "logs/quantize_bilingual_mixed.json",
+      "logs/quantize_english_instruction.json",
+      "logs/quantize_japanese_instruction.json"
+    ]
+  }
+}

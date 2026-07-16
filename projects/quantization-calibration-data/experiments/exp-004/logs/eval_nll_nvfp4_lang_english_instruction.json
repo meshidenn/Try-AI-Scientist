@@ -1,0 +1,266 @@
+{
+  "model": "nvfp4_lang_english_instruction",
+  "model_ref": "/home/hiroki/work/Try-AI-Scientist/projects/quantization-calibration-data/experiments/exp-004/artifacts/models/Qwen--Qwen3-4B-Instruct-2507-NVFP4-lang-english_instruction",
+  "rows": [
+    {
+      "model": "nvfp4_lang_english_instruction",
+      "evaluation_language": "english_instruction",
+      "samples": 24,
+      "tokens": 4395,
+      "mean_nll": 2.1893188687314757,
+      "perplexity": 8.9291291338854,
+      "per_sample": [
+        {
+          "sample_id": 0,
+          "nll": 2.462338447570801,
+          "tokens": 30
+        },
+        {
+          "sample_id": 1,
+          "nll": 1.0329887866973877,
+          "tokens": 364
+        },
+        {
+          "sample_id": 2,
+          "nll": 2.548156499862671,
+          "tokens": 155
+        },
+        {
+          "sample_id": 3,
+          "nll": 3.1569619178771973,
+          "tokens": 107
+        },
+        {
+          "sample_id": 4,
+          "nll": 4.390041828155518,
+          "tokens": 45
+        },
+        {
+          "sample_id": 5,
+          "nll": 1.8735995292663574,
+          "tokens": 66
+        },
+        {
+          "sample_id": 6,
+          "nll": 1.012712001800537,
+          "tokens": 322
+        },
+        {
+          "sample_id": 7,
+          "nll": 2.2109487056732178,
+          "tokens": 86
+        },
+        {
+          "sample_id": 8,
+          "nll": 1.541803002357483,
+          "tokens": 137
+        },
+        {
+          "sample_id": 9,
+          "nll": 2.5099377632141113,
+          "tokens": 532
+        },
+        {
+          "sample_id": 10,
+          "nll": 1.9787886142730713,
+          "tokens": 28
+        },
+        {
+          "sample_id": 11,
+          "nll": 1.9240622520446777,
+          "tokens": 160
+        },
+        {
+          "sample_id": 12,
+          "nll": 2.7245123386383057,
+          "tokens": 768
+        },
+        {
+          "sample_id": 13,
+          "nll": 2.0109946727752686,
+          "tokens": 216
+        },
+        {
+          "sample_id": 14,
+          "nll": 2.91282320022583,
+          "tokens": 31
+        },
+        {
+          "sample_id": 15,
+          "nll": 2.2595443725585938,
+          "tokens": 274
+        },
+        {
+          "sample_id": 16,
+          "nll": 2.1021728515625,
+          "tokens": 53
+        },
+        {
+          "sample_id": 17,
+          "nll": 3.062265157699585,
+          "tokens": 245
+        },
+        {
+          "sample_id": 18,
+          "nll": 2.602325677871704,
+          "tokens": 104
+        },
+        {
+          "sample_id": 19,
+          "nll": 2.4602854251861572,
+          "tokens": 78
+        },
+        {
+          "sample_id": 20,
+          "nll": 1.5810366868972778,
+          "tokens": 408
+        },
+        {
+          "sample_id": 21,
+          "nll": 2.296278238296509,
+          "tokens": 49
+        },
+        {
+          "sample_id": 22,
+          "nll": 3.161504030227661,
+          "tokens": 35
+        },
+        {
+          "sample_id": 23,
+          "nll": 2.583768844604492,
+          "tokens": 102
+        }
+      ]
+    },
+    {
+      "model": "nvfp4_lang_english_instruction",
+      "evaluation_language": "japanese_instruction",
+      "samples": 24,
+      "tokens": 5705,
+      "mean_nll": 2.2649203395342012,
+      "perplexity": 9.63035741179613,
+      "per_sample": [
+        {
+          "sample_id": 0,
+          "nll": 2.8943002223968506,
+          "tokens": 35
+        },
+        {
+          "sample_id": 1,
+          "nll": 1.65291428565979,
+          "tokens": 453
+        },
+        {
+          "sample_id": 2,
+          "nll": 2.523200511932373,
+          "tokens": 208
+        },
+        {
+          "sample_id": 3,
+          "nll": 2.7163596153259277,
+          "tokens": 146
+        },
+        {
+          "sample_id": 4,
+          "nll": 3.093994140625,
+          "tokens": 88
+        },
+        {
+          "sample_id": 5,
+          "nll": 2.0590713024139404,
+          "tokens": 103
+        },
+        {
+          "sample_id": 6,
+          "nll": 1.5685021877288818,
+          "tokens": 417
+        },
+        {
+          "sample_id": 7,
+          "nll": 2.9383111000061035,
+          "tokens": 119
+        },
+        {
+          "sample_id": 8,
+          "nll": 1.89650297164917,
+          "tokens": 205
+        },
+        {
+          "sample_id": 9,
+          "nll": 2.2399075031280518,
+          "tokens": 733
+        },
+        {
+          "sample_id": 10,
+          "nll": 2.803422212600708,
+          "tokens": 41
+        },
+        {
+          "sample_id": 11,
+          "nll": 2.0885794162750244,
+          "tokens": 244
+        },
+        {
+          "sample_id": 12,
+          "nll": 2.4780750274658203,
+          "tokens": 768
+        },
+        {
+          "sample_id": 13,
+          "nll": 2.60213041305542,
+          "tokens": 227
+        },
+        {
+          "sample_id": 14,
+          "nll": 2.963838815689087,
+          "tokens": 46
+        },
+        {
+          "sample_id": 15,
+          "nll": 2.204918384552002,
+          "tokens": 377
+        },
+        {
+          "sample_id": 16,
+          "nll": 2.3949291706085205,
+          "tokens": 71
+        },
+        {
+          "sample_id": 17,
+          "nll": 2.748110294342041,
+          "tokens": 344
+        },
+        {
+          "sample_id": 18,
+          "nll": 3.2813494205474854,
+          "tokens": 118
+        },
+        {
+          "sample_id": 19,
+          "nll": 1.9212173223495483,
+          "tokens": 146
+        },
+        {
+          "sample_id": 20,
+          "nll": 1.982325553894043,
+          "tokens": 564
+        },
+        {
+          "sample_id": 21,
+          "nll": 2.244973659515381,
+          "tokens": 59
+        },
+        {
+          "sample_id": 22,
+          "nll": 3.12994122505188,
+          "tokens": 53
+        },
+        {
+          "sample_id": 23,
+          "nll": 2.4694395065307617,
+          "tokens": 140
+        }
+      ]
+    }
+  ]
+}

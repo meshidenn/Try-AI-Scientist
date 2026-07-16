@@ -1,0 +1,90 @@
+experiment_id: exp-003
+title: NVFP4 W4A4 real-corpus calibration-domain sensitivity pilot for LLMs
+status: completed_nll_and_task_real_pilot
+created: 2026-07-07
+objective: >
+  Quantize the same LLM with NVFP4 W4A4 while changing only the real calibration
+  dataset domain, then measure domain-specific degradation against the unquantized
+  baseline.
+hypothesis:
+  primary: >
+    Real calibration data whose domain matches the evaluation domain will reduce
+    quantization-induced degradation for that domain compared with mismatched
+    calibration data.
+method:
+  quantization: llmcompressor.oneshot
+  scheme: NVFP4
+  targets: Linear
+  ignore:
+    - lm_head
+  weight_precision: FP4
+  activation_precision: FP4
+base_model: Qwen/Qwen3-4B-Instruct-2507
+calibration_domains:
+  - general_chat
+  - code
+  - math_reasoning
+calibration_settings:
+  num_calibration_samples: 64
+  max_seq_length: 2048
+  fixed_seed: 20260707
+calibration_datasets:
+  general_chat:
+    dataset: HuggingFaceH4/ultrachat_200k
+    split_candidates:
+      - train_sft
+      - train_gen
+      - train
+    file: artifacts/calibration/general_chat.jsonl
+  code:
+    dataset_candidates:
+      - google-research-datasets/mbpp
+      - mbpp
+    config_candidates:
+      - full
+      - sanitized
+      - null
+    split_candidates:
+      - train
+      - validation
+      - test
+    file: artifacts/calibration/code.jsonl
+  math_reasoning:
+    dataset: openai/gsm8k
+    config: main
+    split: train
+    file: artifacts/calibration/math_reasoning.jsonl
+evaluation_datasets:
+  general_chat:
+    source: held-out rows from HuggingFaceH4/ultrachat_200k
+    file: artifacts/evaluation/general_chat.jsonl
+    samples: 12
+  code:
+    source: held-out rows from MBPP
+    file: artifacts/evaluation/code.jsonl
+    samples: 12
+  math_reasoning:
+    source: GSM8K test split
+    file: artifacts/evaluation/math_reasoning.jsonl
+    samples: 12
+metrics:
+  primary:
+    name: real_corpus_mean_nll_by_domain
+    higher_is_better: false
+  secondary:
+    - perplexity_by_domain
+    - quantization_success
+    - gsm8k_exact_match_small
+    - mbpp_pass_at_1_small
+controls:
+  - Keep base model, quantization recipe, sample count, max sequence length, and evaluation set fixed across calibration domains.
+  - Change only calibration data domain.
+constraints:
+  - Use repo-level uv dependencies only.
+  - Store generated model checkpoints under artifacts/models/ and keep them out of git.
+  - Do not report unexecuted variants as results.
+reproduction:
+  build_real_datasets: "uv run python projects/quantization-calibration-data/experiments/exp-003/workspace/build_real_datasets.py --num-calibration-samples 64 --num-eval-samples 12"
+  quantize_one: "uv run python projects/quantization-calibration-data/experiments/exp-003/workspace/quantize_nvfp4.py --domain general_chat"
+  evaluate_nll: "uv run python projects/quantization-calibration-data/experiments/exp-003/workspace/evaluate_nll.py --max-samples 12 --max-length 768"
+  evaluate_tasks: "uv run python projects/quantization-calibration-data/experiments/exp-003/workspace/evaluate_tasks.py --max-samples 4 --gsm8k-max-new-tokens 64 --mbpp-max-new-tokens 96 --code-timeout-s 2"

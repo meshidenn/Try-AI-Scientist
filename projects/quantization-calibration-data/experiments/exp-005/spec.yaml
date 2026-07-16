@@ -1,0 +1,58 @@
+experiment_id: exp-005
+project: quantization-calibration-data
+title: NVFP4 W4A4 calibration-language accuracy with LLM-jp Japanese data
+status: completed_nll_llmjp_language_eval
+
+purpose: >
+  Re-run the Japanese-vs-English calibration-language NLL comparison using an
+  LLM-jp Japanese instruction dataset instead of the previous Japanese Dolly
+  variant, so that the Japanese data source is easier to justify.
+
+model:
+  base_model: Qwen/Qwen3-4B-Instruct-2507
+
+quantization:
+  method: LLM Compressor oneshot
+  scheme: NVFP4
+  weight_precision: 4-bit floating point
+  activation_precision: 4-bit floating point
+  target_modules: Linear
+  ignored_modules:
+    - lm_head
+
+calibration_data:
+  sample_count_per_condition: 64
+  conditions:
+    english_instruction:
+      dataset: databricks/databricks-dolly-15k
+      split: train
+    japanese_instruction:
+      dataset: llm-jp/llm-jp-instructions
+      config: v1.0
+      split: train
+      loader: parquet_url
+      note: LLM-jp manually created Japanese instruction dataset.
+    bilingual_mixed:
+      construction: first 32 English calibration rows plus first 32 Japanese calibration rows
+
+evaluation_data:
+  samples_per_language: 100
+  languages:
+    english_instruction:
+      dataset: databricks/databricks-dolly-15k
+      split: train
+      offset_after_calibration: 64
+    japanese_instruction:
+      dataset: llm-jp/llm-jp-instructions
+      config: v1.0
+      split: train
+      offset_after_calibration: 64
+
+metric:
+  primary: mean next-token negative log likelihood
+  higher_is_better: false
+
+notes:
+  - This is an accuracy experiment, not a speed benchmark.
+  - vLLM is only an execution fallback if Transformers/compressed-tensors cannot complete accuracy evaluation.
+  - exp-004 is preserved as the earlier pilot with the previous Japanese dataset.

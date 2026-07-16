@@ -1,0 +1,14 @@
+{
+  "num_samples_per_domain": 20,
+  "domains": [
+    "general_chat",
+    "code",
+    "math_reasoning"
+  ],
+  "files": {
+    "general_chat": "artifacts/calibration/general_chat.jsonl",
+    "code": "artifacts/calibration/code.jsonl",
+    "math_reasoning": "artifacts/calibration/math_reasoning.jsonl",
+    "mixed_balanced": "artifacts/calibration/mixed_balanced.jsonl"
+  }
+}
