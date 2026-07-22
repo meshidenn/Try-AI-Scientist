@@ -86,3 +86,18 @@ Gemma 4 26B A4B の original target と FP8 Dynamic target を、同じ official
 ## Artifact
 
 詳細な実測値は `../results/results.md`、raw benchmark JSON は `../results/*.benchmark.json` に保存した。
+
+
+## Addendum: Agent Replay And High Spec Depth (2026-07-18)
+
+agent trace風の36条件replayでは、元の懸念に近いFP8 slowdownを再現した。`spec_tokens=16, concurrency=1`でBF16は91.88 tok/s、FP8は70.05 tok/sとなり、FP8は23.75%遅かった。acceptance rateはBF16 85.24%に対しFP8 47.99%だった。
+
+ただしFP8の最速条件はconcurrency 1/2/4のすべてで`spec_tokens=8`だった。random workloadへ追加した40 runでも、FP8 s16はFP8 s8より10/10条件で遅かった。したがって、職場でのslowdown候補として「FP8そのもの」よりも「FP8 targetに対する過大なdraft depth、特に低concurrency」が強くなった。
+
+現時点の推奨はFP8でs8をdefault候補とし、短いtool-call/structured outputではs4以下も比較すること。固定s16は避ける。実際の職場traceを匿名化replayするまでは根本原因の確定とはしない。
+
+詳細:
+
+- `../results/high_spec_comparison.json`
+- `../../exp-002/results/results.md`
+- `../../exp-002/results/comparisons.json`

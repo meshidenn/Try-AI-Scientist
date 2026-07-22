@@ -1,0 +1,28 @@
+{
+  "project": "gemma4-fp8-mtp-acceptance",
+  "experiment_id": "exp-002",
+  "status": "completed",
+  "objective": "Replay an agent trace-like workload across BF16/FP8 and MTP configurations.",
+  "agent_runs": [],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md",
+    "dataset": "workspace/agent_trace_sharegpt.json"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "comparisons": "results/comparisons.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "All 36 runs completed. FP8 was 23.75% slower than BF16 at spec_tokens=16 and concurrency=1, while FP8 spec_tokens=8 was fastest at all measured concurrency levels.",
+  "next_actions": [
+    "Replay an anonymized real agent trace.",
+    "Repeat s4/s8/s16 at concurrency 1 to measure variance.",
+    "Evaluate phase-aware dynamic speculative depth."
+  ]
+}

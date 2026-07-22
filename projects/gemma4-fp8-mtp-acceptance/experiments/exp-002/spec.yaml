@@ -1,0 +1,67 @@
+experiment_id: exp-002
+title: Agent trace-like replay for Gemma 4 BF16 and FP8 with MTP
+status: completed
+created: 2026-07-16
+objective: >
+  Replay a deterministic agent-like workload containing long shared instructions,
+  tool schemas, tool-call JSON, tool results, and synthesis turns to determine
+  whether FP8 regressions appear under production-like generation patterns.
+hypothesis:
+  primary: >
+    FP8 may regress relative to BF16 when short structured generations and
+    concurrent requests reduce useful speculative work, even when random-token
+    benchmarks show an FP8 throughput advantage.
+variants:
+  target_models:
+    - name: bf16
+      model: google/gemma-4-26B-A4B-it
+      precision: bf16_or_auto
+    - name: fp8_dynamic
+      model: RedHatAI/gemma-4-26B-A4B-it-FP8-Dynamic
+      precision: fp8_dynamic
+  speculative_tokens:
+    - 0
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+  max_concurrency:
+    - 1
+    - 2
+    - 4
+fixed_variables:
+  serving_stack: vllm_openai
+  docker_image: vllm/vllm-openai:v0.24.0
+  assistant_model: google/gemma-4-26B-A4B-it-assistant
+  dataset: workspace/agent_trace_sharegpt.json
+  dataset_loader: sharegpt
+  output_len: 512
+  num_prompts: 16
+  num_warmups: 2
+  request_rate: inf
+  temperature: 0
+  ignore_eos: false
+  max_model_len: 8192
+metrics:
+  primary:
+    name: output_throughput_tokens_per_second
+    higher_is_better: true
+  secondary:
+    - request_throughput_requests_per_second
+    - total_token_throughput_tokens_per_second
+    - mean_ttft_ms
+    - mean_tpot_ms
+    - mean_e2el_ms
+    - speculative_acceptance_rate
+    - speculative_acceptance_length
+    - total_input_tokens
+    - total_output_tokens
+constraints:
+  - Use the exact same generated trace for every variant.
+  - Keep EOS enabled so output lengths reflect model behavior.
+  - Do not update the host Hugging Face packages.
+  - Use vllm/vllm-openai:v0.24.0 for server and benchmark client.
+  - Record partial or failed variants explicitly.
+reproduction:
+  command: bash projects/gemma4-fp8-mtp-acceptance/experiments/exp-002/workspace/run_agent_replay.sh

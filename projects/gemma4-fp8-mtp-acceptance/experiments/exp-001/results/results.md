@@ -161,3 +161,43 @@ Raw files added:
 - `bf16_s4_in1024_out1024_c8.benchmark.json`
 - `fp8_s4_in1024_out1024_c8.benchmark.json`
 
+
+
+## High Spec Depth Runs 2026-07-18
+
+既存の全10ユニークworkloadへ`spec_tokens=8,16`を追加した。各runは16 prompts、2 warmups、`ignore_eos=true`で、40/40 benchmarkが`completed=16`, `failed=0`だった。
+
+| input/output/c | BF16 s8 | BF16 s16 | s16/s8 | FP8 s8 | FP8 s16 | s16/s8 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 128/128/1 | 49.68 | 39.44 | 0.79x | 66.67 | 40.19 | 0.60x |
+| 128/512/1 | 73.73 | 66.22 | 0.90x | 87.21 | 73.53 | 0.84x |
+| 128/512/4 | 104.64 | 201.23 | 1.92x | 270.98 | 200.25 | 0.74x |
+| 1024/1024/1 | 37.43 | 30.30 | 0.81x | 66.41 | 62.57 | 0.94x |
+| 1024/1024/2 | 84.40 | 40.53 | 0.48x | 90.97 | 59.48 | 0.65x |
+| 1024/1024/4 | 80.09 | 102.08 | 1.27x | 136.41 | 96.69 | 0.71x |
+| 1024/1024/8 | 201.99 | 160.34 | 0.79x | 145.20 | 131.06 | 0.90x |
+| 1024/2048/1 | 69.80 | 34.62 | 0.50x | 70.58 | 51.76 | 0.73x |
+| 2048/1024/1 | 52.18 | 38.09 | 0.73x | 47.07 | 35.14 | 0.75x |
+| 2048/1536/1 | 55.45 | 37.23 | 0.67x | 53.49 | 37.60 | 0.70x |
+
+単位はoutput tok/s。
+
+### Interpretation Guard
+
+- FP8ではs16がs8より10/10条件で遅く、throughput比は0.60x〜0.94xだった。
+- BF16でもs16は8/10条件で遅かった。例外はconcurrency 4の2条件で、scheduler/batching依存が強い。
+- s16ではacceptance rateが多くの条件で低下した。たとえばFP8の128/128/c1は45.33%から22.78%、2048/1024/c1は28.48%から17.31%へ低下した。
+- FP8対BF16ではs8でも3/10条件、s16でも4/10条件でFP8が遅かった。量子化の利得とacceptance/verification costの優劣はworkloadとconcurrencyで反転する。
+- s16は無条件に選ぶべきではなく、今回のFP8 random workloadではs8が一貫して優位だった。
+
+Structured artifacts:
+
+- `results/high_spec_comparison.json`
+- `results/scores.json`
+
+Reproduction:
+
+```bash
+bash projects/gemma4-fp8-mtp-acceptance/experiments/exp-001/workspace/run_spec8_16_matrix.sh
+python3 projects/gemma4-fp8-mtp-acceptance/experiments/exp-001/workspace/summarize_all_results.py
+```

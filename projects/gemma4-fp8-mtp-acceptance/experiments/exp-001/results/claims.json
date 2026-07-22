@@ -4,47 +4,42 @@
     {
       "claim": "FP8 target can lower MTP acceptance rate compared with the original target under some conditions.",
       "source": "review/final-report.md",
-      "artifacts": [
-        "results/results.md",
-        "results/*.benchmark.json"
-      ],
+      "artifacts": ["results/results.md", "results/*.benchmark.json"],
       "status": "supported",
       "support_level": "direct",
-      "notes": "Observed in baseline, spec depth sweep, long IO, and concurrency=2 cases."
+      "notes": "Observed across baseline, long IO, concurrency, and high-spec runs."
     },
     {
-      "claim": "FP8 acceptance degradation did not produce a stable throughput slowdown across the random benchmark conditions.",
+      "claim": "FP8 acceptance degradation did not produce a stable FP8-versus-BF16 throughput slowdown across random workloads.",
       "source": "review/final-report.md",
-      "artifacts": [
-        "results/results.md",
-        "results/*.benchmark.json"
-      ],
+      "artifacts": ["results/results.md", "results/high_spec_comparison.json"],
       "status": "supported",
       "support_level": "direct",
-      "notes": "FP8 output throughput exceeded BF16 in most measured settings."
+      "notes": "FP8/BF16 direction changes with workload, concurrency, and speculative depth."
+    },
+    {
+      "claim": "At spec_tokens=16, FP8 was slower than FP8 spec_tokens=8 in all 10 random workload conditions.",
+      "source": "review/high-spec-interpretation.md",
+      "artifacts": ["results/high_spec_comparison.json", "results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "The s16/s8 throughput ratio ranged from 0.60x to 0.94x."
+    },
+    {
+      "claim": "Spec_tokens=16 is universally slower than spec_tokens=8 for Gemma 4.",
+      "source": "review/high-spec-interpretation.md",
+      "artifacts": ["results/high_spec_comparison.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "BF16 had two concurrency-4 exceptions, and only one hardware/software stack was measured."
     },
     {
       "claim": "A small FP8 throughput slowdown was reproduced for in1024/out1024/spec_tokens=4/concurrency=2.",
       "source": "review/final-report.md",
-      "artifacts": [
-        "results/bf16_s4_in1024_out1024_c2.benchmark.json",
-        "results/fp8_s4_in1024_out1024_c2.benchmark.json",
-        "results/results.md"
-      ],
+      "artifacts": ["results/bf16_s4_in1024_out1024_c2.benchmark.json", "results/fp8_s4_in1024_out1024_c2.benchmark.json"],
       "status": "supported",
       "support_level": "direct",
-      "notes": "FP8 output throughput 67.24 tok/s vs BF16 67.90 tok/s; FP8 acceptance 29.83% vs BF16 51.82%."
-    },
-    {
-      "claim": "Agent-specific slowdown is more likely tied to structured short generation, stop behavior, low concurrency, or assistant/target mismatch than to long prefill alone.",
-      "source": "review/final-report.md",
-      "artifacts": [
-        "results/results.md",
-        "review/final-report.md"
-      ],
-      "status": "partially_supported",
-      "support_level": "weak",
-      "notes": "This is a hypothesis motivated by the measured random benchmark; it still requires agent trace replay."
+      "notes": "67.24 vs 67.90 tok/s."
     }
   ]
 }

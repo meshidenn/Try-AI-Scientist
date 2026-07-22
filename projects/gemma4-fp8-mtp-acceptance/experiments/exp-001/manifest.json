@@ -1,0 +1,27 @@
+{
+  "project": "gemma4-fp8-mtp-acceptance",
+  "experiment_id": "exp-001",
+  "status": "completed",
+  "objective": "Measure BF16 and FP8 Gemma 4 MTP throughput and acceptance across random workloads and speculative depths.",
+  "agent_runs": [],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "comparisons": "results/high_spec_comparison.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "All 40 added s8/s16 random-workload runs completed. FP8 s16 was slower than FP8 s8 in all 10 workload conditions.",
+  "next_actions": [
+    "Repeat scheduler-sensitive concurrency conditions.",
+    "Use phase-aware speculative depth rather than fixed s16.",
+    "Compare against anonymized real agent traces."
+  ]
+}

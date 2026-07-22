@@ -1,0 +1,275 @@
+{
+  "experiment_id": "exp-002",
+  "target_comparisons": [
+    {
+      "spec": "off",
+      "concurrency": 1,
+      "bf16_output_throughput": 23.77495881219344,
+      "fp8_output_throughput": 39.8607511333993,
+      "throughput_ratio": 1.6765854968781673,
+      "bf16_acceptance_rate": null,
+      "fp8_acceptance_rate": null,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s1",
+      "concurrency": 1,
+      "bf16_output_throughput": 38.740632935501594,
+      "fp8_output_throughput": 55.901409166642864,
+      "throughput_ratio": 1.4429658198850768,
+      "bf16_acceptance_rate": 98.44961240310077,
+      "fp8_acceptance_rate": 95.78544061302682,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s2",
+      "concurrency": 1,
+      "bf16_output_throughput": 46.926625163980646,
+      "fp8_output_throughput": 64.84310814174637,
+      "throughput_ratio": 1.381797815529207,
+      "bf16_acceptance_rate": 93.82022471910112,
+      "fp8_acceptance_rate": 93.82022471910112,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s4",
+      "concurrency": 1,
+      "bf16_output_throughput": 60.902343853571516,
+      "fp8_output_throughput": 79.59826131919579,
+      "throughput_ratio": 1.306981903858662,
+      "bf16_acceptance_rate": 96.4622641509434,
+      "fp8_acceptance_rate": 84.61538461538461,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s8",
+      "concurrency": 1,
+      "bf16_output_throughput": 67.17126473790657,
+      "fp8_output_throughput": 96.67086767229775,
+      "throughput_ratio": 1.439169979149488,
+      "bf16_acceptance_rate": 80.61594202898551,
+      "fp8_acceptance_rate": 82.90441176470588,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s16",
+      "concurrency": 1,
+      "bf16_output_throughput": 91.8766729479915,
+      "fp8_output_throughput": 70.05238452298943,
+      "throughput_ratio": 0.7624610499625284,
+      "bf16_acceptance_rate": 85.24305555555556,
+      "fp8_acceptance_rate": 47.98728813559322,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "off",
+      "concurrency": 2,
+      "bf16_output_throughput": 43.50687611594622,
+      "fp8_output_throughput": 68.54426329489492,
+      "throughput_ratio": 1.5754811518120453,
+      "bf16_acceptance_rate": null,
+      "fp8_acceptance_rate": null,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s1",
+      "concurrency": 2,
+      "bf16_output_throughput": 61.53283992464598,
+      "fp8_output_throughput": 88.2724407366497,
+      "throughput_ratio": 1.4345582106197183,
+      "bf16_acceptance_rate": 98.42538759689923,
+      "fp8_acceptance_rate": 95.78544061302682,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s2",
+      "concurrency": 2,
+      "bf16_output_throughput": 76.97036400618718,
+      "fp8_output_throughput": 136.25824198358583,
+      "throughput_ratio": 1.7702689046999032,
+      "bf16_acceptance_rate": 94.45031712473573,
+      "fp8_acceptance_rate": 93.39622641509435,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 4864,
+      "output_length_comparable": false
+    },
+    {
+      "spec": "s4",
+      "concurrency": 2,
+      "bf16_output_throughput": 117.69147294229418,
+      "fp8_output_throughput": 149.0981606240309,
+      "throughput_ratio": 1.266856101776684,
+      "bf16_acceptance_rate": 93.75,
+      "fp8_acceptance_rate": 93.52331606217616,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s8",
+      "concurrency": 2,
+      "bf16_output_throughput": 136.01712253273791,
+      "fp8_output_throughput": 167.8739370991283,
+      "throughput_ratio": 1.234211796082679,
+      "bf16_acceptance_rate": 85.60606060606061,
+      "fp8_acceptance_rate": 73.16666666666667,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s16",
+      "concurrency": 2,
+      "bf16_output_throughput": 120.44886923174222,
+      "fp8_output_throughput": 136.72298356579495,
+      "throughput_ratio": 1.1351122217904888,
+      "bf16_acceptance_rate": 62.358333333333334,
+      "fp8_acceptance_rate": 47.98728813559322,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "off",
+      "concurrency": 4,
+      "bf16_output_throughput": 84.36782160085872,
+      "fp8_output_throughput": 71.77283224388498,
+      "throughput_ratio": 0.85071335115703,
+      "bf16_acceptance_rate": null,
+      "fp8_acceptance_rate": null,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 1097,
+      "output_length_comparable": false
+    },
+    {
+      "spec": "s1",
+      "concurrency": 4,
+      "bf16_output_throughput": 106.15030480883411,
+      "fp8_output_throughput": 199.82384897896497,
+      "throughput_ratio": 1.8824613771842424,
+      "bf16_acceptance_rate": 96.87274476786143,
+      "fp8_acceptance_rate": 98.18533752721994,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s2",
+      "concurrency": 4,
+      "bf16_output_throughput": 102.9832808162065,
+      "fp8_output_throughput": 174.01000016655223,
+      "throughput_ratio": 1.6896917517815984,
+      "bf16_acceptance_rate": 92.71050800278357,
+      "fp8_acceptance_rate": 88.10810810810811,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s4",
+      "concurrency": 4,
+      "bf16_output_throughput": 223.14672772288975,
+      "fp8_output_throughput": 252.33986333675855,
+      "throughput_ratio": 1.1308248429711312,
+      "bf16_acceptance_rate": 92.66055045871559,
+      "fp8_acceptance_rate": 80.12295081967213,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s8",
+      "concurrency": 4,
+      "bf16_output_throughput": 229.5414945862119,
+      "fp8_output_throughput": 333.41670182171043,
+      "throughput_ratio": 1.4525334620773098,
+      "bf16_acceptance_rate": 79.20353982300885,
+      "fp8_acceptance_rate": 78.34507042253522,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    },
+    {
+      "spec": "s16",
+      "concurrency": 4,
+      "bf16_output_throughput": 230.50436732083097,
+      "fp8_output_throughput": 291.5719783626721,
+      "throughput_ratio": 1.2649303861425032,
+      "bf16_acceptance_rate": 73.30069124423963,
+      "fp8_acceptance_rate": 56.00961538461539,
+      "bf16_total_output_tokens": 8192,
+      "fp8_total_output_tokens": 8192,
+      "output_length_comparable": true
+    }
+  ],
+  "best_by_target_and_concurrency": [
+    {
+      "target": "bf16",
+      "concurrency": 1,
+      "label": "bf16_s16_agent_c1",
+      "output_throughput": 91.8766729479915,
+      "acceptance_rate": 85.24305555555556
+    },
+    {
+      "target": "fp8",
+      "concurrency": 1,
+      "label": "fp8_s8_agent_c1",
+      "output_throughput": 96.67086767229775,
+      "acceptance_rate": 82.90441176470588
+    },
+    {
+      "target": "bf16",
+      "concurrency": 2,
+      "label": "bf16_s8_agent_c2",
+      "output_throughput": 136.01712253273791,
+      "acceptance_rate": 85.60606060606061
+    },
+    {
+      "target": "fp8",
+      "concurrency": 2,
+      "label": "fp8_s8_agent_c2",
+      "output_throughput": 167.8739370991283,
+      "acceptance_rate": 73.16666666666667
+    },
+    {
+      "target": "bf16",
+      "concurrency": 4,
+      "label": "bf16_s16_agent_c4",
+      "output_throughput": 230.50436732083097,
+      "acceptance_rate": 73.30069124423963
+    },
+    {
+      "target": "fp8",
+      "concurrency": 4,
+      "label": "fp8_s8_agent_c4",
+      "output_throughput": 333.41670182171043,
+      "acceptance_rate": 78.34507042253522
+    }
+  ],
+  "output_length_anomalies": [
+    {
+      "label": "fp8_off_agent_c4",
+      "total_output_tokens": 1097
+    },
+    {
+      "label": "fp8_s2_agent_c2",
+      "total_output_tokens": 4864
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "claims": [
+    {
+      "claim": "FP8+s8 was the highest-throughput measured configuration for the synthetic agentic workload at concurrency 1, 2, and 4.",
+      "artifacts": [
+        "integrated-comparison.json",
+        "../experiments/exp-002/results/comparisons.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Output token mismatch cases were excluded from target comparisons."
+    },
+    {
+      "claim": "For random workloads at spec_tokens=4, FP8 was at least parity with BF16 in all nine measured conditions under a five-percent parity threshold.",
+      "artifacts": [
+        "integrated-comparison.json",
+        "../experiments/exp-001/results/*.benchmark.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Eight FP8-faster and one parity condition."
+    },
+    {
+      "claim": "FP8 slowdown cannot be explained solely by lower MTP acceptance.",
+      "artifacts": [
+        "integrated-comparison.json",
+        "../experiments/exp-001/results/high_spec_comparison.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "At random s16/in1024/out1024/c8, FP8 was 18.26% slower while its measured acceptance was higher."
+    },
+    {
+      "claim": "FP8+s8 is the optimal setting for real production agents.",
+      "artifacts": [
+        "integrated-comparison.json"
+      ],
+      "status": "partially_supported",
+      "support_level": "weak",
+      "notes": "Supported for the synthetic 512-token replay only; real tool API timing, short outputs, retries, and repeated runs are missing."
+    }
+  ]
+}
+

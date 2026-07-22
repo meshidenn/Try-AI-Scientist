@@ -1,0 +1,36 @@
+{
+  "claims": [
+    {
+      "claim": "The 36-condition agent-like replay completed without failed requests.",
+      "source": "results/results.md",
+      "artifacts": ["results/scores.json", "logs/"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "All 36 benchmark files report completed=16 and failed=0."
+    },
+    {
+      "claim": "At spec_tokens=16 and concurrency=1, FP8 was 23.75% slower than BF16 while acceptance fell from 85.24% to 47.99%.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/comparisons.json", "results/bf16_s16_agent_c1.benchmark.json", "results/fp8_s16_agent_c1.benchmark.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Output throughput was 91.88 vs 70.05 tok/s; both produced 8,192 output tokens."
+    },
+    {
+      "claim": "For the FP8 target, spec_tokens=8 had the highest comparable output throughput at concurrency 1, 2, and 4.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/comparisons.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "96.67, 167.87, and 333.42 tok/s respectively."
+    },
+    {
+      "claim": "The result proves that the workplace slowdown has the same root cause.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/comparisons.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "The replay is synthetic and does not use the actual workplace trace or tool-call API."
+    }
+  ]
+}
