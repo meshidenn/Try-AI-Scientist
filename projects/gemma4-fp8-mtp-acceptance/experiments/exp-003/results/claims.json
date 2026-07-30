@@ -1,0 +1,44 @@
+{
+  "claims": [
+    {
+      "claim": "All 72 factorial cells completed successfully, producing 36 matched BF16/FP8 comparisons.",
+      "source": "results/results.md",
+      "artifacts": ["results/scores.json", "results/*.benchmark.json", "logs/*.bench.log"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "All cells report completed=16 and failed=0."
+    },
+    {
+      "claim": "FP8 was slower in 1 of 36 matched cells, and its overall geometric-mean throughput ratio was 1.447x.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/factorial-analysis.json", "results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "The sole slowdown was -0.8% at input=1024, output=2048, concurrency=2, spec=8."
+    },
+    {
+      "claim": "Concurrency had a larger marginal effect on absolute output throughput than speculative-token depth for both precisions.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/factorial-analysis.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Concurrency/spec max-min ranges were 2.713x/1.439x for BF16 and 2.699x/1.323x for FP8."
+    },
+    {
+      "claim": "Concurrency alone explains the FP8/BF16 performance ratio.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/factorial-analysis.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "The effect is non-monotonic and the maximum interaction residual is 1.402x."
+    },
+    {
+      "claim": "This random workload identifies the root cause of the workplace agent slowdown.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "The actual trace, tool calls, arrival timing, and prefix reuse were not replayed."
+    }
+  ]
+}

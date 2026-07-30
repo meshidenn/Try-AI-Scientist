@@ -1,0 +1,180 @@
+{
+  "experiment_id": "exp-003",
+  "comparison_count": 36,
+  "overall_geomean_fp8_over_bf16": 1.4471908319673779,
+  "fp8_slower_cells": 1,
+  "fp8_faster_or_equal_cells": 35,
+  "by_spec_tokens": [
+    {
+      "spec_tokens": 4,
+      "geomean_fp8_over_bf16": 1.3911289106164955,
+      "delta_percent": 39.11289106164955,
+      "cell_count": 12
+    },
+    {
+      "spec_tokens": 8,
+      "geomean_fp8_over_bf16": 1.4400378353798506,
+      "delta_percent": 44.003783537985065,
+      "cell_count": 12
+    },
+    {
+      "spec_tokens": 16,
+      "geomean_fp8_over_bf16": 1.5129902474605652,
+      "delta_percent": 51.29902474605652,
+      "cell_count": 12
+    }
+  ],
+  "by_concurrency": [
+    {
+      "concurrency": 1,
+      "geomean_fp8_over_bf16": 1.5486836752655393,
+      "delta_percent": 54.86836752655393,
+      "cell_count": 9
+    },
+    {
+      "concurrency": 2,
+      "geomean_fp8_over_bf16": 1.3490721248561741,
+      "delta_percent": 34.907212485617414,
+      "cell_count": 9
+    },
+    {
+      "concurrency": 4,
+      "geomean_fp8_over_bf16": 1.362664405276851,
+      "delta_percent": 36.266440527685106,
+      "cell_count": 9
+    },
+    {
+      "concurrency": 8,
+      "geomean_fp8_over_bf16": 1.54069406427511,
+      "delta_percent": 54.06940642751099,
+      "cell_count": 9
+    }
+  ],
+  "spec_effect_range": 1.087598881680969,
+  "concurrency_effect_range": 1.1479621042727022,
+  "absolute_by_target": {
+    "bf16": {
+      "by_spec_tokens": [
+        {
+          "spec_tokens": 4,
+          "geomean_output_throughput": 86.38731917598605,
+          "cell_count": 12
+        },
+        {
+          "spec_tokens": 8,
+          "geomean_output_throughput": 74.92664198766437,
+          "cell_count": 12
+        },
+        {
+          "spec_tokens": 16,
+          "geomean_output_throughput": 60.02887575153489,
+          "cell_count": 12
+        }
+      ],
+      "by_concurrency": [
+        {
+          "concurrency": 1,
+          "geomean_output_throughput": 40.08558945693529,
+          "cell_count": 9
+        },
+        {
+          "concurrency": 2,
+          "geomean_output_throughput": 67.41279779098281,
+          "cell_count": 9
+        },
+        {
+          "concurrency": 4,
+          "geomean_output_throughput": 96.48696158093686,
+          "cell_count": 9
+        },
+        {
+          "concurrency": 8,
+          "geomean_output_throughput": 108.74168155882525,
+          "cell_count": 9
+        }
+      ],
+      "spec_effect_range": 1.4390960699239348,
+      "concurrency_effect_range": 2.712737495743913
+    },
+    "fp8": {
+      "by_spec_tokens": [
+        {
+          "spec_tokens": 4,
+          "geomean_output_throughput": 120.17589721636897,
+          "cell_count": 12
+        },
+        {
+          "spec_tokens": 8,
+          "geomean_output_throughput": 107.89719934019722,
+          "cell_count": 12
+        },
+        {
+          "spec_tokens": 16,
+          "geomean_output_throughput": 90.82310357809439,
+          "cell_count": 12
+        }
+      ],
+      "by_concurrency": [
+        {
+          "concurrency": 1,
+          "geomean_output_throughput": 62.07989800535212,
+          "cell_count": 9
+        },
+        {
+          "concurrency": 2,
+          "geomean_output_throughput": 90.94472635838083,
+          "cell_count": 9
+        },
+        {
+          "concurrency": 4,
+          "geomean_output_throughput": 131.47934811965763,
+          "cell_count": 9
+        },
+        {
+          "concurrency": 8,
+          "geomean_output_throughput": 167.53766331697636,
+          "cell_count": 9
+        }
+      ],
+      "spec_effect_range": 1.3231864193347624,
+      "concurrency_effect_range": 2.698742567240242
+    }
+  },
+  "interaction_by_workload": [
+    {
+      "input_len": 1024,
+      "output_len": 2048,
+      "max_abs_log_residual": 0.33772326748130044,
+      "max_multiplicative_residual": 1.401752539215872,
+      "rmse_log_residual": 0.1895681352072174
+    },
+    {
+      "input_len": 2048,
+      "output_len": 1024,
+      "max_abs_log_residual": 0.219953021752094,
+      "max_multiplicative_residual": 1.2460181934608179,
+      "rmse_log_residual": 0.13111946861259138
+    },
+    {
+      "input_len": 2048,
+      "output_len": 1536,
+      "max_abs_log_residual": 0.21787261523290846,
+      "max_multiplicative_residual": 1.2434286636594352,
+      "rmse_log_residual": 0.11610819682327836
+    }
+  ],
+  "slowdown_cells": [
+    {
+      "input_len": 1024,
+      "output_len": 2048,
+      "concurrency": 2,
+      "spec_tokens": 8,
+      "bf16_output_throughput": 82.51448366687089,
+      "fp8_output_throughput": 81.83689882664828,
+      "fp8_over_bf16": 0.9917882920656915,
+      "throughput_delta_percent": -0.8211707934308476,
+      "bf16_acceptance_rate": 48.500223015165034,
+      "fp8_acceptance_rate": 28.741958182549254
+    }
+  ]
+}

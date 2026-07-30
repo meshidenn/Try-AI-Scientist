@@ -1,0 +1,27 @@
+{
+  "project": "gemma4-fp8-mtp-acceptance",
+  "experiment_id": "exp-003",
+  "status": "completed",
+  "objective": "Separate concurrency and speculative-token effects for three long-IO random workloads using matched BF16 and FP8 runs.",
+  "agent_runs": [],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "factorial_analysis": "results/factorial-analysis.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "All 72 runs completed. FP8 was slower in only 1/36 matched cells. Concurrency had a larger marginal effect than spec depth on absolute throughput, while their interaction remained substantial.",
+  "next_actions": [
+    "Repeat boundary cells to quantify run-to-run variance.",
+    "Replay an anonymized real agent trace with tool-call timing.",
+    "Evaluate adaptive speculative depth against fixed s4, s8, and s16."
+  ]
+}

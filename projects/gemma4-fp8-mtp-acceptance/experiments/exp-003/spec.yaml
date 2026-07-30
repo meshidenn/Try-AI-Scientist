@@ -1,0 +1,62 @@
+experiment_id: exp-003
+title: Long-IO concurrency and MTP depth factorial sweep
+status: completed
+created: 2026-07-22
+completed: 2026-07-22
+objective: >
+  Separate the effects of concurrency and speculative-token depth on Gemma 4
+  BF16/FP8 throughput for the three long-IO random workloads where FP8 behavior
+  changed across earlier runs.
+hypothesis:
+  primary: >
+    FP8 slowdown is an interaction between workload shape, concurrency, and
+    speculative depth rather than a monotonic consequence of lower acceptance.
+matrix:
+  target_models:
+    - name: bf16
+      model: google/gemma-4-26B-A4B-it
+    - name: fp8
+      model: RedHatAI/gemma-4-26B-A4B-it-FP8-Dynamic
+  speculative_tokens: [4, 8, 16]
+  workloads:
+    - input_len: 1024
+      output_len: 2048
+    - input_len: 2048
+      output_len: 1024
+    - input_len: 2048
+      output_len: 1536
+  max_concurrency: [1, 2, 4, 8]
+  expected_runs: 72
+fixed_variables:
+  docker_image: vllm/vllm-openai:v0.24.0
+  assistant_model: google/gemma-4-26B-A4B-it-assistant
+  dataset: random
+  num_prompts: 16
+  num_warmups: 2
+  request_rate: inf
+  temperature: 0
+  ignore_eos: true
+  max_model_len: 4096
+metrics:
+  primary:
+    name: output_throughput_tokens_per_second
+    higher_is_better: true
+  secondary:
+    - fp8_over_bf16_throughput_ratio
+    - speculative_acceptance_rate
+    - speculative_acceptance_length
+    - mean_ttft_ms
+    - mean_tpot_ms
+    - total_token_throughput_tokens_per_second
+constraints:
+  - Rerun concurrency 1 under the same protocol instead of mixing earlier runs.
+  - Record failed and partial cells; do not treat them as completed.
+  - Do not update host Hugging Face packages.
+  - Keep the serving image at vllm/vllm-openai:v0.24.0.
+analysis:
+  - Compare spec depth at fixed workload, target, and concurrency.
+  - Compare concurrency scaling at fixed workload, target, and spec depth.
+  - Compare FP8 against BF16 for every matched cell.
+  - Quantify workload x concurrency x spec-depth interaction descriptively.
+reproduction:
+  command: bash projects/gemma4-fp8-mtp-acceptance/experiments/exp-003/workspace/run_factorial_matrix.sh

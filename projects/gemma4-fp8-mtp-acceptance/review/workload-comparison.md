@@ -1,12 +1,15 @@
 # Gemma 4 FP8/BF16 Workload Comparison
 
-`integrated-comparison.json`の全50比較をMarkdown表へ展開した詳細版。数値の正本は[統合JSON](integrated-comparison.json)。
+重複する旧long-IO 9比較をexp-003の16-prompt結果で置き換え、Random 59比較とAgentic 18比較、計77比較をMarkdown表へ統合した詳細版。
+数値の正本は既存条件が[統合JSON](integrated-comparison.json)、long-IO factorialが[exp-003 scores.json](../experiments/exp-003/results/scores.json)。
 
 FP8/BF16のoutput throughput差が±5%以内なら「同等」。output token数が一致しないpairは「比較不能」とする。
 
 ## Random Workload
 
-全32 pair。input/output/concurrencyを固定し、各表でspec depthによる変化を示す。spec 1/2/4とspec 8/16はprompt数と実施時期が異なるため、depthをまたぐ絶対throughput比較には注意する。
+全59 pair。input/output/concurrencyを固定し、各表でspec depthによる変化を示す。末尾の3つのlong-IO workloadはexp-003で各16 promptへ統一して再測定した。その他の表はspec depthによってprompt数と実施時期が異なるため、depthをまたぐ絶対throughput比較には注意する。
+
+long-IO factorialでは72/72 runが成功し、FP8 slowdownは36対応cell中1件（-0.8%、判定は同等）のみだった。絶対throughputへのmarginal rangeはBF16でconcurrency 2.713x対spec 1.439x、FP8で2.699x対1.323x。詳細な要因分析は[exp-003結果](../experiments/exp-003/results/results.md)と[要因分析JSON](../experiments/exp-003/results/factorial-analysis.json)を参照。
 
 <a id="random-in128-out128-c1"></a>
 ### Random input=128 output=128 concurrency=1
@@ -78,27 +81,108 @@ FP8/BF16のoutput throughput差が±5%以内なら「同等」。output token数
 
 | spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| 4 | 32.04 | 49.27 | 1.54x | 53.77% | 30.66% | 34.88% | 4096/4096 | FP8優位 |
-| 8 | 69.80 | 70.58 | 1.01x | 1.12% | 61.75% | 46.64% | 同一 | 同等 |
-| 16 | 34.62 | 51.76 | 1.50x | 49.51% | 22.42% | 28.10% | 同一 | FP8優位 |
+| 4 | 46.36 | 75.17 | 1.62x | 62.14% | 51.60% | 65.75% | 32768/32768 | FP8優位 |
+| 8 | 53.89 | 71.19 | 1.32x | 32.12% | 47.77% | 46.95% | 32768/32768 | FP8優位 |
+| 16 | 31.91 | 90.17 | 2.83x | 182.55% | 19.10% | 52.89% | 32768/32768 | FP8優位 |
+
+<a id="random-in1024-out2048-c2"></a>
+### Random input=1024 output=2048 concurrency=2
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 90.48 | 125.83 | 1.39x | 39.07% | 64.06% | 68.10% | 32768/32768 | FP8優位 |
+| 8 | 82.51 | 81.84 | 0.99x | -0.82% | 48.50% | 28.74% | 32768/32768 | 同等 |
+| 16 | 56.57 | 109.66 | 1.94x | 93.84% | 22.27% | 34.99% | 32768/32768 | FP8優位 |
+
+<a id="random-in1024-out2048-c4"></a>
+### Random input=1024 output=2048 concurrency=4
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 113.56 | 161.11 | 1.42x | 41.87% | 51.21% | 51.10% | 32768/32768 | FP8優位 |
+| 8 | 96.75 | 160.51 | 1.66x | 65.91% | 37.17% | 49.05% | 32768/32768 | FP8優位 |
+| 16 | 90.60 | 107.35 | 1.18x | 18.49% | 36.35% | 19.86% | 32768/32768 | FP8優位 |
+
+<a id="random-in1024-out2048-c8"></a>
+### Random input=1024 output=2048 concurrency=8
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 131.16 | 226.30 | 1.73x | 72.53% | 48.89% | 49.74% | 32768/32768 | FP8優位 |
+| 8 | 112.08 | 219.01 | 1.95x | 95.41% | 34.30% | 51.50% | 32768/32768 | FP8優位 |
+| 16 | 92.73 | 186.76 | 2.01x | 101.41% | 23.75% | 40.84% | 32768/32768 | FP8優位 |
 
 <a id="random-in2048-out1024-c1"></a>
 ### Random input=2048 output=1024 concurrency=1
 
 | spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| 4 | 43.30 | 69.64 | 1.61x | 60.82% | 49.17% | 58.37% | 2048/2048 | FP8優位 |
-| 8 | 52.18 | 47.07 | 0.90x | -9.78% | 46.75% | 28.48% | 同一 | BF16優位 |
-| 16 | 38.09 | 35.14 | 0.92x | -7.75% | 26.77% | 17.31% | 同一 | BF16優位 |
+| 4 | 45.64 | 73.49 | 1.61x | 61.00% | 52.81% | 66.31% | 16384/16384 | FP8優位 |
+| 8 | 34.62 | 60.15 | 1.74x | 73.76% | 27.15% | 39.75% | 16384/16384 | FP8優位 |
+| 16 | 28.85 | 44.18 | 1.53x | 53.15% | 17.80% | 23.13% | 16384/16384 | FP8優位 |
+
+<a id="random-in2048-out1024-c2"></a>
+### Random input=2048 output=1024 concurrency=2
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 66.68 | 94.94 | 1.42x | 42.38% | 44.49% | 47.00% | 16384/16384 | FP8優位 |
+| 8 | 82.04 | 93.22 | 1.14x | 13.63% | 44.43% | 34.23% | 16384/16384 | FP8優位 |
+| 16 | 45.39 | 76.95 | 1.70x | 69.52% | 16.18% | 23.24% | 16384/16384 | FP8優位 |
+
+<a id="random-in2048-out1024-c4"></a>
+### Random input=2048 output=1024 concurrency=4
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 138.48 | 153.60 | 1.11x | 10.91% | 67.12% | 50.44% | 16384/16384 | FP8優位 |
+| 8 | 78.82 | 134.93 | 1.71x | 71.18% | 26.95% | 36.36% | 16384/16384 | FP8優位 |
+| 16 | 76.94 | 102.00 | 1.33x | 32.57% | 24.02% | 22.43% | 16384/16384 | FP8優位 |
+
+<a id="random-in2048-out1024-c8"></a>
+### Random input=2048 output=1024 concurrency=8
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 120.04 | 193.20 | 1.61x | 60.94% | 44.88% | 55.06% | 16384/16384 | FP8優位 |
+| 8 | 116.42 | 158.25 | 1.36x | 35.93% | 40.81% | 33.25% | 16384/16384 | FP8優位 |
+| 16 | 85.74 | 112.02 | 1.31x | 30.64% | 22.67% | 20.01% | 16384/16384 | FP8優位 |
 
 <a id="random-in2048-out1536-c1"></a>
 ### Random input=2048 output=1536 concurrency=1
 
 | spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| 4 | 28.05 | 30.97 | 1.10x | 10.40% | 24.63% | 13.77% | 3072/3072 | FP8優位 |
-| 8 | 55.45 | 53.49 | 0.96x | -3.53% | 49.57% | 33.36% | 同一 | 同等 |
-| 16 | 37.23 | 37.60 | 1.01x | 1.01% | 25.40% | 19.03% | 同一 | 同等 |
+| 4 | 46.20 | 56.88 | 1.23x | 23.12% | 52.84% | 44.03% | 24576/24576 | FP8優位 |
+| 8 | 34.91 | 55.11 | 1.58x | 57.87% | 26.41% | 34.36% | 24576/24576 | FP8優位 |
+| 16 | 45.60 | 46.36 | 1.02x | 1.67% | 31.54% | 24.39% | 24576/24576 | 同等 |
+
+<a id="random-in2048-out1536-c2"></a>
+### Random input=2048 output=1536 concurrency=2
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 70.70 | 82.70 | 1.17x | 16.98% | 47.47% | 36.84% | 24576/24576 | FP8優位 |
+| 8 | 77.12 | 87.98 | 1.14x | 14.08% | 41.37% | 31.86% | 24576/24576 | FP8優位 |
+| 16 | 50.28 | 76.06 | 1.51x | 51.26% | 18.90% | 22.86% | 24576/24576 | FP8優位 |
+
+<a id="random-in2048-out1536-c4"></a>
+### Random input=2048 output=1536 concurrency=4
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 130.13 | 150.03 | 1.15x | 15.30% | 62.38% | 50.02% | 24576/24576 | FP8優位 |
+| 8 | 82.12 | 130.77 | 1.59x | 59.23% | 30.43% | 35.56% | 24576/24576 | FP8優位 |
+| 16 | 81.13 | 101.98 | 1.26x | 25.70% | 28.44% | 21.17% | 24576/24576 | FP8優位 |
+
+<a id="random-in2048-out1536-c8"></a>
+### Random input=2048 output=1536 concurrency=8
+
+| spec tokens | BF16 tok/s | FP8 tok/s | FP8/BF16 | 差分 | BF16 accept | FP8 accept | output tokens BF16/FP8 | 判定 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| 4 | 128.56 | 180.08 | 1.40x | 40.07% | 53.02% | 43.68% | 24576/24576 | FP8優位 |
+| 8 | 112.70 | 160.13 | 1.42x | 42.09% | 36.69% | 38.11% | 24576/24576 | FP8優位 |
+| 16 | 89.83 | 113.77 | 1.27x | 26.65% | 26.54% | 19.61% | 24576/24576 | FP8優位 |
 
 ## Agentic Synthetic Workload
 
@@ -140,6 +224,7 @@ FP8/BF16のoutput throughput差が±5%以内なら「同等」。output token数
 | 8 | 229.54 | 333.42 | 1.45x | 45.25% | 79.20% | 78.35% | 8192/8192 | yes | FP8優位 |
 | 16 | 230.50 | 291.57 | 1.26x | 26.49% | 73.30% | 56.01% | 8192/8192 | yes | FP8優位 |
 
+
 ## Fields
 
 - `FP8/BF16`: output throughput比。1より大きい場合はFP8が高速。
@@ -155,3 +240,5 @@ FP8/BF16のoutput throughput差が±5%以内なら「同等」。output token数
 - [Random high-spec比較](../experiments/exp-001/results/high_spec_comparison.json)
 - [Agentic結果](../experiments/exp-002/results/results.md)
 - [Agentic比較JSON](../experiments/exp-002/results/comparisons.json)
+- [Controlled long-IO factorial結果](../experiments/exp-003/results/results.md)
+- [Controlled long-IO要因分析](../experiments/exp-003/results/factorial-analysis.json)
