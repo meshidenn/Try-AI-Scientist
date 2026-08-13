@@ -27,7 +27,9 @@ description: 完了または中断したrunをmanifest化し、後から比較�
     "survey": "../../survey/README.md"
   },
   "artifacts": {
-    "workspace": "workspace/",
+    "inputs": "inputs/",
+    "outputs": "outputs/",
+    "shared_workspace": "../../workspace/",
     "results": "results/results.md",
     "scores": "results/scores.json",
     "claims": "results/claims.json",

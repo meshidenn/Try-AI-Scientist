@@ -12,7 +12,9 @@
 
 - `projects/<project-name>/experiments/<exp-id>/spec.yaml`
 - `projects/<project-name>/experiments/<exp-id>/README.md`
-- `projects/<project-name>/experiments/<exp-id>/workspace/`
+- `projects/<project-name>/workspace/`（再現に使う共有実装）
+- `projects/<project-name>/experiments/<exp-id>/inputs/` またはlegacyの`workspace/` snapshot
+- `projects/<project-name>/experiments/<exp-id>/outputs/`（生成物がある場合）
 - `projects/<project-name>/experiments/<exp-id>/results/results.md`
 - `projects/<project-name>/experiments/<exp-id>/results/scores.json`
 - `projects/<project-name>/experiments/<exp-id>/figures/`

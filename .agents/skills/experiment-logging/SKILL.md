@@ -16,6 +16,14 @@ description: 実験結果をMarkdownとJSONで残し、後続agentが読み返�
 - `experiments/<exp-id>/results/scores.json`
 - `experiments/<exp-id>/logs/`
 
+## Code And Artifact Separation
+
+- 再利用する実装、テスト、起動scriptは `projects/<project-name>/workspace/` に置く。
+- `experiments/<exp-id>/` はspec、入力・出力snapshot、log、評価、reviewなどの実験artifactだけを置く。`.py`、`.sh`、notebook、`__pycache__/`を置かない。
+- 共通実行器は結果保存先を暗黙に決めず、`--root projects/<project-name>/experiments/<exp-id>` のように対象expを明示して実行する。
+- 再現手順は共通workspaceのscriptと明示した`--root`を記載する。実験番号を含む実装pathを参照しない。
+- 新規expは`inputs/`と`outputs/`にsnapshotと生成物を置く。legacyの`workspace/` snapshotを残す場合は、READMEまたはmanifestに理由を書く。
+
 ## results.md Structure
 
 ```markdown

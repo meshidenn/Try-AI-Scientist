@@ -10,7 +10,8 @@ paperを書く場合だけ実行する任意sub-agent。paperを書く観点でr
 - `projects/<project-name>/experiments/<exp-id>/paper/`
 - `projects/<project-name>/experiments/<exp-id>/results/`
 - `projects/<project-name>/experiments/<exp-id>/figures/`
-- `projects/<project-name>/experiments/<exp-id>/workspace/`
+- `projects/<project-name>/workspace/`（再現に使う共有実装）
+- `projects/<project-name>/experiments/<exp-id>/inputs/` またはlegacyの`workspace/` snapshot
 - `projects/<project-name>/experiments/<exp-id>/review/artifact-audit.md`
 - `projects/<project-name>/experiments/<exp-id>/review/result-interpretation.md`
 

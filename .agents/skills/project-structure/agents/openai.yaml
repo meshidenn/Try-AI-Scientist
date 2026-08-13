@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Structure"
+  short_description: "Standardize research project layouts"
+  default_prompt: "Use $project-structure to create or reorganize this research project."

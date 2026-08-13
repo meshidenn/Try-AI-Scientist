@@ -14,7 +14,9 @@
 ## Writes
 
 - `projects/<project-name>/experiments/<exp-id>/README.md`
-- `projects/<project-name>/experiments/<exp-id>/workspace/`
+- `projects/<project-name>/workspace/`（共有実装・test・実行scriptを変更する場合）
+- `projects/<project-name>/experiments/<exp-id>/inputs/`
+- `projects/<project-name>/experiments/<exp-id>/outputs/`
 - `projects/<project-name>/experiments/<exp-id>/results/results.md`
 - `projects/<project-name>/experiments/<exp-id>/results/scores.json`
 - `projects/<project-name>/experiments/<exp-id>/figures/`
@@ -26,7 +28,7 @@
 
 1. `spec.yaml` の仮説、評価指標、制約を読む。
 2. `survey/` と必要に応じて過去の `next-plan.md` を読み、現在の `spec.yaml` の意図を確認する。
-3. `workspace/` に自己完結したコードを書く。
+3. 再利用するコードは `projects/<project-name>/workspace/` に実装し、expの`inputs/`・`outputs/`へartifactを保存する。
 4. 実験を実行し、再実行方法を `README.md` または `logs/` に残す。
 5. 結果を `results.md` に人間とagentが読める形で整理する。
 6. 機械可読なscoreを `scores.json` に保存する。

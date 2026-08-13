@@ -13,7 +13,8 @@ description: Run直後、interpret前に結果artifactの健全性を確認す�
 
 - `spec.yaml`
 - `README.md`
-- `workspace/`
+- `inputs/` またはlegacyの `workspace/` snapshot
+- `outputs/`（生成物がある場合）
 - `results/results.md`
 - `results/scores.json`
 - `figures/`
