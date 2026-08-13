@@ -1,0 +1,53 @@
+{
+  "experiment_id": "exp-009",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "output_page_ngram_match_rate_by_n",
+      "values": {
+        "1": 0.969974,
+        "2": 0.937923,
+        "3": 0.9117,
+        "4": 0.876056,
+        "5": 0.842297,
+        "6": 0.810193,
+        "7": 0.785934,
+        "8": 0.766779,
+        "9": 0.751009,
+        "10": 0.735759
+      },
+      "higher_is_better": true,
+      "definition": "出力Markdownのユニーク文字n-gramのうち同じPDFページ内に存在する割合"
+    },
+    "reference_page_ngram_coverage_by_n": {
+      "1": 0.907552,
+      "2": 0.81591,
+      "3": 0.715392,
+      "4": 0.66482,
+      "5": 0.628056,
+      "6": 0.596354,
+      "7": 0.574851,
+      "8": 0.559165,
+      "9": 0.547741,
+      "10": 0.537383
+    },
+    "f1_by_n": {
+      "1": 0.927653,
+      "2": 0.851508,
+      "3": 0.772133,
+      "4": 0.721576,
+      "5": 0.683616,
+      "6": 0.651028,
+      "7": 0.628286,
+      "8": 0.611325,
+      "9": 0.598504,
+      "10": 0.586825
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "page_ngrams": "results/page_ngrams.json",
+    "logs": ["logs/evaluate-page-ngrams.json"],
+    "audit": "review/artifact-audit.md"
+  }
+}

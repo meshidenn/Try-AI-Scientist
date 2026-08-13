@@ -1,0 +1,420 @@
+{
+  "experiment_id": "exp-005",
+  "source_logs": [
+    "projects/pdf-to-markdown-toyota/experiments/exp-005/logs/paddleocr-vl-1.6-pilot.json",
+    "projects/pdf-to-markdown-toyota/experiments/exp-005/logs/deepseek-ocr-2-pilot.json",
+    "projects/pdf-to-markdown-toyota/experiments/exp-005/logs/unlimited-ocr-pilot.json"
+  ],
+  "records": [
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/securities_report/page-0135.md",
+      "wall_time_seconds": 39.1097,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.71691,
+        "numeric_token_recall": 0.047619,
+        "numeric_token_precision": 0.5,
+        "numeric_token_f1": 0.086957,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 8,
+        "matched_numeric_token_count": 4,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 21.103128,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.089728,
+        "numeric_token_recall": 0.690909,
+        "numeric_token_precision": 0.267606,
+        "numeric_token_f1": 0.385787,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 142,
+        "matched_numeric_token_count": 38,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/integrated_report/page-0011.md",
+      "wall_time_seconds": 20.724307,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.64397,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/midterm_policy/page-0002.md",
+      "wall_time_seconds": 3.637853,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.449381,
+        "numeric_token_recall": 1.0,
+        "numeric_token_precision": 0.102941,
+        "numeric_token_f1": 0.186667,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 68,
+        "matched_numeric_token_count": 7,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "deepseek-ocr-2",
+      "model_id": "deepseek-ai/DeepSeek-OCR-2",
+      "served_model": "deepseek-ocr-2",
+      "model_revision": "aaa02f3811945a91062062994c5c4a3f4c0af2b0",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18026/v1",
+      "method": "native_ocr",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/deepseek-ocr-2/native_ocr/securities_report/page-0135.md",
+      "wall_time_seconds": 29.34314,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.742077,
+        "numeric_token_recall": 0.345238,
+        "numeric_token_precision": 0.315217,
+        "numeric_token_f1": 0.329545,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 92,
+        "matched_numeric_token_count": 29,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "deepseek-ocr-2",
+      "model_id": "deepseek-ai/DeepSeek-OCR-2",
+      "served_model": "deepseek-ocr-2",
+      "model_revision": "aaa02f3811945a91062062994c5c4a3f4c0af2b0",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18026/v1",
+      "method": "native_ocr",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/deepseek-ocr-2/native_ocr/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 1.18243,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.252896,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": 0.0,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 11,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "deepseek-ocr-2",
+      "model_id": "deepseek-ai/DeepSeek-OCR-2",
+      "served_model": "deepseek-ocr-2",
+      "model_revision": "aaa02f3811945a91062062994c5c4a3f4c0af2b0",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18026/v1",
+      "method": "native_ocr",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/deepseek-ocr-2/native_ocr/integrated_report/page-0011.md",
+      "wall_time_seconds": 6.175147,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.235423,
+        "numeric_token_recall": 0.037594,
+        "numeric_token_precision": 0.081967,
+        "numeric_token_f1": 0.051546,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 61,
+        "matched_numeric_token_count": 5,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "deepseek-ocr-2",
+      "model_id": "deepseek-ai/DeepSeek-OCR-2",
+      "served_model": "deepseek-ocr-2",
+      "model_revision": "aaa02f3811945a91062062994c5c4a3f4c0af2b0",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18026/v1",
+      "method": "native_ocr",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/deepseek-ocr-2/native_ocr/midterm_policy/page-0002.md",
+      "wall_time_seconds": 3.876623,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.928534,
+        "numeric_token_recall": 0.857143,
+        "numeric_token_precision": 0.25,
+        "numeric_token_f1": 0.387097,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 24,
+        "matched_numeric_token_count": 6,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "unlimited-ocr",
+      "model_id": "baidu/Unlimited-OCR",
+      "served_model": "unlimited-ocr",
+      "model_revision": "07dea832e22aefee32ad281d4b80551282e1c168",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18027/v1",
+      "method": "native_ocr",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/unlimited-ocr/native_ocr/securities_report/page-0135.md",
+      "wall_time_seconds": 21.588605,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.806571,
+        "numeric_token_recall": 0.380952,
+        "numeric_token_precision": 0.329897,
+        "numeric_token_f1": 0.353591,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 97,
+        "matched_numeric_token_count": 32,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "unlimited-ocr",
+      "model_id": "baidu/Unlimited-OCR",
+      "served_model": "unlimited-ocr",
+      "model_revision": "07dea832e22aefee32ad281d4b80551282e1c168",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18027/v1",
+      "method": "native_ocr",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/unlimited-ocr/native_ocr/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 4.315752,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.362934,
+        "numeric_token_recall": 0.018182,
+        "numeric_token_precision": 0.05,
+        "numeric_token_f1": 0.026667,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 20,
+        "matched_numeric_token_count": 1,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "unlimited-ocr",
+      "model_id": "baidu/Unlimited-OCR",
+      "served_model": "unlimited-ocr",
+      "model_revision": "07dea832e22aefee32ad281d4b80551282e1c168",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18027/v1",
+      "method": "native_ocr",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/unlimited-ocr/native_ocr/integrated_report/page-0011.md",
+      "wall_time_seconds": 9.669571,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.284545,
+        "numeric_token_recall": 0.075188,
+        "numeric_token_precision": 0.114943,
+        "numeric_token_f1": 0.090909,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 87,
+        "matched_numeric_token_count": 10,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "unlimited-ocr",
+      "model_id": "baidu/Unlimited-OCR",
+      "served_model": "unlimited-ocr",
+      "model_revision": "07dea832e22aefee32ad281d4b80551282e1c168",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18027/v1",
+      "method": "native_ocr",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/unlimited-ocr/native_ocr/midterm_policy/page-0002.md",
+      "wall_time_seconds": 6.6761,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.92228,
+        "numeric_token_recall": 1.0,
+        "numeric_token_precision": 0.225806,
+        "numeric_token_f1": 0.368421,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 31,
+        "matched_numeric_token_count": 7,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    }
+  ],
+  "summary": [
+    {
+      "model": "deepseek-ocr-2",
+      "method": "native_ocr",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.539732,
+      "numeric_token_recall": 0.309994,
+      "numeric_token_precision": 0.161796,
+      "numeric_token_f1": 0.192047,
+      "wall_time_seconds": 10.144335,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "method": "native_ocr",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.474997,
+      "numeric_token_recall": 0.434632,
+      "numeric_token_precision": 0.290182,
+      "numeric_token_f1": 0.164853,
+      "wall_time_seconds": 21.143747,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "unlimited-ocr",
+      "method": "native_ocr",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.594082,
+      "numeric_token_recall": 0.36858,
+      "numeric_token_precision": 0.180162,
+      "numeric_token_f1": 0.209897,
+      "wall_time_seconds": 10.562507,
+      "consistent_table_pages": 0
+    }
+  ]
+}

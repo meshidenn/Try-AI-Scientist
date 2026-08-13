@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-002",
+  "status": "completed",
+  "output_format": "html_fragment",
+  "model": "gemma4-26b-moe",
+  "model_id": "google/gemma-4-26B-A4B-it",
+  "backend": "vllm_openai",
+  "max_model_len": 32768,
+  "source_experiment": "exp-001",
+  "documents_manifest": "workspace/input/documents.json",
+  "run_log": "logs/vllm-html-run.json",
+  "metrics": "results/page_metrics.json",
+  "scope": {
+    "methods": ["parse_first", "image_first"],
+    "pages": 11,
+    "requests": 22,
+    "successes": 22,
+    "failures": 0
+  }
+}

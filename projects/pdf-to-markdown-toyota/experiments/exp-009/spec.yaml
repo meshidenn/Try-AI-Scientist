@@ -1,0 +1,32 @@
+experiment_id: exp-009
+title: Page-level character n-gram match rate for parsed text
+status: completed
+objective: >
+  PDFのtext layerをページ単位の正解とみなし、既存のhybrid Markdown出力に含まれる文字列が
+  同じPDFページ内に存在する割合を、n=1から10まで測定する。
+constraints:
+  - 追加のVLM推論は行わず、exp-003とexp-004の既存出力を再利用する
+  - PDFページをまたいだn-gram一致は認めない
+  - n-gramは正規化後のユニーク文字列集合として数える
+inputs:
+  source_manifest: inputs/source-manifest.json
+  pilot_pages: inputs/pilot-pages.json
+  source_outputs:
+    gemma4-26b-moe: ../../exp-003/logs/hybrid-run-v2.json
+    qwen3.6-27b: ../../exp-004/logs/qwen3.6-27b-hybrid-pilot.json
+    glm-4.6v-flash: ../../exp-004/logs/glm-4.6v-flash-pilot.json
+method:
+  output_format: markdown
+  mode: hybrid
+  n_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  normalization: NFKC_then_remove_whitespace_and_markdown_syntax
+  unit: unique_character_ngram
+evaluation:
+  primary: output_page_ngram_match_rate
+  secondary:
+    - reference_page_ngram_coverage
+    - f1
+  primary_definition: 出力Markdownのn-gramのうち同じPDFページtext layerに存在する割合
+success_criteria:
+  - n=1から10までの値が全対象モデル・ページについて保存される
+  - 各nでPDFページ内一致判定がページ境界を越えずに行われる

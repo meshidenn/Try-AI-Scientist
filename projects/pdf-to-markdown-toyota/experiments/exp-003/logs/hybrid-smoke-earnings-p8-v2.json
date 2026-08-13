@@ -1,0 +1,28 @@
+{
+  "model": "gemma4-26b-moe",
+  "model_id": "google/gemma-4-26B-A4B-it",
+  "backend": "vllm_openai",
+  "base_url": "http://127.0.0.1:18021/v1",
+  "max_pages": 3,
+  "max_new_tokens": 1024,
+  "routing_policy": "table=parse; chart=image; layout=both",
+  "records": [
+    {
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 601,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 38.05293309991248
+    }
+  ]
+}

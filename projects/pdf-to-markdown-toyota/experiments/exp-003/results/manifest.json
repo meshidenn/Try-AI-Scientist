@@ -1,0 +1,11 @@
+{
+  "experiment_id": "exp-003",
+  "status": "completed",
+  "source_documents": "../exp-001/workspace/input/documents.json",
+  "source_pdfs": "../exp-001/workspace/input/pdfs/",
+  "selected_pages": 11,
+  "final_log": "logs/hybrid-run-v2.json",
+  "evaluation": "results/page_metrics.json",
+  "output_directory": "workspace/outputs-hybrid/ (gitignore対象)",
+  "model": {"logical_name": "gemma4-26b-moe", "model_id": "google/gemma-4-26B-A4B-it", "backend": "vllm_openai"}
+}

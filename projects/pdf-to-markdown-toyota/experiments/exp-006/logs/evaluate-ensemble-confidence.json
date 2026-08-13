@@ -1,0 +1,11 @@
+{
+  "command": "uv run python projects/pdf-to-markdown-toyota/workspace/evaluate_ensemble_confidence.py --root projects/pdf-to-markdown-toyota/experiments/exp-006 --model-log gemma4-26b-moe=projects/pdf-to-markdown-toyota/experiments/exp-003/logs/hybrid-run-v2.json --model-log qwen3.6-27b=projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-hybrid-pilot.json --model-log glm-4.6v-flash=projects/pdf-to-markdown-toyota/experiments/exp-004/logs/glm-4.6v-flash-pilot.json",
+  "status": "success",
+  "result": "results/ensemble_confidence.json",
+  "pages": 4,
+  "aggregate": {
+    "mean_pdf_numeric_coverage": 0.704411,
+    "mean_candidate_confidence": 0.889264,
+    "mean_coverage_adjusted_confidence": 0.643828
+  }
+}

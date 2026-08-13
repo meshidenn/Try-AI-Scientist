@@ -1,0 +1,171 @@
+{
+  "experiment_id": "exp-004",
+  "scope": {
+    "pages": [
+      {
+        "document": "securities_report",
+        "page": 135
+      },
+      {
+        "document": "earnings_presentation",
+        "page": 8
+      },
+      {
+        "document": "integrated_report",
+        "page": 11
+      },
+      {
+        "document": "midterm_policy",
+        "page": 2
+      }
+    ],
+    "models": [
+      "gemma4-26b-moe",
+      "qwen3.6-27b",
+      "glm-4.6v-flash"
+    ],
+    "excluded_models": {
+      "internvl3.5-8b": "意味を成さない反復・断片出力のため除外"
+    },
+    "gemma_sources": {
+      "image_first": "experiments/exp-001/results/page_metrics.json",
+      "hybrid": "experiments/exp-003/results/page_metrics.json"
+    },
+    "other_model_source": "experiments/exp-004/results/page_metrics.json"
+  },
+  "metrics": {
+    "character_sequence_agreement": "NFKC正規化・空白除去後のMarkdown全文について、difflib.SequenceMatcher.ratioをページごとに計算し、4ページを等重み平均。順序を含む文字列近似であり、意味的正しさではない。",
+    "numeric_token_jaccard": "各ページの数値token集合のintersection / unionを計算し、4ページを等重み平均。位置、列、重複、単位対応は見ない。"
+  },
+  "results": {
+    "image_first": [
+      {
+        "pair": [
+          "gemma4-26b-moe",
+          "qwen3.6-27b"
+        ],
+        "character_sequence_agreement_mean": 0.608464,
+        "numeric_token_jaccard_mean": 0.581195,
+        "character_sequence_by_page": [
+          0.4561,
+          0.7209,
+          0.9989,
+          0.258
+        ],
+        "numeric_token_jaccard_by_page": [
+          0.9643,
+          0.2,
+          1.0,
+          0.1605
+        ]
+      },
+      {
+        "pair": [
+          "gemma4-26b-moe",
+          "glm-4.6v-flash"
+        ],
+        "character_sequence_agreement_mean": 0.637314,
+        "numeric_token_jaccard_mean": 0.491016,
+        "character_sequence_by_page": [
+          0.6706,
+          0.6281,
+          0.9978,
+          0.2528
+        ],
+        "numeric_token_jaccard_by_page": [
+          0.9464,
+          0.0,
+          0.8571,
+          0.1605
+        ]
+      },
+      {
+        "pair": [
+          "qwen3.6-27b",
+          "glm-4.6v-flash"
+        ],
+        "character_sequence_agreement_mean": 0.835061,
+        "numeric_token_jaccard_mean": 0.83474,
+        "character_sequence_by_page": [
+          0.5867,
+          0.8449,
+          0.9989,
+          0.9097
+        ],
+        "numeric_token_jaccard_by_page": [
+          0.9818,
+          0.5,
+          0.8571,
+          1.0
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "pair": [
+          "gemma4-26b-moe",
+          "qwen3.6-27b"
+        ],
+        "character_sequence_agreement_mean": 0.751062,
+        "numeric_token_jaccard_mean": 0.865741,
+        "character_sequence_by_page": [
+          0.3924,
+          0.7168,
+          1.0,
+          0.8951
+        ],
+        "numeric_token_jaccard_by_page": [
+          0.963,
+          0.5,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "pair": [
+          "gemma4-26b-moe",
+          "glm-4.6v-flash"
+        ],
+        "character_sequence_agreement_mean": 0.681562,
+        "numeric_token_jaccard_mean": 0.680952,
+        "character_sequence_by_page": [
+          0.3126,
+          0.5542,
+          0.9978,
+          0.8616
+        ],
+        "numeric_token_jaccard_by_page": [
+          0.7667,
+          0.1,
+          0.8571,
+          1.0
+        ]
+      },
+      {
+        "pair": [
+          "qwen3.6-27b",
+          "glm-4.6v-flash"
+        ],
+        "character_sequence_agreement_mean": 0.70137,
+        "numeric_token_jaccard_mean": 0.688159,
+        "character_sequence_by_page": [
+          0.4308,
+          0.5259,
+          0.9978,
+          0.8511
+        ],
+        "numeric_token_jaccard_by_page": [
+          0.7705,
+          0.125,
+          0.8571,
+          1.0
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Gemmaのimage-firstはexp-001、hybridはexp-003 v2の出力であり、Qwen/GLMのexp-004とprompt・runner・vLLM imageが完全には同一でない。",
+    "GemmaとQwen/GLMで同一の4ページを比較したが、出力上限・正規化・後処理の差が残る。",
+    "このモデル間一致は、PDFに対する正しさ・図表の位置関係・レイアウト忠実性を表さない。"
+  ]
+}

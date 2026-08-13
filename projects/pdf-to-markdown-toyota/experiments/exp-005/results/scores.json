@@ -1,0 +1,21 @@
+{
+  "experiment_id": "exp-005",
+  "status": "completed_with_runtime_limitations",
+  "metrics": {
+    "primary": {
+      "name": "numeric_token_f1",
+      "value": 0.209897,
+      "higher_is_better": true,
+      "model": "unlimited-ocr"
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "page_metrics": "results/page_metrics.json",
+    "logs": [
+      "logs/paddleocr-vl-1.6-pilot.json",
+      "logs/deepseek-ocr-2-pilot.json",
+      "logs/unlimited-ocr-pilot.json"
+    ]
+  }
+}

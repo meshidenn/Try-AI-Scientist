@@ -1,0 +1,12 @@
+{
+  "command": "PYTHONPATH=projects/pdf-to-markdown-toyota/workspace uv run python projects/pdf-to-markdown-toyota/workspace/render_confidence_colored_html.py --root projects/pdf-to-markdown-toyota/experiments/exp-008",
+  "status": "success",
+  "output_manifest": "results/colorized_html_manifest.json",
+  "html_count": 12,
+  "models": [
+    "gemma4-26b-moe",
+    "qwen3.6-27b",
+    "glm-4.6v-flash"
+  ],
+  "note": "追加推論なし。既存hybrid MarkdownをHTML表示し、数値・テキストのensemble evidence scoreを重ねた。"
+}

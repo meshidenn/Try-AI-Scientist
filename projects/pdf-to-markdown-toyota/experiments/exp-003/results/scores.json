@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-003",
+  "status": "completed",
+  "final_run": "hybrid-run-v2.json",
+  "sample_pages": 11,
+  "metrics": {
+    "success_count": 11,
+    "text_normalized_similarity_proxy": 0.7498642727,
+    "numeric_token_recall": 0.7482365455,
+    "table_output_count": 5,
+    "table_row_width_consistent_count": 4,
+    "mean_wall_time_seconds": 30.4541135955
+  },
+  "comparisons": {
+    "parse_first_exp_001": {"text_normalized_similarity_proxy": 0.8300085455, "numeric_token_recall": 0.7329252727, "table_output_count": 6, "table_row_width_consistent_count": 3, "mean_wall_time_seconds": 28.8599017683},
+    "image_first_exp_001": {"text_normalized_similarity_proxy": 0.722139, "numeric_token_recall": 0.6421610909, "table_output_count": 5, "table_row_width_consistent_count": 1, "mean_wall_time_seconds": 23.8861203383},
+    "hybrid_v1": {"text_normalized_similarity_proxy": 0.7321164545, "numeric_token_recall": 0.6893608182, "table_output_count": 5, "table_row_width_consistent_count": 2, "mean_wall_time_seconds": 30.5762832743}
+  },
+  "artifacts": {"results_md": "results/results.md", "page_metrics": "results/page_metrics.json", "figures": [], "logs": ["logs/hybrid-run.json", "logs/hybrid-run-v2.json", "logs/hybrid-smoke-integrated-p11.json", "logs/hybrid-smoke-earnings-p8-v2.json"]}
+}

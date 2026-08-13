@@ -1,0 +1,38 @@
+{
+  "experiment_id": "exp-007",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "page_numeric_recall",
+      "value": 1.0,
+      "higher_is_better": true,
+      "definition": "座標chunkで抽出した表本体83数値tokenに対する集合ベースrecall"
+    },
+    "numeric_precision": {
+      "value": 1.0,
+      "higher_is_better": true
+    },
+    "baseline_numeric_recall_same_reference": {
+      "value": 0.590361,
+      "higher_is_better": true
+    },
+    "baseline_to_chunked_recall_gain": {
+      "value": 0.409639,
+      "higher_is_better": true
+    },
+    "finish_reason": {
+      "chunk_1": "stop",
+      "chunk_2": "stop"
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "chunk_metrics": "results/chunk_metrics.json",
+    "outputs": "outputs/securities_report/page-0135/",
+    "logs": [
+      "logs/chunked-hybrid-run.json",
+      "logs/vllm.server.ready.log",
+      "logs/vllm-bf16.server.log"
+    ]
+  }
+}

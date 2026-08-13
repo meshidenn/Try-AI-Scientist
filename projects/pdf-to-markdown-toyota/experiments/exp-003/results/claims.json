@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-003",
+  "claims": [
+    {
+      "claim": "ページ単位hybrid v2は、同じ11ページにおいてparse-firstよりnumeric token recallが高い。",
+      "evidence": "results/scores.json: hybrid v2=0.7482365455, parse-first=0.7329252727",
+      "status": "supported"
+    },
+    {
+      "claim": "ページ単位hybrid v2は、表を含む5出力のうち4件でMarkdown表の行幅が整合し、比較した3方式で最多だった。",
+      "evidence": "results/scores.json: hybrid v2=4/5, parse-first=3/6, image-first=1/5",
+      "status": "supported"
+    },
+    {
+      "claim": "hybrid v2がPDFページの忠実な視覚レイアウト再現で最良である。",
+      "evidence": "位置や図形のgold評価は未実施で、text proxyはparse-firstを下回る。",
+      "status": "not_supported"
+    }
+  ]
+}

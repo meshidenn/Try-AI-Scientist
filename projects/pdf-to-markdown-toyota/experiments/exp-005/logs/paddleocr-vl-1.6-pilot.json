@@ -1,0 +1,90 @@
+{
+  "experiment_id": "exp-005",
+  "model": "paddleocr-vl-1.6",
+  "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+  "backend": "local_vllm_openai",
+  "base_url": "http://127.0.0.1:18025/v1",
+  "pilot": true,
+  "modes": [
+    "native_ocr"
+  ],
+  "max_new_tokens": 4096,
+  "records": [
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/securities_report/page-0135.md",
+      "wall_time_seconds": 39.1097
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 21.103128
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/integrated_report/page-0011.md",
+      "wall_time_seconds": 20.724307
+    },
+    {
+      "model": "paddleocr-vl-1.6",
+      "model_id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "served_model": "paddleocr-vl-1.6",
+      "model_revision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18025/v1",
+      "method": "native_ocr",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-005/outputs/paddleocr-vl-1.6/native_ocr/midterm_policy/page-0002.md",
+      "wall_time_seconds": 3.637853
+    }
+  ]
+}

@@ -1,0 +1,1768 @@
+{
+  "experiment_id": "exp-008",
+  "method": "hybrid",
+  "models": [
+    "gemma4-26b-moe",
+    "glm-4.6v-flash",
+    "qwen3.6-27b"
+  ],
+  "model_logs": {
+    "gemma4-26b-moe": "projects/pdf-to-markdown-toyota/experiments/exp-003/logs/hybrid-run-v2.json",
+    "qwen3.6-27b": "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-hybrid-pilot.json",
+    "glm-4.6v-flash": "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/glm-4.6v-flash-pilot.json"
+  },
+  "weights": {
+    "model_agreement": 0.55,
+    "pdf_evidence": 0.45
+  },
+  "definition": {
+    "confidence": "0.55 * モデル支持率 + 0.45 * PDF text layerでの正規化文字列包含",
+    "coverage": "PDF text block相当のtext unitに対する近似被覆率。意味的同義、図中文字、表セル位置を評価しない。",
+    "scope": "本文行・見出し・Markdown表内の非数値セル。未校正のevidence scoreであり、正答確率ではない。"
+  },
+  "pages": [
+    {
+      "document": "earnings_presentation",
+      "page": 8,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 35,
+        "pdf_text_unit_count": 6,
+        "pdf_text_unit_coverage_proxy": 1.0,
+        "mean_candidate_confidence": 0.374285,
+        "coverage_adjusted_confidence": 0.374285,
+        "confidence_counts": {
+          "high": 2,
+          "medium": 1,
+          "low": 32
+        }
+      },
+      "candidates": [
+        {
+          "kind": "text_line",
+          "value": "所在地別営業利益",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "営業利益（億円）＜金利スワップ取引などの評価損益を除く＞ [ ] 営業利益率 ─── ● 連結販売台数（千台）",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "その他地域",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "営業利益（億円）",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "営業利益率",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "連結販売台数（千台）",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "含む中国（持分法会社除く）",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "※画像内のグラフおよび表の数値構成に基づき、以下の項目を整理：",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "営業利益（億円）＜金利スワップ取引などの評価損益を除く＞",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "日本: 31,587 [14.5%]",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "北米: 23,307 [10.6%]",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "欧州: 4,171 [6.6%]",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "アジア: 8,939 [9.9%]",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "その他地域: 2,405 [5.3%]",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "(その他数値): △2,986 [△1.4%], 3,308 [6.5%], 8,723 [9.4%], 3,078 [6.5%] 等",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "連結販売台数（千台）",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "日本: 1,991 / 2,082 (104.6%)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "北米: 2,703 / 2,934 (108.5%)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "欧州: 1,172 / 1,183 (101.0%)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "アジア: 1,838 (95.7%) / 1,759 (98.7%)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "その他地域: 1,659 / 1,637 (98.7%)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "金利スワップ取引などの評価損益を含む営業利益（億円）",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "日本 北米 欧州 アジア その他地域",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "1,991 2,082 2,703 2,934 （108.5%） 含む中国（持分法会社除く） （104.6%） 1,172 1,183 1,838 1,759 1,659 1,637 （95.7%） （98.7%） （101.0%）",
+          "supporting_models": [
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "text_line",
+          "value": "連結販売台数: 1,991 → 2,082 (104.6%)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "変動: △8,280",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "連結販売台数: 2,703 → 2,934 (108.5%)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "変動: △4,030",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "連結販売台数: 1,172 → 1,183 (101.0%)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "変動: △863",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "連結販売台数: 1,838 → 1,759 (95.7%)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "変動: △216",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "その他地域",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "連結販売台数: 1,659 → 1,637 (98.7%)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "変動: +673",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/text-confidence-review/hybrid/earnings_presentation/page-0008.html"
+    },
+    {
+      "document": "integrated_report",
+      "page": 11,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 70,
+        "pdf_text_unit_count": 182,
+        "pdf_text_unit_coverage_proxy": 0.340659,
+        "mean_candidate_confidence": 0.537619,
+        "coverage_adjusted_confidence": 0.183145,
+        "confidence_counts": {
+          "high": 8,
+          "medium": 4,
+          "low": 58
+        }
+      },
+      "candidates": [
+        {
+          "kind": "text_line",
+          "value": "10 トップメッセージ 価値創造の源流̶ トヨタらしさ̶ 価値創造のストーリー̶ クルマ屋が描く未来のモビリティ社会̶ 価値創造の経営基盤 コーポレートデータ",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "text_line",
+          "value": "価値創造のストーリー̶",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "クルマ屋が描く未来のモビリティ社会̶ 価値創造の経営基盤 コーポレートデータ",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "トヨタらしさ̶",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "トヨタグループビジョン「次の道を発明しよう」 ｜ 創業の精神 ｜ 豊田綱領、トヨタフィロソフィー ｜ トヨタ生産方式（TPS） ｜ もっといいクルマづくり ｜ トヨタとスポーツ",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "トヨタグループビジョン「次の道を発明しよう」",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "text_line",
+          "value": "発明への情熱と姿勢こそ、 トヨタグループの原点",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "「苦労する母親を少しでも楽にしたい」",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "機織り機の研究に没頭した豊田佐吉は、1890年、 「豊田式木製人力織機」を発明します。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "誰かを想い、学び、技を磨き、ものをつくり、人を笑顔にする。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "発明への情熱と姿勢こそ、トヨタグループの原点であると私は思います。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "その後、豊田紡織、豊田自動織機製作所の設立へとつながり、系譜図は「縦」に伸びていきます。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "1930年代に入ると、豊田喜一郎が立ち上がります。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "「ただ自動車をつくるのではない。日本人の頭と腕で、日本に自動車工業をつくらねばならない」",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "当時の日本の工業は、技術水準において欧米に大きな後れをとっていました。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "そこで自動車を国産化することで、この国の産業のモデルチェンジに臨みます。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "喜一郎は、自動車だけではなく、飛行機の研究もしていました。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "息子の章一郎には、 「火事でも燃えない家をつくれ」と言ったそうです。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "喜一郎が創りたかったもの。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "それは、日本に生きる人々の幸せであり、次世代が夢を描ける未来だったのだと思います。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "もちろん自動車も未来も、一人では創れません。ともに苦悩し、ともに励まし、ともに高め合う仲間が必要です。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "鉄、ゴム、電子、多くの会社がトヨタと歩み始めます。豊田と名の付く会社だけではありません。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "創業のきっかけは違えど「自動車産業を興そう」と志を同じくする仲間とも、トヨタは力を合わせました。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "下の図は1895年豊田商店の設立に始まる、トヨタグループの系譜図です。",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "confidence": 0.55,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "トヨタグループの系譜図",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "text_line",
+          "value": "Toyota Group Organizational Chart",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "佐吉（長男）の事業 Business of Sakichi (eldest son)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "平吉（次男）の事業 Business of Heikichi (second son)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "佐助（三男）の事業 Business of Sasuke (third son)",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田式人力織機 Toyoda Woodenn Hand Loom",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田商店 Toyoda Shoten",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田商会 Toyoda Shokai",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田織布工場 Toyoda Shokuhu kojo",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田織布菊井工場 Toyoda Shokuhu Kikui Kojo",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田自動織布工場 Toyoda Jido Shokuhu Kojo",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田自動紡織工場 Toyoda Jido Boshoku Kojo",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田織布押切工場 Toyoda Shokuhu Oshikiri Kojo",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "菊井紡織(株) Kikui Boshoku",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "豊田紡織(株) Toyoda Boshoku Corporation",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "G型自動織機 Toyoda Automatic Loom, Type G",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "中央紡織(株) Chuo Boshoku",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "| 1929.1.",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "西暦 和暦",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "明治 大正 昭和 平成 令和",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "佐吉（長男）の事業",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "Business of Sakichi (eldest son)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田式人力織機 Toyoda Woodenn Hand Loom 1890",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "平吉（次男）の事業",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "Business of Heikichi (second son)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田商店 Toyoda Shoten 1895",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田織布工場 Toyoda Shokuhu kojo 1900",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田商会 Toyoda Shokai 1902.3",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "佐助（三男）の事業",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "Business of Sasuke (third son)",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田織布菊井工場 Toyoda Shokuhu Kikui Kojo 1909.2",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "内海紡織(株) Utsumi Boshoku 1913.9.15",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田織布押切工場 Toyoda Shokuhu Oshikiri Kojo 1917.2",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "菊井紡織(株) Kikui Boshoku 1918.3.10",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "紡織事業拡大を目指し豊田紡織の姉妹会社を設立",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "A sister company to Toyoda Boshoku was established to expand the spinning business",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田自動織布工場 Toyoda Jido Shokuhu Kojo 1911.10",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田自動紡織工場 Toyoda Jido Boshoku Kojo 1914.2",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田紡織(株) Toyoda Boshoku Corporation 1918.1.30",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "G型自動織機 Toyoda Automatic Loom, Type G 1924",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "中央紡織(株) Chuo Boshoku 1929.3.19",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "豊田押切紡織(株) Toyoda Oshikiri Boshoku 1929.1.30",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "協和紡績(株) Kyowa Bouseki 1935.10.28",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "中央紡織(株) Chuo Spinning Company",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "(株)豊田自動織機製作所 Toyoda Automatic Works, Ltd. 1926.11.18",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "text_line",
+          "value": "光洋精工(株) Koyo Seiko Co., Ltd. 1935.1.18",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/text-confidence-review/hybrid/integrated_report/page-0011.html"
+    },
+    {
+      "document": "midterm_policy",
+      "page": 2,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 6,
+        "pdf_text_unit_count": 24,
+        "pdf_text_unit_coverage_proxy": 1.0,
+        "mean_candidate_confidence": 1.0,
+        "coverage_adjusted_confidence": 1.0,
+        "confidence_counts": {
+          "high": 6,
+          "medium": 0,
+          "low": 0
+        }
+      },
+      "candidates": [
+        {
+          "kind": "text_line",
+          "value": "Hybrid Electric and Plug-in Hybrid Electric Vehicles",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "• The HEV line-up will also grow, thanks to the further development of the Toyota Hybrid System II (featured in the current-generation Prius and other models); the introduction of a more powerful version in some models; and the development of simpler hybrid systems in select models, as appropriate, to meet various customer needs.",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "• Toyota also aims to expand its PHEV line-up in the 2020s.",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "Batteries are a core technology of electrified vehicles and generally present limitations relating to energy density, weight/packaging, and cost. Toyota has been actively developing next-generation solid-state batteries and aims to commercialize the technology by the early 2020s. In addition, Toyota and Panasonic will start a feasibility study on a joint automotive prismatic battery business in order to achieve the best automotive prismatic battery in the industry and to ultimately contribute to the popularization of Toyota's and other automakers' electrified vehicles.",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "Furthermore, Toyota aims to focus on the development of a social infrastructure conducive to the widespread adoption of electrified vehicles. This includes the creation of a system to help streamline battery reuse and recycling, as well as support of the promotion of plug-in vehicle charging stations and hydrogen refueling stations through active cooperation and collaboration with government authorities and partner companies.",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "Toyota has been a leader in making vehicles while keeping the environment in mind. This is evident through the introduction of the iconic Prius 20 years ago, as well as the launch of the world's first PHEV, the Prius PHV, in 2012. The second-generation Prius PHV, introduced in 2017, further increased the vehicle's electric mode cruising range. Additionally, in 2014 Toyota launched the world's first mass-produced fuel cell sedan, the Mirai, which is being well-received by customers in Japan, the U.S., and Europe. Through these activities, Toyota sales of electrified vehicles have reached more than 11 million units worldwide to date.",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/text-confidence-review/hybrid/midterm_policy/page-0002.html"
+    },
+    {
+      "document": "securities_report",
+      "page": 135,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 28,
+        "pdf_text_unit_count": 40,
+        "pdf_text_unit_coverage_proxy": 0.5,
+        "mean_candidate_confidence": 0.902381,
+        "coverage_adjusted_confidence": 0.45119,
+        "confidence_counts": {
+          "high": 21,
+          "medium": 4,
+          "low": 3
+        }
+      },
+      "candidates": [
+        {
+          "kind": "text_line",
+          "value": "③【連結持分変動計算書】",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "前連結会計年度（2025年３月31日に終了した１年間）",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "（単位：百万円）",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "親会社の所有者に帰属する持分",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "資本剰余金",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "利益剰余金",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "その他の資本の構成要素",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "自己株式",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "非支配持分",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "資本合計",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "2024年４月１日現在残高",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "当期包括利益",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "当期利益",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "その他の包括利益（税効果考慮後）",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "当期包括利益合計",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "所有者との取引等",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "配当金の支払",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "自己株式の取得",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "自己株式の処分",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "自己株式の消却",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "所有者との取引等合計",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "その他の資本の構成要素から利益剰余金への振替",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "2025年３月31日現在残高",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "text_line",
+          "value": "当連結会計年度（2026年３月31日に終了した１年間）",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "資本剩余金",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "利益剩余金",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "confidence": 0.183333,
+          "label": "low"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "売却目的で保有する資産に関連するその他の包括利益",
+          "supporting_models": [
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "confidence": 0.816667,
+          "label": "medium"
+        },
+        {
+          "kind": "table_cell_text",
+          "value": "2025年４月１日現在残高",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "confidence": 0.633333,
+          "label": "low"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/text-confidence-review/hybrid/securities_report/page-0135.html"
+    }
+  ],
+  "aggregate": {
+    "pages": 4,
+    "mean_pdf_text_unit_coverage_proxy": 0.710165,
+    "mean_candidate_confidence": 0.703571,
+    "mean_coverage_adjusted_confidence": 0.502155,
+    "confidence_counts": {
+      "high": 37,
+      "medium": 9,
+      "low": 93
+    }
+  }
+}

@@ -1,0 +1,35 @@
+experiment_id: exp-007
+title: Coordinate-chunked hybrid conversion for a long securities-report table
+status: completed
+objective: >
+  有価証券報告書p135をPDF text blockの座標と縦方向空白で複数chunkに分割し、
+  出力上限による途中切れを抑えられるかをGemma 4で検証する。
+constraints:
+  - 推論はローカルvLLMのみを使用する
+  - 初回はGemma 4の既存精度で比較し、max_new_tokensを4096に拡張する
+  - OOM時のみFP8量子化イメージへ切り替え、切り替えた事実をlogへ残す
+  - 共有実装はworkspaceに置き、exp配下へsource codeを置かない
+inputs:
+  source_manifest: inputs/source-manifest.json
+  target:
+    document: securities_report
+    page: 135
+baseline:
+  source_experiment: exp-003
+  method: hybrid_page_whole
+  max_new_tokens: 1024
+  numeric_recall: 0.583333
+method:
+  name: coordinate_chunked_hybrid
+  splitter: text_block_vertical_gap
+  min_gap_points: 20
+  max_new_tokens: 4096
+evaluation:
+  - page_numeric_recall
+  - per_chunk_numeric_recall
+  - finish_reason
+  - output_ends_mid_structure_manual_review
+success_criteria:
+  - page_numeric_recallがbaselineを上回る
+  - 全chunkのfinish_reasonがlength以外、またはlengthの理由をlogに残す
+  - 表の前年度・当年度が別chunkとしてartifact化される

@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-010",
+  "status": "completed",
+  "shared_implementation": [
+    "../../workspace/evaluate_box_aware_page_ngrams.py",
+    "../../workspace/render_box_aware_ngram_html.py",
+    "../../workspace/test_evaluate_box_aware_page_ngrams.py",
+    "../../workspace/test_render_box_aware_ngram_html.py"
+  ],
+  "source_experiments": ["exp-001", "exp-003", "exp-004"],
+  "outputs": [
+    "results/page_ngrams.json",
+    "results/results.md",
+    "results/scores.json",
+    "results/ngram_html_manifest.json",
+    "outputs/ngram-match-html/",
+    "logs/evaluate-box-aware-ngrams.json",
+    "logs/render-box-aware-ngram-html.json"
+  ]
+}

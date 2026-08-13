@@ -1,0 +1,7 @@
+{
+  "experiment_id": "exp-011",
+  "status": "completed",
+  "shared_implementation": ["../../workspace/evaluate_line_aware_page_ngrams.py", "../../workspace/render_line_aware_ngram_html.py", "../../workspace/test_evaluate_line_aware_page_ngrams.py"],
+  "source_experiments": ["exp-001", "exp-003", "exp-004"],
+  "outputs": ["results/page_ngrams.json", "results/results.md", "results/scores.json", "results/ngram_html_manifest.json", "outputs/ngram-match-html/", "logs/evaluate-line-aware-ngrams.json", "logs/render-line-aware-ngram-html.json"]
+}

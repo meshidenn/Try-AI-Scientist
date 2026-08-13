@@ -1,0 +1,14 @@
+[
+  {
+    "claim_id": "C1",
+    "claim": "3モデル共通4ページの出力側ページ内n-gram一致率はn=1の0.969974からn=10の0.735759へ低下した。",
+    "status": "supported",
+    "evidence": ["results/page_ngrams.json", "results/scores.json"]
+  },
+  {
+    "claim_id": "C2",
+    "claim": "GLM-4.6V-Flashは評価した全nで出力側ページ内n-gram一致率が3モデル中最も高かった。",
+    "status": "supported",
+    "evidence": ["results/page_ngrams.json"]
+  }
+]

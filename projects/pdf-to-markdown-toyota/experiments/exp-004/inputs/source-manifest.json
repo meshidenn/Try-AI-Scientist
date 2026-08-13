@@ -1,0 +1,11 @@
+{
+  "source_experiment": "exp-001",
+  "source_pdf_directory": "../../exp-001/workspace/input/pdfs",
+  "reason": "既存runの入力PDF snapshotを参照する。historical artifactを移動・変更しない。",
+  "documents": [
+    "securities-report-2026.pdf",
+    "earnings-presentation-2026.pdf",
+    "integrated-report-2025.pdf",
+    "midterm-policy-2030-electrification.pdf"
+  ]
+}

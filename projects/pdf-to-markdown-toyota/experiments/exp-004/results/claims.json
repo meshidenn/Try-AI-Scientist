@@ -1,0 +1,38 @@
+{
+  "experiment_id": "exp-004",
+  "status": "evidence_limited",
+  "claims": [
+    {
+      "claim": "この4ページpilotの自動proxyでは、Qwen3.6-27B hybridが有効モデル中で最高のnumeric_token_f1を示した。",
+      "evidence": [
+        "results/page_metrics.json",
+        "results/scores.json"
+      ],
+      "scope": "Qwen3.6-27BとGLM-4.6V-Flash、各4ページ、max_new_tokens=1024、PDF text layer擬似正解"
+    },
+    {
+      "claim": "このpilotのGLM-4.6V-Flash hybridは、Qwen hybridより低いnumeric F1だが短い平均処理時間を示した。",
+      "evidence": [
+        "results/page_metrics.json",
+        "results/scores.json"
+      ],
+      "scope": "同上。wall_timeにはモデル起動・重み取得を含まない"
+    },
+    {
+      "claim": "InternVL3.5-8Bの今回のvLLM/OpenAI content形式は意味的に有効なPDF Markdown変換を生まなかった。",
+      "evidence": [
+        "outputs/internvl3.5-8b/",
+        "results/page_metrics.json"
+      ],
+      "scope": "このvLLM 0.24.0、prompt、4ページpilotに限定"
+    },
+    {
+      "claim": "表・グラフ・系譜図の忠実性や専用文書パーサとの優劣は、このpilotから結論づけられない。",
+      "evidence": [
+        "results/results.md",
+        "spec.yaml"
+      ],
+      "scope": "手動review未実施・専用parser未実行"
+    }
+  ]
+}

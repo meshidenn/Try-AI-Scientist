@@ -1,0 +1,198 @@
+{
+  "model": "gemma4-26b-moe",
+  "model_id": "google/gemma-4-26B-A4B-it",
+  "backend": "vllm_openai",
+  "base_url": "http://127.0.0.1:18021/v1",
+  "max_pages": 3,
+  "max_new_tokens": 1024,
+  "routing_policy": "table=parse; chart=image; layout=both",
+  "records": [
+    {
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 1,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 54,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/securities_report/page-0001.md",
+      "wall_time_seconds": 2.929151874035597
+    },
+    {
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 1816,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/securities_report/page-0135.md",
+      "wall_time_seconds": 46.320337178884074
+    },
+    {
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 158,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 1760,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/securities_report/page-0158.md",
+      "wall_time_seconds": 46.31655201409012
+    },
+    {
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 1,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 43,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/earnings_presentation/page-0001.md",
+      "wall_time_seconds": 2.1042655638884753
+    },
+    {
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 601,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 45.985109996050596
+    },
+    {
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 29,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 1246,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/earnings_presentation/page-0029.md",
+      "wall_time_seconds": 47.33300765301101
+    },
+    {
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 1,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 33,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/integrated_report/page-0001.md",
+      "wall_time_seconds": 1.5796792849432677
+    },
+    {
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 5847,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/integrated_report/page-0011.md",
+      "wall_time_seconds": 48.25719357188791
+    },
+    {
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 164,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 2142,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/integrated_report/page-0164.md",
+      "wall_time_seconds": 46.56756516196765
+    },
+    {
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 1,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 2831,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/midterm_policy/page-0001.md",
+      "wall_time_seconds": 29.13269544299692
+    },
+    {
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "backend": "vllm_openai",
+      "output_format": "markdown",
+      "input_text_length": 2096,
+      "input_modalities": [
+        "parse_payload",
+        "page_image"
+      ],
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/midterm_policy/page-0002.md",
+      "wall_time_seconds": 19.813558276044205
+    }
+  ]
+}

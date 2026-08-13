@@ -1,0 +1,70 @@
+experiment_id: exp-001
+title: Toyota four-report PDF to Markdown: parse-first vs image-first
+status: completed_selected_pages_vllm
+objective: >
+  Toyotaの4種類の公式PDFから、本文・見出し・表・脚注を含むMarkdownを生成し、
+  PDF構造を先に抽出する方式とページ画像をGemmaへ入力する方式を比較する。
+research_questions:
+  - どちらの方式が本文の読み順と数値tokenをより多く保持するか。
+  - どちらの方式が表の行列構造、セル値、単位、脚注をより忠実に保持するか。
+  - 資料カテゴリによって方式の優位性は変わるか。
+models:
+  logical_name: gemma4-26b-moe
+  model_id: google/gemma-4-26B-A4B-it
+  backend: vllm_openai
+  server_image: vllm/vllm-openai:gemma4-cu130
+  server_url: http://127.0.0.1:18021/v1
+  max_model_len: 32768
+  temperature: 0.0
+  max_new_tokens: 1024
+documents:
+  source: Toyota Motor Corporation official IR pages
+  selection_policy: >
+    2026-07-30時点で公式サイトから取得可能な最新版を基本とする。
+    中期経営計画書カテゴリがない場合は、公式の2030年電動化戦略資料を相当資料として明記する。
+  categories:
+    securities_report:
+      label: 有価証券報告書
+      candidate_url: https://global.toyota/pages/global_toyota/ir/library/securities-report/archives/archives_2026_03.pdf
+    earnings_presentation:
+      label: 決算説明会資料
+      candidate_url: https://global.toyota/pages/global_toyota/ir/financial-results/2026_4q_presentation_jp.pdf
+      selection: 2026年3月期決算説明会資料
+    integrated_report:
+      label: 統合報告書
+      candidate_url: https://global.toyota/pages/global_toyota/ir/library/annual/2025_001_integrated_jp.pdf
+    midterm_policy:
+      label: 中期経営計画書相当資料
+      candidate_url: https://global.toyota/en/filedownload/20399572
+      selection: 2030年電動化戦略資料（中期経営計画書相当、公式ダウンロードPDF）
+input_methods:
+  parse_first:
+    description: PDF text blocks + bounding boxes + page numberをGemmaへ入力
+    renderer: pymupdf
+  image_first:
+    description: 300 DPI相当のPNGページ画像をGemmaへ入力
+    renderer: pymupdf
+sampling:
+  initial_run: >
+    各資料から最大3ページ。先頭ページを固定し、残りはテキストblockの数字量・短block量を使って選ぶ。
+  full_run: exp-002以降で実施
+outputs:
+  page_markdown: outputs/<method>/<document>/page-<n>.md
+  raw_inputs: inputs/<method>/<document>/page-<n>.*
+  logs: logs/
+metrics:
+  - text_normalized_similarity
+  - numeric_token_recall
+  - table_shape_accuracy
+  - table_cell_exact_match
+  - footnote_presence
+  - page_order_integrity
+  - wall_time_seconds
+success_criteria:
+  - 4資料の取得URL、sha256、ページ数を記録する
+  - 2方式の同一ページ出力を保存する
+  - 実行状態をsuccess/failed/not_runで区別する
+  - outputとmetricsの対応をresults.mdとscores.jsonに残す
+known_limitations:
+  - 自動生成referenceは完全な人手正解ではない
+  - GitHub issueはgh認証不足で作成できていない

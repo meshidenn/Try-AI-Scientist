@@ -1,0 +1,89 @@
+experiment_id: exp-004
+title: Local document parser and VLM comparison
+status: partial_completed
+objective: >
+  Toyotaの4種の企業PDFについて、ローカル環境だけで動く文書パーサ専用モデルと
+  汎用VLMを比較し、本文・数値・表・グラフ・系統図に対する情報保持を測定する。
+constraints:
+  - 外部推論API、クラウドOCR、SaaSを使用しない
+  - 重みはローカルへ取得し、推論はローカルGPU上で実行する
+  - vLLM対応モデルはローカルvLLM、非対応の専用パーサは公式ローカルCLI/APIを使用する
+  - 生成物、実行ログ、モデルrevision、実行backendをexperiment artifactへ保存する
+inputs:
+  source_manifest: inputs/source-manifest.json
+  pilot_pages: inputs/pilot-pages.json
+  full_pages:
+    securities_report: [1, 135, 158]
+    earnings_presentation: [1, 8, 29]
+    integrated_report: [1, 11, 164]
+    midterm_policy: [1, 2]
+models:
+  - logical_name: paddleocr-vl-1.6
+    family: document_parser
+    model_id: PaddlePaddle/PaddleOCR-VL-1.6
+    preferred_backend: official_local_cli
+    output_mode: native_markdown_or_json
+  - logical_name: mineru2.5-pro
+    family: document_parser
+    model_id: opendatalab/MinerU2.5-Pro-2604-1.2B
+    preferred_backend: official_local_cli
+    output_mode: native_markdown
+  - logical_name: deepseek-ocr-2
+    family: document_parser
+    model_id: deepseek-ai/DeepSeek-OCR-2
+    preferred_backend: local_vllm_or_official_local
+    output_mode: native_markdown
+  - logical_name: dots-ocr
+    family: document_parser
+    model_id: rednote-hilab/dots.ocr
+    preferred_backend: official_local
+    output_mode: native_markdown
+  - logical_name: dots-mocr
+    family: document_parser
+    model_id: rednote-hilab/dots.mocr
+    preferred_backend: official_local
+    output_mode: native_markdown_and_svg_when_available
+  - logical_name: qwen3.6-27b
+    family: general_vlm
+    model_id: Qwen/Qwen3.6-27B
+    preferred_backend: local_vllm
+    input_modes: [image_first, hybrid]
+  - logical_name: internvl3.5
+    family: general_vlm
+    model_id: OpenGVLab/InternVL3_5-8B-HF
+    preferred_backend: local_vllm
+    input_modes: [image_first, hybrid]
+  - logical_name: glm-4.6v-flash
+    family: general_vlm
+    model_id: zai-org/GLM-4.6V-Flash
+    preferred_backend: local_vllm
+    input_modes: [image_first, hybrid]
+comparison:
+  general_vlm_baseline: google/gemma-4-26B-A4B-it
+  document_parser_baseline: exp-001.parse_first
+  prompt: fixed_v2_prompt_for_general_vlm
+  rendering: 300_dpi
+  decoding:
+    temperature: 0.0
+    max_new_tokens: 4096
+  output_format:
+    primary: markdown
+    follow_up: top_two_models_generate_html
+evaluation:
+  automatic:
+    - text_normalized_similarity_proxy
+    - numeric_token_recall
+    - numeric_token_precision
+    - numeric_token_f1
+    - table_row_width_consistency
+    - wall_time_seconds
+  targeted_manual_review:
+    - securities_report.page_135.table_value_and_column_alignment
+    - earnings_presentation.page_8.chart_series_and_position_relationship
+    - integrated_report.page_11.diagram_node_and_edge_coverage
+    - midterm_policy.page_2.layout_and_text_coverage
+success_criteria:
+  - すべての候補について、実行成功またはローカル実行不能の根拠をlogへ残す
+  - 汎用VLMは同一入力・同一prompt・同一decodingで比較可能にする
+  - 専用パーサはネイティブ出力と使用backendを明記する
+  - 各資料種別を含むpilotで数値・表・グラフ・図の失敗を確認する

@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "command": "evaluate_line_aware_page_ngrams.py --method hybrid",
+  "source_logs": {"gemma4-26b-moe": "../../exp-003/logs/hybrid-run-v2.json", "qwen3.6-27b": "../../exp-004/logs/qwen3.6-27b-hybrid-pilot.json", "glm-4.6v-flash": "../../exp-004/logs/glm-4.6v-flash-pilot.json"},
+  "shared_pages": 4,
+  "models": 3,
+  "records": 12,
+  "n_values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  "reference_unit": "pdf_text_line",
+  "numeric_excluded": true,
+  "additional_inference": false,
+  "result": "results/page_ngrams.json"
+}

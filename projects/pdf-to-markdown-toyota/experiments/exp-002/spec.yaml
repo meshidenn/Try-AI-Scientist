@@ -1,0 +1,26 @@
+experiment_id: exp-002
+title: Toyota four-report PDF to HTML: parse-first vs image-first
+status: completed
+objective: >
+  exp-001と同一のToyota公式4資料・選定11ページ・Gemma 4 vLLM条件で、
+  出力形式をMarkdownからHTML fragmentへ変更し、本文・数値・表構造の保持を比較する。
+model:
+  logical_name: gemma4-26b-moe
+  model_id: google/gemma-4-26B-A4B-it
+  backend: vllm_openai
+  server_image: vllm/vllm-openai:gemma4-cu130
+  max_model_len: 32768
+  temperature: 0.0
+  max_new_tokens: 1024
+input_methods: [parse_first, image_first]
+output_format: html_fragment
+html_contract:
+  allowed_elements: [h1, h2, h3, h4, h5, h6, p, ul, ol, li, table, thead, tbody, tr, th, td, br, sup, sub]
+  forbidden_elements: [style, script, img]
+sampling:
+  source_experiment: exp-001
+  pages: securities_report=[1, 135, 158], earnings_presentation=[1, 8, 29], integrated_report=[1, 11, 164], midterm_policy=[1, 2]
+metrics: [text_normalized_similarity_proxy, numeric_token_recall, html_table_shape_consistency, wall_time_seconds]
+limitations:
+  - PDF text layerは完全なgoldではない
+  - セル単位の人手gold評価は未実施

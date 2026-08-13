@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-001",
+  "status": "completed_selected_pages_vllm",
+  "backend": "vllm_openai",
+  "model": "gemma4-26b-moe",
+  "metrics": {"success_count": 22, "failure_count": 0, "parse_first_mean_wall_time_seconds": 28.859902, "image_first_mean_wall_time_seconds": 23.886120, "parse_first_mean_text_similarity_proxy": 0.830009, "image_first_mean_text_similarity_proxy": 0.722139, "parse_first_mean_numeric_recall": 0.732925, "parse_first_table_outputs": 6, "parse_first_consistent_tables": 3, "image_first_mean_numeric_recall": 0.642161, "image_first_table_outputs": 5, "image_first_consistent_tables": 1},
+  "artifacts": {
+    "results_md": "results/results.md",
+    "figures": [],
+    "page_metrics": "results/page_metrics.json",
+    "vllm_log": "logs/vllm-run.json",
+    "retry_log": "logs/vllm-retry-integrated-p11-32k.json",
+    "logs": []
+  },
+  "notes": [
+    "選定ページ22件と32K context再試行を統合し、22件すべて成功。表中心ページを評価済み。",
+    "GitHub issueはgh認証不足で未作成。",
+    "text_normalized_similarity_proxyはPDF text layerとの長さベース近似で、完全な正解率ではない。"
+  ]
+}

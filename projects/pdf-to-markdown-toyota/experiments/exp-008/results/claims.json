@@ -1,0 +1,24 @@
+{
+  "experiment_id": "exp-008",
+  "claims": [
+    {
+      "claim": "同一4ページの既存hybrid出力では、テキストの被覆率調整confidenceは数値のそれより低い。",
+      "status": "supported",
+      "support_level": "direct",
+      "artifacts": [
+        "results/ensemble_confidence.json",
+        "results/ensemble_text_confidence.json"
+      ],
+      "notes": "数値0.643828、テキスト0.502155。両者は単位と重みが異なるため絶対的な品質比較ではなく、候補合意・根拠の差として解釈する。"
+    },
+    {
+      "claim": "Highテキスト候補は正しい表セル・図関係を保証する。",
+      "status": "unsupported",
+      "support_level": "none",
+      "artifacts": [
+        "results/ensemble_text_confidence.json"
+      ],
+      "notes": "評価は文字列根拠であり、位置・図表関係を測らない。"
+    }
+  ]
+}

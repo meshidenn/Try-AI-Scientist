@@ -1,0 +1,6 @@
+{
+  "experiment_id": "exp-002",
+  "status": "completed",
+  "metrics": {"success_count": 22, "failure_count": 0, "parse_first_mean_wall_time_seconds": 31.215784, "image_first_mean_wall_time_seconds": 28.007003, "parse_first_mean_text_similarity_proxy": 0.703336, "image_first_mean_text_similarity_proxy": 0.659813, "parse_first_mean_numeric_token_recall": 0.692223, "image_first_mean_numeric_token_recall": 0.685903, "parse_first_html_table_outputs": 2, "image_first_html_table_outputs": 3, "parse_first_consistent_tables": 0, "image_first_consistent_tables": 2},
+  "artifacts": {"results_md": "results/results.md", "figures": [], "page_metrics": "results/page_metrics.json", "vllm_log": "logs/vllm-html-run.json", "logs": ["logs/vllm-html-run.json"]}
+}

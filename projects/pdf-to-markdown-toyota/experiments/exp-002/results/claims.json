@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-002",
+  "claims": [
+    {
+      "claim": "HTML fragment出力は選定11ページ×2方式の22件すべてで成功した。",
+      "support": "logs/vllm-html-run.json",
+      "scope": "Toyota公式4資料、Gemma 4、vLLM 32K context"
+    },
+    {
+      "claim": "HTML出力でもparse-firstはimage-firstより本文量近似と数値token再現率が高かった。",
+      "support": "results/page_metrics.json",
+      "scope": "PDF text layerを参照したproxy"
+    },
+    {
+      "claim": "HTMLの表構造と要素契約の完全な忠実度は結論できない。",
+      "support": "review/artifact-audit.md",
+      "scope": "colspanのみ自動考慮、人手goldとrowspan評価は未実施"
+    }
+  ]
+}

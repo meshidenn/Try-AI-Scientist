@@ -1,0 +1,12 @@
+{
+  "securities_report": [135],
+  "earnings_presentation": [8],
+  "integrated_report": [11],
+  "midterm_policy": [2],
+  "selection_reason": {
+    "securities_report": "財務表の値・列整合を確認する。",
+    "earnings_presentation": "棒グラフの系列と位置関係を確認する。",
+    "integrated_report": "系統図を含む複合レイアウトを確認する。",
+    "midterm_policy": "短い方針資料のレイアウトと本文被覆を確認する。"
+  }
+}

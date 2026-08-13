@@ -1,0 +1,2200 @@
+{
+  "experiment_id": "exp-008",
+  "method": "hybrid",
+  "models": [
+    "gemma4-26b-moe",
+    "glm-4.6v-flash",
+    "qwen3.6-27b"
+  ],
+  "model_logs": {
+    "gemma4-26b-moe": "projects/pdf-to-markdown-toyota/experiments/exp-003/logs/hybrid-run-v2.json",
+    "qwen3.6-27b": "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-hybrid-pilot.json",
+    "glm-4.6v-flash": "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/glm-4.6v-flash-pilot.json"
+  },
+  "weights": {
+    "model_agreement": 0.45,
+    "pdf_evidence": 0.4,
+    "structure": 0.15
+  },
+  "definition": {
+    "confidence": "0.45 * モデル支持率 + 0.40 * PDF text layerに同じ数値tokenがあるか + 0.15 * 支持モデルのMarkdown表列数一貫性",
+    "coverage_adjusted_confidence": "候補平均confidence × PDF text layer数値token被覆率。欠落した数値を隠さないためのページ集約値。",
+    "scope": "数値token単位。表のセル位置・列対応、画像化された図表の数値、意味的な本文一致は未評価。確率校正前のevidence scoreであり、正答確率ではない。"
+  },
+  "pages": [
+    {
+      "document": "earnings_presentation",
+      "page": 8,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 61,
+        "pdf_numeric_token_count": 55,
+        "pdf_numeric_coverage": 0.963636,
+        "mean_candidate_confidence": 0.890984,
+        "coverage_adjusted_confidence": 0.858584,
+        "confidence_counts": {
+          "high": 46,
+          "medium": 7,
+          "low": 8
+        }
+      },
+      "candidates": [
+        {
+          "kind": "numeric_token",
+          "value": "1.4",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "216",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4.9",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "6.6",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "863",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "9.4",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "9.9",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "+673",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "0.5%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1.4%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.45,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1043",
+          "supporting_models": [
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1088",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1172",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1183",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1637",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1659",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1759",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1838",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1925",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1991",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2082",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2405",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2526",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2703",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2934",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2986",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "3078",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "3289",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "3308",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "3577",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4.9%",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.3,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4030",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4155",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4171",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "5.3%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "6.5%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "6.6%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.45,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "8280",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "8698",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "8723",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "8939",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "8965",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "9.4%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.45,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "9.9%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.45,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "10.6%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.6,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "14.5%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "23210",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "23307",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "31511",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "31587",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "95.7%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "98.7%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "101.0%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "104.6%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "108.5%",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2024.4",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2025.3",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2025.4",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2026.3",
+          "supporting_models": [
+            "glm-4.6v-flash"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "-2025.3",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.45,
+          "label": "low"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "-2026.3",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": false,
+          "structure_validity": 1.0,
+          "confidence": 0.45,
+          "label": "low"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/confidence-review/hybrid/earnings_presentation/page-0008.html"
+    },
+    {
+      "document": "integrated_report",
+      "page": 11,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 36,
+        "pdf_numeric_token_count": 133,
+        "pdf_numeric_coverage": 0.270677,
+        "mean_candidate_confidence": 0.7875,
+        "coverage_adjusted_confidence": 0.213158,
+        "confidence_counts": {
+          "high": 18,
+          "medium": 18,
+          "low": 0
+        }
+      },
+      "candidates": [
+        {
+          "kind": "numeric_token",
+          "value": "4",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "9",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "10",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "14",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "15",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "18",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "19",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "28",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "30",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "33",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "38",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "43",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1890",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1895",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1900",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1905",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1910",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1915",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1920",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1924",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1925",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1930",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1900.8",
+          "supporting_models": [
+            "gemma4-26b-moe"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1902.3",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1909.2",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1913.9",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1914.2",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1917.2",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1918.1",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1918.3",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1929.1",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1929.3",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1935.1",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1911.10",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1926.11",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1935.10",
+          "supporting_models": [
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.333333,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.7,
+          "label": "medium"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/confidence-review/hybrid/integrated_report/page-0011.html"
+    },
+    {
+      "document": "midterm_policy",
+      "page": 2,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 7,
+        "pdf_numeric_token_count": 7,
+        "pdf_numeric_coverage": 1.0,
+        "mean_candidate_confidence": 0.978571,
+        "coverage_adjusted_confidence": 0.978571,
+        "confidence_counts": {
+          "high": 7,
+          "medium": 0,
+          "low": 0
+        }
+      },
+      "candidates": [
+        {
+          "kind": "numeric_token",
+          "value": "2",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 0.666667,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 0.85,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "11",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "20",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2012",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2014",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2017",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2020",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 1.0,
+          "confidence": 1.0,
+          "label": "high"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/confidence-review/hybrid/midterm_policy/page-0002.html"
+    },
+    {
+      "document": "securities_report",
+      "page": 135,
+      "models": [
+        "gemma4-26b-moe",
+        "glm-4.6v-flash",
+        "qwen3.6-27b"
+      ],
+      "summary": {
+        "candidate_count": 49,
+        "pdf_numeric_token_count": 84,
+        "pdf_numeric_coverage": 0.583333,
+        "mean_candidate_confidence": 0.9,
+        "coverage_adjusted_confidence": 0.525,
+        "confidence_counts": {
+          "high": 49,
+          "medium": 0,
+          "low": 0
+        }
+      },
+      "candidates": [
+        {
+          "kind": "numeric_token",
+          "value": "26",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "31",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "567",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "866",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1163",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1356",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1953",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2024",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2025",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2026",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2222",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "7233",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "24670",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "31069",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "31903",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "32232",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "96162",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "127232",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "140359",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "397050",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "448961",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "491802",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "492368",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "727264",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "729217",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "746031",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "753264",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "954088",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1018347",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1132329",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1179043",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1259560",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "1859593",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2307987",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "2404149",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "3610133",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "3966982",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4011822",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4043724",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4415943",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4503756",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4765086",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "4789755",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "32795365",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "34220991",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "35239338",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "35841218",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "35924826",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        },
+        {
+          "kind": "numeric_token",
+          "value": "36878913",
+          "supporting_models": [
+            "gemma4-26b-moe",
+            "glm-4.6v-flash",
+            "qwen3.6-27b"
+          ],
+          "model_agreement": 1.0,
+          "pdf_text_evidence": true,
+          "structure_validity": 0.333333,
+          "confidence": 0.9,
+          "label": "high"
+        }
+      ],
+      "review_html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/confidence-review/hybrid/securities_report/page-0135.html"
+    }
+  ],
+  "aggregate": {
+    "pages": 4,
+    "mean_pdf_numeric_coverage": 0.704411,
+    "mean_candidate_confidence": 0.889264,
+    "mean_coverage_adjusted_confidence": 0.643828,
+    "confidence_counts": {
+      "high": 120,
+      "medium": 25,
+      "low": 8
+    }
+  }
+}

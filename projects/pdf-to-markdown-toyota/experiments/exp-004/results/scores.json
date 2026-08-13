@@ -1,0 +1,89 @@
+{
+  "experiment_id": "exp-004",
+  "status": "partial_completed",
+  "scope": "general VLM 4-page pilot: Qwen3.6-27B, InternVL3.5-8B, GLM-4.6V-Flash; document parser candidates are not run",
+  "metrics": {
+    "primary": {
+      "name": "numeric_token_f1",
+      "value": 0.721653,
+      "model": "qwen3.6-27b",
+      "method": "hybrid",
+      "higher_is_better": true,
+      "definition": "PDF text layerの数値token集合に対する集合ベースF1"
+    },
+    "valid_model_summaries": {
+      "qwen3.6-27b": {
+        "image_first": {
+          "successes": 4,
+          "records": 4,
+          "text_normalized_similarity_proxy": 0.68882,
+          "numeric_token_recall": 0.616988,
+          "numeric_token_precision": 0.949213,
+          "numeric_token_f1": 0.658382,
+          "mean_wall_time_seconds": 164.567408,
+          "consistent_table_pages": 0
+        },
+        "hybrid": {
+          "successes": 4,
+          "records": 4,
+          "text_normalized_similarity_proxy": 0.710277,
+          "numeric_token_recall": 0.650037,
+          "numeric_token_precision": 0.962963,
+          "numeric_token_f1": 0.721653,
+          "mean_wall_time_seconds": 195.066573,
+          "consistent_table_pages": 0
+        }
+      },
+      "glm-4.6v-flash": {
+        "image_first": {
+          "successes": 4,
+          "records": 4,
+          "text_normalized_similarity_proxy": 0.713285,
+          "numeric_token_recall": 0.57297,
+          "numeric_token_precision": 0.94854,
+          "numeric_token_f1": 0.629333,
+          "mean_wall_time_seconds": 64.388575,
+          "consistent_table_pages": 0
+        },
+        "hybrid": {
+          "successes": 4,
+          "records": 4,
+          "text_normalized_similarity_proxy": 0.717053,
+          "numeric_token_recall": 0.606667,
+          "numeric_token_precision": 0.99537,
+          "numeric_token_f1": 0.669129,
+          "mean_wall_time_seconds": 61.746694,
+          "consistent_table_pages": 0
+        }
+      }
+    },
+    "invalid_model_summaries": {
+      "internvl3.5-8b": {
+        "reason": "vLLM応答は成功したが、意味を成さない反復・断片出力でnumeric_token_recall=0",
+        "image_first": {
+          "successes": 4,
+          "numeric_token_f1": 0.0,
+          "mean_wall_time_seconds": 80.517054
+        },
+        "hybrid": {
+          "successes": 4,
+          "numeric_token_f1": 0.0,
+          "mean_wall_time_seconds": 79.760018
+        }
+      }
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "page_metrics": "results/page_metrics.json",
+    "raw_glm_outputs": "outputs/glm-4.6v-flash/raw/",
+    "figures": [],
+    "logs": [
+      "logs/qwen3.6-27b-image-first-pilot.json",
+      "logs/qwen3.6-27b-hybrid-pilot.json",
+      "logs/internvl3.5-8b-pilot.json",
+      "logs/glm-4.6v-flash-pilot.json"
+    ],
+    "model_agreement": "results/model_agreement.json"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "command": "render_line_aware_ngram_html.py",
+  "source_result": "results/page_ngrams.json",
+  "html_count": 12,
+  "reference_unit": "pdf_text_line",
+  "numeric_excluded": true,
+  "result": "results/ngram_html_manifest.json"
+}

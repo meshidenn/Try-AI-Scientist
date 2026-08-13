@@ -1,0 +1,15 @@
+{
+  "experiment_id": "exp-007",
+  "status": "completed",
+  "shared_implementation": "../../workspace/run_chunked_hybrid.py",
+  "source_experiments": [
+    "exp-001",
+    "exp-003"
+  ],
+  "outputs": [
+    "outputs/securities_report/page-0135/",
+    "results/chunk_metrics.json",
+    "results/results.md",
+    "results/scores.json"
+  ]
+}

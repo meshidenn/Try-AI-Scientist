@@ -1,0 +1,34 @@
+{
+  "experiment_id": "exp-006",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "mean_coverage_adjusted_confidence",
+      "value": 0.643828,
+      "higher_is_better": true,
+      "definition": "ページごとの候補平均evidence scoreとPDF text layer数値token被覆率の積を、4ページで等重み平均した値。校正済み正答確率ではない。"
+    },
+    "pdf_numeric_coverage": {
+      "value": 0.704411,
+      "higher_is_better": true
+    },
+    "mean_candidate_confidence": {
+      "value": 0.889264,
+      "higher_is_better": true,
+      "warning": "出力候補のみの平均であり、欠落を評価しない。"
+    },
+    "confidence_counts": {
+      "high": 120,
+      "medium": 25,
+      "low": 8
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "confidence_json": "results/ensemble_confidence.json",
+    "review_html": "outputs/confidence-review/hybrid/",
+    "logs": [
+      "logs/evaluate-ensemble-confidence.json"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "experiment_id": "exp-001",
+  "created_at": "2026-07-30",
+  "status": "completed_selected_pages_vllm",
+  "backend": "vllm_openai",
+  "model": "gemma4-26b-moe",
+  "model_id": "google/gemma-4-26B-A4B-it",
+  "server_image": "vllm/vllm-openai:gemma4-cu130",
+  "server_url": "http://127.0.0.1:18021/v1",
+  "documents_manifest": "workspace/input/documents.json",
+  "run_log": "logs/vllm-run.json",
+  "retry_log": "logs/vllm-retry-integrated-p11-32k.json",
+  "max_model_len": 32768,
+  "metrics": "results/page_metrics.json",
+  "outputs": "workspace/outputs-vllm",
+  "scope": {
+    "methods": ["parse_first", "image_first"],
+    "pages_per_document": 3,
+    "successes": 22,
+    "failures": 0,
+    "requests": 22
+  },
+  "limitations": [
+    "表中心ページのgold評価は未実施",
+    "全ページ変換は未実施",
+    "text similarityは文字長に基づくproxy"
+  ]
+}

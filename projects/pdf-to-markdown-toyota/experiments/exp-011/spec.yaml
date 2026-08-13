@@ -1,0 +1,26 @@
+experiment_id: exp-011
+title: Line-aware and numeric-excluded page-level character n-gram match rate
+status: completed
+objective: >
+  PDFの座標付きtext line境界を跨ぐn-gramと数字を評価対象から除外し、既存hybrid Markdown出力の
+  ページ内文字n-gram一致率をn=1から10まで測定する。
+constraints:
+  - 追加のVLM推論は行わず、exp-003とexp-004の既存出力を再利用する
+  - PDFのget_text(dict)で得た各text lineを跨ぐn-gramは生成しない
+  - 出力側はMarkdownの行・表セル単位を跨ぐn-gramを生成しない
+  - NFKC後の数値tokenと数値tokenを跨ぐn-gramは評価対象外とする
+  - exp-010のblock-aware結果を上書きしない
+inputs:
+  source_manifest: inputs/source-manifest.json
+  pilot_pages: inputs/pilot-pages.json
+  source_outputs:
+    gemma4-26b-moe: ../../exp-003/logs/hybrid-run-v2.json
+    qwen3.6-27b: ../../exp-004/logs/qwen3.6-27b-hybrid-pilot.json
+    glm-4.6v-flash: ../../exp-004/logs/glm-4.6v-flash-pilot.json
+method:
+  output_format: markdown
+  mode: hybrid
+  n_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  reference_unit: pdf_text_line
+  output_unit: markdown_line_or_table_cell
+  numeric_exclusion: NUMBER_PATTERN_after_NFKC

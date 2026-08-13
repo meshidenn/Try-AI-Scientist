@@ -1,0 +1,96 @@
+{
+  "experiment_id": "exp-008",
+  "method": "hybrid",
+  "models": [
+    "gemma4-26b-moe",
+    "qwen3.6-27b",
+    "glm-4.6v-flash"
+  ],
+  "definition": "各モデル自身の元MarkdownをHTML表示し、exp-008の数値・テキストevidence scoreを重ねて着色。候補一覧ではない。",
+  "artifacts": [
+    {
+      "document": "earnings_presentation",
+      "page": 8,
+      "model": "gemma4-26b-moe",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/earnings_presentation/page-0008.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/gemma4-26b-moe/hybrid/earnings_presentation/page-0008.html"
+    },
+    {
+      "document": "earnings_presentation",
+      "page": 8,
+      "model": "qwen3.6-27b",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/earnings_presentation/page-0008.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/qwen3.6-27b/hybrid/earnings_presentation/page-0008.html"
+    },
+    {
+      "document": "earnings_presentation",
+      "page": 8,
+      "model": "glm-4.6v-flash",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/earnings_presentation/page-0008.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/glm-4.6v-flash/hybrid/earnings_presentation/page-0008.html"
+    },
+    {
+      "document": "integrated_report",
+      "page": 11,
+      "model": "gemma4-26b-moe",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/integrated_report/page-0011.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/gemma4-26b-moe/hybrid/integrated_report/page-0011.html"
+    },
+    {
+      "document": "integrated_report",
+      "page": 11,
+      "model": "qwen3.6-27b",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/integrated_report/page-0011.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/qwen3.6-27b/hybrid/integrated_report/page-0011.html"
+    },
+    {
+      "document": "integrated_report",
+      "page": 11,
+      "model": "glm-4.6v-flash",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/integrated_report/page-0011.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/glm-4.6v-flash/hybrid/integrated_report/page-0011.html"
+    },
+    {
+      "document": "midterm_policy",
+      "page": 2,
+      "model": "gemma4-26b-moe",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/midterm_policy/page-0002.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/gemma4-26b-moe/hybrid/midterm_policy/page-0002.html"
+    },
+    {
+      "document": "midterm_policy",
+      "page": 2,
+      "model": "qwen3.6-27b",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/midterm_policy/page-0002.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/qwen3.6-27b/hybrid/midterm_policy/page-0002.html"
+    },
+    {
+      "document": "midterm_policy",
+      "page": 2,
+      "model": "glm-4.6v-flash",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/midterm_policy/page-0002.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/glm-4.6v-flash/hybrid/midterm_policy/page-0002.html"
+    },
+    {
+      "document": "securities_report",
+      "page": 135,
+      "model": "gemma4-26b-moe",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/securities_report/page-0135.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/gemma4-26b-moe/hybrid/securities_report/page-0135.html"
+    },
+    {
+      "document": "securities_report",
+      "page": 135,
+      "model": "qwen3.6-27b",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/securities_report/page-0135.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/qwen3.6-27b/hybrid/securities_report/page-0135.html"
+    },
+    {
+      "document": "securities_report",
+      "page": 135,
+      "model": "glm-4.6v-flash",
+      "source_markdown": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/securities_report/page-0135.md",
+      "html": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-008/outputs/colorized-model-output/glm-4.6v-flash/hybrid/securities_report/page-0135.html"
+    }
+  ]
+}

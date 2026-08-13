@@ -1,0 +1,27 @@
+name: pdf-to-markdown-toyota
+title: Toyota IR PDF to Markdown fidelity comparison
+created: 2026-07-30
+status: active
+objective: >
+  トヨタ自動車の企業資料を、表を含めて元PDFに可能な限り忠実なMarkdownへ変換する。
+primary_question: >
+  PDFの文字・座標を先にパースする方式と、PDFページを画像化してGemma 4 26B A4Bへ渡す方式の
+  どちらが企業資料の本文・表・脚注・レイアウトをより忠実にMarkdown化できるか。
+models:
+  logical_name: gemma4-26b-moe
+  model_id: google/gemma-4-26B-A4B-it
+documents:
+  company: Toyota Motor Corporation
+  categories:
+    - 有価証券報告書
+    - 決算説明会資料
+    - 統合報告書
+    - 中期経営計画書相当資料
+artifact_policy:
+  - 未実行、失敗、成功を明確に区別する。
+  - 原PDFのURL、取得日時、SHA-256、ページ数を記録する。
+  - PDF入力や出力Markdownに秘密情報を含めない。
+  - 大容量のPDFはgit管理せず、manifestと取得スクリプトから再現できるようにする。
+notes:
+  - Toyota公式サイトで独立した「中期経営計画書」という現行カテゴリを確認できなかったため、初回は公式ダウンロードの「2030年電動化戦略」資料を中期方針資料相当として扱う。
+  - GitHub issue作成はgh認証不足（HTTP 401）で失敗したため、ローカルbranchはexp/0-pdf-to-markdown-toyotaとした。

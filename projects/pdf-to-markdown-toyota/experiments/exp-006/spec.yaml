@@ -1,0 +1,41 @@
+experiment_id: exp-006
+title: Three-VLM ensemble evidence confidence pilot
+status: completed
+objective: >
+  Gemma 4、Qwen 3.6、GLM-4.6V の既存hybrid出力を数値token単位で統合し、
+  モデル間支持・PDF text layer照合・Markdown表構造を根拠とするconfidenceを試作する。
+constraints:
+  - 追加のモデル推論は行わず、既存のlocal vLLM出力だけを使用する
+  - confidenceを正答確率とは呼ばない。人手レビューの優先順位付け用evidence scoreとする
+  - 表セルの位置・列対応と、画像化された図表内の数値はこのpilotの対象外とする
+inputs:
+  source_manifest: inputs/source-manifest.json
+  pilot_pages: inputs/pilot-pages.json
+  source_outputs:
+    gemma4-26b-moe: ../../exp-003/logs/hybrid-run-v2.json
+    qwen3.6-27b: ../../exp-004/logs/qwen3.6-27b-hybrid-pilot.json
+    glm-4.6v-flash: ../../exp-004/logs/glm-4.6v-flash-pilot.json
+method:
+  output_mode: hybrid
+  candidate_unit: numeric_token
+  weights:
+    model_agreement: 0.45
+    pdf_text_evidence: 0.40
+    structure_validity: 0.15
+  labels:
+    high: '>= 0.85'
+    medium: '>= 0.65 and < 0.85'
+    low: '< 0.65'
+evaluation:
+  automatic:
+    - pdf_numeric_coverage
+    - mean_candidate_confidence
+    - coverage_adjusted_confidence
+    - high_medium_low_candidate_counts
+artifacts:
+  primary: results/ensemble_confidence.json
+  review_html: outputs/confidence-review/hybrid/<document>/page-<page>.html
+success_criteria:
+  - 3モデルすべての成功出力を持つ4ページを評価する
+  - 全数値候補について支持モデルとPDF text layer照合結果を記録する
+  - HTML review artifactとJSON結果が相互参照できる

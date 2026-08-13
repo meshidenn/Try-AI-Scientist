@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-08-01T02:52:44Z",
+  "documents": {
+    "securities_report": {
+      "status": "ready",
+      "label": "有価証券報告書",
+      "url": "https://global.toyota/pages/global_toyota/ir/library/securities-report/archives/archives_2026_03.pdf",
+      "path": "projects/pdf-to-markdown-toyota/experiments/exp-001/workspace/input/pdfs/securities-report-2026.pdf",
+      "sha256": "c7b8d2f8256872937bd56961dcf64c2218a1d56bfef791e966b33be48a7f8ddd",
+      "page_count": 241,
+      "selected_pages": [
+        1,
+        135,
+        158
+      ]
+    },
+    "earnings_presentation": {
+      "status": "ready",
+      "label": "決算説明会資料",
+      "url": "https://global.toyota/pages/global_toyota/ir/financial-results/2026_4q_presentation_jp.pdf",
+      "path": "projects/pdf-to-markdown-toyota/experiments/exp-001/workspace/input/pdfs/earnings-presentation-2026.pdf",
+      "sha256": "cd7f2cc12d2d631d2c47510ca11a9c2a91318ec0f3c43f5a78ea57c59a763cbe",
+      "page_count": 32,
+      "selected_pages": [
+        1,
+        8,
+        29
+      ]
+    },
+    "integrated_report": {
+      "status": "ready",
+      "label": "統合報告書",
+      "url": "https://global.toyota/pages/global_toyota/ir/library/annual/2025_001_integrated_jp.pdf",
+      "path": "projects/pdf-to-markdown-toyota/experiments/exp-001/workspace/input/pdfs/integrated-report-2025.pdf",
+      "sha256": "c6ab2dbda614241169f7e782a98f83e512d95eaf206a907e857ae48fa7ac66f7",
+      "page_count": 168,
+      "selected_pages": [
+        1,
+        11,
+        164
+      ]
+    },
+    "midterm_policy": {
+      "status": "ready",
+      "label": "中期経営計画書相当資料（2030年電動化戦略）",
+      "url": "https://global.toyota/en/filedownload/20399572",
+      "path": "projects/pdf-to-markdown-toyota/experiments/exp-001/workspace/input/pdfs/midterm-policy-2030-electrification.pdf",
+      "sha256": "b8fd98b44d22863810f2e709d7116db115916fdf2f8f6ac612f04c3b694d85df",
+      "page_count": 2,
+      "selected_pages": [
+        1,
+        2
+      ]
+    }
+  }
+}

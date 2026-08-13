@@ -1,0 +1,32 @@
+experiment_id: exp-003
+title: Toyota PDF to Markdown hybrid fusion
+status: completed
+objective: >
+  PDF text block・座標とページ画像を同時にGemmaへ入力し、表はparse優先、
+  グラフ・図は画像優先、複合レイアウトは両者を照合するhybrid方式を検証する。
+model:
+  logical_name: gemma4-26b-moe
+  model_id: google/gemma-4-26B-A4B-it
+  backend: vllm_openai
+  server_image: vllm/vllm-openai:gemma4-cu130
+  max_model_len: 32768
+  temperature: 0.0
+  max_new_tokens: 1024
+input_method: hybrid
+source_of_truth:
+  table_values: parse_payload
+  table_geometry: page_image_and_bboxes
+  chart_relationships: page_image
+  chart_labels_and_numbers: parse_payload_with_image_verification
+  reading_order: page_image_with_bboxes
+output_format: markdown
+sampling:
+  source_experiment: exp-001
+  pages: securities_report=[1, 135, 158], earnings_presentation=[1, 8, 29], integrated_report=[1, 11, 164], midterm_policy=[1, 2]
+comparison_baselines: [exp-001.parse_first, exp-001.image_first]
+metrics: [text_normalized_similarity_proxy, numeric_token_recall, markdown_table_shape_consistency, wall_time_seconds]
+limitations:
+  - 領域単位の自動検出・cropは未実装で、page imageとbboxを同一promptに渡す初期hybridである
+  - PDF text layerは完全なgoldではない
+  - 1024 output token上限のため、長い表・本文は途中で切れる
+  - 初版promptは決算資料8ページの点線装飾を反復出力し、修正版（v2）を最終結果とした

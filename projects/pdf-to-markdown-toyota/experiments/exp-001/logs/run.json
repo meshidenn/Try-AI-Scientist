@@ -1,0 +1,227 @@
+{
+  "model": "gemma4-26b-moe",
+  "model_id": "google/gemma-4-26B-A4B-it",
+  "run_model": false,
+  "records": [
+    {
+      "method": "parse_first",
+      "document": "securities_report",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 54,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "securities_report",
+      "page": 135,
+      "status": "not_run",
+      "input_text_length": 1816,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "securities_report",
+      "page": 158,
+      "status": "not_run",
+      "input_text_length": 1760,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "earnings_presentation",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 43,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "earnings_presentation",
+      "page": 8,
+      "status": "not_run",
+      "input_text_length": 601,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "earnings_presentation",
+      "page": 29,
+      "status": "not_run",
+      "input_text_length": 1246,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "integrated_report",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 33,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "integrated_report",
+      "page": 11,
+      "status": "not_run",
+      "input_text_length": 5847,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "integrated_report",
+      "page": 164,
+      "status": "not_run",
+      "input_text_length": 2142,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "midterm_policy",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 2831,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "parse_first",
+      "document": "midterm_policy",
+      "page": 2,
+      "status": "not_run",
+      "input_text_length": 2096,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "securities_report",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 54,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "securities_report",
+      "page": 135,
+      "status": "not_run",
+      "input_text_length": 1816,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "securities_report",
+      "page": 158,
+      "status": "not_run",
+      "input_text_length": 1760,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "earnings_presentation",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 43,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "earnings_presentation",
+      "page": 8,
+      "status": "not_run",
+      "input_text_length": 601,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "earnings_presentation",
+      "page": 29,
+      "status": "not_run",
+      "input_text_length": 1246,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "integrated_report",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 33,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "integrated_report",
+      "page": 11,
+      "status": "not_run",
+      "input_text_length": 5847,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "integrated_report",
+      "page": 164,
+      "status": "not_run",
+      "input_text_length": 2142,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "midterm_policy",
+      "page": 1,
+      "status": "not_run",
+      "input_text_length": 2831,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    },
+    {
+      "method": "image_first",
+      "document": "midterm_policy",
+      "page": 2,
+      "status": "not_run",
+      "input_text_length": 2096,
+      "model": "gemma4-26b-moe",
+      "model_id": "google/gemma-4-26B-A4B-it",
+      "reason": "run_model was not requested"
+    }
+  ]
+}

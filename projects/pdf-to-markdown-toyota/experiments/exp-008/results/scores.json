@@ -1,0 +1,42 @@
+{
+  "experiment_id": "exp-008",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "mean_text_coverage_adjusted_confidence",
+      "value": 0.502155,
+      "higher_is_better": true,
+      "definition": "テキスト候補平均evidence scoreとPDF text-unit被覆率proxyの積を4ページで平均した値。校正済み確率ではない。"
+    },
+    "numeric": {
+      "mean_pdf_coverage": 0.704411,
+      "mean_coverage_adjusted_confidence": 0.643828,
+      "confidence_counts": {
+        "high": 120,
+        "medium": 25,
+        "low": 8
+      }
+    },
+    "text": {
+      "mean_pdf_text_unit_coverage_proxy": 0.710165,
+      "mean_candidate_confidence": 0.703571,
+      "mean_coverage_adjusted_confidence": 0.502155,
+      "confidence_counts": {
+        "high": 37,
+        "medium": 9,
+        "low": 93
+      }
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "numeric_confidence": "results/ensemble_confidence.json",
+    "text_confidence": "results/ensemble_text_confidence.json",
+    "logs": [
+      "logs/ensemble-evaluation.json",
+      "logs/render-confidence-colored-html.json"
+    ],
+    "colorized_model_output_manifest": "results/colorized_html_manifest.json",
+    "colorized_model_output_html": "outputs/colorized-model-output/"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "command": "3モデルの既存hybridログを用い、evaluate_ensemble_confidence.py と evaluate_ensemble_text_confidence.py を実行（追加推論なし）",
+  "models": [
+    "gemma4-26b-moe",
+    "qwen3.6-27b",
+    "glm-4.6v-flash"
+  ],
+  "pages": 4
+}

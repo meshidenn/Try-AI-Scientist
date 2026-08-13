@@ -1,0 +1,285 @@
+{
+  "page_number": 2,
+  "page_size": [
+    595.2,
+    841.92
+  ],
+  "blocks": [
+    {
+      "bbox": [
+        56.64,
+        74.74,
+        328.02,
+        90.55
+      ],
+      "text": "Hybrid Electric and Plug-in Hybrid Electric Vehicles",
+      "block_no": 2,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        74.65,
+        92.91,
+        541.63,
+        107.98
+      ],
+      "text": "• The HEV line-up will also grow, thanks to the further development of the Toyota Hybrid",
+      "block_no": 3,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        92.65,
+        110.91,
+        541.64,
+        125.98
+      ],
+      "text": "System II (featured in the current-generation Prius and other models); the introduction of a",
+      "block_no": 4,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        92.65,
+        128.9,
+        541.65,
+        143.97
+      ],
+      "text": "more powerful version in some models; and the development of simpler hybrid systems in",
+      "block_no": 5,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        92.65,
+        146.9,
+        404.85,
+        161.97
+      ],
+      "text": "select models, as appropriate, to meet various customer needs.",
+      "block_no": 6,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        74.67,
+        164.89,
+        378.21,
+        179.96
+      ],
+      "text": "• Toyota also aims to expand its PHEV line-up in the 2020s.",
+      "block_no": 7,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.64,
+        201.42,
+        541.49,
+        215.83
+      ],
+      "text": "Batteries are a core technology of electrified vehicles and generally present limitations relating to energy",
+      "block_no": 9,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.64,
+        219.42,
+        541.5,
+        233.84
+      ],
+      "text": "density, weight/packaging, and cost. Toyota has been actively developing next-generation solid-state",
+      "block_no": 10,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.65,
+        235.73,
+        541.49,
+        251.84
+      ],
+      "text": "batteries and aims to commercialize the technology by the early 2020s. In addition, Toyota and",
+      "block_no": 11,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.65,
+        255.43,
+        541.48,
+        269.85
+      ],
+      "text": "Panasonic will start a feasibility study on a joint automotive prismatic battery business in order to achieve",
+      "block_no": 12,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.63,
+        273.44,
+        541.43,
+        287.85
+      ],
+      "text": "the best automotive prismatic battery in the industry and to ultimately contribute to the popularization of",
+      "block_no": 13,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        291.44,
+        296.43,
+        305.86
+      ],
+      "text": "Toyota's and other automakers' electrified vehicles.",
+      "block_no": 14,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        327.45,
+        541.4,
+        341.87
+      ],
+      "text": "Furthermore, Toyota aims to focus on the development of a social infrastructure conducive to the",
+      "block_no": 16,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        345.46,
+        541.44,
+        359.87
+      ],
+      "text": "widespread adoption of electrified vehicles. This includes the creation of a system to help streamline",
+      "block_no": 17,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        363.46,
+        541.44,
+        377.88
+      ],
+      "text": "battery reuse and recycling, as well as support of the promotion of plug-in vehicle charging stations and",
+      "block_no": 18,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        381.47,
+        541.46,
+        395.88
+      ],
+      "text": "hydrogen refueling stations through active cooperation and collaboration with government authorities",
+      "block_no": 19,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        399.47,
+        169.95,
+        413.88
+      ],
+      "text": "and partner companies.",
+      "block_no": 20,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.61,
+        435.48,
+        541.41,
+        449.89
+      ],
+      "text": "Toyota has been a leader in making vehicles while keeping the environment in mind. This is evident",
+      "block_no": 22,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.59,
+        453.48,
+        541.44,
+        467.9
+      ],
+      "text": "through the introduction of the iconic Prius 20 years ago, as well as the launch of the world's first PHEV,",
+      "block_no": 23,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.58,
+        471.49,
+        541.43,
+        485.9
+      ],
+      "text": "the Prius PHV, in 2012. The second-generation Prius PHV, introduced in 2017, further increased the",
+      "block_no": 24,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.58,
+        489.49,
+        541.43,
+        503.91
+      ],
+      "text": "vehicle's electric mode cruising range. Additionally, in 2014 Toyota launched the world's first",
+      "block_no": 25,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.58,
+        507.5,
+        541.43,
+        521.91
+      ],
+      "text": "mass-produced fuel cell sedan, the Mirai, which is being well-received by customers in Japan, the U.S.,",
+      "block_no": 26,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.58,
+        525.5,
+        541.43,
+        539.92
+      ],
+      "text": "and Europe. Through these activities, Toyota sales of electrified vehicles have reached more than 11",
+      "block_no": 27,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.58,
+        543.51,
+        201.83,
+        557.92
+      ],
+      "text": "million units worldwide to date.",
+      "block_no": 28,
+      "block_type": 0
+    },
+    {
+      "bbox": [
+        56.64,
+        797.86,
+        314.1,
+        825.72
+      ],
+      "text": "2 / 2",
+      "block_no": 1,
+      "block_type": 0
+    }
+  ],
+  "instruction": "PDFの文字と座標だけを根拠に、推測や補完をせずMarkdownへ変換する。"
+}

@@ -1,0 +1,55 @@
+experiment_id: exp-005
+title: Local OCR and document-parser pilot
+status: planned
+objective: >
+  Toyotaの4種の企業PDFから各1ページを対象に、ローカル実行可能なOCR・文書パーサが
+  native Markdownでどの程度本文・数値・表・図を保持できるか確認する。
+constraints:
+  - 外部推論API、クラウドOCR、SaaSを使用しない
+  - 重み・runtimeはローカルGPUまたはローカルCPUで実行する
+  - 公式CLI、公式Transformers実装、または公式vLLM recipeを優先する
+  - モデル生出力、後処理済みMarkdown、実行ログ、model revisionを保存する
+inputs:
+  source_manifest: inputs/source-manifest.json
+  pilot_pages: inputs/pilot-pages.json
+models:
+  - logical_name: paddleocr-vl-1.6
+    model_id: PaddlePaddle/PaddleOCR-VL-1.6
+    revision: 66317acc4c9fc17bd154591ce650735cd2855f3e
+    preferred_backend: official_local_cli_or_vllm
+    native_prompt: document_parsing
+  - logical_name: mineru2.5-pro
+    model_id: opendatalab/MinerU2.5-Pro-2604-1.2B
+    revision: d3f5e08d073c21466bbabe21c71bb1e9c2e595da
+    preferred_backend: official_local_cli
+    native_prompt: official_mineru_pipeline
+  - logical_name: deepseek-ocr-2
+    model_id: deepseek-ai/DeepSeek-OCR-2
+    revision: aaa02f3811945a91062062994c5c4a3f4c0af2b0
+    preferred_backend: official_transformers_or_vllm
+    native_prompt: '<image>\n<|grounding|>Convert the document to markdown.'
+  - logical_name: unlimited-ocr
+    model_id: baidu/Unlimited-OCR
+    revision: 07dea832e22aefee32ad281d4b80551282e1c168
+    preferred_backend: official_vllm_or_transformers
+    native_prompt: '<image>document parsing.'
+outputs:
+  primary: markdown
+  retain_raw_model_output: true
+evaluation:
+  automatic:
+    - text_normalized_similarity_proxy
+    - numeric_token_recall
+    - numeric_token_precision
+    - numeric_token_f1
+    - table_row_width_consistency
+    - wall_time_seconds
+  targeted_manual_review:
+    - securities_report.page_135.table_value_and_column_alignment
+    - earnings_presentation.page_8.chart_series_and_position_relationship
+    - integrated_report.page_11.diagram_node_and_edge_coverage
+    - midterm_policy.page_2.layout_and_text_coverage
+success_criteria:
+  - 候補ごとに、4ページのnative出力またはローカル実行不能の原因をlogへ残す
+  - APIを使わないローカル実行経路をartifactで追跡できる
+  - raw outputと正規化Markdownの関係を追跡できる

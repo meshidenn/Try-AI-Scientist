@@ -1,0 +1,1576 @@
+{
+  "experiment_id": "exp-009",
+  "method": "hybrid",
+  "n_values": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "definition": {
+    "main_metric": "output_page_ngram_match_rate",
+    "main_metric_definition": "出力Markdownのユニーク文字n-gramのうち、同じPDFページのtext layer内に存在する割合",
+    "reference_metric_definition": "PDFページのユニーク文字n-gramのうち、出力Markdownにも存在する割合",
+    "normalization": "NFKC、空白除去、Markdown/HTML表示構文の除去。文字の順序は維持する。",
+    "counting": "各nのn-gramは重複を除いた集合として数える。ページをまたいで一致させない。"
+  },
+  "source_logs": {
+    "gemma4-26b-moe": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/logs/hybrid-run-v2.json",
+    "glm-4.6v-flash": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/logs/glm-4.6v-flash-pilot.json",
+    "qwen3.6-27b": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-hybrid-pilot.json"
+  },
+  "shared_pages": [
+    {
+      "document": "earnings_presentation",
+      "page": 8
+    },
+    {
+      "document": "integrated_report",
+      "page": 11
+    },
+    {
+      "document": "midterm_policy",
+      "page": 2
+    },
+    {
+      "document": "securities_report",
+      "page": 135
+    }
+  ],
+  "records": [
+    {
+      "model": "gemma4-26b-moe",
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/earnings_presentation/page-0008.md",
+      "metrics": {
+        "reference_normalized_length": 518,
+        "output_normalized_length": 792,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 76,
+            "output_ngram_count": 106,
+            "matched_ngram_count": 76,
+            "output_page_ngram_match_rate": 0.716981,
+            "reference_page_ngram_coverage": 1.0,
+            "f1": 0.835165
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 212,
+            "output_ngram_count": 293,
+            "matched_ngram_count": 196,
+            "output_page_ngram_match_rate": 0.668942,
+            "reference_page_ngram_coverage": 0.924528,
+            "f1": 0.776238
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 326,
+            "output_ngram_count": 433,
+            "matched_ngram_count": 251,
+            "output_page_ngram_match_rate": 0.579677,
+            "reference_page_ngram_coverage": 0.769939,
+            "f1": 0.661397
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 369,
+            "output_ngram_count": 515,
+            "matched_ngram_count": 240,
+            "output_page_ngram_match_rate": 0.466019,
+            "reference_page_ngram_coverage": 0.650407,
+            "f1": 0.542986
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 388,
+            "output_ngram_count": 563,
+            "matched_ngram_count": 208,
+            "output_page_ngram_match_rate": 0.369449,
+            "reference_page_ngram_coverage": 0.536082,
+            "f1": 0.437434
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 399,
+            "output_ngram_count": 601,
+            "matched_ngram_count": 167,
+            "output_page_ngram_match_rate": 0.27787,
+            "reference_page_ngram_coverage": 0.418546,
+            "f1": 0.334
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 404,
+            "output_ngram_count": 628,
+            "matched_ngram_count": 142,
+            "output_page_ngram_match_rate": 0.226115,
+            "reference_page_ngram_coverage": 0.351485,
+            "f1": 0.275194
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 408,
+            "output_ngram_count": 651,
+            "matched_ngram_count": 126,
+            "output_page_ngram_match_rate": 0.193548,
+            "reference_page_ngram_coverage": 0.308824,
+            "f1": 0.23796
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 412,
+            "output_ngram_count": 669,
+            "matched_ngram_count": 116,
+            "output_page_ngram_match_rate": 0.173393,
+            "reference_page_ngram_coverage": 0.281553,
+            "f1": 0.214616
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 415,
+            "output_ngram_count": 685,
+            "matched_ngram_count": 106,
+            "output_page_ngram_match_rate": 0.154745,
+            "reference_page_ngram_coverage": 0.255422,
+            "f1": 0.192727
+          }
+        ]
+      }
+    },
+    {
+      "model": "gemma4-26b-moe",
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/integrated_report/page-0011.md",
+      "metrics": {
+        "reference_normalized_length": 5008,
+        "output_normalized_length": 1368,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 382,
+            "output_ngram_count": 288,
+            "matched_ngram_count": 288,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.753927,
+            "f1": 0.859701
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 1441,
+            "output_ngram_count": 808,
+            "matched_ngram_count": 775,
+            "output_page_ngram_match_rate": 0.959158,
+            "reference_page_ngram_coverage": 0.537821,
+            "f1": 0.689195
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 2369,
+            "output_ngram_count": 1013,
+            "matched_ngram_count": 935,
+            "output_page_ngram_match_rate": 0.923001,
+            "reference_page_ngram_coverage": 0.394681,
+            "f1": 0.552927
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 2975,
+            "output_ngram_count": 1121,
+            "matched_ngram_count": 988,
+            "output_page_ngram_match_rate": 0.881356,
+            "reference_page_ngram_coverage": 0.332101,
+            "f1": 0.482422
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 3383,
+            "output_ngram_count": 1187,
+            "matched_ngram_count": 988,
+            "output_page_ngram_match_rate": 0.83235,
+            "reference_page_ngram_coverage": 0.292048,
+            "f1": 0.432385
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 3673,
+            "output_ngram_count": 1225,
+            "matched_ngram_count": 961,
+            "output_page_ngram_match_rate": 0.78449,
+            "reference_page_ngram_coverage": 0.261639,
+            "f1": 0.392405
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 3884,
+            "output_ngram_count": 1252,
+            "matched_ngram_count": 926,
+            "output_page_ngram_match_rate": 0.739617,
+            "reference_page_ngram_coverage": 0.238414,
+            "f1": 0.360592
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 4057,
+            "output_ngram_count": 1272,
+            "matched_ngram_count": 894,
+            "output_page_ngram_match_rate": 0.70283,
+            "reference_page_ngram_coverage": 0.22036,
+            "f1": 0.335523
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 4205,
+            "output_ngram_count": 1288,
+            "matched_ngram_count": 866,
+            "output_page_ngram_match_rate": 0.67236,
+            "reference_page_ngram_coverage": 0.205945,
+            "f1": 0.31531
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 4329,
+            "output_ngram_count": 1300,
+            "matched_ngram_count": 834,
+            "output_page_ngram_match_rate": 0.641538,
+            "reference_page_ngram_coverage": 0.192654,
+            "f1": 0.296323
+          }
+        ]
+      }
+    },
+    {
+      "model": "gemma4-26b-moe",
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/midterm_policy/page-0002.md",
+      "metrics": {
+        "reference_normalized_length": 1780,
+        "output_normalized_length": 1778,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 52,
+            "output_ngram_count": 51,
+            "matched_ngram_count": 51,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.980769,
+            "f1": 0.990291
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 399,
+            "output_ngram_count": 397,
+            "matched_ngram_count": 396,
+            "output_page_ngram_match_rate": 0.997481,
+            "reference_page_ngram_coverage": 0.992481,
+            "f1": 0.994975
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 974,
+            "output_ngram_count": 970,
+            "matched_ngram_count": 968,
+            "output_page_ngram_match_rate": 0.997938,
+            "reference_page_ngram_coverage": 0.99384,
+            "f1": 0.995885
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 1275,
+            "output_ngram_count": 1271,
+            "matched_ngram_count": 1267,
+            "output_page_ngram_match_rate": 0.996853,
+            "reference_page_ngram_coverage": 0.993725,
+            "f1": 0.995287
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 1419,
+            "output_ngram_count": 1415,
+            "matched_ngram_count": 1409,
+            "output_page_ngram_match_rate": 0.99576,
+            "reference_page_ngram_coverage": 0.992953,
+            "f1": 0.994354
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 1513,
+            "output_ngram_count": 1509,
+            "matched_ngram_count": 1501,
+            "output_page_ngram_match_rate": 0.994698,
+            "reference_page_ngram_coverage": 0.992069,
+            "f1": 0.993382
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 1582,
+            "output_ngram_count": 1578,
+            "matched_ngram_count": 1568,
+            "output_page_ngram_match_rate": 0.993663,
+            "reference_page_ngram_coverage": 0.99115,
+            "f1": 0.992405
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 1623,
+            "output_ngram_count": 1620,
+            "matched_ngram_count": 1607,
+            "output_page_ngram_match_rate": 0.991975,
+            "reference_page_ngram_coverage": 0.990142,
+            "f1": 0.991058
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 1646,
+            "output_ngram_count": 1644,
+            "matched_ngram_count": 1628,
+            "output_page_ngram_match_rate": 0.990268,
+            "reference_page_ngram_coverage": 0.989064,
+            "f1": 0.989666
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 1665,
+            "output_ngram_count": 1663,
+            "matched_ngram_count": 1645,
+            "output_page_ngram_match_rate": 0.989176,
+            "reference_page_ngram_coverage": 0.987988,
+            "f1": 0.988582
+          }
+        ]
+      }
+    },
+    {
+      "model": "gemma4-26b-moe",
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-003/workspace/outputs-hybrid/securities_report/page-0135.md",
+      "metrics": {
+        "reference_normalized_length": 1522,
+        "output_normalized_length": 779,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 113,
+            "output_ngram_count": 106,
+            "matched_ngram_count": 105,
+            "output_page_ngram_match_rate": 0.990566,
+            "reference_page_ngram_coverage": 0.929204,
+            "f1": 0.958904
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 341,
+            "output_ngram_count": 296,
+            "matched_ngram_count": 289,
+            "output_page_ngram_match_rate": 0.976351,
+            "reference_page_ngram_coverage": 0.847507,
+            "f1": 0.907378
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 742,
+            "output_ngram_count": 514,
+            "matched_ngram_count": 501,
+            "output_page_ngram_match_rate": 0.974708,
+            "reference_page_ngram_coverage": 0.675202,
+            "f1": 0.797771
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 957,
+            "output_ngram_count": 611,
+            "matched_ngram_count": 591,
+            "output_page_ngram_match_rate": 0.967267,
+            "reference_page_ngram_coverage": 0.617555,
+            "f1": 0.753827
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 1056,
+            "output_ngram_count": 647,
+            "matched_ngram_count": 621,
+            "output_page_ngram_match_rate": 0.959815,
+            "reference_page_ngram_coverage": 0.588068,
+            "f1": 0.729301
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 1121,
+            "output_ngram_count": 669,
+            "matched_ngram_count": 638,
+            "output_page_ngram_match_rate": 0.953662,
+            "reference_page_ngram_coverage": 0.569135,
+            "f1": 0.712849
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 1173,
+            "output_ngram_count": 685,
+            "matched_ngram_count": 649,
+            "output_page_ngram_match_rate": 0.947445,
+            "reference_page_ngram_coverage": 0.553282,
+            "f1": 0.698601
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 1218,
+            "output_ngram_count": 698,
+            "matched_ngram_count": 657,
+            "output_page_ngram_match_rate": 0.941261,
+            "reference_page_ngram_coverage": 0.539409,
+            "f1": 0.685804
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 1254,
+            "output_ngram_count": 710,
+            "matched_ngram_count": 663,
+            "output_page_ngram_match_rate": 0.933803,
+            "reference_page_ngram_coverage": 0.528708,
+            "f1": 0.675153
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 1285,
+            "output_ngram_count": 721,
+            "matched_ngram_count": 668,
+            "output_page_ngram_match_rate": 0.926491,
+            "reference_page_ngram_coverage": 0.519844,
+            "f1": 0.666002
+          }
+        ]
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/earnings_presentation/page-0008.md",
+      "metrics": {
+        "reference_normalized_length": 518,
+        "output_normalized_length": 491,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 76,
+            "output_ngram_count": 76,
+            "matched_ngram_count": 76,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 1.0,
+            "f1": 1.0
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 212,
+            "output_ngram_count": 212,
+            "matched_ngram_count": 212,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 1.0,
+            "f1": 1.0
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 326,
+            "output_ngram_count": 325,
+            "matched_ngram_count": 325,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.996933,
+            "f1": 0.998464
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 369,
+            "output_ngram_count": 368,
+            "matched_ngram_count": 368,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.99729,
+            "f1": 0.998643
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 388,
+            "output_ngram_count": 387,
+            "matched_ngram_count": 387,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.997423,
+            "f1": 0.99871
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 399,
+            "output_ngram_count": 398,
+            "matched_ngram_count": 398,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.997494,
+            "f1": 0.998745
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 404,
+            "output_ngram_count": 401,
+            "matched_ngram_count": 401,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.992574,
+            "f1": 0.996273
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 408,
+            "output_ngram_count": 403,
+            "matched_ngram_count": 403,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.987745,
+            "f1": 0.993835
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 412,
+            "output_ngram_count": 405,
+            "matched_ngram_count": 405,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.98301,
+            "f1": 0.991432
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 415,
+            "output_ngram_count": 406,
+            "matched_ngram_count": 406,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.978313,
+            "f1": 0.989038
+          }
+        ]
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/integrated_report/page-0011.md",
+      "metrics": {
+        "reference_normalized_length": 5008,
+        "output_normalized_length": 669,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 382,
+            "output_ngram_count": 194,
+            "matched_ngram_count": 194,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.507853,
+            "f1": 0.673611
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 1441,
+            "output_ngram_count": 461,
+            "matched_ngram_count": 444,
+            "output_page_ngram_match_rate": 0.963124,
+            "reference_page_ngram_coverage": 0.308119,
+            "f1": 0.466877
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 2369,
+            "output_ngram_count": 553,
+            "matched_ngram_count": 514,
+            "output_page_ngram_match_rate": 0.929476,
+            "reference_page_ngram_coverage": 0.216969,
+            "f1": 0.351814
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 2975,
+            "output_ngram_count": 590,
+            "matched_ngram_count": 529,
+            "output_page_ngram_match_rate": 0.89661,
+            "reference_page_ngram_coverage": 0.177815,
+            "f1": 0.296774
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 3383,
+            "output_ngram_count": 606,
+            "matched_ngram_count": 520,
+            "output_page_ngram_match_rate": 0.858086,
+            "reference_page_ngram_coverage": 0.15371,
+            "f1": 0.260717
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 3673,
+            "output_ngram_count": 613,
+            "matched_ngram_count": 501,
+            "output_page_ngram_match_rate": 0.817292,
+            "reference_page_ngram_coverage": 0.136401,
+            "f1": 0.233784
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 3884,
+            "output_ngram_count": 617,
+            "matched_ngram_count": 482,
+            "output_page_ngram_match_rate": 0.781199,
+            "reference_page_ngram_coverage": 0.124099,
+            "f1": 0.214175
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 4057,
+            "output_ngram_count": 620,
+            "matched_ngram_count": 462,
+            "output_page_ngram_match_rate": 0.745161,
+            "reference_page_ngram_coverage": 0.113877,
+            "f1": 0.197563
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 4205,
+            "output_ngram_count": 622,
+            "matched_ngram_count": 442,
+            "output_page_ngram_match_rate": 0.710611,
+            "reference_page_ngram_coverage": 0.105113,
+            "f1": 0.183137
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 4329,
+            "output_ngram_count": 624,
+            "matched_ngram_count": 421,
+            "output_page_ngram_match_rate": 0.674679,
+            "reference_page_ngram_coverage": 0.097251,
+            "f1": 0.169998
+          }
+        ]
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/midterm_policy/page-0002.md",
+      "metrics": {
+        "reference_normalized_length": 1780,
+        "output_normalized_length": 1777,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 52,
+            "output_ngram_count": 52,
+            "matched_ngram_count": 52,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 1.0,
+            "f1": 1.0
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 399,
+            "output_ngram_count": 396,
+            "matched_ngram_count": 396,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.992481,
+            "f1": 0.996226
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 974,
+            "output_ngram_count": 971,
+            "matched_ngram_count": 971,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.99692,
+            "f1": 0.998458
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 1275,
+            "output_ngram_count": 1272,
+            "matched_ngram_count": 1272,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.997647,
+            "f1": 0.998822
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 1419,
+            "output_ngram_count": 1416,
+            "matched_ngram_count": 1416,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.997886,
+            "f1": 0.998942
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 1513,
+            "output_ngram_count": 1510,
+            "matched_ngram_count": 1510,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.998017,
+            "f1": 0.999008
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 1582,
+            "output_ngram_count": 1579,
+            "matched_ngram_count": 1579,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.998104,
+            "f1": 0.999051
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 1623,
+            "output_ngram_count": 1620,
+            "matched_ngram_count": 1620,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.998152,
+            "f1": 0.999075
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 1646,
+            "output_ngram_count": 1643,
+            "matched_ngram_count": 1643,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.998177,
+            "f1": 0.999088
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 1665,
+            "output_ngram_count": 1662,
+            "matched_ngram_count": 1662,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.998198,
+            "f1": 0.999098
+          }
+        ]
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/securities_report/page-0135.md",
+      "metrics": {
+        "reference_normalized_length": 1522,
+        "output_normalized_length": 894,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 113,
+            "output_ngram_count": 112,
+            "matched_ngram_count": 110,
+            "output_page_ngram_match_rate": 0.982143,
+            "reference_page_ngram_coverage": 0.973451,
+            "f1": 0.977778
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 341,
+            "output_ngram_count": 309,
+            "matched_ngram_count": 283,
+            "output_page_ngram_match_rate": 0.915858,
+            "reference_page_ngram_coverage": 0.829912,
+            "f1": 0.870769
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 742,
+            "output_ngram_count": 531,
+            "matched_ngram_count": 467,
+            "output_page_ngram_match_rate": 0.879473,
+            "reference_page_ngram_coverage": 0.62938,
+            "f1": 0.7337
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 957,
+            "output_ngram_count": 629,
+            "matched_ngram_count": 517,
+            "output_page_ngram_match_rate": 0.82194,
+            "reference_page_ngram_coverage": 0.54023,
+            "f1": 0.651955
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 1056,
+            "output_ngram_count": 668,
+            "matched_ngram_count": 520,
+            "output_page_ngram_match_rate": 0.778443,
+            "reference_page_ngram_coverage": 0.492424,
+            "f1": 0.603248
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 1121,
+            "output_ngram_count": 694,
+            "matched_ngram_count": 514,
+            "output_page_ngram_match_rate": 0.740634,
+            "reference_page_ngram_coverage": 0.458519,
+            "f1": 0.566391
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 1173,
+            "output_ngram_count": 714,
+            "matched_ngram_count": 505,
+            "output_page_ngram_match_rate": 0.707283,
+            "reference_page_ngram_coverage": 0.43052,
+            "f1": 0.535241
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 1218,
+            "output_ngram_count": 730,
+            "matched_ngram_count": 495,
+            "output_page_ngram_match_rate": 0.678082,
+            "reference_page_ngram_coverage": 0.406404,
+            "f1": 0.508214
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 1254,
+            "output_ngram_count": 745,
+            "matched_ngram_count": 484,
+            "output_page_ngram_match_rate": 0.649664,
+            "reference_page_ngram_coverage": 0.385965,
+            "f1": 0.484242
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 1285,
+            "output_ngram_count": 758,
+            "matched_ngram_count": 472,
+            "output_page_ngram_match_rate": 0.622691,
+            "reference_page_ngram_coverage": 0.367315,
+            "f1": 0.462066
+          }
+        ]
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/earnings_presentation/page-0008.md",
+      "metrics": {
+        "reference_normalized_length": 518,
+        "output_normalized_length": 582,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 76,
+            "output_ngram_count": 80,
+            "matched_ngram_count": 76,
+            "output_page_ngram_match_rate": 0.95,
+            "reference_page_ngram_coverage": 1.0,
+            "f1": 0.974359
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 212,
+            "output_ngram_count": 232,
+            "matched_ngram_count": 194,
+            "output_page_ngram_match_rate": 0.836207,
+            "reference_page_ngram_coverage": 0.915094,
+            "f1": 0.873874
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 326,
+            "output_ngram_count": 339,
+            "matched_ngram_count": 255,
+            "output_page_ngram_match_rate": 0.752212,
+            "reference_page_ngram_coverage": 0.782209,
+            "f1": 0.766917
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 369,
+            "output_ngram_count": 396,
+            "matched_ngram_count": 246,
+            "output_page_ngram_match_rate": 0.621212,
+            "reference_page_ngram_coverage": 0.666667,
+            "f1": 0.643137
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 388,
+            "output_ngram_count": 426,
+            "matched_ngram_count": 215,
+            "output_page_ngram_match_rate": 0.504695,
+            "reference_page_ngram_coverage": 0.554124,
+            "f1": 0.528256
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 399,
+            "output_ngram_count": 447,
+            "matched_ngram_count": 177,
+            "output_page_ngram_match_rate": 0.395973,
+            "reference_page_ngram_coverage": 0.443609,
+            "f1": 0.41844
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 404,
+            "output_ngram_count": 466,
+            "matched_ngram_count": 153,
+            "output_page_ngram_match_rate": 0.328326,
+            "reference_page_ngram_coverage": 0.378713,
+            "f1": 0.351724
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 408,
+            "output_ngram_count": 481,
+            "matched_ngram_count": 139,
+            "output_page_ngram_match_rate": 0.288981,
+            "reference_page_ngram_coverage": 0.340686,
+            "f1": 0.312711
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 412,
+            "output_ngram_count": 494,
+            "matched_ngram_count": 132,
+            "output_page_ngram_match_rate": 0.267206,
+            "reference_page_ngram_coverage": 0.320388,
+            "f1": 0.291391
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 415,
+            "output_ngram_count": 506,
+            "matched_ngram_count": 126,
+            "output_page_ngram_match_rate": 0.249012,
+            "reference_page_ngram_coverage": 0.303614,
+            "f1": 0.273616
+          }
+        ]
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/integrated_report/page-0011.md",
+      "metrics": {
+        "reference_normalized_length": 5008,
+        "output_normalized_length": 1632,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 382,
+            "output_ngram_count": 309,
+            "matched_ngram_count": 309,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.808901,
+            "f1": 0.894356
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 1441,
+            "output_ngram_count": 887,
+            "matched_ngram_count": 852,
+            "output_page_ngram_match_rate": 0.960541,
+            "reference_page_ngram_coverage": 0.591256,
+            "f1": 0.731959
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 2369,
+            "output_ngram_count": 1158,
+            "matched_ngram_count": 1076,
+            "output_page_ngram_match_rate": 0.929188,
+            "reference_page_ngram_coverage": 0.4542,
+            "f1": 0.61015
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 2975,
+            "output_ngram_count": 1291,
+            "matched_ngram_count": 1154,
+            "output_page_ngram_match_rate": 0.893881,
+            "reference_page_ngram_coverage": 0.387899,
+            "f1": 0.541022
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 3383,
+            "output_ngram_count": 1374,
+            "matched_ngram_count": 1168,
+            "output_page_ngram_match_rate": 0.850073,
+            "reference_page_ngram_coverage": 0.345256,
+            "f1": 0.491066
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 3673,
+            "output_ngram_count": 1428,
+            "matched_ngram_count": 1151,
+            "output_page_ngram_match_rate": 0.806022,
+            "reference_page_ngram_coverage": 0.313368,
+            "f1": 0.451284
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 3884,
+            "output_ngram_count": 1469,
+            "matched_ngram_count": 1121,
+            "output_page_ngram_match_rate": 0.763104,
+            "reference_page_ngram_coverage": 0.28862,
+            "f1": 0.418831
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 4057,
+            "output_ngram_count": 1501,
+            "matched_ngram_count": 1085,
+            "output_page_ngram_match_rate": 0.722851,
+            "reference_page_ngram_coverage": 0.267439,
+            "f1": 0.390428
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 4205,
+            "output_ngram_count": 1525,
+            "matched_ngram_count": 1048,
+            "output_page_ngram_match_rate": 0.687213,
+            "reference_page_ngram_coverage": 0.249227,
+            "f1": 0.365794
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 4329,
+            "output_ngram_count": 1544,
+            "matched_ngram_count": 1006,
+            "output_page_ngram_match_rate": 0.651554,
+            "reference_page_ngram_coverage": 0.232386,
+            "f1": 0.342585
+          }
+        ]
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/midterm_policy/page-0002.md",
+      "metrics": {
+        "reference_normalized_length": 1780,
+        "output_normalized_length": 1778,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 52,
+            "output_ngram_count": 51,
+            "matched_ngram_count": 51,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.980769,
+            "f1": 0.990291
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 399,
+            "output_ngram_count": 397,
+            "matched_ngram_count": 396,
+            "output_page_ngram_match_rate": 0.997481,
+            "reference_page_ngram_coverage": 0.992481,
+            "f1": 0.994975
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 974,
+            "output_ngram_count": 970,
+            "matched_ngram_count": 968,
+            "output_page_ngram_match_rate": 0.997938,
+            "reference_page_ngram_coverage": 0.99384,
+            "f1": 0.995885
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 1275,
+            "output_ngram_count": 1271,
+            "matched_ngram_count": 1267,
+            "output_page_ngram_match_rate": 0.996853,
+            "reference_page_ngram_coverage": 0.993725,
+            "f1": 0.995287
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 1419,
+            "output_ngram_count": 1415,
+            "matched_ngram_count": 1409,
+            "output_page_ngram_match_rate": 0.99576,
+            "reference_page_ngram_coverage": 0.992953,
+            "f1": 0.994354
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 1513,
+            "output_ngram_count": 1509,
+            "matched_ngram_count": 1501,
+            "output_page_ngram_match_rate": 0.994698,
+            "reference_page_ngram_coverage": 0.992069,
+            "f1": 0.993382
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 1582,
+            "output_ngram_count": 1578,
+            "matched_ngram_count": 1568,
+            "output_page_ngram_match_rate": 0.993663,
+            "reference_page_ngram_coverage": 0.99115,
+            "f1": 0.992405
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 1623,
+            "output_ngram_count": 1620,
+            "matched_ngram_count": 1607,
+            "output_page_ngram_match_rate": 0.991975,
+            "reference_page_ngram_coverage": 0.990142,
+            "f1": 0.991058
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 1646,
+            "output_ngram_count": 1644,
+            "matched_ngram_count": 1628,
+            "output_page_ngram_match_rate": 0.990268,
+            "reference_page_ngram_coverage": 0.989064,
+            "f1": 0.989666
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 1665,
+            "output_ngram_count": 1663,
+            "matched_ngram_count": 1645,
+            "output_page_ngram_match_rate": 0.989176,
+            "reference_page_ngram_coverage": 0.987988,
+            "f1": 0.988582
+          }
+        ]
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/securities_report/page-0135.md",
+      "metrics": {
+        "reference_normalized_length": 1522,
+        "output_normalized_length": 798,
+        "metrics": [
+          {
+            "n": 1,
+            "reference_ngram_count": 113,
+            "output_ngram_count": 108,
+            "matched_ngram_count": 108,
+            "output_page_ngram_match_rate": 1.0,
+            "reference_page_ngram_coverage": 0.955752,
+            "f1": 0.977376
+          },
+          {
+            "n": 2,
+            "reference_ngram_count": 341,
+            "output_ngram_count": 299,
+            "matched_ngram_count": 293,
+            "output_page_ngram_match_rate": 0.979933,
+            "reference_page_ngram_coverage": 0.859238,
+            "f1": 0.915625
+          },
+          {
+            "n": 3,
+            "reference_ngram_count": 742,
+            "output_ngram_count": 517,
+            "matched_ngram_count": 505,
+            "output_page_ngram_match_rate": 0.976789,
+            "reference_page_ngram_coverage": 0.680593,
+            "f1": 0.802224
+          },
+          {
+            "n": 4,
+            "reference_ngram_count": 957,
+            "output_ngram_count": 614,
+            "matched_ngram_count": 596,
+            "output_page_ngram_match_rate": 0.970684,
+            "reference_page_ngram_coverage": 0.62278,
+            "f1": 0.758752
+          },
+          {
+            "n": 5,
+            "reference_ngram_count": 1056,
+            "output_ngram_count": 651,
+            "matched_ngram_count": 627,
+            "output_page_ngram_match_rate": 0.963134,
+            "reference_page_ngram_coverage": 0.59375,
+            "f1": 0.734622
+          },
+          {
+            "n": 6,
+            "reference_ngram_count": 1121,
+            "output_ngram_count": 674,
+            "matched_ngram_count": 645,
+            "output_page_ngram_match_rate": 0.956973,
+            "reference_page_ngram_coverage": 0.575379,
+            "f1": 0.718663
+          },
+          {
+            "n": 7,
+            "reference_ngram_count": 1173,
+            "output_ngram_count": 691,
+            "matched_ngram_count": 657,
+            "output_page_ngram_match_rate": 0.950796,
+            "reference_page_ngram_coverage": 0.560102,
+            "f1": 0.704936
+          },
+          {
+            "n": 8,
+            "reference_ngram_count": 1218,
+            "output_ngram_count": 705,
+            "matched_ngram_count": 666,
+            "output_page_ngram_match_rate": 0.944681,
+            "reference_page_ngram_coverage": 0.546798,
+            "f1": 0.692668
+          },
+          {
+            "n": 9,
+            "reference_ngram_count": 1254,
+            "output_ngram_count": 718,
+            "matched_ngram_count": 673,
+            "output_page_ngram_match_rate": 0.937326,
+            "reference_page_ngram_coverage": 0.536683,
+            "f1": 0.682556
+          },
+          {
+            "n": 10,
+            "reference_ngram_count": 1285,
+            "output_ngram_count": 729,
+            "matched_ngram_count": 678,
+            "output_page_ngram_match_rate": 0.930041,
+            "reference_page_ngram_coverage": 0.527626,
+            "f1": 0.673287
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "by_model": {
+      "gemma4-26b-moe": [
+        {
+          "n": 1,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.926887,
+          "reference_page_ngram_coverage": 0.915975,
+          "f1": 0.911015
+        },
+        {
+          "n": 2,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.900483,
+          "reference_page_ngram_coverage": 0.825584,
+          "f1": 0.841947
+        },
+        {
+          "n": 3,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.868831,
+          "reference_page_ngram_coverage": 0.708415,
+          "f1": 0.751995
+        },
+        {
+          "n": 4,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.827874,
+          "reference_page_ngram_coverage": 0.648447,
+          "f1": 0.693631
+        },
+        {
+          "n": 5,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.789343,
+          "reference_page_ngram_coverage": 0.602288,
+          "f1": 0.648369
+        },
+        {
+          "n": 6,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.75268,
+          "reference_page_ngram_coverage": 0.560347,
+          "f1": 0.608159
+        },
+        {
+          "n": 7,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.72671,
+          "reference_page_ngram_coverage": 0.533583,
+          "f1": 0.581698
+        },
+        {
+          "n": 8,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.707403,
+          "reference_page_ngram_coverage": 0.514684,
+          "f1": 0.562586
+        },
+        {
+          "n": 9,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.692456,
+          "reference_page_ngram_coverage": 0.501317,
+          "f1": 0.548686
+        },
+        {
+          "n": 10,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.677987,
+          "reference_page_ngram_coverage": 0.488977,
+          "f1": 0.535909
+        }
+      ],
+      "glm-4.6v-flash": [
+        {
+          "n": 1,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.995536,
+          "reference_page_ngram_coverage": 0.870326,
+          "f1": 0.912847
+        },
+        {
+          "n": 2,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.969745,
+          "reference_page_ngram_coverage": 0.782628,
+          "f1": 0.833468
+        },
+        {
+          "n": 3,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.952237,
+          "reference_page_ngram_coverage": 0.710051,
+          "f1": 0.770609
+        },
+        {
+          "n": 4,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.929638,
+          "reference_page_ngram_coverage": 0.678245,
+          "f1": 0.736548
+        },
+        {
+          "n": 5,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.909132,
+          "reference_page_ngram_coverage": 0.660361,
+          "f1": 0.715404
+        },
+        {
+          "n": 6,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.889482,
+          "reference_page_ngram_coverage": 0.647608,
+          "f1": 0.699482
+        },
+        {
+          "n": 7,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.87212,
+          "reference_page_ngram_coverage": 0.636324,
+          "f1": 0.686185
+        },
+        {
+          "n": 8,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.855811,
+          "reference_page_ngram_coverage": 0.626545,
+          "f1": 0.674672
+        },
+        {
+          "n": 9,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.840069,
+          "reference_page_ngram_coverage": 0.618066,
+          "f1": 0.664475
+        },
+        {
+          "n": 10,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.824342,
+          "reference_page_ngram_coverage": 0.610269,
+          "f1": 0.65505
+        }
+      ],
+      "qwen3.6-27b": [
+        {
+          "n": 1,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.9875,
+          "reference_page_ngram_coverage": 0.936356,
+          "f1": 0.959095
+        },
+        {
+          "n": 2,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.943541,
+          "reference_page_ngram_coverage": 0.839517,
+          "f1": 0.879108
+        },
+        {
+          "n": 3,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.914032,
+          "reference_page_ngram_coverage": 0.727711,
+          "f1": 0.793794
+        },
+        {
+          "n": 4,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.870657,
+          "reference_page_ngram_coverage": 0.667768,
+          "f1": 0.734549
+        },
+        {
+          "n": 5,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.828415,
+          "reference_page_ngram_coverage": 0.621521,
+          "f1": 0.687075
+        },
+        {
+          "n": 6,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.788416,
+          "reference_page_ngram_coverage": 0.581106,
+          "f1": 0.645442
+        },
+        {
+          "n": 7,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.758972,
+          "reference_page_ngram_coverage": 0.554646,
+          "f1": 0.616974
+        },
+        {
+          "n": 8,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.737122,
+          "reference_page_ngram_coverage": 0.536266,
+          "f1": 0.596716
+        },
+        {
+          "n": 9,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.720503,
+          "reference_page_ngram_coverage": 0.523841,
+          "f1": 0.582352
+        },
+        {
+          "n": 10,
+          "records": 4,
+          "output_page_ngram_match_rate": 0.704946,
+          "reference_page_ngram_coverage": 0.512903,
+          "f1": 0.569518
+        }
+      ]
+    },
+    "overall": [
+      {
+        "n": 1,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.969974,
+        "reference_page_ngram_coverage": 0.907552,
+        "f1": 0.927653
+      },
+      {
+        "n": 2,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.937923,
+        "reference_page_ngram_coverage": 0.81591,
+        "f1": 0.851508
+      },
+      {
+        "n": 3,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.9117,
+        "reference_page_ngram_coverage": 0.715392,
+        "f1": 0.772133
+      },
+      {
+        "n": 4,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.876056,
+        "reference_page_ngram_coverage": 0.66482,
+        "f1": 0.721576
+      },
+      {
+        "n": 5,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.842297,
+        "reference_page_ngram_coverage": 0.628056,
+        "f1": 0.683616
+      },
+      {
+        "n": 6,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.810193,
+        "reference_page_ngram_coverage": 0.596354,
+        "f1": 0.651028
+      },
+      {
+        "n": 7,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.785934,
+        "reference_page_ngram_coverage": 0.574851,
+        "f1": 0.628286
+      },
+      {
+        "n": 8,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.766779,
+        "reference_page_ngram_coverage": 0.559165,
+        "f1": 0.611325
+      },
+      {
+        "n": 9,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.751009,
+        "reference_page_ngram_coverage": 0.547741,
+        "f1": 0.598504
+      },
+      {
+        "n": 10,
+        "records": 12,
+        "output_page_ngram_match_rate": 0.735759,
+        "reference_page_ngram_coverage": 0.537383,
+        "f1": 0.586825
+      }
+    ]
+  }
+}

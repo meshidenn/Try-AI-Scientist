@@ -1,0 +1,20 @@
+{
+  "experiment_id": "exp-001",
+  "claims": [
+    {
+      "claim": "選定ページ22件は、32K context再試行を統合してすべて成功した。",
+      "support": "logs/vllm-run.json + logs/vllm-retry-integrated-p11-32k.json",
+      "scope": "4資料の最大3ページ、2方式"
+    },
+    {
+      "claim": "parse_firstは選定ページ比較でimage_firstより本文長近似と数値token再現率が高かった。",
+      "support": "results/page_metrics.json",
+      "scope": "22件の選定ページ比較"
+    },
+    {
+      "claim": "parse_firstは表行幅一貫性も高かったが、セル単位のgold評価が必要である。",
+      "support": "results/results.md",
+      "scope": "表中心ページは評価済み、セル単位goldは未評価"
+    }
+  ]
+}

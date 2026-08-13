@@ -1,0 +1,865 @@
+{
+  "experiment_id": "exp-004",
+  "source_logs": [
+    "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-image-first-pilot.json",
+    "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-hybrid-pilot.json",
+    "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/internvl3.5-8b-pilot.json",
+    "projects/pdf-to-markdown-toyota/experiments/exp-004/logs/glm-4.6v-flash-pilot.json"
+  ],
+  "records": [
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "image_first",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/image_first/securities_report/page-0135.md",
+      "wall_time_seconds": 240.085459,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.704993,
+        "numeric_token_recall": 0.583333,
+        "numeric_token_precision": 0.942308,
+        "numeric_token_f1": 0.720588,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 52,
+        "matched_numeric_token_count": 49,
+        "table_shapes": [
+          [
+            17,
+            11,
+            false
+          ]
+        ],
+        "table_row_width_consistent": false
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "image_first",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/image_first/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 181.609934,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.888508,
+        "numeric_token_recall": 0.854545,
+        "numeric_token_precision": 0.854545,
+        "numeric_token_f1": 0.854545,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 55,
+        "matched_numeric_token_count": 47,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "image_first",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/image_first/integrated_report/page-0011.md",
+      "wall_time_seconds": 128.310655,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.16234,
+        "numeric_token_recall": 0.030075,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.058394,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 4,
+        "matched_numeric_token_count": 4,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "image_first",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/image_first/midterm_policy/page-0002.md",
+      "wall_time_seconds": 108.263584,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.999439,
+        "numeric_token_recall": 1.0,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 1.0,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 7,
+        "matched_numeric_token_count": 7,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/securities_report/page-0135.md",
+      "wall_time_seconds": 250.128822,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.672142,
+        "numeric_token_recall": 0.583333,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.736842,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 49,
+        "matched_numeric_token_count": 49,
+        "table_shapes": [
+          [
+            16,
+            10,
+            false
+          ]
+        ],
+        "table_row_width_consistent": false
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 163.779572,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.843648,
+        "numeric_token_recall": 0.836364,
+        "numeric_token_precision": 0.851852,
+        "numeric_token_f1": 0.844037,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 54,
+        "matched_numeric_token_count": 46,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/integrated_report/page-0011.md",
+      "wall_time_seconds": 262.000238,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.325879,
+        "numeric_token_recall": 0.180451,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.305732,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 24,
+        "matched_numeric_token_count": 24,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "qwen3.6-27b",
+      "model_id": "Qwen/Qwen3.6-27B",
+      "served_model": "qwen3.6-27b",
+      "model_revision": null,
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18022/v1",
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/qwen3.6-27b/hybrid/midterm_policy/page-0002.md",
+      "wall_time_seconds": 104.35766,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.999439,
+        "numeric_token_recall": 1.0,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 1.0,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 7,
+        "matched_numeric_token_count": 7,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "image_first",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/image_first/securities_report/page-0135.md",
+      "wall_time_seconds": 94.212789,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.787122,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/hybrid/securities_report/page-0135.md",
+      "wall_time_seconds": 80.180255,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.738502,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "image_first",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/image_first/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 76.193943,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.522177,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/hybrid/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 78.648536,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.493804,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "image_first",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/image_first/integrated_report/page-0011.md",
+      "wall_time_seconds": 77.220818,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.298522,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/hybrid/integrated_report/page-0011.md",
+      "wall_time_seconds": 83.751091,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.378994,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "image_first",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/image_first/midterm_policy/page-0002.md",
+      "wall_time_seconds": 74.440666,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.024719,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "internvl3.5-8b",
+      "model_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "served_model": "internvl3.5-8b",
+      "model_revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18023/v1",
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/internvl3.5-8b/hybrid/midterm_policy/page-0002.md",
+      "wall_time_seconds": 76.460189,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.496067,
+        "numeric_token_recall": 0.0,
+        "numeric_token_precision": null,
+        "numeric_token_f1": 0.0,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 0,
+        "matched_numeric_token_count": 0,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "image_first",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/image_first/securities_report/page-0135.md",
+      "wall_time_seconds": 119.198008,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.76544,
+        "numeric_token_recall": 0.583333,
+        "numeric_token_precision": 0.942308,
+        "numeric_token_f1": 0.720588,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 52,
+        "matched_numeric_token_count": 49,
+        "table_shapes": [
+          [
+            19,
+            10,
+            false
+          ]
+        ],
+        "table_row_width_consistent": false
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "hybrid",
+      "document": "securities_report",
+      "page": 135,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 1816,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/securities_report/page-0135.md",
+      "wall_time_seconds": 102.384151,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.788436,
+        "numeric_token_recall": 0.583333,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.736842,
+        "reference_numeric_token_count": 84,
+        "output_numeric_token_count": 49,
+        "matched_numeric_token_count": 49,
+        "table_shapes": [
+          [
+            19,
+            10,
+            false
+          ]
+        ],
+        "table_row_width_consistent": false
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "image_first",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/image_first/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 45.28531,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.967181,
+        "numeric_token_recall": 0.836364,
+        "numeric_token_precision": 0.851852,
+        "numeric_token_f1": 0.844037,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 54,
+        "matched_numeric_token_count": 46,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "hybrid",
+      "document": "earnings_presentation",
+      "page": 8,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 601,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/earnings_presentation/page-0008.md",
+      "wall_time_seconds": 45.087298,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.947876,
+        "numeric_token_recall": 0.963636,
+        "numeric_token_precision": 0.981481,
+        "numeric_token_f1": 0.972477,
+        "reference_numeric_token_count": 55,
+        "output_numeric_token_count": 54,
+        "matched_numeric_token_count": 53,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "image_first",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/image_first/integrated_report/page-0011.md",
+      "wall_time_seconds": 48.927267,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.122204,
+        "numeric_token_recall": 0.015038,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.02963,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 2,
+        "matched_numeric_token_count": 2,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "hybrid",
+      "document": "integrated_report",
+      "page": 11,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 5847,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/integrated_report/page-0011.md",
+      "wall_time_seconds": 57.033919,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.133586,
+        "numeric_token_recall": 0.022556,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.044118,
+        "reference_numeric_token_count": 133,
+        "output_numeric_token_count": 3,
+        "matched_numeric_token_count": 3,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "image_first",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/image_first/midterm_policy/page-0002.md",
+      "wall_time_seconds": 44.143715,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.998315,
+        "numeric_token_recall": 0.857143,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.923077,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 6,
+        "matched_numeric_token_count": 6,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "model_id": "zai-org/GLM-4.6V-Flash",
+      "served_model": "glm-4.6v-flash",
+      "model_revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "backend": "local_vllm_openai",
+      "base_url": "http://127.0.0.1:18024/v1",
+      "method": "hybrid",
+      "document": "midterm_policy",
+      "page": 2,
+      "output_format": "markdown",
+      "input_modalities": [
+        "page_image",
+        "parse_payload"
+      ],
+      "input_text_length": 2096,
+      "status": "success",
+      "output_path": "/home/hiroki/work/Try-AI-Scientist/projects/pdf-to-markdown-toyota/experiments/exp-004/outputs/glm-4.6v-flash/hybrid/midterm_policy/page-0002.md",
+      "wall_time_seconds": 42.481407,
+      "metrics": {
+        "status": "success",
+        "text_normalized_similarity_proxy": 0.998315,
+        "numeric_token_recall": 0.857143,
+        "numeric_token_precision": 1.0,
+        "numeric_token_f1": 0.923077,
+        "reference_numeric_token_count": 7,
+        "output_numeric_token_count": 6,
+        "matched_numeric_token_count": 6,
+        "table_shapes": [],
+        "table_row_width_consistent": null
+      }
+    }
+  ],
+  "summary": [
+    {
+      "model": "glm-4.6v-flash",
+      "method": "hybrid",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.717053,
+      "numeric_token_recall": 0.606667,
+      "numeric_token_precision": 0.99537,
+      "numeric_token_f1": 0.669129,
+      "wall_time_seconds": 61.746694,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "glm-4.6v-flash",
+      "method": "image_first",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.713285,
+      "numeric_token_recall": 0.57297,
+      "numeric_token_precision": 0.94854,
+      "numeric_token_f1": 0.629333,
+      "wall_time_seconds": 64.388575,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "internvl3.5-8b",
+      "method": "hybrid",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.526842,
+      "numeric_token_recall": 0.0,
+      "numeric_token_precision": null,
+      "numeric_token_f1": 0.0,
+      "wall_time_seconds": 79.760018,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "internvl3.5-8b",
+      "method": "image_first",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.408135,
+      "numeric_token_recall": 0.0,
+      "numeric_token_precision": null,
+      "numeric_token_f1": 0.0,
+      "wall_time_seconds": 80.517054,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "qwen3.6-27b",
+      "method": "hybrid",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.710277,
+      "numeric_token_recall": 0.650037,
+      "numeric_token_precision": 0.962963,
+      "numeric_token_f1": 0.721653,
+      "wall_time_seconds": 195.066573,
+      "consistent_table_pages": 0
+    },
+    {
+      "model": "qwen3.6-27b",
+      "method": "image_first",
+      "records": 4,
+      "successes": 4,
+      "text_normalized_similarity_proxy": 0.68882,
+      "numeric_token_recall": 0.616988,
+      "numeric_token_precision": 0.949213,
+      "numeric_token_f1": 0.658382,
+      "wall_time_seconds": 164.567408,
+      "consistent_table_pages": 0
+    }
+  ]
+}

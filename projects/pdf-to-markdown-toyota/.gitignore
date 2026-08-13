@@ -1,0 +1,7 @@
+experiments/*/workspace/input/pdfs/*.pdf
+experiments/*/workspace/outputs/
+experiments/*/workspace/outputs-vllm/
+experiments/*/workspace/outputs-vllm-html/
+experiments/*/workspace/outputs-hybrid/
+experiments/*/workspace/**/__pycache__/
+workspace/__pycache__/

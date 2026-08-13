@@ -1,0 +1,24 @@
+{
+  "experiment_id": "exp-007",
+  "claims": [
+    {
+      "claim": "有報p135では、座標chunk化と4096 token出力により、表本体83数値tokenの集合ベースrecallが1.0になった。",
+      "status": "supported",
+      "support_level": "direct",
+      "artifacts": [
+        "results/chunk_metrics.json",
+        "results/scores.json"
+      ],
+      "notes": "一括baselineを同じ83 token参照集合で再計算すると0.590361。"
+    },
+    {
+      "claim": "座標chunk化により表のセル・列対応が正しい。",
+      "status": "unsupported",
+      "support_level": "none",
+      "artifacts": [
+        "results/chunk_metrics.json"
+      ],
+      "notes": "両chunkのMarkdown表行幅は不一致で、当年度表には[判読不能]セルが残る。"
+    }
+  ]
+}

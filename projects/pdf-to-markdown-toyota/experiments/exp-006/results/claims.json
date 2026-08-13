@@ -1,0 +1,37 @@
+{
+  "experiment_id": "exp-006",
+  "claims": [
+    {
+      "claim": "モデル合意だけを平均したconfidenceは、数値の欠落を隠す。",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/ensemble_confidence.json",
+        "results/results.md"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "有価証券報告書 p135は候補49件が全てHighだがPDF numeric coverageは0.583333。"
+    },
+    {
+      "claim": "この初版の数値token confidenceは、表のセル・列の対応を保証しない。",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "spec.yaml",
+        "workspace/evaluate_ensemble_confidence.py"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "評価単位は位置情報を持たない数値token集合である。"
+    },
+    {
+      "claim": "High/Medium/Lowを正答確率として使える。",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/ensemble_confidence.json"
+      ],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "人手正解ラベルに対する校正をまだ実施していない。"
+    }
+  ]
+}
