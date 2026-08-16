@@ -1,0 +1,33 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-006",
+  "status": "completed",
+  "objective": "Compare official-data feature bundle and model candidates against exp-005.",
+  "agent_runs": [
+    {
+      "date": "2026-07-01",
+      "summary": "Ran RandomForest, ExtraTrees, and HistGradientBoosting on official data with identical folds. Selected hist_gradient_boosting."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md",
+    "data": "../../data/spaceship-titanic",
+    "baseline": "../exp-005/results/scores.json"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Best CV accuracy was 0.808810 with HistGradientBoosting, improving over exp-005 by 0.064535. Kaggle public score was 0.803830.",
+  "next_actions": [
+    "Run HistGradientBoosting hyperparameter search.",
+    "Consider CatBoost or LightGBM via uv add.",
+    "Use public score 0.803830 as the leaderboard baseline."
+  ]
+}

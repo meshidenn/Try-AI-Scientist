@@ -1,0 +1,47 @@
+{
+  "status": "audited",
+  "claims": [
+    {
+      "claim": "exp-004 completed a controlled local fixture model comparison.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json",
+        "results/results.md",
+        "logs/run.log"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "scores.json status is completed and contains both candidates."
+    },
+    {
+      "claim": "RandomForestClassifier was selected over LogisticRegression.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "random_forest CV accuracy was 0.6666666666666667; logistic_regression was 0.6433333333333333."
+    },
+    {
+      "claim": "The selected candidate exceeded the majority baseline by 0.133333 local CV accuracy.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "0.6666666666666667 - 0.5333333333333333 = 0.1333333333333334."
+    },
+    {
+      "claim": "The comparison proves RandomForestClassifier is better for the real Kaggle competition.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json"
+      ],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "The comparison used a synthetic fixture and has no public leaderboard score."
+    }
+  ]
+}

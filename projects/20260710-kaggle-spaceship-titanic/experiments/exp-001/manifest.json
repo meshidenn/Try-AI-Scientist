@@ -1,0 +1,30 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-001",
+  "status": "blocked",
+  "objective": "Run the official Kaggle Spaceship Titanic baseline.",
+  "agent_runs": [
+    {
+      "date": "2026-06-30",
+      "summary": "Installed dependencies and attempted Kaggle API download. Download failed because kaggle.json was not available."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Official benchmark execution is blocked on Kaggle credentials or manual data download.",
+  "next_actions": [
+    "Place train.csv, test.csv, and sample_submission.csv in workspace/data.",
+    "Rerun workspace/train_baseline.py with uv run python."
+  ]
+}

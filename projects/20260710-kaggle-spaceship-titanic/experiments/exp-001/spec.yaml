@@ -1,0 +1,64 @@
+id: exp-001
+title: Baseline workflow smoke test
+status: planned
+created: 2026-06-30
+benchmark:
+  platform: Kaggle
+  competition: Spaceship Titanic
+  url: https://www.kaggle.com/competitions/spaceship-titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  A minimal tabular ML baseline is enough to validate the repository's artifact
+  workflow because it produces code, logs, scores, a submission file, and
+  reviewable claims in one short iteration.
+dataset:
+  expected_files:
+    - train.csv
+    - test.csv
+    - sample_submission.csv
+  acquisition:
+    preferred: kaggle competitions download -c spaceship-titanic
+    fallback: manual download from Kaggle UI into workspace/data
+  local_data_dir: workspace/data
+method:
+  baseline:
+    - load train/test CSVs
+    - split PassengerId into optional group features if useful
+    - impute missing numeric and categorical values
+    - one-hot encode categorical features
+    - train at least one sklearn pipeline
+    - evaluate with stratified cross-validation
+    - generate submission.csv with PassengerId and Transported
+metrics:
+  local:
+    primary: accuracy_mean
+    secondary:
+      - accuracy_std
+      - fold_count
+      - majority_baseline_accuracy
+  kaggle:
+    primary: public_leaderboard_score
+    optional: private_leaderboard_score
+artifacts:
+  required:
+    - workspace/train_baseline.py
+    - workspace/submission.csv
+    - results/results.md
+    - results/scores.json
+    - logs/run.log
+    - review/artifact-audit.md
+    - review/result-interpretation.md
+    - review/next-plan.md
+success_criteria:
+  - Baseline script runs from the experiment directory.
+  - submission.csv matches Kaggle sample submission columns.
+  - scores.json contains local CV and baseline comparison.
+  - results.md includes command, environment, data path, metric table, and limitations.
+  - artifact audit can verify that all required outputs exist.
+  - interpretation distinguishes observed results from speculation.
+known_risks:
+  - Kaggle API credentials may not be configured locally.
+  - Public leaderboard feedback requires manual submission unless API auth works.
+  - A good local CV score may not transfer to Kaggle's hidden split.

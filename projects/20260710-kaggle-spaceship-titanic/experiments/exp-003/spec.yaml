@@ -1,0 +1,27 @@
+id: exp-003
+title: Local fixture larger sample
+status: planned
+created: 2026-06-30
+benchmark:
+  platform: local_fixture
+  competition_shape: Kaggle Spaceship Titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  Repeating the workflow on a larger synthetic fixture should produce complete
+  comparable artifacts and expose whether experiment-to-experiment comparison
+  is easy from stored files alone.
+dataset:
+  generator: workspace/make_fixture_data.py
+  train_rows: 5000
+  test_rows: 1200
+method:
+  baseline: RandomForestClassifier sklearn pipeline from exp-001
+metrics:
+  primary: cross_validated_accuracy
+  comparison: exp-002 local fixture baseline
+success_criteria:
+  - Fixture data is generated locally with a different size.
+  - Baseline script completes.
+  - scores.json can be compared with exp-002 without reading chat history.

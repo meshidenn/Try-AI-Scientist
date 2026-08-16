@@ -1,0 +1,3 @@
+2026-07-01 02:21:06,879 INFO CV accuracy scores: [0.7538815411155837, 0.7429557216791259, 0.7481311098332375, 0.7399309551208285, 0.7364787111622555]
+2026-07-01 02:21:07,413 INFO Wrote /Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-005/workspace/submission.csv
+2026-07-01 02:21:07,413 INFO Wrote /Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-005/results/scores.json

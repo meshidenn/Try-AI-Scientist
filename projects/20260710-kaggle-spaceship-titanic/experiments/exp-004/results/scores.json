@@ -1,0 +1,44 @@
+{
+  "experiment_id": "exp-004",
+  "status": "completed",
+  "benchmark": "spaceship-titanic",
+  "selected_model": "random_forest",
+  "metrics": {
+    "primary": {
+      "name": "cross_validated_accuracy",
+      "value": 0.6666666666666667,
+      "higher_is_better": true
+    },
+    "majority_baseline_accuracy": 0.5333333333333333,
+    "candidates": {
+      "logistic_regression": {
+        "accuracy_mean": 0.6433333333333333,
+        "accuracy_std": 0.019649710204252636,
+        "fold_scores": [
+          0.6375,
+          0.6125,
+          0.6625,
+          0.6666666666666666,
+          0.6375
+        ]
+      },
+      "random_forest": {
+        "accuracy_mean": 0.6666666666666667,
+        "accuracy_std": 0.02024159633581851,
+        "fold_scores": [
+          0.6416666666666667,
+          0.6833333333333333,
+          0.6958333333333333,
+          0.6625,
+          0.65
+        ]
+      }
+    },
+    "fold_count": 5
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "run_log": "logs/run.log"
+  },
+  "data_dir": "/Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-004/workspace/data"
+}

@@ -1,0 +1,31 @@
+id: exp-006
+title: Official data feature bundle and model comparison
+status: planned
+created: 2026-07-01
+benchmark:
+  platform: Kaggle
+  competition: Spaceship Titanic
+  data_dir: ../../data/spaceship-titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  Adding spending, missingness, cabin, and group features and comparing multiple
+  tree models under identical folds will improve local CV over exp-005.
+method:
+  feature_bundle:
+    - GroupId, GroupPosition, GroupSize
+    - CabinDeck, CabinNum, CabinSide
+    - TotalSpend, NoSpend, LuxurySpend, ServiceSpend
+    - missing indicators
+    - HomePlanet/Destination and CabinDeck/CabinSide combinations
+  candidates:
+    - RandomForestClassifier
+    - ExtraTreesClassifier
+    - HistGradientBoostingClassifier
+metrics:
+  primary: 5-fold stratified CV accuracy
+success_criteria:
+  - All candidates run on identical folds.
+  - scores.json records fold scores and selected model.
+  - selected model writes a valid submission.csv.

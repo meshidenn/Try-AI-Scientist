@@ -1,0 +1,26 @@
+id: exp-005
+title: Official data RandomForest baseline
+status: planned
+created: 2026-07-01
+benchmark:
+  platform: Kaggle
+  competition: Spaceship Titanic
+  data_dir: ../../data/spaceship-titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  The current RandomForest baseline can run unchanged on official Kaggle data
+  and produce a valid submission plus local CV score.
+method:
+  model: RandomForestClassifier
+  features:
+    - raw numeric and categorical columns except Name, PassengerId, Cabin
+    - PassengerId-derived group features
+    - Cabin-derived deck, number, and side
+metrics:
+  primary: 5-fold stratified CV accuracy
+success_criteria:
+  - Training completes on official data.
+  - submission.csv has 4277 rows and columns PassengerId, Transported.
+  - scores.json records fold scores, mean, std, and majority baseline.

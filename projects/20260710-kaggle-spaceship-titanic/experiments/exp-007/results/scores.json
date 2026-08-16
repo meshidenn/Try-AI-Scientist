@@ -1,0 +1,43 @@
+{
+  "experiment_id": "exp-007",
+  "status": "completed",
+  "benchmark": "spaceship-titanic",
+  "data_kind": "official_kaggle",
+  "metrics": {
+    "primary": {
+      "name": "gap_stratified_minus_group",
+      "value": 0.00379568168418154,
+      "higher_is_better": false
+    },
+    "stratified": {
+      "accuracy_mean": 0.8088104680348149,
+      "accuracy_std": 0.007785688572115683,
+      "fold_scores": [
+        0.8136860264519838,
+        0.8027602070155262,
+        0.8205865439907993,
+        0.8084004602991944,
+        0.7986191024165707
+      ]
+    },
+    "stratified_group": {
+      "accuracy_mean": 0.8050147863506334,
+      "accuracy_std": 0.005506097781093016,
+      "fold_scores": [
+        0.8056354226566993,
+        0.8154111558366878,
+        0.8004600345025877,
+        0.8026467203682394,
+        0.8009205983889528
+      ]
+    },
+    "gap_stratified_minus_group": 0.00379568168418154,
+    "fold_count": 5
+  },
+  "model": "HistGradientBoostingClassifier",
+  "artifacts": {
+    "results_md": "results/results.md",
+    "scores_json": "results/scores.json",
+    "run_log": "logs/run.log"
+  }
+}

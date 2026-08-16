@@ -1,0 +1,33 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-008",
+  "status": "completed",
+  "objective": "Tune HistGradientBoosting hyperparameters and test whether local CV improvement transfers to Kaggle public leaderboard.",
+  "agent_runs": [
+    {
+      "date": "2026-07-03",
+      "summary": "Ran 36 HistGradientBoosting candidates, selected hgb_004, submitted to Kaggle, and recorded public score."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md",
+    "data": "../../data/spaceship-titanic",
+    "baseline": "../exp-006/results/scores.json"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Best CV accuracy improved to 0.812261, but public leaderboard score decreased to 0.802430 versus exp-006 public score 0.803830.",
+  "next_actions": [
+    "Keep exp-006 as the public leaderboard baseline.",
+    "Prefer robustness checks before the next submission.",
+    "Consider CatBoost or LightGBM via uv add."
+  ]
+}

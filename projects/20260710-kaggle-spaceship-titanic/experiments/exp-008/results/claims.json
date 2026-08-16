@@ -1,0 +1,29 @@
+{
+  "status": "audited",
+  "claims": [
+    {
+      "claim": "exp-008 improved local CV over exp-006 by 0.003451.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json", "../exp-006/results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "0.8122613223609723 - 0.8088104680348149 = 0.0034508543261573266."
+    },
+    {
+      "claim": "exp-008 public leaderboard score was 0.80243.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "Kaggle submission ref 54296477 has public_score 0.80243."
+    },
+    {
+      "claim": "exp-008 improved public leaderboard score over exp-006.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json", "../exp-006/results/scores.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "exp-008 public score 0.80243 is lower than exp-006 public score 0.80383."
+    }
+  ]
+}

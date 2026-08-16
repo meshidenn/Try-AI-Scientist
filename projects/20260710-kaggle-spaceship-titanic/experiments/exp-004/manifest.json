@@ -1,0 +1,31 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-004",
+  "status": "completed",
+  "objective": "Compare LogisticRegression and RandomForestClassifier on the same local fixture under a shared artifact contract.",
+  "agent_runs": [
+    {
+      "date": "2026-06-30",
+      "summary": "Generated fixture CSV files, ran two candidate pipelines on identical folds, selected random_forest, and wrote review artifacts."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Completed candidate comparison. random_forest scored 0.666667 CV accuracy; logistic_regression scored 0.643333.",
+  "next_actions": [
+    "Add a selected-model submission step.",
+    "Run the selected candidate on official Kaggle data.",
+    "Record public leaderboard score before making benchmark claims."
+  ]
+}

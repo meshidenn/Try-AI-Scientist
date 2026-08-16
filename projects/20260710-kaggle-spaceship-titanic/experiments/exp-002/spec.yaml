@@ -1,0 +1,28 @@
+id: exp-002
+title: Local fixture baseline
+status: planned
+created: 2026-06-30
+benchmark:
+  platform: local_fixture
+  competition_shape: Kaggle Spaceship Titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  A synthetic dataset with the same broad columns as Spaceship Titanic can
+  validate the repository's experiment artifact workflow even when official
+  Kaggle data is unavailable.
+dataset:
+  generator: workspace/make_fixture_data.py
+  train_rows: 1200
+  test_rows: 400
+method:
+  baseline: RandomForestClassifier sklearn pipeline from exp-001
+metrics:
+  primary: cross_validated_accuracy
+  comparison: majority_class_baseline
+success_criteria:
+  - Fixture data is generated locally.
+  - Baseline script completes.
+  - submission.csv, scores.json, results.md, and run.log are produced.
+  - Artifact audit can pass with warnings that the dataset is synthetic.

@@ -1,0 +1,4 @@
+2026-06-30 08:29:51,731 INFO Loading data from /Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-002/workspace/data
+2026-06-30 08:29:52,741 INFO CV accuracy scores: [0.6416666666666667, 0.6791666666666667, 0.6958333333333333, 0.6666666666666666, 0.65]
+2026-06-30 08:29:53,003 INFO Wrote /Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-002/workspace/submission.csv
+2026-06-30 08:29:53,004 INFO Wrote /Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-002/results/scores.json

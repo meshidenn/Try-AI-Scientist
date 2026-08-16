@@ -1,0 +1,29 @@
+{
+  "status": "audited",
+  "claims": [
+    {
+      "claim": "Group-aware CV was 0.805015 for the exp-006 selected model.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "stratified_group.accuracy_mean is 0.8050147863506334."
+    },
+    {
+      "claim": "The gap between ordinary stratified CV and group-aware CV was small at 0.003796.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "gap_stratified_minus_group is 0.00379568168418154."
+    },
+    {
+      "claim": "Group-aware CV proves the public leaderboard score will match local CV.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "No leaderboard score is recorded and group-aware CV is only a diagnostic."
+    }
+  ]
+}

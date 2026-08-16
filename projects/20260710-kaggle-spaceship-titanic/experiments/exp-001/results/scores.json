@@ -1,0 +1,14 @@
+{
+  "experiment_id": "exp-001",
+  "status": "blocked",
+  "benchmark": "spaceship-titanic",
+  "metrics": {},
+  "blocking_issue": "Kaggle API credentials were not available; official CSV files were not downloaded.",
+  "artifacts": {
+    "results_md": "results/results.md",
+    "logs": [
+      "logs/data-acquisition.log"
+    ]
+  },
+  "updated": "2026-06-30"
+}

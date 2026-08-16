@@ -1,0 +1,31 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-005",
+  "status": "completed",
+  "objective": "Run the RandomForest baseline on official Kaggle Spaceship Titanic data.",
+  "agent_runs": [
+    {
+      "date": "2026-07-01",
+      "summary": "Ran official-data RandomForest baseline with 5-fold StratifiedKFold and generated submission.csv."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md",
+    "data": "../../data/spaceship-titanic"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Official-data baseline CV accuracy was 0.744276.",
+  "next_actions": [
+    "Compare feature-engineered model candidates against 0.744276.",
+    "Record public leaderboard score after submission."
+  ]
+}

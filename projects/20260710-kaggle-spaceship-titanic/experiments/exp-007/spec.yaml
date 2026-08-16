@@ -1,0 +1,24 @@
+id: exp-007
+title: Group-aware CV diagnostic
+status: planned
+created: 2026-07-01
+benchmark:
+  platform: Kaggle
+  competition: Spaceship Titanic
+  data_dir: ../../data/spaceship-titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  If StratifiedKFold is materially higher than group-aware CV, leaderboard
+  expectations should be conservative because group leakage may inflate local CV.
+method:
+  base_model: HistGradientBoostingClassifier from exp-006 selected candidate
+  splitters:
+    - StratifiedKFold
+    - StratifiedGroupKFold
+metrics:
+  primary: difference between stratified and group-aware CV accuracy
+success_criteria:
+  - Both CV protocols run.
+  - scores.json records the score gap and interpretation warning.

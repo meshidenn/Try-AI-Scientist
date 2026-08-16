@@ -1,0 +1,6 @@
+experiments/*/workspace/.venv/
+experiments/*/workspace/data/
+experiments/*/workspace/submission.csv
+experiments/*/workspace/__pycache__/
+!experiments/*/logs/*.log
+data/

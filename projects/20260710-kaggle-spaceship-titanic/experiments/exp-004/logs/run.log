@@ -1,0 +1,4 @@
+2026-06-30 08:38:28,964 INFO logistic_regression CV accuracy scores: [0.6375, 0.6125, 0.6625, 0.6666666666666666, 0.6375]
+2026-06-30 08:38:29,912 INFO random_forest CV accuracy scores: [0.6416666666666667, 0.6833333333333333, 0.6958333333333333, 0.6625, 0.65]
+2026-06-30 08:38:29,913 INFO Selected model: random_forest
+2026-06-30 08:38:29,913 INFO Wrote /Users/hiroki-iida/works/Try-AI-Scientist/projects/kaggle-spaceship-titanic/experiments/exp-004/results/scores.json

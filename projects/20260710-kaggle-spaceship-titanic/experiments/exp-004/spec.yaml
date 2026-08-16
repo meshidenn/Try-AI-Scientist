@@ -1,0 +1,30 @@
+id: exp-004
+title: Controlled model comparison on local fixture
+status: planned
+created: 2026-06-30
+benchmark:
+  platform: local_fixture
+  competition_shape: Kaggle Spaceship Titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  A simple linear model and a random forest can be compared under the same
+  artifact contract, producing enough evidence for an agent to choose a next
+  candidate without chat history.
+dataset:
+  generator: workspace/make_fixture_data.py
+  train_rows: 1200
+  test_rows: 400
+  seed: 42
+method:
+  candidates:
+    - LogisticRegression
+    - RandomForestClassifier
+metrics:
+  primary: cross_validated_accuracy
+  comparison: majority_class_baseline
+success_criteria:
+  - Both candidates run on identical folds.
+  - scores.json records per-model means and standard deviations.
+  - results.md states the selected model and limitations.

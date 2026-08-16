@@ -1,0 +1,32 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-007",
+  "status": "completed",
+  "objective": "Diagnose whether exp-006 local CV may be inflated by passenger-group leakage.",
+  "agent_runs": [
+    {
+      "date": "2026-07-01",
+      "summary": "Ran StratifiedKFold and StratifiedGroupKFold using the exp-006 selected HistGradientBoosting setup."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md",
+    "data": "../../data/spaceship-titanic",
+    "comparison": "../exp-006/results/scores.json"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Group-aware CV was 0.805015, only 0.003796 below ordinary stratified CV.",
+  "next_actions": [
+    "Submit exp-006 prediction file and record public leaderboard score.",
+    "Keep group-aware CV as a diagnostic in future comparisons."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "status": "audited",
+  "claims": [
+    {
+      "claim": "exp-006 improved local CV accuracy over exp-005 by 0.064535.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json", "../exp-005/results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "0.8088104680348149 - 0.7442756077822062 = 0.06453486025260868."
+    },
+    {
+      "claim": "HistGradientBoostingClassifier was the best candidate in exp-006.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "hist_gradient_boosting scored 0.808810, above extra_trees 0.756814 and random_forest 0.740020."
+    },
+    {
+      "claim": "exp-006 establishes a Kaggle public leaderboard score of 0.80383.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "public_leaderboard_score is 0.80383."
+    },
+    {
+      "claim": "exp-006 private leaderboard score is known.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "private_leaderboard_score is null."
+    }
+  ]
+}

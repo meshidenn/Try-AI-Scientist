@@ -1,0 +1,37 @@
+{
+  "status": "audited",
+  "claims": [
+    {
+      "claim": "exp-002 completed the local fixture baseline workflow.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json",
+        "results/results.md",
+        "logs/run.log"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "scores.json status is completed and required artifacts exist."
+    },
+    {
+      "claim": "The model exceeded the majority-class baseline by 0.133333 local CV accuracy.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "0.6666666666666666 - 0.5333333333333333 = 0.1333333333333333."
+    },
+    {
+      "claim": "The run validates Kaggle leaderboard performance.",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json"
+      ],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "public_leaderboard_score is null and the dataset is synthetic."
+    }
+  ]
+}

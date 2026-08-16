@@ -1,0 +1,31 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-002",
+  "status": "completed",
+  "objective": "Validate the experiment artifact workflow on a synthetic Spaceship Titanic-shaped fixture.",
+  "agent_runs": [
+    {
+      "date": "2026-06-30",
+      "summary": "Generated fixture CSV files, ran RandomForest baseline, validated submission shape, and wrote review artifacts."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Completed local fixture baseline. CV accuracy was 0.666667 versus majority baseline 0.533333.",
+  "next_actions": [
+    "Fix fixture generator FutureWarning.",
+    "Run official Kaggle data once credentials or manual CSV files are available.",
+    "Compare multiple model classes in a follow-up experiment."
+  ]
+}

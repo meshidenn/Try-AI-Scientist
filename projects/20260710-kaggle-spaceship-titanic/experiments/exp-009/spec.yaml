@@ -1,0 +1,44 @@
+id: exp-009
+title: Domain imputation and richer spending features
+status: planned
+created: 2026-07-06
+benchmark:
+  platform: Kaggle
+  competition: Spaceship Titanic
+  data_dir: ../../data/spaceship-titanic
+task:
+  type: tabular_binary_classification
+  target: Transported
+hypothesis: >
+  Encoding CryoSleep/spending domain constraints and richer spending profile
+  features will improve robustness over exp-006 and exp-008.
+baselines:
+  exp_006:
+    cv_accuracy: 0.8088104680348149
+    public_score: 0.80383
+  exp_008:
+    cv_accuracy: 0.8122613223609723
+    public_score: 0.80243
+method:
+  model: HistGradientBoostingClassifier
+  validation: 5-fold StratifiedKFold
+  feature_changes:
+    - bidirectional CryoSleep/spending imputation
+    - LogTotalSpend
+    - per-spend log features
+    - spend ratios
+    - NumSpendCategories
+    - BasicSpend and LuxurySpend
+    - IsChild and IsMinor
+    - Surname and FamilySize
+    - group and deck aggregate means
+outputs:
+  - scores.json
+  - results.md
+  - workspace/submission.csv
+  - workspace/oof_predictions.csv
+  - workspace/test_probabilities.csv
+success_criteria:
+  - CV is compared against exp-006 and exp-008.
+  - OOF and test probabilities are saved for future ensembling.
+  - Submission is only made if evidence justifies another public LB probe.

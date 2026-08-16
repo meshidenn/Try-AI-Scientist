@@ -1,0 +1,34 @@
+{
+  "experiment_id": "exp-005",
+  "status": "completed",
+  "benchmark": "spaceship-titanic",
+  "data_kind": "official_kaggle",
+  "metrics": {
+    "primary": {
+      "name": "cross_validated_accuracy",
+      "value": 0.7442756077822062,
+      "higher_is_better": true
+    },
+    "majority_baseline_accuracy": 0.5036236051995858,
+    "accuracy_mean": 0.7442756077822062,
+    "accuracy_std": 0.006140823303859489,
+    "fold_scores": [
+      0.7538815411155837,
+      0.7429557216791259,
+      0.7481311098332375,
+      0.7399309551208285,
+      0.7364787111622555
+    ],
+    "fold_count": 5,
+    "train_accuracy": 0.7483032324859082,
+    "public_leaderboard_score": null
+  },
+  "model": "RandomForestClassifier",
+  "submission_rows": 4277,
+  "artifacts": {
+    "results_md": "results/results.md",
+    "scores_json": "results/scores.json",
+    "submission_csv": "workspace/submission.csv",
+    "run_log": "logs/run.log"
+  }
+}

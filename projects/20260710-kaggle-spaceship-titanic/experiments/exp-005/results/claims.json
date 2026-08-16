@@ -1,0 +1,29 @@
+{
+  "status": "audited",
+  "claims": [
+    {
+      "claim": "exp-005 completed the official-data RandomForest baseline.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json", "results/results.md", "logs/run.log"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "scores.json status is completed."
+    },
+    {
+      "claim": "Official-data RandomForest baseline CV accuracy was 0.744276.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "metrics.primary.value is 0.7442756077822062."
+    },
+    {
+      "claim": "The run establishes Kaggle public leaderboard performance.",
+      "source": "review/result-interpretation.md",
+      "artifacts": ["results/scores.json"],
+      "status": "unsupported",
+      "support_level": "none",
+      "notes": "public_leaderboard_score is null."
+    }
+  ]
+}

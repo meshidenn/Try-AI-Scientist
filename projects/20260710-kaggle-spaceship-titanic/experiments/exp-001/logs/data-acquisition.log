@@ -1,0 +1,13 @@
+2026-06-30 data acquisition attempt
+
+Command:
+.venv/bin/kaggle competitions download -c spaceship-titanic -p data
+
+Observed result:
+Kaggle CLI is installed in workspace/.venv, but authentication failed because
+kaggle.json was not found in /Users/hiroki-iida/.kaggle.
+
+Conclusion:
+Official Kaggle data was not downloaded in this run. The baseline script is
+ready, but real benchmark execution requires Kaggle API credentials or manual
+download of train.csv, test.csv, and sample_submission.csv into workspace/data.

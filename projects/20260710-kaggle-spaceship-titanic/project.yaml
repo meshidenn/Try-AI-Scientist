@@ -1,0 +1,31 @@
+name: kaggle-spaceship-titanic
+title: Kaggle Spaceship Titanic workflow validation
+created: 2026-06-30
+status: planned
+owner: hiroki-iida
+objective: >
+  Validate whether this repository's AI-Scientist-style artifact workflow can
+  run a small, scorable empirical ML task end to end.
+benchmark:
+  platform: Kaggle
+  competition: Spaceship Titanic
+  url: https://www.kaggle.com/competitions/spaceship-titanic
+  task_type: tabular binary classification
+  target: Transported
+primary_question: >
+  Can the workflow produce reproducible survey, experiment, result, audit, and
+  interpretation artifacts for a Kaggle submission without relying on hidden
+  conversational state?
+success_criteria:
+  - Dataset acquisition path is documented.
+  - Baseline training script is reproducible from a clean experiment workspace.
+  - Cross-validation metric and Kaggle submission file are both generated.
+  - results.md and scores.json record observed facts, not only conclusions.
+  - artifact-audit and result-interpretation can be written from stored artifacts.
+constraints:
+  compute: local CPU first
+  time_budget: one short iteration
+  modeling_scope: baseline plus one agent-proposed improvement
+notes:
+  - Do not optimize leaderboard rank in the first pass.
+  - Use this project to test repository workflow quality before automating more infrastructure.

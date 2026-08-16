@@ -1,0 +1,72 @@
+{
+  "experiment_id": "exp-006",
+  "status": "completed",
+  "benchmark": "spaceship-titanic",
+  "data_kind": "official_kaggle",
+  "selected_model": "hist_gradient_boosting",
+  "metrics": {
+    "primary": {
+      "name": "cross_validated_accuracy",
+      "value": 0.8088104680348149,
+      "higher_is_better": true
+    },
+    "majority_baseline_accuracy": 0.5036236051995858,
+    "candidates": {
+      "random_forest": {
+        "accuracy_mean": 0.740019891595437,
+        "accuracy_std": 0.0055787738351474195,
+        "fold_scores": [
+          0.7475560667050029,
+          0.7366302472685451,
+          0.7429557216791259,
+          0.7313003452243959,
+          0.7416570771001151
+        ]
+      },
+      "extra_trees": {
+        "accuracy_mean": 0.7568144595884968,
+        "accuracy_std": 0.008808586187835274,
+        "fold_scores": [
+          0.7717078780908568,
+          0.7510063254744106,
+          0.7596319723979299,
+          0.7560414269275029,
+          0.7456846950517837
+        ]
+      },
+      "hist_gradient_boosting": {
+        "accuracy_mean": 0.8088104680348149,
+        "accuracy_std": 0.007785688572115683,
+        "fold_scores": [
+          0.8136860264519838,
+          0.8027602070155262,
+          0.8205865439907993,
+          0.8084004602991944,
+          0.7986191024165707
+        ]
+      }
+    },
+    "fold_count": 5,
+    "public_leaderboard_score": 0.80383,
+    "private_leaderboard_score": null
+  },
+  "comparison": {
+    "exp_005_accuracy_mean": 0.7442756077822062,
+    "delta_vs_exp_005": 0.06453486025260868
+  },
+  "submission_rows": 4277,
+  "kaggle_submission": {
+    "ref": 54281125,
+    "submitted_at": "2026-07-03 00:28:23.130000",
+    "description": "exp-006 hist_gradient_boosting feature bundle cv=0.808810",
+    "status": "SubmissionStatus.COMPLETE",
+    "public_score": 0.80383,
+    "private_score": null
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "scores_json": "results/scores.json",
+    "submission_csv": "workspace/submission.csv",
+    "run_log": "logs/run.log"
+  }
+}

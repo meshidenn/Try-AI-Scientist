@@ -1,0 +1,31 @@
+{
+  "project": "kaggle-spaceship-titanic",
+  "experiment_id": "exp-003",
+  "status": "completed",
+  "objective": "Repeat the local fixture workflow with a larger synthetic dataset and compare stored artifacts with exp-002.",
+  "agent_runs": [
+    {
+      "date": "2026-06-30",
+      "summary": "Generated larger fixture CSV files, ran RandomForest baseline, validated submission shape, and wrote review artifacts."
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "survey": "../../survey/README.md"
+  },
+  "artifacts": {
+    "workspace": "workspace/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "paper": "paper/",
+    "review": "review/"
+  },
+  "summary": "Completed larger local fixture run. CV accuracy was 0.644800 versus majority baseline 0.538600.",
+  "next_actions": [
+    "Add dataset provenance fields to scores.json.",
+    "Fix fixture generator FutureWarning.",
+    "Run official Kaggle data once credentials or manual CSV files are available."
+  ]
+}
