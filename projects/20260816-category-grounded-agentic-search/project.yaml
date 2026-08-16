@@ -1,0 +1,33 @@
+name: category-grounded-agentic-search
+title: Category-Grounded Agentic Search
+status: planning
+created: "2026-08-14"
+language: ja
+
+research_question: >-
+  文書本文から誘導した表現・グラフによる one-shot retrieval と、
+  取得証拠に条件付けて次の検索行動を選ぶ agentic retrieval の差は何によって生じるか。
+
+scope:
+  current_experiment: exp-001
+  included:
+    - multi-hop open-domain QA における open-loop と closed-loop retrieval の比較
+    - SIRA 型の語彙拡張
+    - LightRAG 型の本文由来 entity/relation graph
+    - agentic search の turn 数と cumulative top-N の切り分け
+  excluded:
+    - A-MEM と時系列エージェント記憶
+    - 外部カテゴリ、taxonomy、ontology、knowledge graph
+    - 外部 Web 検索
+    - 原論文の完全再現の主張
+
+artifacts:
+  baseline_plan: BASELINE_PLAN.md
+  research_plan: RESEARCH_PLAN.md
+  survey_sources: survey/sources.md
+  experiment_spec: experiments/exp-001/spec.yaml
+  paper_draft: experiments/exp-001/paper/draft.md
+
+research_state:
+  evidence_status: 未実装・未実行
+  interpretation_rule: 推測と実測を明確に分離し、実測結果は experiment artifact に保存する

@@ -1,0 +1,191 @@
+experiment:
+  id: exp-001
+  title: Open-loop と Closed-loop の Text-derived Retrieval 比較
+  status: planned
+  execution_status: 未実装・未実行
+  project: category-grounded-agentic-search
+
+objective: >-
+  外部カテゴリ・taxonomy・ontology・knowledge graph を用いず、同一 corpus と検索予算の下で、
+  語彙拡張・本文由来グラフ・証拠条件付き反復検索が multi-hop QA の検索品質へ与える差を測る。
+
+research_questions:
+  - id: RQ1
+    question: >-
+      open-loop の SIRA 型語彙拡張および LightRAG 型本文由来グラフは、
+      closed-loop 検索の retrieval / answer 品質にどこまで到達できるか。
+  - id: RQ2
+    question: >-
+      agentic search の優位は、最大 turn 数と cumulative top-N に対してどのように変化するか。
+  - id: RQ3
+    question: >-
+      closed-loop の優位が生じた query では、先行観察が後続 query にどのような bridge entity または制約を与えたか。
+
+claims:
+  allowed:
+    - 共通条件下での方式別 retrieval・answer・cost の記述
+    - open-loop と closed-loop の性能差およびその query 単位の診断
+    - turn 数と cumulative top-N に対する性能・費用の記述
+  prohibited:
+    - 標準 multi-hop データの全設問が evidence-dependent であるという主張
+    - agentic search の一般原理を新規発見したという主張
+    - 原論文と異なる backend による完全再現の主張
+    - category / taxonomy の効果に関する主張
+
+scope:
+  input_representation: 文書本文、タイトル、データセットが通常提供する metadata
+  allowed_derived_structure:
+    - 文書本文から抽出した entity/relation graph
+    - corpus 内の語彙統計
+  excluded:
+    - Wikipedia category
+    - 外部カテゴリ・taxonomy・ontology・knowledge graph
+    - 外部 Web search
+    - A-MEM
+
+datasets:
+  - name: HotpotQA FullWiki
+    role: primary
+    evidence: supporting_facts
+    limitation: multi-hop を含むが、証拠条件付きの次 query 必要性を保証しない
+  - name: 2WikiMultiHopQA
+    role: primary
+    evidence: supporting_documents_or_passages
+    limitation: relation 型を含むが、適応的検索の必要性を設問単位で保証しない
+  - name: MuSiQue
+    role: primary
+    evidence: supporting_paragraphs
+    limitation: compositional chain は診断に使えるが、open-loop 不可能性を保証しない
+
+corpus_protocol:
+  snapshot: データセット配布 corpus を原則として使用
+  document_unit: corpus ごとに固定し、document/passage ID を維持する
+  manifests_must_record:
+    - corpus_version_or_snapshot_date
+    - preprocessing_and_chunking
+    - document_to_passage_mapping
+    - query_dev_test_splits
+    - qrels_or_supporting_evidence_mapping
+
+conditions:
+  - id: bm25_open_loop
+    family: sparse_retrieval
+    control_mode: open_loop
+    description: BM25 による事前固定 query 検索
+  - id: dense_open_loop
+    family: dense_retrieval
+    control_mode: open_loop
+    description: 固定公開 checkpoint による dense retrieval
+  - id: sira_open_loop
+    family: vocabulary_expansion
+    control_mode: open_loop
+    description: document/query enrichment と DF filtering を使う SIRA 型検索
+  - id: lightrag_open_loop
+    family: corpus_derived_graph
+    control_mode: open_loop
+    description: 本文から抽出した entity/relation graph を用いる LightRAG 型検索
+  - id: iterative_non_rl_closed_loop
+    family: iterative_agent
+    control_mode: closed_loop
+    description: 同一検索APIで observation 後に query を更新する、非RLの ReAct / IRCoT 型 agent
+
+fairness_protocol:
+  shared:
+    - corpus snapshot と document/passage ID
+    - final reader LLM と answer prompt
+    - final reader context token budget
+    - reranker の有無
+    - query ごとの最大推論 token
+    - evaluation split
+  retrieval_api:
+    - search(query_text, top_k)
+    - fetch(document_or_passage_id)
+  budgets:
+    cumulative_top_n: [10, 25, 50, 100]
+    agent_max_turns: [1, 2, 5, 10]
+    max_final_reader_passages: 10
+  open_loop_rule: >-
+    SIRA と LightRAG は、取得結果の観察前に一回だけ検索する。各条件は top-N を取得し、
+    統合・deduplicate・rerank後の最終 top-10 を reader に渡す。
+  closed_loop_rule: >-
+    各 turn の observation を読んだ後に次の tool call を選べる。各 turn の top-k の和は cumulative top-N を超えない。
+    重複を含む返却 passage slot が予算を消費し、unique passage 数は別途記録する。
+  implementation_note: >-
+    LightRAG と SIRA の方式固有 index 構築は許可するが、index 構築 token・時間・size を別途記録し、
+    final reader へ渡す document/passage budget は揃える。
+
+evaluation:
+  retrieval:
+    - recall_at_1
+    - recall_at_10
+    - recall_at_100
+    - ndcg_at_10
+    - mrr
+    - all_evidence_recall
+    - evidence_coverage_by_turn
+  answer:
+    - exact_match
+    - answer_f1
+    - grounded_answer_rate
+    - unsupported_claim_rate
+  efficiency:
+    - llm_input_output_tokens
+    - index_build_tokens_time_and_size
+    - query_latency_p50_p95
+    - tool_call_count
+    - returned_passage_slot_count
+    - observed_unique_passage_count
+    - duplicate_retrieval_rate
+  trajectory_diagnostics:
+    - later_query_contains_new_bridge_entity_or_constraint
+    - source_turn_of_bridge_evidence
+    - open_loop_vs_closed_loop_per_query_gain
+
+analysis:
+  primary_comparison: >-
+    各 cumulative top-N における SIRA・LightRAG と、最大 turn 数ごとの iterative_non_rl_closed_loop を query 単位で比較する。
+  secondary_comparisons:
+    - sira_open_loop と lightrag_open_loop の補完・競合
+    - 最大 turn 数による agentic search の変化
+  strata:
+    - dataset
+    - retrieval_budget
+    - lexical_overlap
+    - number_of_gold_evidence_items
+    - relation_or_composition_type_when_available
+  adaptive_diagnosis: >-
+    evidence-dependent multi-hop は事前の正解ラベルではなく、trajectory と gold evidence を照合する
+    事後診断として扱う。元 query にない bridge entity / 制約が先行観察に現れ、後続 query で使われた場合を候補とし、
+    人手監査標本で妥当性を確認する。
+  statistics:
+    - query 単位 paired bootstrap confidence interval
+    - 複数 seed の平均と分散
+    - method × budget × query stratum の交互作用
+
+leakage_controls:
+  - dev と test を厳密に分離する
+  - document-side enrichment と graph construction に test query / qrels / answer を渡さない
+  - test answer を query 生成・query 型分類・prompt tuning に用いない
+  - すべての agent turn の prompt、tool call、observation ID を保存する
+
+success_criteria:
+  pilot:
+    - HotpotQA の固定小規模 subset で全条件が同一評価器を通る
+    - budget 会計と trajectory 保存を監査可能である
+  full_experiment:
+    - 同一 corpus・budget・reader 条件で各必須条件を実行できる
+    - retrieval、answer、cost、trajectory artifact を query 単位で保存する
+    - closed-loop 差を、cumulative top-N と最大 turn 数ごとに報告できる
+  non_goal: 特定方式の勝利や新規性の実証そのもの
+
+planned_phases:
+  - phase: 1
+    name: corpus manifest と評価器
+  - phase: 2
+    name: BM25・dense・open-loop budget 会計
+  - phase: 3
+    name: SIRA 型・LightRAG 型 retrieval
+  - phase: 4
+    name: 非RL closed-loop agent と trajectory logging
+  - phase: 5
+    name: 全データ評価・監査・解釈
