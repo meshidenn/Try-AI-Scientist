@@ -12,6 +12,15 @@
 - sub-agent間の正本は `projects/<project-name>/` 以下のartifactである。
 - 未実行の実験を実行済みとして扱わない。推測と実測は明確に分ける。
 
+## Personal Opsとの接続
+
+- このrepoは個人プロジェクト管理では `meshidenn/Try-AI-Scientist` として扱う。横断状態の正本はGitHub IssueとPersonalProjectに置く。
+- このrepoのChatはIssueなしで開始してよい。Issueは作業開始の必須条件ではない。
+- 作業が複数セッションにまたがる、独立した完了条件を持つ、再開・判断・実験成果物の参照が必要になった場合は、Issue化を提案する。
+- Issueを作成・更新・クローズする前、またはPersonalProjectを更新する前には、対象、変更内容、理由を示して明示的な承認を得る。
+- 既存Issueがある作業では、作業開始、ブロッカー、重要な判断、終了時に結果と次の一手をIssueへ記録する。Project fieldsは横断状態だけに使い、研究artifactの内容を複製しない。
+- 朝の横断整理は `personal-ops` で行う。ここでは実験・実装・調査を進め、詳細なIssue運用は `personal-issue-ops` skill と `personal-ops/ops/` を参照する。
+
 ## Python Package Management
 
 - 各projectはproject直下の `pyproject.toml` で依存、metadata、build設定を管理する。
