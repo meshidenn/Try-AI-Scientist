@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Writing"
+  short_description: "Write evidence-grounded research paper drafts"
+  default_prompt: "Use $paper-writing to write or revise the project paper in Proposal Mode or Data-Aware Mode without inventing results."
