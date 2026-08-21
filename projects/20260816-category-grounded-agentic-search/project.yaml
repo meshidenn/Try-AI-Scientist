@@ -25,8 +25,9 @@ artifacts:
   baseline_plan: BASELINE_PLAN.md
   research_plan: RESEARCH_PLAN.md
   survey_sources: survey/sources.md
+  paper_plan: paper/plan.md
   experiment_spec: experiments/exp-001/spec.yaml
-  paper_draft: experiments/exp-001/paper/draft.md
+  paper_draft: paper/draft.md
 
 research_state:
   evidence_status: 未実装・未実行

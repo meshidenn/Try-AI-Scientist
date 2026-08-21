@@ -30,6 +30,12 @@
 | [2WikiMultiHopQA](https://aclanthology.org/2020.coling-main.580/) (2020) | Wikipedia と Wikidata に由来する relation を含む multi-hop QA。 | relation 型ごとの分析に用いる。適応的検索の必要性を設問単位でラベル付けしてはいない。 |
 | [MuSiQue](https://aclanthology.org/2022.tacl-1.31/) (2022) | compositional な multi-hop QA と supporting paragraphs。 | chain を用いた診断に適するが、open-loop では解けないことを全設問について意味しない。 |
 
+## AI Scientist / Research Workflow
+
+| 資料 | 方式と位置づけ | 本研究への含意 |
+| --- | --- | --- |
+| [Spark-to-Paper: End-to-End Research Paper Generation as a Composable Skill](https://arxiv.org/abs/2608.11924) (Qian et al., 2026; access: 2026-08-17) | 既存 coding assistant 内で13個の composable skill を実行し、文献検索、実験、claim revision、図生成、review を共有 artifact で接続する。計画と報告を分離し、deterministic integrity check と self-critique を組み合わせる。 | 本 project の `survey`、`spec`、実験結果、paper、review を分離する設計の近接先。検索方式のbaselineではなく、AI Scientist workflow と artifact-grounded claim 管理の関連研究として扱う。 |
+
 ## 設計上の結論
 
 - multi-hop QA は「複数証拠が必要」を示すが、「証拠を見てからしか次の query を選べない」を保証しない。
