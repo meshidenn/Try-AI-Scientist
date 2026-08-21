@@ -1,6 +1,6 @@
 import unittest
 
-from evaluate_ensemble_confidence import numeric_candidates, page_summary
+from pdf_to_markdown_toyota.interfaces.cli.evaluate_ensemble_confidence import numeric_candidates, page_summary
 
 
 class EvaluateEnsembleConfidenceTest(unittest.TestCase):

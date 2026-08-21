@@ -1,0 +1,1 @@
+"""CLIなどの外部interface。"""

@@ -1,6 +1,6 @@
 import unittest
 
-from evaluate_model_comparison import aggregate
+from pdf_to_markdown_toyota.interfaces.cli.evaluate_model_comparison import aggregate
 
 
 class EvaluateModelComparisonTest(unittest.TestCase):

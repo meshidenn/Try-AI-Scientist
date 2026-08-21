@@ -1,6 +1,6 @@
 import unittest
 
-from render_confidence_colored_html import number_labels, render_markdown, text_label
+from pdf_to_markdown_toyota.interfaces.cli.render_confidence_colored_html import number_labels, render_markdown, text_label
 
 
 class ConfidenceColoredHtmlTest(unittest.TestCase):

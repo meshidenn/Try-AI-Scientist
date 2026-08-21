@@ -1,6 +1,6 @@
 import unittest
 
-from render_ngram_match_html import matched_position_mask, missing_ngrams, render_masked_text
+from pdf_to_markdown_toyota.interfaces.cli.render_ngram_match_html import matched_position_mask, missing_ngrams, render_masked_text
 
 
 class NgramHtmlTest(unittest.TestCase):

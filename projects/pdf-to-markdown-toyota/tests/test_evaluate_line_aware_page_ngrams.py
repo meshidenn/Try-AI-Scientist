@@ -2,7 +2,7 @@ import unittest
 
 import fitz
 
-from evaluate_line_aware_page_ngrams import pdf_text_lines
+from pdf_to_markdown_toyota.interfaces.cli.evaluate_line_aware_page_ngrams import pdf_text_lines
 
 
 class LineAwareNgramTest(unittest.TestCase):

@@ -1,6 +1,6 @@
-# Shared Workspace
+# Shared Workspace（legacy wrapper）
 
-このディレクトリには全実験で使い回すPDF変換・評価・vLLM起動コードを置く。実験固有のspec、ログ、出力、結果は `experiments/exp-xxx/` に保存する。
+実装本体は `../src/pdf_to_markdown_toyota/` に移行した。ここには既存の実験commandとの互換性を保つ薄いwrapperと、vLLM起動用shell scriptだけを置く。新しいcodeとtestはこのdirectoryへ追加しない。実験固有のspec、ログ、出力、結果は `experiments/exp-xxx/` に保存する。
 
 すべての実行器は `--root projects/pdf-to-markdown-toyota/experiments/exp-xxx` を明示し、結果保存先を指定する。
 
@@ -16,7 +16,7 @@ CONTAINER="toyota-pdf-qwen36-vllm" \
 PORT=18022 \
 ./projects/pdf-to-markdown-toyota/workspace/start_vllm.sh
 
-uv run python projects/pdf-to-markdown-toyota/workspace/run_general_vlm.py \
+uv run --project projects/pdf-to-markdown-toyota python -m pdf_to_markdown_toyota.interfaces.cli.run_general_vlm \
   --root projects/pdf-to-markdown-toyota/experiments/exp-004 \
   --logical-name qwen3.6-27b --model-id Qwen/Qwen3.6-27B \
   --served-model qwen3.6-27b --pilot --log-name qwen3.6-27b-pilot.json
@@ -27,7 +27,7 @@ uv run python projects/pdf-to-markdown-toyota/workspace/run_general_vlm.py \
 `evaluate_ensemble_confidence.py` は、複数モデルの既存Markdownを再推論せずに比較する。数値token単位で、モデル支持率、PDF text layerでの存在、支持モデルの表構造を根拠としてreview用confidenceを出す。これは正答確率ではなく、表のセル位置・列対応を評価しない。
 
 ```bash
-uv run python projects/pdf-to-markdown-toyota/workspace/evaluate_ensemble_confidence.py \
+uv run --project projects/pdf-to-markdown-toyota python -m pdf_to_markdown_toyota.interfaces.cli.evaluate_ensemble_confidence \
   --root projects/pdf-to-markdown-toyota/experiments/exp-006 \
   --model-log gemma4-26b-moe=projects/pdf-to-markdown-toyota/experiments/exp-003/logs/hybrid-run-v2.json \
   --model-log qwen3.6-27b=projects/pdf-to-markdown-toyota/experiments/exp-004/logs/qwen3.6-27b-hybrid-pilot.json \

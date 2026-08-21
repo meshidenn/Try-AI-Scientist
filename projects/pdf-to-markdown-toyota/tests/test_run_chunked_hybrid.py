@@ -1,6 +1,6 @@
 import unittest
 
-from run_chunked_hybrid import split_vertical_regions
+from pdf_to_markdown_toyota.interfaces.cli.run_chunked_hybrid import split_vertical_regions
 
 
 class ChunkedHybridTest(unittest.TestCase):

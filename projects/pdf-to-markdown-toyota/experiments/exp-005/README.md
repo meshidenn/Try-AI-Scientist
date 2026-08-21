@@ -15,7 +15,7 @@ PaddleOCR-VL-1.6、MinerU2.5-Pro、DeepSeek-OCR-2、Unlimited-OCRを、Toyota PD
 ## Constraints
 
 - 外部OCR APIおよびSaaSは使わない。
-- 新規の実装はproject共有の`workspace/`にのみ置く。
+- 新規の実装はproject packageの`src/pdf_to_markdown_toyota/`にのみ置く。
 - モデルの制御token・検出bboxなどはraw outputとして残し、Markdown評価用の後処理と区別する。
 
 詳細な条件は[`spec.yaml`](spec.yaml)を正本とする。

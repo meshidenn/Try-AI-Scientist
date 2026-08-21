@@ -1,7 +1,7 @@
 {
   "experiment_id": "exp-006",
   "status": "completed",
-  "shared_implementation": "../../workspace/evaluate_ensemble_confidence.py",
+  "shared_implementation": "../../src/pdf_to_markdown_toyota/interfaces/cli/evaluate_ensemble_confidence.py",
   "source_experiments": [
     "exp-001",
     "exp-003",

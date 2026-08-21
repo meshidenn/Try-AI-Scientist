@@ -1,6 +1,6 @@
 import unittest
 
-from render_box_aware_ngram_html import missing_ngrams, render_unit
+from pdf_to_markdown_toyota.interfaces.cli.render_box_aware_ngram_html import missing_ngrams, render_unit
 
 
 class BoxAwareNgramHtmlTest(unittest.TestCase):

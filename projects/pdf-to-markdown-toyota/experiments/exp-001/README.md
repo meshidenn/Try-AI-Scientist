@@ -24,8 +24,8 @@ vLLMサーバー起動と初回スモーク実行:
 
 ```bash
 WORKSPACE_DIR="/projects/pdf-to-markdown-toyota/experiments/exp-001/workspace" LOG_DIR="/projects/pdf-to-markdown-toyota/experiments/exp-001/logs" ./projects/pdf-to-markdown-toyota/workspace/start_vllm.sh
-uv run python projects/pdf-to-markdown-toyota/workspace/run_vllm_experiment.py --root projects/pdf-to-markdown-toyota/experiments/exp-001 --max-pages 3 --max-new-tokens 1024
-uv run python projects/pdf-to-markdown-toyota/workspace/evaluate_outputs.py --root projects/pdf-to-markdown-toyota/experiments/exp-001 --log projects/pdf-to-markdown-toyota/experiments/exp-001/logs/vllm-run.json --log projects/pdf-to-markdown-toyota/experiments/exp-001/logs/vllm-retry-integrated-p11-32k.json
+uv run --project projects/pdf-to-markdown-toyota python -m pdf_to_markdown_toyota.interfaces.cli.run_vllm_experiment --root projects/pdf-to-markdown-toyota/experiments/exp-001 --max-pages 3 --max-new-tokens 1024
+uv run --project projects/pdf-to-markdown-toyota python -m pdf_to_markdown_toyota.interfaces.cli.evaluate_outputs --root projects/pdf-to-markdown-toyota/experiments/exp-001 --log projects/pdf-to-markdown-toyota/experiments/exp-001/logs/vllm-run.json --log projects/pdf-to-markdown-toyota/experiments/exp-001/logs/vllm-retry-integrated-p11-32k.json
 ```
 
 ## Notes

@@ -2,9 +2,9 @@
   "experiment_id": "exp-008",
   "status": "completed",
   "shared_implementation": [
-    "../../workspace/evaluate_ensemble_confidence.py",
-    "../../workspace/evaluate_ensemble_text_confidence.py",
-    "../../workspace/render_confidence_colored_html.py"
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/evaluate_ensemble_confidence.py",
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/evaluate_ensemble_text_confidence.py",
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/render_confidence_colored_html.py"
   ],
   "source_experiments": [
     "exp-001",

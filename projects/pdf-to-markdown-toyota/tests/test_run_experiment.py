@@ -4,7 +4,7 @@ from pathlib import Path
 
 import fitz
 
-from run_experiment import normalize_markdown, page_text, parse_first_payload, select_pages
+from pdf_to_markdown_toyota.interfaces.cli.run_experiment import normalize_markdown, page_text, parse_first_payload, select_pages
 
 
 class RunExperimentTest(unittest.TestCase):

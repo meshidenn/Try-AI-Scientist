@@ -1,6 +1,6 @@
 import unittest
 
-from evaluate_page_ngrams import character_ngrams, normalize_for_ngrams, score_page
+from pdf_to_markdown_toyota.interfaces.cli.evaluate_page_ngrams import character_ngrams, normalize_for_ngrams, score_page
 
 
 class PageNgramTest(unittest.TestCase):

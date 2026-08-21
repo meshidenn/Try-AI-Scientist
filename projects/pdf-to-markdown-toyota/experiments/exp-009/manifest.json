@@ -2,11 +2,15 @@
   "experiment_id": "exp-009",
   "status": "completed",
   "shared_implementation": [
-    "../../workspace/evaluate_page_ngrams.py",
-    "../../workspace/evaluate_shared_page_ngrams.py",
-    "../../workspace/test_evaluate_page_ngrams.py"
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/evaluate_page_ngrams.py",
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/evaluate_shared_page_ngrams.py",
+    "../../tests/test_evaluate_page_ngrams.py"
   ],
-  "source_experiments": ["exp-001", "exp-003", "exp-004"],
+  "source_experiments": [
+    "exp-001",
+    "exp-003",
+    "exp-004"
+  ],
   "outputs": [
     "results/page_ngrams.json",
     "results/results.md",

@@ -1,5 +1,5 @@
 import unittest
-from evaluate_ensemble_text_confidence import text_candidates
+from pdf_to_markdown_toyota.interfaces.cli.evaluate_ensemble_text_confidence import text_candidates
 
 class TextConfidenceTest(unittest.TestCase):
     def test_heading_formatting_is_clustered(self):

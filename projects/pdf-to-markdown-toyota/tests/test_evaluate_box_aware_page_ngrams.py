@@ -1,6 +1,6 @@
 import unittest
 
-from evaluate_box_aware_page_ngrams import ngrams_from_units, score_page
+from pdf_to_markdown_toyota.interfaces.cli.evaluate_box_aware_page_ngrams import ngrams_from_units, score_page
 
 
 class BoxAwareNgramTest(unittest.TestCase):

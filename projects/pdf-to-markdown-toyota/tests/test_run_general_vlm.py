@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from run_general_vlm import bounded_payload, is_completed_record, load_pages, load_source_pdf_dir, messages_for, require_local_base_url
+from pdf_to_markdown_toyota.interfaces.cli.run_general_vlm import bounded_payload, is_completed_record, load_pages, load_source_pdf_dir, messages_for, require_local_base_url
 
 
 class RunGeneralVlmTest(unittest.TestCase):

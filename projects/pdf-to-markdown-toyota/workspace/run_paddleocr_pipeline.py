@@ -1,31 +1,14 @@
-#!/usr/bin/env python3
-"""PaddleOCR-VLの公式パイプラインをローカルvLLMに接続して実行する。"""
+"""旧workspace pathとの互換wrapper。実装本体はproject packageにある。"""
 
-from __future__ import annotations
-
-import argparse
 from pathlib import Path
+import sys
 
+_project_src = Path(__file__).resolve().parents[1] / "src"
+if str(_project_src) not in sys.path:
+    sys.path.insert(0, str(_project_src))
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--vllm-url", required=True)
-    args = parser.parse_args()
-
-    from paddleocr import PaddleOCRVL
-
-    pipeline = PaddleOCRVL(
-        pipeline_version="v1.6",
-        vl_rec_backend="vllm-server",
-        vl_rec_server_url=args.vllm_url,
-    )
-    args.output_dir.mkdir(parents=True, exist_ok=True)
-    for result in pipeline.predict(str(args.input)):
-        result.save_to_json(save_path=str(args.output_dir))
-        result.save_to_markdown(save_path=str(args.output_dir))
-    return 0
+from pdf_to_markdown_toyota.interfaces.cli.run_paddleocr_pipeline import *  # noqa: F401,F403
+from pdf_to_markdown_toyota.interfaces.cli.run_paddleocr_pipeline import main
 
 
 if __name__ == "__main__":

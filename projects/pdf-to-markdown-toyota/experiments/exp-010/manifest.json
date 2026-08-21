@@ -2,12 +2,16 @@
   "experiment_id": "exp-010",
   "status": "completed",
   "shared_implementation": [
-    "../../workspace/evaluate_box_aware_page_ngrams.py",
-    "../../workspace/render_box_aware_ngram_html.py",
-    "../../workspace/test_evaluate_box_aware_page_ngrams.py",
-    "../../workspace/test_render_box_aware_ngram_html.py"
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/evaluate_box_aware_page_ngrams.py",
+    "../../src/pdf_to_markdown_toyota/interfaces/cli/render_box_aware_ngram_html.py",
+    "../../tests/test_evaluate_box_aware_page_ngrams.py",
+    "../../tests/test_render_box_aware_ngram_html.py"
   ],
-  "source_experiments": ["exp-001", "exp-003", "exp-004"],
+  "source_experiments": [
+    "exp-001",
+    "exp-003",
+    "exp-004"
+  ],
   "outputs": [
     "results/page_ngrams.json",
     "results/results.md",

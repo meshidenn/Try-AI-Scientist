@@ -1,39 +1,14 @@
-#!/usr/bin/env python3
-"""MinerU2.5-Proの公式2段階抽出をローカルvLLMで実行する。"""
+"""旧workspace pathとの互換wrapper。実装本体はproject packageにある。"""
 
-from __future__ import annotations
-
-import argparse
-import json
 from pathlib import Path
+import sys
 
+_project_src = Path(__file__).resolve().parents[1] / "src"
+if str(_project_src) not in sys.path:
+    sys.path.insert(0, str(_project_src))
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=Path, required=True)
-    parser.add_argument("--output-markdown", type=Path, required=True)
-    parser.add_argument("--output-json", type=Path, required=True)
-    parser.add_argument("--model", default="opendatalab/MinerU2.5-Pro-2604-1.2B")
-    parser.add_argument("--image-analysis", action="store_true")
-    args = parser.parse_args()
-
-    from PIL import Image
-    from mineru_vl_utils import MinerUClient, MinerULogitsProcessor
-    from mineru_vl_utils.post_process import json2md
-    from vllm import LLM
-
-    llm = LLM(model=args.model, logits_processors=[MinerULogitsProcessor])
-    client = MinerUClient(
-        backend="vllm-engine",
-        vllm_llm=llm,
-        image_analysis=args.image_analysis,
-    )
-    content = client.two_step_extract(Image.open(args.input).convert("RGB"))
-    args.output_json.parent.mkdir(parents=True, exist_ok=True)
-    args.output_markdown.parent.mkdir(parents=True, exist_ok=True)
-    args.output_json.write_text(json.dumps(content, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    args.output_markdown.write_text(json2md(content), encoding="utf-8")
-    return 0
+from pdf_to_markdown_toyota.interfaces.cli.run_mineru_pipeline import *  # noqa: F401,F403
+from pdf_to_markdown_toyota.interfaces.cli.run_mineru_pipeline import main
 
 
 if __name__ == "__main__":

@@ -12,5 +12,5 @@ exp-001と同じPDFページをHTML fragmentとして出力し、`parse_first`�
 
 ```bash
 WORKSPACE_DIR="/projects/pdf-to-markdown-toyota/experiments/exp-002/workspace" LOG_DIR="/projects/pdf-to-markdown-toyota/experiments/exp-002/logs" ./projects/pdf-to-markdown-toyota/workspace/start_vllm.sh
-uv run python projects/pdf-to-markdown-toyota/workspace/run_vllm_experiment.py --root projects/pdf-to-markdown-toyota/experiments/exp-002 --pdf-dir projects/pdf-to-markdown-toyota/experiments/exp-001/workspace/input/pdfs --max-pages 3 --max-new-tokens 1024 --output-format html --log-name vllm-html-run.json
+uv run --project projects/pdf-to-markdown-toyota python -m pdf_to_markdown_toyota.interfaces.cli.run_vllm_experiment --root projects/pdf-to-markdown-toyota/experiments/exp-002 --pdf-dir projects/pdf-to-markdown-toyota/experiments/exp-001/workspace/input/pdfs --max-pages 3 --max-new-tokens 1024 --output-format html --log-name vllm-html-run.json
 ```
