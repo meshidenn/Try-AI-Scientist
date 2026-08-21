@@ -7,7 +7,7 @@ paperを書く場合だけ実行する任意sub-agent。paperを書く観点でr
 ## Reads
 
 - `projects/<project-name>/survey/`
-- `projects/<project-name>/experiments/<exp-id>/paper/`
+- `projects/<project-name>/paper/`
 - `projects/<project-name>/experiments/<exp-id>/results/`
 - `projects/<project-name>/experiments/<exp-id>/figures/`
 - `projects/<project-name>/workspace/`（再現に使う共有実装）

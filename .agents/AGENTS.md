@@ -84,6 +84,7 @@ projects/<project-name>/
   workspace/                 # legacy互換script、実験補助、移行中の共有実装
   data/                      # 共有のsource dataとmetadata
   survey/
+  paper/                    # project全体の論文・原稿
   experiments/
     exp-001/
       spec.yaml
@@ -97,7 +98,6 @@ projects/<project-name>/
       figures/
       logs/
       review/
-      paper/
       manifest.json
 ```
 

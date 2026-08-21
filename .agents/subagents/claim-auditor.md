@@ -17,7 +17,7 @@
 - `projects/<project-name>/experiments/<exp-id>/review/artifact-audit.md`
 - `projects/<project-name>/experiments/<exp-id>/review/result-interpretation.md`
 - `projects/<project-name>/experiments/<exp-id>/review/next-plan.md`
-- paperを書く場合のみ `projects/<project-name>/experiments/<exp-id>/paper/`
+- paperを書く場合のみ `projects/<project-name>/paper/`
 
 ## Writes
 

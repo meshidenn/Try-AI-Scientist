@@ -21,7 +21,7 @@
 - `projects/<project-name>/experiments/<exp-id>/results/scores.json`
 - `projects/<project-name>/experiments/<exp-id>/figures/`
 - `projects/<project-name>/experiments/<exp-id>/logs/`
-- `projects/<project-name>/experiments/<exp-id>/paper/`
+- `projects/<project-name>/paper/`
 - `projects/<project-name>/experiments/<exp-id>/review/rebuttal.md`
 
 ## Workflow

@@ -26,6 +26,8 @@ projects/<project-name>/
     sources.md
     changelog.md
     updates/
+  paper/                    # project全体の論文・原稿
+    draft.md
   experiments/
     exp-001/
       spec.yaml
@@ -39,7 +41,6 @@ projects/<project-name>/
       figures/
       logs/
       review/
-      paper/
       manifest.json
 ```
 
@@ -53,6 +54,7 @@ projects/<project-name>/
 - 実行器は`--root projects/<project-name>/experiments/<exp-id>`で結果保存先を明示する。
 - `data/` に全expで共有する原資料、source manifest、前処理済み入力を置く。秘密情報や無断取得データを置かない。
 - `experiments/<exp-id>/` に仮説、入力条件、run log、生成物、評価、reviewを置く。実装コード、実行script、notebook、`__pycache__/`は置かない。
+- `<project>/paper/` にproject全体の論文原稿、参考文献整理、投稿用原稿を置く。個別experimentの結果を参照するが、experiment配下に論文原稿を置かない。
 - `spec.yaml` は実験設計の正本とする。仮説、比較対象、入力、評価指標、sample、制約、成功判定を明記する。
 - `experiment-logging` は設計を決めず、実行済みの条件と結果を記録する。このskillは配置と責務を決める。
 
@@ -82,4 +84,5 @@ projects/<project-name>/
 - `workspace/`はlegacy互換script・実験補助・移行中の共有実装に限定する。
 - expには設計とevidenceだけがある。
 - `spec.yaml`、結果、log、manifestが相互に参照可能である。
+- project全体の論文原稿は`paper/`にあり、experiment配下に重複した論文原稿がない。
 - 関連skill、subagent定義、再現手順が同じpath規約を指す。
