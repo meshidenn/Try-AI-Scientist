@@ -1,0 +1,56 @@
+[
+  {
+    "id": "gemma4_bf16",
+    "model": "google/gemma-4-31B-it",
+    "family": "gemma4",
+    "topology": "moe",
+    "precision": "bf16",
+    "path": "/home/hiroki/.cache/huggingface/hub/models--google--gemma-4-31B-it/snapshots/3548789868c5356dbf307c98e6f609007b82b3eb",
+    "dtype": "bfloat16"
+  },
+  {
+    "id": "gemma4_nvfp4",
+    "model": "nvidia/Gemma-4-31B-IT-NVFP4",
+    "family": "gemma4",
+    "topology": "moe",
+    "precision": "nvfp4_w4a4",
+    "path": "/home/hiroki/.cache/huggingface/hub/models--nvidia--Gemma-4-31B-IT-NVFP4/snapshots/e5ef03afa233c35cb000323ff098d4291e1dd07c",
+    "dtype": "auto"
+  },
+  {
+    "id": "qwen35_bf16",
+    "model": "Qwen/Qwen3.5-4B",
+    "family": "qwen35",
+    "topology": "dense",
+    "precision": "bf16",
+    "path": "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "dtype": "bfloat16"
+  },
+  {
+    "id": "qwen35_nvfp4",
+    "model": "Qwen/Qwen3.5-4B-NVFP4",
+    "family": "qwen35",
+    "topology": "dense",
+    "precision": "nvfp4_w4a4",
+    "path": "outputs/models/qwen35-4b-nvfp4",
+    "dtype": "auto"
+  },
+  {
+    "id": "qwen3_moe_bf16",
+    "model": "Qwen/Qwen3-30B-A3B",
+    "family": "qwen3_moe",
+    "topology": "moe",
+    "precision": "bf16",
+    "path": "/home/hiroki/.cache/huggingface/hub/models--Qwen--Qwen3-30B-A3B/snapshots/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39",
+    "dtype": "bfloat16"
+  },
+  {
+    "id": "qwen3_moe_nvfp4",
+    "model": "nvidia/Qwen3-30B-A3B-NVFP4",
+    "family": "qwen3_moe",
+    "topology": "moe",
+    "precision": "nvfp4_w4a4",
+    "path": "/home/hiroki/.cache/huggingface/hub/models--nvidia--Qwen3-30B-A3B-NVFP4/snapshots/2538ded2a4edb247b4d2b4a8ba24e44bd4c017c3",
+    "dtype": "auto"
+  }
+]

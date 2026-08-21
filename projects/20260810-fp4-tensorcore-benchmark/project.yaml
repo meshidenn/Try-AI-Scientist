@@ -1,0 +1,13 @@
+name: fp4-tensorcore-benchmark
+title: FP4 Tensor Core Throughput And Latency Benchmark
+question: "Blackwell GPU上で、NVFP4 W4A4のFP4 GEMM経路がBF16経路に対してthroughputとlatencyをどう変えるか。"
+status: active
+primary_metrics:
+  - output_token_throughput
+  - mean_ttft_ms
+  - mean_tpot_ms
+  - mean_e2el_ms
+models:
+  - google/gemma-4-31B-it
+  - Qwen/Qwen3.5-4B
+  - Qwen/Qwen3-30B-A3B

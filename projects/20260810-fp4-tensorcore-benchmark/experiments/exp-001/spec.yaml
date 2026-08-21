@@ -1,0 +1,78 @@
+project: fp4-tensorcore-benchmark
+experiment_id: exp-001
+title: BF16 versus NVFP4 W4A4 serving on GB10
+hypothesis: "NVFP4 W4A4のFP4 GEMM経路は、BF16経路よりweight bandwidthの影響を受けるdecode負荷でoutput throughputを改善する。"
+hardware:
+  gpu: NVIDIA GB10
+  capability: "12.1"
+  driver: "580.159.03"
+  cuda: "13.0"
+software:
+  image: vllm/vllm-openai:latest
+  vllm: "0.26.0"
+  torch: "2.11.0+cu130"
+conditions:
+  baseline: BF16
+  treatment: NVFP4 W4A4
+  workloads:
+    - name: latency_short
+      input_tokens: 128
+      output_tokens: 128
+      max_concurrency: 1
+    - name: decode_heavy
+      input_tokens: 128
+      output_tokens: 512
+      max_concurrency: 1
+    - name: mixed_throughput
+      input_tokens: 1024
+      output_tokens: 256
+      max_concurrency: 8
+    - name: prefill_heavy
+      input_tokens: 4096
+      output_tokens: 128
+      max_concurrency: 4
+  num_prompts: 2
+  num_warmups: 1
+metrics:
+  primary:
+    - request_throughput
+    - output_throughput
+    - mean_ttft_ms
+    - mean_tpot_ms
+    - mean_e2el_ms
+  secondary:
+    - p50_ttft_ms
+    - p99_ttft_ms
+    - p50_e2el_ms
+    - p99_e2el_ms
+models:
+  - id: gemma4_bf16
+    model: google/gemma-4-31B-it
+    family: gemma4
+    topology: moe
+    precision: bf16
+  - id: gemma4_nvfp4
+    model: nvidia/Gemma-4-31B-IT-NVFP4
+    family: gemma4
+    topology: moe
+    precision: nvfp4_w4a4
+  - id: qwen35_bf16
+    model: Qwen/Qwen3.5-4B
+    family: qwen35
+    topology: dense
+    precision: bf16
+  - id: qwen35_nvfp4
+    model: Qwen/Qwen3.5-4B-NVFP4
+    family: qwen35
+    topology: dense
+    precision: nvfp4_w4a4
+  - id: qwen3_moe_bf16
+    model: Qwen/Qwen3-30B-A3B
+    family: qwen3_moe
+    topology: moe
+    precision: bf16
+  - id: qwen3_moe_nvfp4
+    model: nvidia/Qwen3-30B-A3B-NVFP4
+    family: qwen3_moe
+    topology: moe
+    precision: nvfp4_w4a4

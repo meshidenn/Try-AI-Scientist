@@ -1,0 +1,7 @@
+experiments/*/outputs/*
+experiments/*/logs/*.log
+experiments/*/logs/*.json
+experiments/*/results/*.json
+experiments/*/review/*.md
+__pycache__/
+.pytest_cache/
