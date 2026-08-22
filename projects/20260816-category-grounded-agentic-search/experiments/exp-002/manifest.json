@@ -1,0 +1,12 @@
+{
+  "experiment_id": "exp-002",
+  "parent_issue": 4,
+  "status": "blocked",
+  "blocked_at": "2026-08-22",
+  "blockers": [
+    "Local NVIDIA driver/GPU unavailable.",
+    "No OpenAI-compatible Qwen3.6-35B-A3B-FP8 endpoint configured.",
+    "LightRAG code and corpus revisions not pinned."
+  ],
+  "next_action": "Provide a compatible Qwen endpoint or GPU environment, then pin LightRAG and UltraDomain revisions before running the pilot."
+}

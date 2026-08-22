@@ -1,13 +1,13 @@
 experiment:
   id: exp-001
-  title: Open-loop と Closed-loop の Text-derived Retrieval 比較
+  title: SIRA・LightRAGの4 benchmark共通評価
   status: planned
-  execution_status: 未実装・未実行
+  execution_status: 入力監査済み（採用条件は未充足）・未実行
   project: category-grounded-agentic-search
 
 objective: >-
-  外部カテゴリ・taxonomy・ontology・knowledge graph を用いず、同一 corpus と検索予算の下で、
-  語彙拡張・本文由来グラフ・証拠条件付き反復検索が multi-hop QA の検索品質へ与える差を測る。
+  FanOutQA、FRAMES、MuSiQue、HDS-QAのうち、immutable corpus と gold evidence を固定できた条件で、
+  Qwen3.6-35B-A3B-FP8を用いるSIRA型・LightRAG型 retrieval を共通予算下で比較する。
 
 research_questions:
   - id: RQ1
@@ -44,18 +44,36 @@ scope:
     - A-MEM
 
 datasets:
-  - name: HotpotQA FullWiki
-    role: primary
-    evidence: supporting_facts
-    limitation: multi-hop を含むが、証拠条件付きの次 query 必要性を保証しない
-  - name: 2WikiMultiHopQA
-    role: primary
-    evidence: supporting_documents_or_passages
-    limitation: relation 型を含むが、適応的検索の必要性を設問単位で保証しない
+  - name: FanOutQA
+    role: conditional_pilot
+    evidence: necessary_evidence_with_pageid_and_revid
+    admission_status: conditional
+    limitation: 2023-09 corpus snapshotの取得・checksum固定が必要
+  - name: FRAMES
+    role: conditional_pilot
+    evidence: wikipedia_source_urls
+    admission_status: conditional
+    limitation: URLをimmutable revisionまたはpage snapshotへ解決する必要がある
   - name: MuSiQue
-    role: primary
+    role: pending
     evidence: supporting_paragraphs
-    limitation: compositional chain は診断に使えるが、open-loop 不可能性を保証しない
+    admission_status: needs_official_source
+    limitation: 公式release、corpus snapshot、evidence mappingの確認が必要
+  - name: HDS-QA
+    role: pending
+    evidence: unverified
+    admission_status: blocked
+    limitation: 公開schema、gold evidence、licenseの確認が必要
+
+llm:
+  model_id: Qwen/Qwen3.6-35B-A3B-FP8
+  precision: fp8
+  provider: to_be_recorded_per_run
+  serving_api: OpenAI-compatible endpoint
+  temperature: 0
+  max_tokens: to_be_fixed_before_pilot
+  retry_policy: to_be_fixed_before_pilot
+  reproducibility_rule: model revision、server version、GPU、prompt、generation parameterをrun manifestへ保存する
 
 corpus_protocol:
   snapshot: データセット配布 corpus を原則として使用
@@ -87,7 +105,8 @@ conditions:
   - id: iterative_non_rl_closed_loop
     family: iterative_agent
     control_mode: closed_loop
-    description: 同一検索APIで observation 後に query を更新する、非RLの ReAct / IRCoT 型 agent
+    status: hold
+    description: 同一検索APIで observation 後に query を更新する非RL agent。設計方針決定まで実装・pilotを開始しない
 
 fairness_protocol:
   shared:
@@ -170,7 +189,8 @@ leakage_controls:
 
 success_criteria:
   pilot:
-    - HotpotQA の固定小規模 subset で全条件が同一評価器を通る
+    - admission_status=accepted の固定小規模 subset でstatic条件が同一評価器を通る
+    - Qwen3.6のmodel revision・server設定・promptがmanifestに保存される
     - budget 会計と trajectory 保存を監査可能である
   full_experiment:
     - 同一 corpus・budget・reader 条件で各必須条件を実行できる
@@ -180,12 +200,12 @@ success_criteria:
 
 planned_phases:
   - phase: 1
-    name: corpus manifest と評価器
+    name: 4 benchmark のcorpus manifest と評価器
   - phase: 2
     name: BM25・dense・open-loop budget 会計
   - phase: 3
     name: SIRA 型・LightRAG 型 retrieval
   - phase: 4
-    name: 非RL closed-loop agent と trajectory logging
+    name: Sequential / Parallel agent 設計（保留）
   - phase: 5
     name: 全データ評価・監査・解釈

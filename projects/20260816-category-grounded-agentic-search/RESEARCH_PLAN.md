@@ -4,6 +4,14 @@
 
 **計画中。未実装・未実行。**
 
+### Current Execution Scope (Issue #2, 2026-08-22)
+
+この文書のうちHotpotQA、2WikiMultiHopQA、MeSHを含む将来計画はProposal Modeの設計案として残す。現在実行する正本はIssue #2と`experiments/exp-001/spec.yaml`であり、FanOutQA、FRAMES、MuSiQue、HDS-QAを対象に、`Qwen/Qwen3.6-35B-A3B-FP8`を固定してSIRA型・LightRAG型を比較する。
+
+- datasetの採用は`data/dataset_manifest.json`で`accepted`になったものに限定する。
+- LightRAGのQwen再評価は`experiments/exp-002/spec.yaml`で管理する。corpusを変更せず、LLM変更を伴う再評価と表現する。
+- Sequential / Parallel agentはIssue #6 / #7で保留中であり、実装方針が決まるまで実行しない。
+
 本書を研究全体の設計正本とする。`experiments/exp-001/spec.yaml` は、外部の人手構造を使わない基準線実験の仕様である。MeSH を含む主実験は、入力データ監査後に別 experiment として固定する。
 
 ## 中心となる問い

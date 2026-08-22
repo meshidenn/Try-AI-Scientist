@@ -29,6 +29,11 @@
 | [HotpotQA](https://aclanthology.org/D18-1259/) (2018) | Wikipedia を用いる multi-hop QA と supporting facts。 | 2-hop QA の代表的な診断対象。ただし、各設問で次の検索語が途中で初めて判明することは保証しない。 |
 | [2WikiMultiHopQA](https://aclanthology.org/2020.coling-main.580/) (2020) | Wikipedia と Wikidata に由来する relation を含む multi-hop QA。 | relation 型ごとの分析に用いる。適応的検索の必要性を設問単位でラベル付けしてはいない。 |
 | [MuSiQue](https://aclanthology.org/2022.tacl-1.31/) (2022) | compositional な multi-hop QA と supporting paragraphs。 | chain を用いた診断に適するが、open-loop では解けないことを全設問について意味しない。 |
+| [FanOutQA](https://github.com/zhudotexe/fanoutqa) (2024; access: 2026-08-22) | human decompositionと`necessary_evidence`のWikipedia page/revision IDを公開するfan-out QA。 | revision固定したWikipedia snapshotを用意できる場合のparallel fan-out pilot候補。datasetとcorpusの利用条件を別々に記録する。 |
+| [FRAMES](https://huggingface.co/datasets/google/frames-benchmark) (2024; access: 2026-08-22) | 824件のtest splitにquestion、answer、Wikipedia source URL、reasoning typeを持つ。 | URLだけではWikipedia本文が可変なので、revisionまたはpage snapshotを追加で固定できる場合だけ採用する。 |
+| [HDS-QA](https://openreview.net/forum?id=rXpTZyucal) (2026; access: 2026-08-22) | Natural Questions由来のparallel/sequential search reasoningを狙うsynthetic dataset。 | 公開schema、gold evidence、licenseを確認できるまで実験入力に採用しない。 |
+| [Qwen3.6-35B-A3B-FP8 model card](https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8) (2026; access: 2026-08-22) | Issue #2で固定されたFP8 MoE LLM。 | model revision、server version、GPU、generation parameterをrun manifestに固定する。 |
+| [vLLM Qwen3.6 recipe](https://github.com/vllm-project/recipes/blob/main/models/Qwen/Qwen3.6-35B-A3B.yaml) (2026; access: 2026-08-22) | FP8 checkpointのmodel ID、対応vLLM、最低VRAM 42GBを示す。 | #4の実行環境確認に用いる。ローカルGPUが使えない場合はendpointまたは別の承認済み計算環境が必要。 |
 
 ## AI Scientist / Research Workflow
 
