@@ -2,7 +2,7 @@
 
 ## Status
 
-**Blocked / 未実行。** この環境ではNVIDIA driverが利用できず、Qwen FP8 modelを提供するOpenAI互換endpointも未設定である。
+**Planned / 未実行。** `http://192.168.100.11:8000/v1` のvLLM endpointでQwen modelの一覧取得とchat completionを確認済みである。LightRAG codeとcorpus revisionの固定後にpilotを開始する。
 
 ## Scope
 
@@ -11,8 +11,8 @@ corpusを変更する実験ではない。LightRAGのcorpus、質問、gold evid
 ## Preconditions
 
 1. LightRAG code revisionと`TommyChien/UltraDomain` corpus revisionをpinし、checksumをinputs manifestへ書く。
-2. 42GB以上のVRAMを持つ対応GPU、または同modelを提供するOpenAI互換endpointを用意する。
-3. server version、model revision、prompt、temperature、max tokens、retry policyを固定する。
+2. vLLM endpointのserved model `llm` を使用し、`chat_template_kwargs.enable_thinking=false`を全条件で固定する。
+3. server fingerprint、model revision、prompt、temperature、max tokens、retry policyを固定する。
 
 ## Interpretation
 

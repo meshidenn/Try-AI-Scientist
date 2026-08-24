@@ -1,8 +1,8 @@
 experiment:
   id: exp-002
   title: LightRAGのQwen3.6-35B-A3B-FP8再評価
-  status: blocked
-  execution_status: 未実行（GPUまたはOpenAI互換endpoint待ち）
+  status: planned
+  execution_status: endpoint疎通済み・未実行（LightRAG code/corpus revision固定待ち）
   parent_issue: 4
 
 objective: >-
@@ -33,19 +33,26 @@ lightrag:
 
 llm:
   model_id: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
   precision: fp8
-  expected_minimum_vram_gb: 42
+  serving_api: http://192.168.100.11:8000/v1
+  server_fingerprint: vllm-0.27.0-5fc4282d
+  max_model_len: 8192
   supported_server: vLLM>=0.17.0_or_equivalent_openai_compatible_server
   temperature: 0
   max_tokens: to_be_fixed_before_run
-  endpoint: to_be_provided_or_started
+  chat_template_kwargs:
+    enable_thinking: false
+  endpoint_verification:
+    verified_at: 2026-08-25
+    models_endpoint: success
+    chat_completion: success
+    note: デフォルトのthinking出力は比較条件を不安定にするため無効化する
 
 blockers:
-  - Local NVIDIA driver/GPU is unavailable in the current execution environment.
-  - No Qwen3.6-35B-A3B-FP8 OpenAI-compatible endpoint has been supplied.
-  - LightRAG code and UltraDomain revisions must be pinned before execution.
+  - LightRAG code and UltraDomain corpus revisions must be pinned before execution.
 
 success_criteria:
   - corpus、question、gold evidence、chunking、retrieval設定とLLM revisionがmanifestで追跡できる
-  - Qwen条件のindex構築とqueryを小規模subsetで完走する
+  - Qwen endpointを用いるindex構築とqueryを小規模subsetで完走する
   - latency、LLM token/cost、retrieval artifactを保存する
