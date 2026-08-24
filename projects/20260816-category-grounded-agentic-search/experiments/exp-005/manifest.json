@@ -1,0 +1,25 @@
+{
+  "project": "category-grounded-agentic-search",
+  "experiment_id": "exp-005",
+  "parent_issue": 4,
+  "status": "completed_with_warnings",
+  "objective": "extract roleのmax_tokens=1536でtruncationを検証する。",
+  "inputs": {
+    "spec": "spec.yaml",
+    "snapshot": "inputs/pilot_inputs.jsonl",
+    "input_manifest": "inputs/manifest.json"
+  },
+  "artifacts": {
+    "inputs": "inputs/",
+    "outputs": "outputs/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "review": "review/",
+    "logs": "logs/"
+  },
+  "summary": "1536 tokenでindexと4 queryを完走した。extractは2/6がstop、4/6がlengthであり、上限増加だけではtruncationを解消できなかった。116 entity・80 relationを保存した。",
+  "next_actions": [
+    "extract promptの出力制約を設計し、max_tokens=1536で6/6 stopを検証する。",
+    "relationの品質確認を追加してから比較評価へ進む。"
+  ]
+}

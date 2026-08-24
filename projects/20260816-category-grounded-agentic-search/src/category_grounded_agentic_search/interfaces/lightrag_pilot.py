@@ -149,7 +149,7 @@ def prepare_inputs(root: Path) -> dict[str, Any]:
     document_id = f"ultradomain-mix-{hashlib.sha256(context.encode('utf-8')).hexdigest()[:16]}"
     manifest = {
         "schema_version": 1,
-        "experiment_id": "exp-002",
+        "experiment_id": root.name,
         "purpose": "Issue #4 LightRAG + Qwen smoke pilot",
         "source": {
             "dataset": "TommyChien/UltraDomain",
@@ -272,11 +272,15 @@ def build_llm_function(
 
 
 def build_summary(
-    manifest: dict[str, Any], metrics: RunMetrics, duration_seconds: float
+    experiment_id: str,
+    manifest: dict[str, Any],
+    metrics: RunMetrics,
+    duration_seconds: float,
+    extract_max_tokens: int,
 ) -> dict[str, Any]:
     """実行済みartifactを指すrun summaryを組み立てる。"""
     return {
-        "experiment_id": "exp-002",
+        "experiment_id": experiment_id,
         "status": "completed",
         "run_kind": "small-scale index/query smoke pilot",
         "duration_seconds": duration_seconds,
@@ -296,7 +300,7 @@ def build_summary(
             "serving_api": QWEN_ENDPOINT,
             "server_fingerprint": SERVER_FINGERPRINT,
             "temperature": 0,
-            "max_tokens": {"extract": 512, "keyword": 512, "query": 768},
+            "max_tokens": {"extract": extract_max_tokens, "keyword": 512, "query": 768},
             "chat_template_kwargs": {"enable_thinking": False},
         },
         "queries_completed": len(manifest["selection"]["record_ids"]),
@@ -309,8 +313,10 @@ def build_summary(
     }
 
 
-async def run_pilot(root: Path) -> dict[str, Any]:
+async def run_pilot(root: Path, extract_max_tokens: int) -> dict[str, Any]:
     """LightRAGのindex構築と4問のhybrid queryを一回だけ実行する。"""
+    if extract_max_tokens < 512:
+        raise ValueError("extract_max_tokensは512以上にしてください")
     records, manifest = load_inputs(root)
     outputs_dir = root / "outputs"
     logs_dir = root / "logs"
@@ -332,7 +338,11 @@ async def run_pilot(root: Path) -> dict[str, Any]:
         role_llm_configs={
             "extract": {
                 "func": build_llm_function(
-                    metrics, logger, role="extract", max_tokens=512, require_stop=False
+                    metrics,
+                    logger,
+                    role="extract",
+                    max_tokens=extract_max_tokens,
+                    require_stop=False,
                 )
             },
             "keyword": {
@@ -398,7 +408,9 @@ async def run_pilot(root: Path) -> dict[str, Any]:
         )
     finally:
         await rag.finalize_storages()
-    summary = build_summary(manifest, metrics, time.perf_counter() - started)
+    summary = build_summary(
+        root.name, manifest, metrics, time.perf_counter() - started, extract_max_tokens
+    )
     (outputs_dir / "run_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -406,7 +418,7 @@ async def run_pilot(root: Path) -> dict[str, Any]:
     return summary
 
 
-def recover_summary(root: Path) -> dict[str, Any]:
+def recover_summary(root: Path, extract_max_tokens: int) -> dict[str, Any]:
     """summary書込みだけが失敗した完走runから、保存済みlogを基にsummaryを復元する。"""
     records, manifest = load_inputs(root)
     outputs_dir = root / "outputs"
@@ -450,9 +462,11 @@ def recover_summary(root: Path) -> dict[str, Any]:
     if not metrics.calls or metrics.as_mapping()["non_stop_query_finish_reasons"]:
         raise ValueError("query completionのfinish reasonを検証できません")
     summary = build_summary(
+        root.name,
         manifest,
         metrics,
         sum(call.elapsed_seconds for call in metrics.calls),
+        extract_max_tokens,
     )
     (outputs_dir / "run_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
@@ -464,7 +478,13 @@ def recover_summary(root: Path) -> dict[str, Any]:
 def build_parser() -> argparse.ArgumentParser:
     """CLI parserを構築する。"""
     parser = argparse.ArgumentParser(description="Issue #4 LightRAG + Qwen pilot")
-    parser.add_argument("--root", type=Path, required=True, help="experiments/exp-002 path")
+    parser.add_argument("--root", type=Path, required=True, help="experiment root path")
+    parser.add_argument(
+        "--extract-max-tokens",
+        type=int,
+        default=512,
+        help="entity/relation extraction roleのmax_tokens（既定: 512）",
+    )
     parser.add_argument("--prepare-inputs", action="store_true", help="入力snapshotを作成する")
     parser.add_argument("--run", action="store_true", help="index構築とqueryを実行する")
     parser.add_argument(
@@ -485,10 +505,10 @@ def main() -> None:
         manifest = prepare_inputs(root)
         print(f"prepared inputs: {manifest['pilot_inputs_sha256']}")
     if args.run:
-        summary = asyncio.run(run_pilot(root))
+        summary = asyncio.run(run_pilot(root, args.extract_max_tokens))
         print(f"completed {summary['queries_completed']} queries")
     if args.recover_summary:
-        summary = recover_summary(root)
+        summary = recover_summary(root, args.extract_max_tokens)
         print(f"recovered summary for {summary['queries_completed']} queries")
 
 

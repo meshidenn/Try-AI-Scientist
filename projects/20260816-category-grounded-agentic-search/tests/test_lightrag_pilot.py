@@ -4,6 +4,7 @@ from category_grounded_agentic_search.interfaces.lightrag_pilot import (
     LlmCall,
     PILOT_RECORD_IDS,
     RunMetrics,
+    build_parser,
     selected_records,
 )
 
@@ -46,3 +47,12 @@ class RunMetricsTest(unittest.TestCase):
 
         self.assertEqual(summary["non_stop_finish_reasons"], 1)
         self.assertEqual(summary["non_stop_query_finish_reasons"], 0)
+
+
+class PilotCliTest(unittest.TestCase):
+    def test_accepts_extract_token_override(self) -> None:
+        args = build_parser().parse_args(
+            ["--root", "experiments/exp-003", "--run", "--extract-max-tokens", "1024"]
+        )
+
+        self.assertEqual(args.extract_max_tokens, 1024)
