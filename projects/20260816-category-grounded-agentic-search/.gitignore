@@ -1,0 +1,2 @@
+# 再生成できるLightRAG index、query出力、途中runのstoreは追跡しない。
+experiments/*/outputs/

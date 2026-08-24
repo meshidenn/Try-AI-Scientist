@@ -1,8 +1,8 @@
 experiment:
   id: exp-002
   title: LightRAGのQwen3.6-35B-A3B-FP8再評価
-  status: planned
-  execution_status: endpoint疎通済み・未実行（LightRAG code/corpus revision固定待ち）
+  status: completed_with_warnings
+  execution_status: 小規模index/query pilot完了（entity extraction truncationを伴う）
   parent_issue: 4
 
 objective: >-
@@ -24,12 +24,12 @@ comparability:
 lightrag:
   official_repository: https://github.com/HKUDS/LightRAG
   official_evaluation_corpus: TommyChien/UltraDomain
-  code_revision: to_be_pinned_before_run
-  corpus_revision: to_be_pinned_before_run
-  chunk_token_size: to_be_read_from_pinned_configuration
-  chunk_overlap_token_size: to_be_read_from_pinned_configuration
-  retrieval_mode: to_be_pinned_before_run
-  embedding_model: to_be_pinned_before_run
+  code_revision: 5183dec553da29e123d45f663045e8efe24cbedf
+  corpus_revision: aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+  chunk_token_size: 512
+  chunk_overlap_token_size: 64
+  retrieval_mode: hybrid
+  embedding_model: deterministic-hash-128-v1
 
 llm:
   model_id: Qwen/Qwen3.6-35B-A3B-FP8
@@ -40,7 +40,10 @@ llm:
   max_model_len: 8192
   supported_server: vLLM>=0.17.0_or_equivalent_openai_compatible_server
   temperature: 0
-  max_tokens: to_be_fixed_before_run
+  max_tokens:
+    extract: 512
+    keyword: 512
+    query: 768
   chat_template_kwargs:
     enable_thinking: false
   endpoint_verification:
@@ -49,8 +52,10 @@ llm:
     chat_completion: success
     note: デフォルトのthinking出力は比較条件を不安定にするため無効化する
 
-blockers:
-  - LightRAG code and UltraDomain corpus revisions must be pinned before execution.
+limitations:
+  - UltraDomain mixの同一documentに紐づく4問だけを使うsmoke pilotであり、比較性能は評価していない。
+  - Qwenのentity extractionは全6 chunkでmax_tokensに達し、relationは0件だった。
+  - embedding endpointがないため、固定hash embeddingを使用した。embedding model比較には使えない。
 
 success_criteria:
   - corpus、question、gold evidence、chunking、retrieval設定とLLM revisionがmanifestで追跡できる

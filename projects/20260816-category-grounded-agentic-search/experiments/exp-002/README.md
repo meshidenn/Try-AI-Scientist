@@ -2,7 +2,7 @@
 
 ## Status
 
-**Planned / 未実行。** `http://192.168.100.11:8000/v1` のvLLM endpointでQwen modelの一覧取得とchat completionを確認済みである。LightRAG codeとcorpus revisionの固定後にpilotを開始する。
+**Completed with warnings / 小規模pilot完了。** 固定したLightRAG revisionとUltraDomain `mix.jsonl`の4問でindex構築とhybrid queryを完走した。entity extractionは6 chunkすべてでtoken上限に達してrelationが0件のため、比較性能の再評価は主張しない。
 
 ## Scope
 
@@ -10,10 +10,10 @@ corpusを変更する実験ではない。LightRAGのcorpus、質問、gold evid
 
 ## Preconditions
 
-1. LightRAG code revisionと`TommyChien/UltraDomain` corpus revisionをpinし、checksumをinputs manifestへ書く。
-2. vLLM endpointのserved model `llm` を使用し、`chat_template_kwargs.enable_thinking=false`を全条件で固定する。
-3. server fingerprint、model revision、prompt、temperature、max tokens、retry policyを固定する。
+1. LightRAG revision `5183dec553da29e123d45f663045e8efe24cbedf`とUltraDomain revision `aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d`を`inputs/manifest.json`へ固定した。
+2. vLLM endpointのserved model `llm` と`chat_template_kwargs.enable_thinking=false`を全条件で固定した。
+3. 実行設定、token使用量、回答、store、ログを`outputs/`と`logs/`に保存した。
 
 ## Interpretation
 
-結果はLLM変更を伴う再評価としてだけ報告する。元論文または公式実装の完全再現とは表現しない。
+このrunはQwen endpointによるLightRAGのindex/query疎通を示すだけであり、embedding modelの妥当性、relation extractionの品質、baselineとの性能差は示さない。詳細は`results/results.md`と`review/artifact-audit.md`を参照する。

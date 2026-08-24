@@ -1,0 +1,28 @@
+{
+  "claims": [
+    {
+      "claim": "固定したQwen vLLM endpointでLightRAGの1 document index構築と4件のhybrid queryを完走した。",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "outputs/run_summary.json",
+        "outputs/lightrag-store/kv_store_doc_status.json",
+        "outputs/query_results.json",
+        "logs/run.log"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "document status=processed、queries_completed=4、全query finish reason=stopを確認した。"
+    },
+    {
+      "claim": "このpilotはQwenによる品質改善またはLightRAG原論文の再現を示さない。",
+      "source": "review/result-interpretation.md",
+      "artifacts": [
+        "results/scores.json",
+        "review/artifact-audit.md"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "baseline、複数document retrieval品質指標、semantic embedding、relation抽出が不足している。"
+    }
+  ]
+}
