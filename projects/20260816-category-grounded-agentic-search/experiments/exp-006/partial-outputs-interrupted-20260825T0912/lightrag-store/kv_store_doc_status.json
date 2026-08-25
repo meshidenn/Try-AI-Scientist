@@ -1,0 +1,33 @@
+{
+  "ultradomain-mix-484d15c0b885089b": {
+    "status": "processing",
+    "content_summary": "Introduction\nIn the age of information dissemination without quality control, it has enabled malicious users to spread misinformation via social media and aim individual users with propaganda campaigns to achieve political and financial gains as well...",
+    "content_length": 10443,
+    "created_at": "2026-08-25T00:11:41.380501+00:00",
+    "updated_at": "2026-08-25T00:11:41.395618+00:00",
+    "file_path": "pilot_inputs.jsonl",
+    "track_id": "insert_20260825_091141_29168fc0",
+    "content_hash": "5970d734ccb10451fc2aa2d2d5e77155",
+    "metadata": {
+      "parse_start_time": 1787616701,
+      "parse_stage_skipped": true,
+      "parse_format": "raw",
+      "parse_engine": "legacy",
+      "analyzing_start_time": 1787616701,
+      "analyzing_stage_skipped": true,
+      "kg_write_state": "pre_graph",
+      "process_start_time": 1787616701,
+      "chunk_method": "legacy_chunking_func",
+      "chunk_opts": "size=512, split_only=False, overlap=64"
+    },
+    "chunks_count": 6,
+    "chunks_list": [
+      "ultradomain-mix-484d15c0b885089b-chunk-000",
+      "ultradomain-mix-484d15c0b885089b-chunk-001",
+      "ultradomain-mix-484d15c0b885089b-chunk-002",
+      "ultradomain-mix-484d15c0b885089b-chunk-003",
+      "ultradomain-mix-484d15c0b885089b-chunk-004",
+      "ultradomain-mix-484d15c0b885089b-chunk-005"
+    ]
+  }
+}

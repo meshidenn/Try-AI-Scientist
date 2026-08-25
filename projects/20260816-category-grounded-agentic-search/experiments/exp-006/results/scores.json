@@ -1,0 +1,25 @@
+{
+  "experiment_id": "exp-006",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "extract_stop_rate",
+      "value": 1.0,
+      "higher_is_better": true,
+      "numerator": 6,
+      "denominator": 6
+    },
+    "extract_length_count": 0,
+    "graph_entity_count": 101,
+    "graph_relation_count": 99,
+    "query_completion_rate": 1.0,
+    "llm_total_tokens": 42817,
+    "llm_latency_seconds": 246.89312689192593
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "run_summary": "outputs/run_summary.json",
+    "figures": [],
+    "logs": ["logs/run.log"]
+  }
+}

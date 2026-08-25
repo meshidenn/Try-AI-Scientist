@@ -9,7 +9,7 @@ research_question: >-
   取得証拠に条件付けて次の検索行動を選ぶ agentic retrieval の差は何によって生じるか。
 
 scope:
-  current_experiment: exp-005
+  current_experiment: exp-006
   included:
     - FanOutQA、FRAMES、MuSiQue、HDS-QA の入力監査
     - SIRA 型の語彙拡張
@@ -37,5 +37,5 @@ artifacts:
   paper_draft: paper/draft.md
 
 research_state:
-  evidence_status: 入力監査と評価・予算会計基盤を実装済み。Qwen endpointによるLightRAG小規模pilotでextract max_tokensを512から1536へ段階的に増やしrelation数は増えたが、1536でも4/6 extractがtruncationした。比較再評価に必要なsemantic embedding、relation品質確認、baselineは未実施
+  evidence_status: 入力監査と評価・予算会計基盤を実装済み。Qwen endpointによるLightRAG小規模pilotでextract max_tokensを512から2048へ段階的に増やし、2048では6/6 extractがstopで完走した。比較再評価に必要なsemantic embedding、relation品質確認、baselineは未実施
   interpretation_rule: 推測と実測を明確に分離し、実測結果は experiment artifact に保存する

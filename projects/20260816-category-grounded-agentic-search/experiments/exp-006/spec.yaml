@@ -1,0 +1,25 @@
+experiment:
+  id: exp-006
+  title: Qwen entity extraction max_tokens=2048追試
+  status: completed
+  parent_issue: 4
+
+objective: >-
+  exp-005の1536 token追試に続き、他の条件を固定したままextract roleのmax_tokensを2048へ増やし、
+  全extract callがfinish_reason=stopとなるかを測定する。
+
+comparability:
+  reference_experiments: [exp-002, exp-003, exp-004, exp-005]
+  changed_factor: extract_role_max_tokens=2048
+  held_constant:
+    - LightRAG_revision_5183dec553da29e123d45f663045e8efe24cbedf
+    - UltraDomain_input_snapshot_and_checksum
+    - Qwen_endpoint_and_chat_template
+    - chunk_size_512_and_overlap_64
+    - hybrid_retrieval_top_k_5_chunk_top_k_5
+    - deterministic_hash_128_embedding
+
+success_criteria:
+  - 6 extract callすべてのfinish reasonがstopである
+  - indexと4件のhybrid queryを完走する
+  - 既存runとtoken使用量、entity/relation数を比較できる
