@@ -1,0 +1,7 @@
+[
+  "How does the proposed multi-granularity network architecture integrate sentence-level and fragment-level classification to improve the detection of specific propagandistic techniques?",
+  "What specific linguistic, layout, and topical features were found to significantly enhance the performance of the LSTM-CRF model in fragment-level classification?",
+  "How does the ensemble strategy, particularly the use of relax-voting and post-processing for repetition detection, impact the recall and F1 scores in sentence-level classification?",
+  "In what ways does the multi-task learning approach, which includes an auxiliary task of PFD, contribute to the robustness of the fragment-level propaganda detection system?",
+  "How does the system's performance in fine-grained propaganda detection compare to other participants in the shared task, and what future work is proposed to enhance explainability?"
+]

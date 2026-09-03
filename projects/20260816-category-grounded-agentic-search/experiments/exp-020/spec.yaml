@@ -1,0 +1,10 @@
+experiment:
+  id: exp-020
+  title: UltraDomain triplet抽出の32,768-token再試行
+  status: planned
+  parent_issue: 4
+objective: >-
+  Qwen extract output上限を32,768 tokenへ上げ、previous runでlength終了した文書の
+  triplet抽出を再試行する。
+success_criteria:
+  - finish_reason=stopの抽出結果だけを共有triplets artifactへ確定する

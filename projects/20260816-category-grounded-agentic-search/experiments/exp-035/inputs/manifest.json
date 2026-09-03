@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment_id": "exp-035",
+  "purpose": "Issue #4 Qwen LightRAG re-evaluation pilot on the full BGE-M3 index",
+  "source": {
+    "dataset": "TommyChien/UltraDomain",
+    "revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d",
+    "file": "mix.jsonl",
+    "url": "https://huggingface.co/datasets/TommyChien/UltraDomain/resolve/aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/mix.jsonl?download=true",
+    "license": "Apache-2.0",
+    "full_file_sha256": "3e438f40c91a183a246446dd8435a8c1f0de004533e9e90f97ddf862d5c39bc9"
+  },
+  "index": {
+    "source_experiment": "exp-034",
+    "embedding_model": "BAAI/bge-m3",
+    "embedding_dimension": 1024,
+    "indexed_unique_context_count": 61,
+    "triplets_sha256": "6a5f7eaab019fe8a0c68ed0c89f80c27d5caba8418c11e665a6abd1a11b7d059"
+  },
+  "query_set": {
+    "source_experiment": "exp-016",
+    "generation_model": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "query_count": 5,
+    "generated_queries_sha256": "1269686f561bdd85db4649b8981365b2864bcf0ff8ce353409d9437bf22f59e7",
+    "context_document_id": "ultradomain-484d15c0b885089b"
+  },
+  "context_snapshot_sha256": "18c3b67072a199a0abe36fb4489c06760d27f18453fd28f76ee1aa3d1fb8f1db",
+  "generated_queries_sha256": "1269686f561bdd85db4649b8981365b2864bcf0ff8ce353409d9437bf22f59e7",
+  "gold_evidence": {
+    "status": "unavailable",
+    "reason": "UltraDomain mix.jsonl does not provide an independent test query to gold evidence mapping for this pilot."
+  },
+  "protocol": {
+    "methods": ["lightrag_hybrid", "lightrag_naive"],
+    "judge": "Prometheus-2 pairwise LLM-as-a-judge with alternating answer order and no reference answer"
+  }
+}

@@ -1,0 +1,15 @@
+experiment:
+  id: exp-011
+  title: 16382 tokenでの最終extract上限検証
+  status: planned
+  parent_issue: 4
+objective: >-
+  同じ短文3 context subsetに対しextract roleのmax_tokensを許可上限16382へ増やし、
+  strictなextract完走が可能かを最終確認する。
+comparability:
+  reference_experiments: [exp-008, exp-009, exp-010]
+  changed_factor: extract_role_max_tokens=16382
+success_criteria:
+  - すべてのextract callがstopで終わる
+  - hybridとnaiveが各5 queryへ正常応答する
+  - GPT-4o-mini judge batchが受理される

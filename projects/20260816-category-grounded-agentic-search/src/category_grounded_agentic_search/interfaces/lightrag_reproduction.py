@@ -48,11 +48,37 @@ DEFAULT_EXTRACT_MAX_TOKENS = 2048
 QUERY_COUNT = 5
 SUBSET_CONTEXT_COUNT = 3
 EXTRACT_TIMEOUT_SECONDS = 900
+MAX_EXTRACT_ENTITIES = 30
+MAX_EXTRACT_RELATIONS = 50
+REPETITION_UNIQUE_LINE_RATIO = 0.5
+DEFAULT_REPETITION_PENALTY = 1.0
 
 
 def completion_timeout_seconds(max_tokens: int) -> float:
     """出力上限に比例したtimeoutを返す。"""
     return max(EXTRACT_TIMEOUT_SECONDS, max_tokens / 18)
+
+
+def repetition_analysis(text: str) -> dict[str, float | int | bool]:
+    """行単位の重複率から反復生成の疑いを判定する。"""
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    unique_count = len(set(lines))
+    unique_ratio = unique_count / len(lines) if lines else 1.0
+    return {
+        "line_count": len(lines),
+        "unique_line_count": unique_count,
+        "unique_line_ratio": unique_ratio,
+        "truncated_by_repetition": len(lines) >= 20 and unique_ratio < REPETITION_UNIQUE_LINE_RATIO,
+    }
+
+
+def completion_failure_reason(finish_reason: str | None, content: str | None) -> str | None:
+    """反復率とは独立したcompletionの失敗理由を返す。"""
+    if finish_reason != "stop":
+        return f"finish_reason={finish_reason}"
+    if not content:
+        return "empty_content"
+    return None
 
 
 def unique_contexts(rows: Iterable[dict[str, Any]]) -> list[dict[str, str]]:
@@ -116,6 +142,7 @@ def qwen_completion(
     *,
     role: str,
     max_tokens: int,
+    repetition_penalty: float = DEFAULT_REPETITION_PENALTY,
 ):
     """usageを記録するLightRAG互換Qwen completion関数を作る。"""
 
@@ -128,6 +155,17 @@ def qwen_completion(
         messages: list[dict[str, str]] = []
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
+        if role == "extract":
+            extraction_constraints = (
+                "Strict extraction limits: output at most "
+                f"{MAX_EXTRACT_ENTITIES} entity records and {MAX_EXTRACT_RELATIONS} relation records. "
+                "Never repeat an entity or relation already emitted in this response. "
+                "When no new unique record remains, immediately close the JSON output or emit the completion delimiter."
+            )
+            if messages:
+                messages[0]["content"] = f"{messages[0]['content']}\n\n{extraction_constraints}"
+            else:
+                messages.append({"role": "system", "content": extraction_constraints})
         messages.extend(history_messages or [])
         messages.append({"role": "user", "content": prompt})
         response_format = kwargs.pop("response_format", None)
@@ -136,7 +174,10 @@ def qwen_completion(
             "messages": messages,
             "temperature": 0,
             "max_tokens": max_tokens,
-            "extra_body": {"chat_template_kwargs": {"enable_thinking": False}},
+            "extra_body": {
+                "chat_template_kwargs": {"enable_thinking": False},
+                "repetition_penalty": repetition_penalty,
+            },
         }
         if response_format is not None:
             request["response_format"] = response_format
@@ -154,8 +195,48 @@ def qwen_completion(
         metrics.record(elapsed, response, role)
         finish_reason = response.choices[0].finish_reason
         content = response.choices[0].message.content
-        if finish_reason != "stop" or not content:
-            raise RuntimeError(f"Qwen {role} completionが正常終了しませんでした: {finish_reason}")
+        repetition = repetition_analysis(content or "")
+        if repetition["truncated_by_repetition"]:
+            warning_path = Path(logger.handlers[0].baseFilename).parent / "repetition_warnings.jsonl"
+            with warning_path.open("a", encoding="utf-8") as warning_file:
+                warning_file.write(
+                    json.dumps(
+                        {
+                            "role": role,
+                            "max_tokens": max_tokens,
+                            "finish_reason": finish_reason,
+                            "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+                            "completion": content,
+                            "repetition_analysis": repetition,
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+            logger.warning(
+                "%s completionに反復傾向を検出しましたが、stop応答のためKG抽出を継続します: unique_line_ratio=%.3f",
+                role,
+                repetition["unique_line_ratio"],
+            )
+        failure_reason = completion_failure_reason(finish_reason, content)
+        if failure_reason:
+            failure_path = Path(logger.handlers[0].baseFilename).parent / "failed_completions.jsonl"
+            with failure_path.open("a", encoding="utf-8") as failure_file:
+                failure_file.write(
+                    json.dumps(
+                        {
+                            "role": role,
+                            "max_tokens": max_tokens,
+                            "finish_reason": finish_reason,
+                            "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+                            "completion": content,
+                            "repetition_analysis": repetition,
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+            raise RuntimeError(f"LLM {role} completionが正常終了しませんでした: {failure_reason}")
         logger.info(
             "%s llm call: prompt_tokens=%s completion_tokens=%s elapsed_seconds=%.3f finish_reason=%s",
             role,
@@ -216,7 +297,7 @@ async def generate_questions(root: Path, query_count: int) -> list[str]:
 
 
 def prepare_inputs(
-    root: Path, subset_context_count: int, excluded_document_ids: Iterable[str] = ()
+    root: Path, subset_context_count: int, excluded_document_ids: Iterable[str] = (), included_document_ids: Iterable[str] = ()
 ) -> dict[str, Any]:
     """固定UltraDomain revisionから安定したunique context subsetを保存する。"""
     if subset_context_count <= 0:
@@ -233,7 +314,10 @@ def prepare_inputs(
     if len(contexts) < subset_context_count:
         raise ValueError("要求したsubsetよりunique contextが少なすぎます")
     excluded = set(excluded_document_ids)
+    included = set(included_document_ids)
     candidates = [row for row in contexts if row["document_id"] not in excluded]
+    if included:
+        candidates = [row for row in candidates if row["document_id"] in included]
     selected = sorted(candidates, key=lambda row: (len(row["context"]), row["context_sha256"]))[
         :subset_context_count
     ]
@@ -266,6 +350,7 @@ def prepare_inputs(
             ],
             "limitation": "論文の全量評価ではなく、実装確認用の縮小subsetである。",
             "excluded_document_ids": sorted(excluded),
+            "included_document_ids": sorted(included),
         },
         "context_snapshot_sha256": sha256_file(contexts_path),
         "protocol": {
@@ -317,7 +402,8 @@ def load_contexts_for_index(root: Path) -> tuple[list[dict[str, str]], dict[str,
 
 def build_rag(
     store_dir: Path, metrics: RunMetrics, logger: logging.Logger, extract_max_tokens: int,
-    embedding_model: str = "hash"
+    embedding_model: str = "hash", entity_extraction_use_json: bool = False,
+    repetition_penalty: float = DEFAULT_REPETITION_PENALTY,
 ) -> LightRAG:
     """Qwenと指定した抽出上限を用いるLightRAG instanceを作る。"""
     embedding_dim, embedding_name, embedding_func = (
@@ -327,15 +413,18 @@ def build_rag(
     )
     return LightRAG(
         working_dir=str(store_dir),
-        llm_model_func=qwen_completion(metrics, logger, role="query", max_tokens=768),
+        llm_model_func=qwen_completion(
+            metrics, logger, role="query", max_tokens=768, repetition_penalty=repetition_penalty
+        ),
         role_llm_configs={
             "extract": {
                 "func": qwen_completion(
-                    metrics, logger, role="extract", max_tokens=extract_max_tokens
+                    metrics, logger, role="extract", max_tokens=extract_max_tokens,
+                    repetition_penalty=repetition_penalty,
                 )
             },
-            "keyword": {"func": qwen_completion(metrics, logger, role="keyword", max_tokens=512)},
-            "query": {"func": qwen_completion(metrics, logger, role="query", max_tokens=768)},
+            "keyword": {"func": qwen_completion(metrics, logger, role="keyword", max_tokens=512, repetition_penalty=repetition_penalty)},
+            "query": {"func": qwen_completion(metrics, logger, role="query", max_tokens=768, repetition_penalty=repetition_penalty)},
         },
         llm_model_name=QWEN_MODEL,
         embedding_func=EmbeddingFunc(
@@ -349,7 +438,9 @@ def build_rag(
         top_k=5,
         chunk_top_k=5,
         entity_extract_max_gleaning=0,
-        entity_extraction_use_json=False,
+        entity_extract_max_entities=MAX_EXTRACT_ENTITIES,
+        entity_extract_max_records=MAX_EXTRACT_ENTITIES + MAX_EXTRACT_RELATIONS,
+        entity_extraction_use_json=entity_extraction_use_json,
         llm_model_max_async=1,
         embedding_func_max_async=1,
         default_llm_timeout=completion_timeout_seconds(extract_max_tokens),
@@ -463,7 +554,13 @@ async def run_methods(root: Path, extract_max_tokens: int) -> dict[str, Any]:
     return summary
 
 
-async def index_only(root: Path, extract_max_tokens: int, embedding_model: str = "hash") -> dict[str, Any]:
+async def index_only(
+    root: Path,
+    extract_max_tokens: int,
+    embedding_model: str = "hash",
+    entity_extraction_use_json: bool = False,
+    repetition_penalty: float = DEFAULT_REPETITION_PENALTY,
+) -> dict[str, Any]:
     """全量corpusをquery生成・検索なしでindex化する。"""
     contexts, _ = load_contexts_for_index(root)
     outputs = root / "outputs"
@@ -475,15 +572,134 @@ async def index_only(root: Path, extract_max_tokens: int, embedding_model: str =
     if embedding_model == "bge-m3":
         logger.info("BGE-M3をLightRAG worker開始前にprewarmします")
         await asyncio.to_thread(prewarm_bge_m3)
-    rag = build_rag(store, metrics, logger, extract_max_tokens, embedding_model)
+    rag = build_rag(
+        store,
+        metrics,
+        logger,
+        extract_max_tokens,
+        embedding_model,
+        entity_extraction_use_json,
+        repetition_penalty,
+    )
     try:
         await rag.initialize_storages()
         await rag.ainsert([row["context"] for row in contexts], ids=[row["document_id"] for row in contexts], file_paths=[f"inputs/{row['document_id']}.txt" for row in contexts])
         statuses = json.loads((store / "kv_store_doc_status.json").read_text(encoding="utf-8"))
     finally:
         await rag.finalize_storages()
-    summary = {"experiment_id": root.name, "status": "completed", "run_kind": "index-only", "embedding_model": BGE_M3_MODEL if embedding_model == "bge-m3" else "deterministic-hash-128-v1", "indexed_context_count": len(contexts), "document_statuses": {key: value.get("status") for key, value in statuses.items()}, "metrics": metrics.as_mapping()}
+    summary = {"experiment_id": root.name, "status": "completed", "run_kind": "index-only", "entity_extraction_use_json": entity_extraction_use_json, "repetition_penalty": repetition_penalty, "embedding_model": BGE_M3_MODEL if embedding_model == "bge-m3" else "deterministic-hash-128-v1", "indexed_context_count": len(contexts), "document_statuses": {key: value.get("status") for key, value in statuses.items()}, "metrics": metrics.as_mapping()}
     (outputs / "index_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return summary
+
+
+async def run_existing_index_methods(
+    root: Path,
+    store: Path,
+    embedding_model: str,
+    extract_max_tokens: int,
+    repetition_penalty: float,
+) -> dict[str, Any]:
+    """抽出済みLightRAG indexを再利用してhybrid/naive queryを実行する。"""
+    contexts, queries, _ = load_inputs(root)
+    outputs = root / "outputs"
+    logs = root / "logs"
+    outputs.mkdir(parents=True, exist_ok=True)
+    logs.mkdir(parents=True, exist_ok=True)
+    if not store.is_dir():
+        raise FileNotFoundError(f"既存LightRAG indexがありません: {store}")
+    logger = configure_logger(logs / "run.log")
+    metrics = RunMetrics()
+    if embedding_model == "bge-m3":
+        logger.info("BGE-M3を既存index query用にprewarmします")
+        await asyncio.to_thread(prewarm_bge_m3)
+    rag = build_rag(
+        store,
+        metrics,
+        logger,
+        extract_max_tokens,
+        embedding_model,
+        True,
+        repetition_penalty,
+    )
+    started = time.perf_counter()
+    try:
+        await rag.initialize_storages()
+        statuses = json.loads((store / "kv_store_doc_status.json").read_text(encoding="utf-8"))
+        incomplete = {
+            document_id: value.get("status", "missing")
+            for document_id, value in statuses.items()
+            if value.get("status") != "processed"
+        }
+        if incomplete:
+            raise RuntimeError(f"既存LightRAG indexに未処理documentがあります: {incomplete}")
+        results_by_method: dict[str, list[dict[str, Any]]] = {}
+        for method, mode in (("lightrag_hybrid", "hybrid"), ("lightrag_naive", "naive")):
+            method_results = []
+            for query_index, query in enumerate(queries):
+                query_started = time.perf_counter()
+                response = await rag.aquery(
+                    query,
+                    param=QueryParam(
+                        mode=mode,
+                        response_type="Multiple Paragraphs",
+                        top_k=5,
+                        chunk_top_k=5,
+                        stream=False,
+                        include_references=True,
+                        user_prompt="Answer using only the retrieved context. State uncertainty when context is insufficient.",
+                    ),
+                )
+                method_results.append(
+                    {
+                        "query_id": query_index,
+                        "query": query,
+                        "response": response,
+                        "latency_seconds": time.perf_counter() - query_started,
+                    }
+                )
+            results_by_method[method] = method_results
+            (outputs / f"{method}_results.json").write_text(
+                json.dumps(method_results, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+            )
+    finally:
+        await rag.finalize_storages()
+    summary = {
+        "experiment_id": root.name,
+        "status": "completed",
+        "run_kind": "existing LightRAG BGE-M3 index query evaluation",
+        "duration_seconds": time.perf_counter() - started,
+        "input_manifest": "inputs/manifest.json",
+        "source_lightrag_store": str(store),
+        "lightrag": {
+            "repository": "https://github.com/HKUDS/LightRAG",
+            "revision": LIGHTRAG_REVISION,
+            "retrieval_modes": ["hybrid", "naive"],
+            "chunk_token_size": 512,
+            "chunk_overlap_token_size": 64,
+            "embedding": BGE_M3_MODEL if embedding_model == "bge-m3" else "deterministic-hash-128-v1",
+        },
+        "generation_llm": {
+            "model_id": QWEN_MODEL_ROOT,
+            "served_model_name": QWEN_MODEL,
+            "serving_api": QWEN_ENDPOINT,
+            "temperature": 0,
+            "max_tokens": {"query": 768},
+            "chat_template_kwargs": {"enable_thinking": False},
+        },
+        "query_count": len(queries),
+        "indexed_context_count": len(statuses),
+        "evaluation_context_count": len(contexts),
+        "metrics": metrics.as_mapping(),
+        "artifacts": {
+            "lightrag_results": "outputs/lightrag_hybrid_results.json",
+            "naive_results": "outputs/lightrag_naive_results.json",
+            "source_lightrag_store": str(store),
+            "log": "logs/run.log",
+        },
+    }
+    (outputs / "run_summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     return summary
 
 
@@ -588,12 +804,18 @@ def submit_judge_batch(root: Path) -> str:
     return batch.id
 
 
-def judge_with_prometheus(root: Path) -> dict[str, Any]:
-    """Prometheus 2でpairwise judgeを実行し、LightRAG方式別勝率を集計する。"""
+def judge_with_openai_compatible(
+    root: Path,
+    *,
+    endpoint: str,
+    model: str,
+    output_filename: str,
+) -> dict[str, Any]:
+    """OpenAI互換judgeでpairwise判定を実行し、方式別勝率を集計する。"""
     outputs = root / "outputs"
     hybrid = json.loads((outputs / "lightrag_hybrid_results.json").read_text(encoding="utf-8"))
     naive = json.loads((outputs / "lightrag_naive_results.json").read_text(encoding="utf-8"))
-    client = OpenAI(api_key="not-needed", base_url=PROMETHEUS_ENDPOINT, timeout=300)
+    client = OpenAI(api_key="not-needed", base_url=endpoint, timeout=300)
     records: list[dict[str, Any]] = []
     for index, (left, right) in enumerate(zip(hybrid, naive, strict=True)):
         first, second = (left, right) if index % 2 == 0 else (right, left)
@@ -619,7 +841,7 @@ Choose the answer that is more comprehensive, diverse, and empowering while rema
 ###Feedback:
 '''
         response = client.chat.completions.create(
-            model=PROMETHEUS_MODEL,
+            model=model,
             temperature=0,
             max_tokens=1024,
             messages=[
@@ -630,13 +852,23 @@ Choose the answer that is more comprehensive, diverse, and empowering while rema
         text = response.choices[0].message.content or ""
         match = re.search(r"\[RESULT\]\s*([AB])\b", text)
         if not match:
-            raise RuntimeError(f"Prometheus 2の判定を解析できません: {text[-200:]}")
+            raise RuntimeError(f"{model}の判定を解析できません: {text[-200:]}")
         selected = first if match.group(1) == "A" else second
         records.append({"query_id": index, "winner": "lightrag_hybrid" if selected is left else "lightrag_naive", "raw": text})
     wins = {method: sum(row["winner"] == method for row in records) for method in ("lightrag_hybrid", "lightrag_naive")}
-    summary = {"experiment_id": root.name, "judge": {"model": PROMETHEUS_MODEL, "endpoint": PROMETHEUS_ENDPOINT, "pairwise_order": "alternating", "reference_answer": "unavailable"}, "query_count": len(records), "wins": wins, "win_rates": {key: value / len(records) for key, value in wins.items()}, "records": records}
-    (outputs / "prometheus_judge_results.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    summary = {"experiment_id": root.name, "judge": {"model": model, "endpoint": endpoint, "pairwise_order": "alternating", "reference_answer": "unavailable"}, "query_count": len(records), "wins": wins, "win_rates": {key: value / len(records) for key, value in wins.items()}, "records": records}
+    (outputs / output_filename).write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return summary
+
+
+def judge_with_prometheus(root: Path) -> dict[str, Any]:
+    """Prometheus 2でpairwise judgeを実行し、LightRAG方式別勝率を集計する。"""
+    return judge_with_openai_compatible(
+        root,
+        endpoint=PROMETHEUS_ENDPOINT,
+        model=PROMETHEUS_MODEL,
+        output_filename="prometheus_judge_results.json",
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -646,16 +878,41 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--prepare-inputs", action="store_true", help="unique context subsetを保存する")
     parser.add_argument("--generate-queries", action="store_true", help="Qwenで高水準queryを生成する")
     parser.add_argument("--run", action="store_true", help="LightRAG hybrid/naiveを実行する")
+    parser.add_argument(
+        "--query-existing-index",
+        type=Path,
+        help="抽出済みLightRAG indexを再利用してhybrid/naive queryを実行する",
+    )
     parser.add_argument("--index-only", action="store_true", help="query生成なしでLightRAG index化だけを実行する")
     parser.add_argument("--embedding-model", choices=("hash", "bge-m3"), default="hash")
+    parser.add_argument("--extract-json", action="store_true", help="JSON structured entity/relation extractionを使用する")
+    parser.add_argument(
+        "--repetition-penalty",
+        type=float,
+        default=DEFAULT_REPETITION_PENALTY,
+        help="vLLMのrepetition_penalty（既定: 1.0）",
+    )
     parser.add_argument("--submit-judge", action="store_true", help="GPT-4o-mini judge batchを投入する")
     parser.add_argument("--judge-prometheus", action="store_true", help="Prometheus 2でpairwise judgeを実行する")
+    parser.add_argument(
+        "--judge-openai-compatible",
+        action="store_true",
+        help="指定したOpenAI互換endpoint/modelでpairwise judgeを実行する",
+    )
+    parser.add_argument("--judge-endpoint", help="OpenAI互換judgeのbase URL")
+    parser.add_argument("--judge-model", help="OpenAI互換judgeのmodel ID")
+    parser.add_argument(
+        "--judge-output-filename",
+        default="openai_compatible_judge_results.json",
+        help="judge結果をoutputs/配下へ保存するファイル名",
+    )
     parser.add_argument(
         "--extract-max-tokens",
         type=int,
         default=DEFAULT_EXTRACT_MAX_TOKENS,
         help=f"entity/relation extraction roleのmax_tokens（既定: {DEFAULT_EXTRACT_MAX_TOKENS}）",
     )
+    parser.add_argument("--include-document-id", action="append", default=[])
     parser.add_argument(
         "--exclude-document-id",
         action="append",
@@ -677,13 +934,15 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     """CLI entry point。"""
     args = build_parser().parse_args()
-    if not any((args.prepare_inputs, args.generate_queries, args.run, args.index_only, args.submit_judge, args.judge_prometheus)):
+    if not any((args.prepare_inputs, args.generate_queries, args.run, args.query_existing_index, args.index_only, args.submit_judge, args.judge_prometheus, args.judge_openai_compatible)):
         raise SystemExit("少なくとも1つの操作を指定してください")
     root = args.root.resolve()
+    if args.repetition_penalty < 1.0:
+        raise SystemExit("repetition_penaltyは1.0以上にしてください")
     if args.prepare_inputs:
         if (root / "inputs" / "manifest.json").exists():
             raise SystemExit("既存input snapshotを保護するため再作成しません")
-        manifest = prepare_inputs(root, args.subset_context_count, args.exclude_document_id)
+        manifest = prepare_inputs(root, args.subset_context_count, args.exclude_document_id, args.include_document_id)
         print(f"prepared {manifest['selection']['selected_unique_context_count']} contexts")
     if args.generate_queries:
         if (root / "inputs" / "generated_queries.json").exists():
@@ -693,13 +952,45 @@ def main() -> None:
     if args.run:
         summary = asyncio.run(run_methods(root, args.extract_max_tokens))
         print(f"completed {summary['query_count']} queries per method")
+    if args.query_existing_index:
+        summary = asyncio.run(
+            run_existing_index_methods(
+                root,
+                args.query_existing_index.resolve(),
+                args.embedding_model,
+                args.extract_max_tokens,
+                args.repetition_penalty,
+            )
+        )
+        print(f"queried existing index with {summary['query_count']} queries per method")
     if args.index_only:
-        summary = asyncio.run(index_only(root, args.extract_max_tokens, args.embedding_model))
+        summary = asyncio.run(
+            index_only(
+                root,
+                args.extract_max_tokens,
+                args.embedding_model,
+                args.extract_json,
+                args.repetition_penalty,
+            )
+        )
         print(f"indexed {summary['indexed_context_count']} contexts")
     if args.submit_judge:
         print(f"submitted judge batch: {submit_judge_batch(root)}")
     if args.judge_prometheus:
         summary = judge_with_prometheus(root)
+        print(json.dumps(summary["win_rates"], ensure_ascii=False))
+    if args.judge_openai_compatible:
+        if not args.judge_endpoint or not args.judge_model:
+            raise SystemExit("--judge-openai-compatibleには--judge-endpointと--judge-modelが必要です")
+        output_path = Path(args.judge_output_filename)
+        if output_path.name != args.judge_output_filename or output_path.suffix != ".json":
+            raise SystemExit("--judge-output-filenameにはoutputs直下の.jsonファイル名を指定してください")
+        summary = judge_with_openai_compatible(
+            root,
+            endpoint=args.judge_endpoint,
+            model=args.judge_model,
+            output_filename=args.judge_output_filename,
+        )
         print(json.dumps(summary["win_rates"], ensure_ascii=False))
 
 

@@ -5,7 +5,10 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from category_grounded_agentic_search.application.derived_artifacts import DerivedArtifactPaths
+from category_grounded_agentic_search.application.derived_artifacts import (
+    DerivedArtifactPaths,
+    export_lightrag_triplets,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -16,6 +19,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--corpus-revision", required=True)
     parser.add_argument("--extractor-model", required=True)
     parser.add_argument("--embedding-model", required=True)
+    parser.add_argument("--import-lightrag-store", type=Path)
     return parser
 
 
@@ -32,7 +36,10 @@ def main() -> None:
     paths.initialize()
     for stage in ("triplets", "embeddings", "index"):
         paths.write_manifest(stage, inputs={}, outputs={"status": "not_started"})
-    print(paths.index_dir)
+    if args.import_lightrag_store:
+        print(export_lightrag_triplets(args.import_lightrag_store.resolve(), paths))
+    else:
+        print(paths.index_dir)
 
 
 if __name__ == "__main__":

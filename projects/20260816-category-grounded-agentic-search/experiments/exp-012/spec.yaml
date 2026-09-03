@@ -1,0 +1,22 @@
+experiment:
+  id: exp-012
+  title: 上限262144のQwenで16382 token抽出を再検証
+  status: planned
+  parent_issue: 4
+objective: >-
+  max_model_len=262144へ拡張されたQwen endpointで、extract roleのmax_tokens=16382を使用し、
+  短文3 context subsetのstrict extract完走とLightRAG hybrid対naive比較を確認する。
+comparability:
+  reference_experiments: [exp-008, exp-009, exp-010, exp-011]
+  changed_factor: server_max_model_len=262144_user_reported
+  held_constant:
+    - extract_role_max_tokens=16382
+    - UltraDomain_revision_aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+    - shortest_three_unique_contexts_selection
+    - Qwen_query_generation_count_5
+    - lightrag_hybrid_and_naive_modes
+    - GPT-4o-mini_pairwise_judge_protocol
+success_criteria:
+  - すべてのextract callがstopで終わる
+  - hybridとnaiveが各5 queryへ正常応答する
+  - GPT-4o-mini judge batchが受理される

@@ -16,9 +16,11 @@ def _load_model():
     """初回呼出し時だけmodel weightを取得・ロードする。"""
     global _model
     if _model is None:
+        import torch
         from sentence_transformers import SentenceTransformer
 
-        _model = SentenceTransformer(MODEL_ID)
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        _model = SentenceTransformer(MODEL_ID, device=device)
     return _model
 
 

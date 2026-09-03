@@ -1,0 +1,28 @@
+experiment:
+  id: exp-030
+  title: UltraDomain失敗文書の60,000-token Qwen再抽出
+  status: running
+objective: >-
+  exp-029で32,768 tokensに到達して未完了となった文書を、60,000 tokensの出力上限で
+  全36チャンク再抽出し、完結したtriplet artifactを作成する。
+target_document: ultradomain-6a7cb621a5218266
+prior_failure:
+  experiment: exp-029
+  chunk: 11/36
+  finish_reason: length
+  completion_tokens: 32768
+extractor:
+  model: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 60000
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+validation:
+  completion_required: finish_reason=stop and nonempty content
+  repetition_detection: diagnostic only
+success_criteria:
+  - 全36チャンクがstop応答で完結する
+  - document statusがprocessedとなる

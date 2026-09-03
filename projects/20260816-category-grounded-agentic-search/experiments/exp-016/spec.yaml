@@ -1,0 +1,15 @@
+experiment:
+  id: exp-016
+  title: 正常1 contextによるLLM-as-a-judge集計経路確認
+  status: planned
+  parent_issue: 4
+objective: >-
+  正常に全chunkを処理できた1 contextでLightRAG hybrid/naiveの回答を生成し、
+  GPT-4o-mini Batch APIのjudge結果を回収・集計できることを確認する。
+constraints:
+  - 実装確認用の1 contextであり、全UltraDomainに対する代表的な精度値ではない
+  - Qwen extractのlength終了は別途対処が必要である
+success_criteria:
+  - 対象documentがprocessedになる
+  - 2方式それぞれ5 queryへの回答を生成する
+  - GPT-4o-mini judge batchが受理される

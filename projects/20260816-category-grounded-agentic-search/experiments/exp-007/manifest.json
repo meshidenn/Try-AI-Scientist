@@ -1,0 +1,16 @@
+{
+  "project": "category-grounded-agentic-search",
+  "experiment_id": "exp-007",
+  "parent_issue": 4,
+  "status": "planned",
+  "objective": "LightRAG論文プロトコル準拠Qwen variantの実装確認を行う。",
+  "inputs": {"spec": "spec.yaml"},
+  "artifacts": {
+    "inputs": "inputs/",
+    "outputs": "outputs/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "review": "review/",
+    "logs": "logs/"
+  }
+}

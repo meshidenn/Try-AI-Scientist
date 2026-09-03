@@ -1,0 +1,37 @@
+{
+  "generator": {
+    "model_id": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "served_model_name": "llm",
+    "temperature": 0,
+    "max_tokens": 1024,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "query_count": 5,
+  "metrics": {
+    "llm_call_count": 1,
+    "prompt_tokens": 4354,
+    "completion_tokens": 232,
+    "total_tokens": 4586,
+    "llm_latency_seconds": 5.9063263069838285,
+    "non_stop_finish_reasons": 0,
+    "non_stop_query_finish_reasons": 0,
+    "per_call": [
+      {
+        "elapsed_seconds": 5.9063263069838285,
+        "prompt_tokens": 4354,
+        "completion_tokens": 232,
+        "total_tokens": 4586,
+        "finish_reason": "stop",
+        "role": "query_generation"
+      }
+    ],
+    "cost": {
+      "currency": "USD",
+      "value": null,
+      "note": "self-hosted vLLM endpoint; token-priced API cost is not applicable"
+    }
+  },
+  "manifest_sha256": "e175930ac488d1bc5a18e06bc72fb6769ddfadad8a6ce721a8a5c742d80e44cc"
+}

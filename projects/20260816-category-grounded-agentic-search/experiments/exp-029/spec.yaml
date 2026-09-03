@@ -1,0 +1,31 @@
+experiment:
+  id: exp-029
+  title: UltraDomain全unique contextのQwen triplet抽出
+  status: running
+objective: >-
+  UltraDomainの全61 unique contextから、Qwenを用いてLightRAG互換のentity/relationを抽出し、
+  後続のBGE-M3 embeddingおよびindex生成に渡せるtriplet artifactを作成する。
+input:
+  dataset: UltraDomain unique contexts
+  source_revision: aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+  context_count: 61
+extractor:
+  model: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 32768
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+validation:
+  completion_required: finish_reason=stop and nonempty content
+  repetition_detection: diagnostic only; record nonempty-line unique ratio
+artifacts:
+  stage: triplet extraction
+  downstream_embedding: BAAI/bge-m3
+  downstream_index: LightRAG index
+success_criteria:
+  - 全61 documentのstatusがprocessedとなる
+  - 抽出したentity/relationをtriplets.jsonlとしてexportできる
+  - 失敗documentを明示的に記録する

@@ -1,0 +1,31 @@
+experiment:
+  id: exp-033
+  title: Qwen repetition_penalty=1.05によるUltraDomain全量triplet再抽出
+  status: completed
+objective: >-
+  UltraDomainの全61 unique contextに対して、停止しない反復を抑制するQwen設定で
+  entity/relationを再抽出し、後続のembeddingとindex生成に渡す正本triplet artifactを作成する。
+input:
+  dataset: UltraDomain unique contexts
+  source_revision: aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+  context_count: 61
+extractor:
+  model: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 32768
+  repetition_penalty: 1.05
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+  duplicate_control:
+    prompt: Never repeat an entity or relation already emitted in this response.
+    implementation: Record repetitive completion as a warning; accept stop and nonempty output.
+decision_artifact: >-
+  data/derived/triplets/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/
+  Qwen--Qwen3.6-35B-A3B-FP8/DECISION.md
+success_criteria:
+  - 全61 documentのstatusがprocessedとなる
+  - triplets.jsonlをexportできる
+  - 失敗documentを明示的に記録する

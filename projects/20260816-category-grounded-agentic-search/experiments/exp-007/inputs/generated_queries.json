@@ -1,0 +1,7 @@
+[
+  "How does the proposed method for enhancing word embedding interpretability differ from previous approaches like NMF and sparse coding in terms of preserving the underlying semantic structure?",
+  "What role does the GloVe algorithm play in the proposed approach, and how does it facilitate the indirect alignment of the vocabulary through external lexical resources?",
+  "How does the study address the challenge of polysemy, and what limitations does it identify regarding the clustering of sufficiently well-connected versus less connected words?",
+  "In what ways can the proposed methodology be extended to other word embedding algorithms like word2vec, and what future work is suggested regarding the encoding of opposite concepts?",
+  "How might the interpretability framework developed in this study be applied to computational cross-lingual studies to explore similarities across vector spaces of different languages?"
+]

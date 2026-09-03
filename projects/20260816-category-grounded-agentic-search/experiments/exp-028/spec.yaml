@@ -1,0 +1,27 @@
+experiment:
+  id: exp-028
+  title: Qwen JSON抽出の32,768-token完了性検証
+  status: completed
+objective: >-
+  8,192 tokensでlength終了したUltraDomain書誌文書について、Qwenの抽出出力上限を
+  32,768 tokensへ伸ばし、全11チャンクのJSON抽出が完了するかを検証する。
+target_document: ultradomain-c58b4831f2d6fec6
+input:
+  dataset: UltraDomain unique contexts
+  selection: single known-length-failure document
+extractor:
+  model: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 32768
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+validation:
+  completion_required: finish_reason=stop and nonempty content
+  repetition_detection: diagnostic only; record nonempty-line unique ratio
+success_criteria:
+  - 全11チャンクがstop応答で完結する
+  - document statusがprocessedとなる
+  - KG artifactが生成される

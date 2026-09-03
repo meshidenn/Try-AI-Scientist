@@ -1,2 +1,17 @@
 # 再生成できるLightRAG index、query出力、途中runのstoreは追跡しない。
 experiments/*/outputs/
+
+# context snapshotは取得元のrevision・URL・SHA-256をmanifestへ固定し、Gitには重複保存しない。
+experiments/*/inputs/contexts.jsonl
+
+# 失敗completionの生ログはローカル診断用。失敗理由と件数はresults/reviewへ要約する。
+experiments/*/logs/failed_completions.jsonl
+
+# 反復検出の生ログもローカル診断用。採用した対策は共有のDECISION.mdへ記録する。
+experiments/*/logs/repetition_warnings.jsonl
+
+# 共有の派生data本体はローカルartifactとして保持し、追跡対象は再現用manifestと判断記録だけにする。
+data/derived/**
+!data/derived/**/
+!data/derived/**/manifest.json
+!data/derived/**/DECISION.md

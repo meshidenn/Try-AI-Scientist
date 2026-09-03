@@ -1,0 +1,38 @@
+{
+  "experiment_id": "exp-035",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "lightrag_hybrid_pairwise_win_rate",
+      "value": 0.6,
+      "higher_is_better": true
+    },
+    "query_count": 5,
+    "indexed_document_count": 61,
+    "hybrid_response_count": 5,
+    "naive_response_count": 5,
+    "hybrid_wins": 3,
+    "naive_wins": 2,
+    "gpt_oss_20b_hybrid_wins": 3,
+    "gpt_oss_20b_naive_wins": 2,
+    "gpt_oss_20b_hybrid_pairwise_win_rate": 0.6,
+    "gpt_oss_20b_naive_pairwise_win_rate": 0.4,
+    "judge_winner_agreement_count": 5,
+    "judge_winner_agreement_rate": 1.0,
+    "total_qwen_tokens": 47372,
+    "qwen_non_stop_finish_count": 0,
+    "gold_evidence_available": false
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "protocol_differences": "review/protocol-differences.md",
+    "judge_results": [
+      "outputs/prometheus_judge_results.json",
+      "outputs/gpt_oss_20b_judge_results.json"
+    ],
+    "figures": [],
+    "logs": [
+      "logs/run.log"
+    ]
+  }
+}

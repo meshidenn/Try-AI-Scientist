@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "stage": "embeddings",
+  "artifact_paths": {
+    "root": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/data/derived",
+    "corpus_id": "UltraDomain",
+    "corpus_revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d",
+    "extractor_model": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "embedding_model": "BAAI/bge-m3"
+  },
+  "corpus": {
+    "id": "UltraDomain",
+    "revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d"
+  },
+  "models": {
+    "extractor": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "embedding": "BAAI/bge-m3"
+  },
+  "inputs": {},
+  "outputs": {
+    "status": "not_started"
+  }
+}

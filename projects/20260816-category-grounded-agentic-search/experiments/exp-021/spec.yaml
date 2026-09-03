@@ -1,0 +1,7 @@
+experiment:
+  id: exp-021
+  title: Qwen length失敗chunkのraw出力分析
+  status: planned
+objective: >-
+  exp-020でlength終了したdocumentを同条件で再抽出し、raw completionの反復を分析する。
+target_document: ultradomain-c58b4831f2d6fec6
