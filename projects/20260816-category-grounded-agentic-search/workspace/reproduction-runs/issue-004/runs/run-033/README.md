@@ -14,7 +14,7 @@ UltraDomainの61 unique contextを対象に、Qwenの停止しない反復を抑
 
 ```bash
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-033 --index-only --extract-json \
+  --root workspace/reproduction-runs/issue-004/runs/run-033 --index-only --extract-json \
   --extract-max-tokens 32768 --repetition-penalty 1.05 --embedding-model hash
 ```
 

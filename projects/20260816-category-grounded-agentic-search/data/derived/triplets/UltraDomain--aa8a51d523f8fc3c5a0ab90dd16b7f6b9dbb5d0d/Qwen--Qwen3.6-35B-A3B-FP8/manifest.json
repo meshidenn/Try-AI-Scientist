@@ -17,8 +17,8 @@
     "embedding": "BAAI/bge-m3"
   },
   "inputs": {
-    "lightrag_store": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/experiments/exp-033/outputs/lightrag-store",
-    "document_status": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/experiments/exp-033/outputs/lightrag-store/kv_store_doc_status.json"
+    "lightrag_store": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/workspace/reproduction-runs/issue-004/runs/run-033/outputs/lightrag-store",
+    "document_status": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/workspace/reproduction-runs/issue-004/runs/run-033/outputs/lightrag-store/kv_store_doc_status.json"
   },
   "outputs": {
     "triplets_jsonl": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/data/derived/triplets/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/Qwen--Qwen3.6-35B-A3B-FP8/triplets.jsonl",

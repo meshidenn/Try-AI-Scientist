@@ -10,7 +10,7 @@ input:
     data/derived/triplets/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/
     Qwen--Qwen3.6-35B-A3B-FP8/triplets.jsonl
   triplets_sha256: 6a5f7eaab019fe8a0c68ed0c89f80c27d5caba8418c11e665a6abd1a11b7d059
-  source_lightrag_store: experiments/exp-033/outputs/lightrag-store
+  source_lightrag_store: workspace/reproduction-runs/issue-004/runs/run-033/outputs/lightrag-store
   processed_document_count: 61
 embedding:
   model: BAAI/bge-m3

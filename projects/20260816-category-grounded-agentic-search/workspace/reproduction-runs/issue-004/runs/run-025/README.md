@@ -15,10 +15,10 @@
 
 ```bash
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-025 --prepare-inputs --subset-context-count 1 \
+  --root workspace/reproduction-runs/issue-004/runs/run-025 --prepare-inputs --subset-context-count 1 \
   --include-document-id ultradomain-c58b4831f2d6fec6
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-025 --index-only --extract-json --extract-max-tokens 8192
+  --root workspace/reproduction-runs/issue-004/runs/run-025 --index-only --extract-json --extract-max-tokens 8192
 ```
 
 結果は [results/results.md](results/results.md) を参照する。

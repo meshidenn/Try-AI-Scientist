@@ -7,7 +7,7 @@ exp-033で確定した全61文書のLightRAG graph/chunk/tripletを入力に、Q
 ## Setup
 
 - Input triplets: exp-033の`triplets.jsonl`（SHA-256 `6a5f7eaab019fe8a0c68ed0c89f80c27d5caba8418c11e665a6abd1a11b7d059`）
-- Source graph/chunk store: `experiments/exp-033/outputs/lightrag-store`
+- Source graph/chunk store: `workspace/reproduction-runs/issue-004/runs/run-033/outputs/lightrag-store`
 - Embedding model: `BAAI/bge-m3`
 - Device: NVIDIA GeForce RTX 3090（CUDA）
 - Vector dimension: 1,024

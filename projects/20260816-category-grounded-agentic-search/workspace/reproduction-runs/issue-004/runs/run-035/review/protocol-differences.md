@@ -25,4 +25,4 @@
 
 - Issue #4の再評価定義
 - `experiments/exp-002/spec.yaml` の公式repository/corpus revision pin
-- `experiments/exp-033/` と `experiments/exp-034/` の全量index artifact
+- `workspace/reproduction-runs/issue-004/runs/run-033/` と`run-034/`の全量index artifact

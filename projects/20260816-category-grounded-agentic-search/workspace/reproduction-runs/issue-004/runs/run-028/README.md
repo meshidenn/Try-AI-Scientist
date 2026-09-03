@@ -15,8 +15,8 @@
 
 ```bash
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-028 --prepare-inputs --subset-context-count 1 \
+  --root workspace/reproduction-runs/issue-004/runs/run-028 --prepare-inputs --subset-context-count 1 \
   --include-document-id ultradomain-c58b4831f2d6fec6
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-028 --index-only --extract-json --extract-max-tokens 32768
+  --root workspace/reproduction-runs/issue-004/runs/run-028 --index-only --extract-json --extract-max-tokens 32768
 ```

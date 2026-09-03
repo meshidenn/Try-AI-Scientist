@@ -7,9 +7,9 @@ Qwenを再起動後、`repetition_penalty=1.05`と32,768 output tokensで、過�
 
 ```bash
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-032 --prepare-inputs --subset-context-count 1 \
+  --root workspace/reproduction-runs/issue-004/runs/run-032 --prepare-inputs --subset-context-count 1 \
   --include-document-id ultradomain-6a7cb621a5218266
 uv run python -m category_grounded_agentic_search.interfaces.lightrag_reproduction \
-  --root experiments/exp-032 --index-only --extract-json --extract-max-tokens 32768 \
+  --root workspace/reproduction-runs/issue-004/runs/run-032 --index-only --extract-json --extract-max-tokens 32768 \
   --repetition-penalty 1.05 --embedding-model hash
 ```

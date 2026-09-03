@@ -52,7 +52,7 @@ class ReproductionCliTest(unittest.TestCase):
     def test_accepts_extract_token_override(self) -> None:
         args = build_parser().parse_args(
             [
-                "--root", "experiments/exp-009", "--run", "--extract-max-tokens", "4096",
+                "--root", "workspace/reproduction-runs/issue-004/runs/run-009", "--run", "--extract-max-tokens", "4096",
                 "--repetition-penalty", "1.05",
             ]
         )
@@ -62,7 +62,7 @@ class ReproductionCliTest(unittest.TestCase):
 
     def test_accepts_existing_index_query_path(self) -> None:
         args = build_parser().parse_args(
-            ["--root", "experiments/exp-035", "--query-existing-index", "data/derived/index"]
+            ["--root", "workspace/reproduction-runs/issue-004/runs/run-035", "--query-existing-index", "data/derived/index"]
         )
 
         self.assertEqual(args.query_existing_index, Path("data/derived/index"))
@@ -70,7 +70,7 @@ class ReproductionCliTest(unittest.TestCase):
     def test_accepts_openai_compatible_judge_settings(self) -> None:
         args = build_parser().parse_args(
             [
-                "--root", "experiments/exp-035", "--judge-openai-compatible",
+                "--root", "workspace/reproduction-runs/issue-004/runs/run-035", "--judge-openai-compatible",
                 "--judge-endpoint", "http://localhost:8001/v1",
                 "--judge-model", "gpt-oss-20b",
                 "--judge-output-filename", "gpt_oss_20b_judge_results.json",
