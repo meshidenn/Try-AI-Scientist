@@ -1,0 +1,49 @@
+{
+  "generator": {
+    "model_id": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "served_model_name": "llm",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "protocol": {
+    "name": "official",
+    "question_count": 125,
+    "official_reproduction_reference": "HKUDS/LightRAG reproduce/Step_2.py",
+    "tokenizer": "gpt2",
+    "context_description_token_count": 2000
+  },
+  "retry_policy": {
+    "max_attempts": 3,
+    "retry_delay_seconds": 5,
+    "retryable_failures": "OpenAI-compatible request exceptions"
+  },
+  "query_count": 125,
+  "metrics": {
+    "llm_call_count": 1,
+    "prompt_tokens": 65053,
+    "completion_tokens": 4669,
+    "total_tokens": 69722,
+    "llm_latency_seconds": 130.39059660281055,
+    "non_stop_finish_reasons": 0,
+    "non_stop_query_finish_reasons": 0,
+    "per_call": [
+      {
+        "elapsed_seconds": 130.39059660281055,
+        "prompt_tokens": 65053,
+        "completion_tokens": 4669,
+        "total_tokens": 69722,
+        "finish_reason": "stop",
+        "role": "query_generation"
+      }
+    ],
+    "cost": {
+      "currency": "USD",
+      "value": null,
+      "note": "self-hosted vLLM endpoint; token-priced API cost is not applicable"
+    }
+  },
+  "manifest_sha256": "f5e22429fb4f7b46e289f6890be06206b57f5c991276802d88d9dd6487600b8e"
+}

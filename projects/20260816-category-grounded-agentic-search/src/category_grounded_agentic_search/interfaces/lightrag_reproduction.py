@@ -7,6 +7,7 @@ import asyncio
 import hashlib
 import json
 import logging
+import os
 import re
 import time
 import urllib.request
@@ -18,6 +19,7 @@ from dotenv import dotenv_values
 from lightrag import LightRAG, QueryParam
 from lightrag.utils import EmbeddingFunc
 from openai import AsyncOpenAI, OpenAI
+from transformers import GPT2Tokenizer
 
 from category_grounded_agentic_search.infrastructure.hashing_embedding import hash_embed
 from category_grounded_agentic_search.infrastructure.bge_m3_embedding import (
@@ -43,9 +45,15 @@ from category_grounded_agentic_search.interfaces.lightrag_pilot import (
 JUDGE_MODEL = "gpt-4o-mini"
 PROMETHEUS_ENDPOINT = "http://192.168.100.11:8001/v1"
 PROMETHEUS_MODEL = "prometheus-2"
-SERVER_FINGERPRINT = "vllm endpoint; max_model_len=262144 (user-reported 2026-08-26)"
+SERVER_FINGERPRINT = "vllm endpoint; max_model_len=131072 (verified 2026-09-04)"
 DEFAULT_EXTRACT_MAX_TOKENS = 2048
 QUERY_COUNT = 5
+OFFICIAL_QUERY_COUNT = 125
+QUERY_SUMMARY_TOKEN_COUNT = 2000
+QUERY_RETRY_MAX_ATTEMPTS = 3
+QUERY_RETRY_DELAY_SECONDS = 5
+LOCAL_JUDGE_MAX_TOKENS = 2048
+LOCAL_JUDGE_REASONING_EFFORT = "low"
 SUBSET_CONTEXT_COUNT = 3
 EXTRACT_TIMEOUT_SECONDS = 900
 MAX_EXTRACT_ENTITIES = 30
@@ -96,12 +104,39 @@ def unique_contexts(rows: Iterable[dict[str, Any]]) -> list[dict[str, str]]:
     ]
 
 
-def context_description(context: str, *, maximum_characters: int = 6000) -> str:
-    """論文のcontext descriptionに対応する、Qwenのcontext window内の説明を作る。"""
-    if len(context) <= maximum_characters:
-        return context
-    half = maximum_characters // 2
-    return f"{context[:half]}\n\n[...middle omitted...]\n\n{context[-half:]}"
+def official_context_description(context: str, tokenizer: GPT2Tokenizer) -> str:
+    """公式再現コードのGPT-2 token抽出手順で文書説明を作る。"""
+    tokens = tokenizer.tokenize(context)
+    half_tokens = QUERY_SUMMARY_TOKEN_COUNT // 2
+    start_tokens = tokens[1000 : 1000 + half_tokens]
+    end_tokens = tokens[-(1000 + half_tokens) : 1000]
+    return tokenizer.convert_tokens_to_string(start_tokens + end_tokens)
+
+
+def official_question_prompt(descriptions: str) -> str:
+    """公式再現コードと同じ125問生成promptを返す。"""
+    return f"""
+Given the following description of a dataset:
+
+{descriptions}
+
+Please identify 5 potential users who would engage with this dataset. For each user, list 5 tasks they would perform with this dataset. Then, for each (user, task) combination, generate 5 questions that require a high-level understanding of the entire dataset.
+
+Output the results in the following structure:
+- User 1: [user description]
+    - Task 1: [task description]
+        - Question 1:
+        - Question 2:
+        - Question 3:
+        - Question 4:
+        - Question 5:
+    - Task 2: [task description]
+        ...
+    - Task 5: [task description]
+- User 2: [user description]
+    ...
+- User 5: [user description]
+"""
 
 
 def parse_questions(text: str, *, expected_count: int) -> list[str]:
@@ -181,16 +216,33 @@ def qwen_completion(
         }
         if response_format is not None:
             request["response_format"] = response_format
-        client = AsyncOpenAI(
-            api_key="not-needed",
-            base_url=QWEN_ENDPOINT,
-            timeout=completion_timeout_seconds(max_tokens),
-        )
+        response = None
         started = time.perf_counter()
-        try:
-            response = await client.chat.completions.create(**request)
-        finally:
-            await client.close()
+        for attempt in range(1, QUERY_RETRY_MAX_ATTEMPTS + 1):
+            client = AsyncOpenAI(
+                api_key="not-needed",
+                base_url=QWEN_ENDPOINT,
+                timeout=completion_timeout_seconds(max_tokens),
+            )
+            try:
+                response = await client.chat.completions.create(**request)
+                break
+            except Exception as error:
+                if attempt == QUERY_RETRY_MAX_ATTEMPTS:
+                    raise
+                logger.warning(
+                    "%s completion attempt %s/%s failed: %s; retrying after %s seconds",
+                    role,
+                    attempt,
+                    QUERY_RETRY_MAX_ATTEMPTS,
+                    error,
+                    QUERY_RETRY_DELAY_SECONDS,
+                )
+                await asyncio.sleep(QUERY_RETRY_DELAY_SECONDS)
+            finally:
+                await client.close()
+        if response is None:
+            raise RuntimeError(f"LLM {role} completion returned no response")
         elapsed = time.perf_counter() - started
         metrics.record(elapsed, response, role)
         finish_reason = response.choices[0].finish_reason
@@ -250,26 +302,35 @@ def qwen_completion(
     return complete
 
 
-async def generate_questions(root: Path, query_count: int) -> list[str]:
-    """固定context subsetから論文の高水準query生成を縮小して実行する。"""
+async def generate_questions(root: Path, query_count: int, query_protocol: str) -> list[str]:
+    """固定contextからpilotまたは公式準拠の高水準queryを生成する。"""
     manifest = json.loads((root / "inputs" / "manifest.json").read_text(encoding="utf-8"))
     context_rows = [
         json.loads(line)
         for line in (root / "inputs" / "contexts.jsonl").read_text(encoding="utf-8").splitlines()
         if line
     ]
-    descriptions = "\n\n--- CONTEXT ---\n\n".join(
-        context_description(str(row["context"])) for row in context_rows
-    )
-    prompt = (
-        "Given the following description of a dataset, generate exactly "
-        f"{query_count} high-level questions that require understanding across the dataset. "
-        "Return only a numbered list of questions, one question per line.\n\n"
-        f"Dataset description:\n{descriptions}"
-    )
+    if query_protocol == "official":
+        if query_count != OFFICIAL_QUERY_COUNT:
+            raise ValueError(f"公式質問生成は{OFFICIAL_QUERY_COUNT}問で実行してください")
+        tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        descriptions = "\n\n".join(
+            official_context_description(str(row["context"]), tokenizer) for row in context_rows
+        )
+        prompt = official_question_prompt(descriptions)
+        max_tokens = 8192
+    else:
+        descriptions = "\n\n--- CONTEXT ---\n\n".join(str(row["context"]) for row in context_rows)
+        prompt = (
+            "Given the following description of a dataset, generate exactly "
+            f"{query_count} high-level questions that require understanding across the dataset. "
+            "Return only a numbered list of questions, one question per line.\n\n"
+            f"Dataset description:\n{descriptions}"
+        )
+        max_tokens = 1024
     logger = configure_logger(root / "logs" / "query-generation.log")
     metrics = RunMetrics()
-    complete = qwen_completion(metrics, logger, role="query_generation", max_tokens=1024)
+    complete = qwen_completion(metrics, logger, role="query_generation", max_tokens=max_tokens)
     response = await complete(prompt)
     questions = parse_questions(response, expected_count=query_count)
     output_path = root / "inputs" / "generated_queries.json"
@@ -279,8 +340,20 @@ async def generate_questions(root: Path, query_count: int) -> list[str]:
             "model_id": QWEN_MODEL_ROOT,
             "served_model_name": QWEN_MODEL,
             "temperature": 0,
-            "max_tokens": 1024,
+            "max_tokens": max_tokens,
             "chat_template_kwargs": {"enable_thinking": False},
+        },
+        "protocol": {
+            "name": query_protocol,
+            "question_count": query_count,
+            "official_reproduction_reference": "HKUDS/LightRAG reproduce/Step_2.py" if query_protocol == "official" else None,
+            "tokenizer": "gpt2" if query_protocol == "official" else None,
+            "context_description_token_count": QUERY_SUMMARY_TOKEN_COUNT if query_protocol == "official" else None,
+        },
+        "retry_policy": {
+            "max_attempts": QUERY_RETRY_MAX_ATTEMPTS,
+            "retry_delay_seconds": QUERY_RETRY_DELAY_SECONDS,
+            "retryable_failures": "OpenAI-compatible request exceptions",
         },
         "query_count": len(questions),
         "metrics": metrics.as_mapping(),
@@ -290,6 +363,8 @@ async def generate_questions(root: Path, query_count: int) -> list[str]:
         json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     manifest["generated_queries_sha256"] = sha256_file(output_path)
+    manifest["protocol"]["query_generation"] = metadata["protocol"]
+    manifest["protocol"]["retry_policy"] = metadata["retry_policy"]
     (root / "inputs" / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
@@ -331,7 +406,11 @@ def prepare_inputs(
     manifest = {
         "schema_version": 1,
         "experiment_id": root.name,
-        "purpose": "LightRAG paper-protocol Qwen variant small-subset implementation pilot",
+        "purpose": (
+            "LightRAG paper-protocol Qwen variant full-corpus evaluation"
+            if len(selected) == len(contexts) and not excluded and not included
+            else "LightRAG paper-protocol Qwen variant small-subset implementation pilot"
+        ),
         "source": {
             "dataset": "TommyChien/UltraDomain",
             "revision": ULTRADOMAIN_REVISION,
@@ -537,6 +616,11 @@ async def run_methods(root: Path, extract_max_tokens: int) -> dict[str, Any]:
             "temperature": 0,
             "max_tokens": {"extract": extract_max_tokens, "keyword": 512, "query": 768},
             "chat_template_kwargs": {"enable_thinking": False},
+            "retry_policy": {
+                "max_attempts": QUERY_RETRY_MAX_ATTEMPTS,
+                "retry_delay_seconds": QUERY_RETRY_DELAY_SECONDS,
+                "retryable_failures": "OpenAI-compatible request exceptions",
+            },
         },
         "query_count": len(queries),
         "indexed_context_count": len(contexts),
@@ -685,6 +769,11 @@ async def run_existing_index_methods(
             "temperature": 0,
             "max_tokens": {"query": 768},
             "chat_template_kwargs": {"enable_thinking": False},
+            "retry_policy": {
+                "max_attempts": QUERY_RETRY_MAX_ATTEMPTS,
+                "retry_delay_seconds": QUERY_RETRY_DELAY_SECONDS,
+                "retryable_failures": "OpenAI-compatible request exceptions",
+            },
         },
         "query_count": len(queries),
         "indexed_context_count": len(statuses),
@@ -704,11 +793,15 @@ async def run_existing_index_methods(
 
 
 def judge_token() -> str:
-    """repo rootの.envからjudge用secretをプロセス内だけで取得する。"""
-    token = dotenv_values(Path.cwd().parents[1] / ".env").get("OPENAI_API_TOKEN")
-    if not token:
-        raise RuntimeError("repo rootの.envにOPENAI_API_TOKENを設定してください")
-    return token
+    """環境変数または祖先directoryの.envからjudge用secretをプロセス内だけで取得する。"""
+    if token := os.environ.get("OPENAI_API_TOKEN"):
+        return token
+    candidates = [Path.cwd(), *Path.cwd().parents, *Path(__file__).resolve().parents]
+    for directory in candidates:
+        token = dotenv_values(directory / ".env").get("OPENAI_API_TOKEN")
+        if token:
+            return token
+    raise RuntimeError("repo rootの.envにOPENAI_API_TOKENを設定してください")
 
 
 def build_judge_requests(
@@ -804,24 +897,62 @@ def submit_judge_batch(root: Path) -> str:
     return batch.id
 
 
+def parse_pairwise_winner(text: str) -> str | None:
+    """ローカルjudgeのRESULTタグから選択肢を取り出す。"""
+    match = re.search(r"\[RESULT\]\s*([AB])\b", text)
+    return match.group(1) if match else None
+
+
 def judge_with_openai_compatible(
     root: Path,
     *,
     endpoint: str,
     model: str,
     output_filename: str,
+    max_tokens: int = LOCAL_JUDGE_MAX_TOKENS,
+    report_model: str | None = None,
 ) -> dict[str, Any]:
-    """OpenAI互換judgeでpairwise判定を実行し、方式別勝率を集計する。"""
+    """OpenAI互換judgeで再開可能なpairwise判定を実行し、方式別勝率を集計する。"""
     outputs = root / "outputs"
     hybrid = json.loads((outputs / "lightrag_hybrid_results.json").read_text(encoding="utf-8"))
     naive = json.loads((outputs / "lightrag_naive_results.json").read_text(encoding="utf-8"))
-    client = OpenAI(api_key="not-needed", base_url=endpoint, timeout=300)
-    records: list[dict[str, Any]] = []
+    output_path = outputs / output_filename
+    checkpoint_path = outputs / f"{output_path.stem}.checkpoint.json"
+    failure_path = outputs / f"{output_path.stem}.failures.jsonl"
+    logger = configure_logger(root / "logs" / f"{output_path.stem}.log")
+    completed_records: dict[int, dict[str, Any]] = {}
+    if checkpoint_path.exists():
+        checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+        if checkpoint.get("experiment_id") != root.name or checkpoint.get("judge", {}).get("model") != (report_model or model):
+            raise ValueError("既存judge checkpointが今回の実験条件と一致しません")
+        completed_records = {int(record["query_id"]): record for record in checkpoint.get("records", [])}
+
+    def write_checkpoint() -> None:
+        checkpoint = {
+            "experiment_id": root.name,
+            "judge": {
+                "model": report_model or model,
+                "served_model_name": model,
+                "endpoint": endpoint,
+                "pairwise_order": "alternating",
+                "chat_template_kwargs": {"reasoning_effort": LOCAL_JUDGE_REASONING_EFFORT},
+            },
+            "completed_count": len(completed_records),
+            "records": [completed_records[index] for index in sorted(completed_records)],
+        }
+        temporary_path = checkpoint_path.with_suffix(".tmp")
+        temporary_path.write_text(json.dumps(checkpoint, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        temporary_path.replace(checkpoint_path)
+
+    client = OpenAI(api_key="not-needed", base_url=endpoint, timeout=900)
     for index, (left, right) in enumerate(zip(hybrid, naive, strict=True)):
+        if index in completed_records:
+            continue
         first, second = (left, right) if index % 2 == 0 else (right, left)
         prompt = f'''###Task Description:
 An instruction, two responses, no reference answer, and an evaluation criteria are given.
-Write detailed feedback comparing the responses, then output exactly [RESULT] A or [RESULT] B.
+Output the winner as the first line in exactly this form: [RESULT] A or [RESULT] B.
+Then give a concise comparison in at most 150 words.
 
 ###Instruction:
 {left["query"]}
@@ -840,24 +971,43 @@ Choose the answer that is more comprehensive, diverse, and empowering while rema
 
 ###Feedback:
 '''
-        response = client.chat.completions.create(
-            model=model,
-            temperature=0,
-            max_tokens=1024,
-            messages=[
-                {"role": "system", "content": "You are a fair judge assistant assigned to compare two responses objectively."},
-                {"role": "user", "content": prompt},
-            ],
-        )
-        text = response.choices[0].message.content or ""
-        match = re.search(r"\[RESULT\]\s*([AB])\b", text)
-        if not match:
-            raise RuntimeError(f"{model}の判定を解析できません: {text[-200:]}")
-        selected = first if match.group(1) == "A" else second
-        records.append({"query_id": index, "winner": "lightrag_hybrid" if selected is left else "lightrag_naive", "raw": text})
+        for attempt in range(1, QUERY_RETRY_MAX_ATTEMPTS + 1):
+            try:
+                response = client.chat.completions.create(
+                    model=model,
+                    temperature=0,
+                    max_tokens=max_tokens,
+                    extra_body={"chat_template_kwargs": {"reasoning_effort": LOCAL_JUDGE_REASONING_EFFORT}},
+                    messages=[
+                        {"role": "system", "content": "You are a fair judge assistant assigned to compare two responses objectively."},
+                        {"role": "user", "content": prompt},
+                    ],
+                )
+                text = response.choices[0].message.content or ""
+                choice = parse_pairwise_winner(text)
+                if choice is None:
+                    raise ValueError(f"RESULTタグを解析できません: {text[-200:]}")
+                selected = first if choice == "A" else second
+                completed_records[index] = {
+                    "query_id": index,
+                    "winner": "lightrag_hybrid" if selected is left else "lightrag_naive",
+                    "raw": text,
+                }
+                write_checkpoint()
+                logger.info("judge %s/%s completed", index + 1, len(hybrid))
+                break
+            except Exception as error:
+                with failure_path.open("a", encoding="utf-8") as failure_file:
+                    failure_file.write(json.dumps({"query_id": index, "attempt": attempt, "error": str(error)}, ensure_ascii=False) + "\n")
+                if attempt == QUERY_RETRY_MAX_ATTEMPTS:
+                    raise RuntimeError(f"{model}のquery {index}判定に失敗しました") from error
+                logger.warning("judge %s/%s attempt %s/%s failed: %s", index + 1, len(hybrid), attempt, QUERY_RETRY_MAX_ATTEMPTS, error)
+                time.sleep(QUERY_RETRY_DELAY_SECONDS)
+    records = [completed_records[index] for index in sorted(completed_records)]
     wins = {method: sum(row["winner"] == method for row in records) for method in ("lightrag_hybrid", "lightrag_naive")}
-    summary = {"experiment_id": root.name, "judge": {"model": model, "endpoint": endpoint, "pairwise_order": "alternating", "reference_answer": "unavailable"}, "query_count": len(records), "wins": wins, "win_rates": {key: value / len(records) for key, value in wins.items()}, "records": records}
-    (outputs / output_filename).write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    summary = {"experiment_id": root.name, "judge": {"model": report_model or model, "served_model_name": model, "endpoint": endpoint, "pairwise_order": "alternating", "reference_answer": "unavailable", "chat_template_kwargs": {"reasoning_effort": LOCAL_JUDGE_REASONING_EFFORT}, "max_tokens": max_tokens, "retry_policy": {"max_attempts": QUERY_RETRY_MAX_ATTEMPTS, "retry_delay_seconds": QUERY_RETRY_DELAY_SECONDS}}, "query_count": len(records), "wins": wins, "win_rates": {key: value / len(records) for key, value in wins.items()}, "records": records}
+    output_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    checkpoint_path.unlink(missing_ok=True)
     return summary
 
 
@@ -877,6 +1027,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--root", type=Path, required=True, help="experiment root path")
     parser.add_argument("--prepare-inputs", action="store_true", help="unique context subsetを保存する")
     parser.add_argument("--generate-queries", action="store_true", help="Qwenで高水準queryを生成する")
+    parser.add_argument(
+        "--query-protocol",
+        choices=("pilot", "official"),
+        default="pilot",
+        help="質問生成形式。正式評価ではofficialを指定する。",
+    )
     parser.add_argument("--run", action="store_true", help="LightRAG hybrid/naiveを実行する")
     parser.add_argument(
         "--query-existing-index",
@@ -905,6 +1061,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--judge-output-filename",
         default="openai_compatible_judge_results.json",
         help="judge結果をoutputs/配下へ保存するファイル名",
+    )
+    parser.add_argument(
+        "--judge-max-tokens",
+        type=int,
+        default=LOCAL_JUDGE_MAX_TOKENS,
+        help=f"OpenAI互換judgeの出力上限（既定: {LOCAL_JUDGE_MAX_TOKENS}）",
+    )
+    parser.add_argument(
+        "--judge-report-model",
+        help="結果artifactへ記録するjudgeの実モデルID。served model名と異なる場合に指定する。",
     )
     parser.add_argument(
         "--extract-max-tokens",
@@ -947,7 +1113,7 @@ def main() -> None:
     if args.generate_queries:
         if (root / "inputs" / "generated_queries.json").exists():
             raise SystemExit("既存generated queryを保護するため再生成しません")
-        questions = asyncio.run(generate_questions(root, args.query_count))
+        questions = asyncio.run(generate_questions(root, args.query_count, args.query_protocol))
         print(f"generated {len(questions)} queries")
     if args.run:
         summary = asyncio.run(run_methods(root, args.extract_max_tokens))
@@ -985,11 +1151,15 @@ def main() -> None:
         output_path = Path(args.judge_output_filename)
         if output_path.name != args.judge_output_filename or output_path.suffix != ".json":
             raise SystemExit("--judge-output-filenameにはoutputs直下の.jsonファイル名を指定してください")
+        if args.judge_max_tokens <= 0:
+            raise SystemExit("--judge-max-tokensは1以上にしてください")
         summary = judge_with_openai_compatible(
             root,
             endpoint=args.judge_endpoint,
             model=args.judge_model,
             output_filename=args.judge_output_filename,
+            max_tokens=args.judge_max_tokens,
+            report_model=args.judge_report_model,
         )
         print(json.dumps(summary["win_rates"], ensure_ascii=False))
 

@@ -1,0 +1,77 @@
+{
+  "experiment_id": "exp-007",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "lightrag_hybrid_pairwise_win_rate_gpt_4o_mini",
+      "value": 0.4,
+      "higher_is_better": true,
+      "unit": "win_rate",
+      "comparison": "lightrag_hybrid_vs_lightrag_naive",
+      "pair_count": 125
+    },
+    "gpt_4o_mini": {
+      "served_model": "gpt-4o-mini-2024-07-18",
+      "lightrag_hybrid_pairwise_win_rate": 0.4,
+      "lightrag_naive_pairwise_win_rate": 0.464,
+      "lightrag_hybrid_decisive_win_rate": 0.46296296296296297,
+      "lightrag_naive_decisive_win_rate": 0.5370370370370371,
+      "lightrag_hybrid_wins": 50,
+      "lightrag_naive_wins": 58,
+      "ties": 17,
+      "pair_count": 125,
+      "initial_batch_id": "batch_6a9b8f12a69c81908801eed5086f9378",
+      "retry_batch_id": "batch_6a9b920380ac81909023c68f21f677cc",
+      "retry_count": 6,
+      "retry_max_tokens": 1024
+    },
+    "gpt_oss_20b": {
+      "lightrag_hybrid_pairwise_win_rate": 0.48,
+      "lightrag_naive_pairwise_win_rate": 0.52,
+      "lightrag_hybrid_wins": 60,
+      "lightrag_naive_wins": 65,
+      "pair_count": 125
+    },
+    "prometheus_7b_v2": {
+      "lightrag_hybrid_pairwise_win_rate": 0.52,
+      "lightrag_naive_pairwise_win_rate": 0.48,
+      "lightrag_hybrid_wins": 65,
+      "lightrag_naive_wins": 60,
+      "pair_count": 125
+    },
+    "gpt_oss_120b": {
+      "lightrag_hybrid_pairwise_win_rate": 0.416,
+      "lightrag_naive_pairwise_win_rate": 0.584,
+      "lightrag_hybrid_wins": 52,
+      "lightrag_naive_wins": 73,
+      "pair_count": 125
+    },
+    "qwen_answer_generation": {
+      "query_count_per_method": 125,
+      "duration_seconds": 2305.720048924908,
+      "llm_call_count": 332,
+      "total_tokens": 1185928,
+      "non_stop_finish_reasons": 5
+    }
+  },
+  "limitations": [
+    "Qwenによる質問生成・回答生成を伴う再評価であり、原論文の完全再現ではない。",
+    "gpt-oss-20b、Prometheus-7B-v2.0、gpt-oss-120bは原論文のjudgeではなく、補助評価である。",
+    "代替judge間で勝率が大きく異なる。",
+    "参照回答・gold evidenceを用いないpairwise比較であり、正解率ではない。"
+  ],
+  "artifacts": {
+    "results_md": "results/results.md",
+    "scores_json": "results/scores.json",
+    "input_manifest": "inputs/manifest.json",
+    "query_set_sha256": "a3f6360dde32c6f2fd575cf29b17d082fd20be5f91e6d5133ab6e6374579bf1a",
+    "hybrid_answers_sha256": "1dc03b0cfef530e4c13f343dcf6d6a09978943ca798a4422891deab95fe768b2",
+    "naive_answers_sha256": "2e94d820672b1aa0c9fd4c294ccdee6011ec55fa9d35cc20f87fbcdcb1aaf9ad",
+    "gpt_4o_mini_judge_sha256": "83b6eab39e8b320a248b67f1fd13ec1a0152352453367df5a6bb5aba1e3fbd78",
+    "alternative_judge_sha256": "c95e669d7b28b418bcd6b417280f0bb74395c2083567d7550f84fb083ddaaa9c",
+    "prometheus_7b_v2_judge_sha256": "27f9d7fafba52006f1c0489167eb9ded18c4c2b48e4afe7ccbba10ee4aa10c11",
+    "gpt_oss_120b_judge_sha256": "daa3951d8250e520c5fe19e67946109208df60da4743a0019c778a77f7286b06",
+    "figures": [],
+    "logs": ["logs/run.log", "logs/gpt_oss_20b_low_reasoning_2048_judge_results.log"]
+  }
+}

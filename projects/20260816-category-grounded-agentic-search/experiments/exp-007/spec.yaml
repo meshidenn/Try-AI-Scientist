@@ -1,0 +1,91 @@
+experiment:
+  id: exp-007
+  title: LightRAG論文準拠 Qwen3.6-35B-A3B-FP8再評価
+  status: completed
+  parent_issue: 4
+
+objective: >-
+  LightRAG論文のUltraDomain Mixに対するcorpus-level質問生成およびpairwise LLM-as-a-judge手順を用い、
+  Qwen3.6-35B-A3B-FP8で構築済みのLightRAG indexにおけるhybrid retrievalとnaive retrievalの回答品質を比較する。
+
+hypothesis: >-
+  Qwenで抽出したgraph indexを用いるhybrid retrievalは、同一indexのnaive retrievalより
+  GPT-4o-mini pairwise Overall Winnerで高い勝率を得る。
+
+inputs:
+  corpus:
+    dataset: TommyChien/UltraDomain
+    revision: aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+    split_file: mix.jsonl
+    unique_context_count: 61
+    source_sha256: 3e438f40c91a183a246446dd8435a8c1f0de004533e9e90f97ddf862d5c39bc9
+  index:
+    path: data/derived/indexes/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/Qwen--Qwen3.6-35B-A3B-FP8__BAAI--bge-m3/lightrag-store
+    embedding_model: BAAI/bge-m3
+    triplets_sha256: 6a5f7eaab019fe8a0c68ed0c89f80c27d5caba8418c11e665a6abd1a11b7d059
+
+question_generation:
+  protocol: official_lightrag_step_2
+  question_count: 125
+  generator_model: Qwen/Qwen3.6-35B-A3B-FP8
+  tokenizer: gpt2
+  context_description_tokens: 2000
+  temperature: 0
+  max_tokens: 8192
+  chat_template_kwargs:
+    enable_thinking: false
+
+retrieval:
+  methods: [lightrag_hybrid, lightrag_naive]
+  top_k: 5
+  chunk_top_k: 5
+  answer_max_tokens: 768
+
+evaluation:
+  method: pairwise_llm_as_a_judge
+  judge_model: gpt-4o-mini
+  answer_order: alternating
+  reference_answer: unavailable_by_paper_protocol
+  primary_metric: lightrag_hybrid_overall_pairwise_win_rate
+  gpt_4o_mini_batch:
+    status: completed
+    served_model: gpt-4o-mini-2024-07-18
+    initial_batch_id: batch_6a9b8f12a69c81908801eed5086f9378
+    initial_valid_judgments: 119
+    retry_batch_id: batch_6a9b920380ac81909023c68f21f677cc
+    retry_count: 6
+    retry_max_tokens: 1024
+    tie_count: 17
+  fallback_judge:
+    model: gpt-oss-20b
+    chat_template_kwargs:
+      reasoning_effort: low
+    max_tokens: 2048
+    status: supplementary
+  additional_fallback_judge:
+    model: prometheus-eval/prometheus-7b-v2.0
+    served_model_name: gpt-oss-20b
+    max_tokens: 1024
+    status: completed
+  third_fallback_judge:
+    model: openai/gpt-oss-120b
+    served_model_name: gpt-oss-20b
+    chat_template_kwargs:
+      reasoning_effort: low
+    max_tokens: 2048
+    status: completed
+
+retry_policy:
+  max_attempts: 3
+  retry_delay_seconds: 5
+  retryable_failures: OpenAI-compatible request exceptions
+
+success_criteria:
+  - generated query数が125であり、そのhashをmanifestへ固定する
+  - hybridとnaiveの各125回答を完走する
+  - GPT-4o-miniによる125組のpairwise判定を完走し、Overall Winner勝率を集計する
+  - model、endpoint、prompt、token上限、retry方針、入力hashをmanifestへ記録する
+
+limitations:
+  - 原著者が実際に生成した125問は未公開のため、同一手順でQwenが生成した固定質問セットを用いる
+  - QwenへのLLM変更を含む再評価であり、原論文の完全再現ではない

@@ -9,6 +9,9 @@ from category_grounded_agentic_search.interfaces.lightrag_reproduction import (
     completion_failure_reason,
     completion_timeout_seconds,
     ensure_documents_processed,
+    official_context_description,
+    official_question_prompt,
+    parse_pairwise_winner,
     parse_questions,
     repetition_analysis,
     unique_contexts,
@@ -29,6 +32,25 @@ class InputPreparationTest(unittest.TestCase):
 
         self.assertEqual(questions, ["What is A?", "What is B?"])
 
+    def test_builds_official_question_prompt(self) -> None:
+        prompt = official_question_prompt("dataset description")
+
+        self.assertIn("identify 5 potential users", prompt)
+        self.assertIn("generate 5 questions", prompt)
+
+    def test_official_context_description_uses_official_slice(self) -> None:
+        class Tokenizer:
+            def tokenize(self, _: str) -> list[str]:
+                return [str(index) for index in range(2_500)]
+
+            def convert_tokens_to_string(self, tokens: list[str]) -> str:
+                return ",".join(tokens)
+
+        description = official_context_description("context", Tokenizer())
+
+        self.assertTrue(description.startswith("1000,1001"))
+        self.assertTrue(description.endswith("998,999"))
+
 
 class JudgeRequestTest(unittest.TestCase):
     def test_alternates_answer_order(self) -> None:
@@ -46,6 +68,10 @@ class JudgeRequestTest(unittest.TestCase):
         self.assertEqual(len(requests), 2)
         self.assertEqual(mappings["judge-000"]["answer_1"], "lightrag_hybrid")
         self.assertEqual(mappings["judge-001"]["answer_1"], "lightrag_naive")
+
+    def test_parses_local_judge_result_tag(self) -> None:
+        self.assertEqual(parse_pairwise_winner("reasoning\n[RESULT] B"), "B")
+        self.assertIsNone(parse_pairwise_winner("reasoning without a result"))
 
 
 class ReproductionCliTest(unittest.TestCase):
@@ -74,11 +100,22 @@ class ReproductionCliTest(unittest.TestCase):
                 "--judge-endpoint", "http://localhost:8001/v1",
                 "--judge-model", "gpt-oss-20b",
                 "--judge-output-filename", "gpt_oss_20b_judge_results.json",
+                "--judge-max-tokens", "128",
+                "--judge-report-model", "prometheus-eval/prometheus-7b-v2.0",
             ]
         )
 
         self.assertTrue(args.judge_openai_compatible)
         self.assertEqual(args.judge_model, "gpt-oss-20b")
+        self.assertEqual(args.judge_max_tokens, 128)
+        self.assertEqual(args.judge_report_model, "prometheus-eval/prometheus-7b-v2.0")
+
+    def test_accepts_official_query_protocol(self) -> None:
+        args = build_parser().parse_args(
+            ["--root", "experiments/exp-007", "--generate-queries", "--query-protocol", "official", "--query-count", "125"]
+        )
+
+        self.assertEqual(args.query_protocol, "official")
 
 
 class RunValidationTest(unittest.TestCase):
