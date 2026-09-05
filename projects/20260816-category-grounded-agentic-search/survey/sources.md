@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | [AutoIndex: Learning Representation Programs for Retrieval](https://arxiv.org/abs/2607.18603) (2026) | dev qrels を使い、文書をどの索引単位・表現に変換するかを offline で探索する。 | 実行時の反復検索とは異なる最適化である。`exp-001` には含めず、dev/test 分離が固まった後の追加 ablation とする。 |
 | [Superintelligent Retrieval Agent (SIRA)](https://arxiv.org/abs/2605.06647) (2026) | document-side と query-side の語彙拡張を DF filtering で制御し、主に一回の BM25 検索へ圧縮する。BEIR と BrowseComp-Wikipedia を評価する。 | 語彙ギャップを open-loop に吸収する主比較手法。BrowseComp-Wikipedia では Wikipedia category を使うが、これは後続の category 実験の論点であり `exp-001` では除外する。 |
-| [LightRAG: Simple and Fast Retrieval-Augmented Generation](https://aclanthology.org/2025.findings-emnlp.568/) (2025) | corpus 本文から entity/relation graph を抽出し、局所・大域の graph retrieval を組み合わせる。 | 人手 taxonomy ではなく、本文由来の構造が multi-document 集約をどこまで代替できるかを測る手法として採用する。 |
+| [LightRAG: Simple and Fast Retrieval-Augmented Generation](https://aclanthology.org/2025.findings-emnlp.568/) (2025) | corpus 本文から entity/relation graph を抽出し、局所・大域の graph retrieval を組み合わせる。Table 1ではMixにおけるOverallがNaiveRAG 40.0%、LightRAG 60.0%である。 | 人手 taxonomy ではなく、本文由来の構造が multi-document 集約をどこまで代替できるかを測る手法として採用する。報告値は原論文の大規模corpus・LLM条件であり、Qwen variantと直接比較しない。 |
 
 ## 証拠条件付き・反復検索
 

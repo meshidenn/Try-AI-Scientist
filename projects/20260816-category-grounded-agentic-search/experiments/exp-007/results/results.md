@@ -33,6 +33,21 @@ GPT-4o-miniのTieを除いた108件では、hybridは50勝（46.3%）、naiveは
 
 回答生成は250回答を完走し、実行時間は2,305.7秒だった。Qwen呼び出しは332回、合計1,185,928 tokensだった。
 
+## 原論文との参考比較
+
+原論文Table 1のOverallは、原著者のLLM・index・質問セット・大規模UltraDomain corpusで得た、NaiveRAG対LightRAGのpairwise win rateである。今回のQwen variantとは実験条件が異なるため、**参考値であり直接比較ではない**。特に今回のMixは61 unique contextであり、原論文のMixを含む各corpusは60万〜500万tokensで評価されている。
+
+| UltraDomain dataset | 原論文 NaiveRAG | 原論文 LightRAG | 今回の対応値 |
+| --- | ---: | ---: | ---: |
+| Agriculture | 32.4% | 67.6% | 未実施 |
+| CS | 38.8% | 61.2% | 未実施 |
+| Legal | 15.2% | 84.8% | 未実施 |
+| Mix | 40.0% | 60.0% | hybrid 40.0%、naive 46.4%、Tie 13.6% |
+
+原論文のMixではLightRAGが20.0ポイント高いのに対し、今回の全125件比率ではnaiveが6.4ポイント高い。原論文の勝率はTieなしで二方式の合計が100%になる一方、今回の主評価には17 Tieがある点にも注意する。
+
+出典: [Guo et al., *LightRAG: Simple and Fast Retrieval-Augmented Generation*, Table 1 (2025)](https://aclanthology.org/2025.findings-emnlp.568.pdf)
+
 ## Failures And Negative Results
 
 - 初回GPT-4o-mini Batchの6件は`finish_reason=length`で、JSONを完結できなかった。6件を同じモデル・temperatureで再評価し、全125件を回収した。
