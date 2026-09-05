@@ -1,0 +1,5 @@
+# Result Interpretation
+
+固定revision・固定input・固定Qwen endpointで、LightRAGのdocument index構築と4件のhybrid queryが実行可能であることを確認した。これはoperationalな疎通確認であり、QwenがLightRAGの品質を改善する、あるいは既存結果を再現する証拠ではない。
+
+entity extractionの6回すべてがtoken limitで終了しrelationが0件だったため、このpilotのgraphは不完全である。query responseが存在しても、relation retrievalやsemantic embeddingの品質、gold answerへの正確性は評価していない。

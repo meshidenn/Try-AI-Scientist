@@ -1,0 +1,15 @@
+experiment:
+  id: exp-018
+  title: BGE-M3を用いるUltraDomain全unique contextのLightRAG index化
+  status: planned
+  parent_issue: 4
+objective: >-
+  固定UltraDomain revisionの全61 unique contextに対し、BAAI/bge-m3の1,024次元dense embeddingと
+  Qwen entity/relation抽出を使用してLightRAG indexを作成する。
+embedding:
+  model: BAAI/bge-m3
+  dimension: 1024
+  normalization: true
+constraints:
+  - query生成と評価はindex化後に行う
+  - hash embeddingを使用したexp-017とは別indexとする

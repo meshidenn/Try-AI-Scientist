@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "audit_issue": 3,
+  "access_date": "2026-08-22",
+  "admission_rule": "Only status=accepted datasets may be passed to a model run.",
+  "datasets": [
+    {
+      "id": "fanoutqa",
+      "status": "conditional",
+      "canonical_source": "https://github.com/zhudotexe/fanoutqa",
+      "license": "CC-BY-SA-4.0 (dataset); retain Wikipedia attribution and corpus terms",
+      "known_split": "dev and test",
+      "question_id_field": "id",
+      "gold_evidence_fields": ["necessary_evidence.pageid", "necessary_evidence.revid", "necessary_evidence.title"],
+      "corpus_requirement": "Pin the official 2023-09 ZIM or another documented official snapshot and record its checksum.",
+      "blocker": "Snapshot not yet obtained or hashed."
+    },
+    {
+      "id": "frames",
+      "status": "conditional",
+      "canonical_source": "https://huggingface.co/datasets/google/frames-benchmark",
+      "license": "Apache-2.0",
+      "known_split": "default/test",
+      "question_id_field": "Unnamed: 0",
+      "gold_evidence_fields": ["wikipedia_link_1..wikipedia_link_11+", "wiki_links"],
+      "corpus_requirement": "Resolve source URLs to immutable revisions and store the page snapshot before evaluation.",
+      "blocker": "Dataset provides URLs but not immutable Wikipedia revision IDs."
+    },
+    {
+      "id": "musique",
+      "status": "needs-official-source",
+      "canonical_source": "https://github.com/StonyBrookNLP/musique",
+      "observed_mirror": "https://huggingface.co/datasets/fladhak/musique",
+      "license": "Unverified for canonical release; observed mirror declares CC-BY-4.0",
+      "blocker": "Canonical release, corpus snapshot, and evidence mapping are not yet verified."
+    },
+    {
+      "id": "hds-qa",
+      "status": "blocked",
+      "paper": "https://openreview.net/forum?id=rXpTZyucal",
+      "candidate_dataset": "https://huggingface.co/datasets/dayoon/HDS-QA-Single-Query",
+      "license": "unverified",
+      "blocker": "Candidate dataset was not readable through the public Dataset Viewer; schema, evidence mapping, and license are unknown."
+    }
+  ]
+}

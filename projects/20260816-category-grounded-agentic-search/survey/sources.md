@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | [AutoIndex: Learning Representation Programs for Retrieval](https://arxiv.org/abs/2607.18603) (2026) | dev qrels を使い、文書をどの索引単位・表現に変換するかを offline で探索する。 | 実行時の反復検索とは異なる最適化である。`exp-001` には含めず、dev/test 分離が固まった後の追加 ablation とする。 |
 | [Superintelligent Retrieval Agent (SIRA)](https://arxiv.org/abs/2605.06647) (2026) | document-side と query-side の語彙拡張を DF filtering で制御し、主に一回の BM25 検索へ圧縮する。BEIR と BrowseComp-Wikipedia を評価する。 | 語彙ギャップを open-loop に吸収する主比較手法。BrowseComp-Wikipedia では Wikipedia category を使うが、これは後続の category 実験の論点であり `exp-001` では除外する。 |
-| [LightRAG: Simple and Fast Retrieval-Augmented Generation](https://aclanthology.org/2025.findings-emnlp.568/) (2025) | corpus 本文から entity/relation graph を抽出し、局所・大域の graph retrieval を組み合わせる。 | 人手 taxonomy ではなく、本文由来の構造が multi-document 集約をどこまで代替できるかを測る手法として採用する。 |
+| [LightRAG: Simple and Fast Retrieval-Augmented Generation](https://aclanthology.org/2025.findings-emnlp.568/) (2025) | corpus 本文から entity/relation graph を抽出し、局所・大域の graph retrieval を組み合わせる。Table 1ではMixにおけるOverallがNaiveRAG 40.0%、LightRAG 60.0%である。 | 人手 taxonomy ではなく、本文由来の構造が multi-document 集約をどこまで代替できるかを測る手法として採用する。報告値は原論文の大規模corpus・LLM条件であり、Qwen variantと直接比較しない。 |
 
 ## 証拠条件付き・反復検索
 
@@ -29,6 +29,17 @@
 | [HotpotQA](https://aclanthology.org/D18-1259/) (2018) | Wikipedia を用いる multi-hop QA と supporting facts。 | 2-hop QA の代表的な診断対象。ただし、各設問で次の検索語が途中で初めて判明することは保証しない。 |
 | [2WikiMultiHopQA](https://aclanthology.org/2020.coling-main.580/) (2020) | Wikipedia と Wikidata に由来する relation を含む multi-hop QA。 | relation 型ごとの分析に用いる。適応的検索の必要性を設問単位でラベル付けしてはいない。 |
 | [MuSiQue](https://aclanthology.org/2022.tacl-1.31/) (2022) | compositional な multi-hop QA と supporting paragraphs。 | chain を用いた診断に適するが、open-loop では解けないことを全設問について意味しない。 |
+| [FanOutQA](https://github.com/zhudotexe/fanoutqa) (2024; access: 2026-08-22) | human decompositionと`necessary_evidence`のWikipedia page/revision IDを公開するfan-out QA。 | revision固定したWikipedia snapshotを用意できる場合のparallel fan-out pilot候補。datasetとcorpusの利用条件を別々に記録する。 |
+| [FRAMES](https://huggingface.co/datasets/google/frames-benchmark) (2024; access: 2026-08-22) | 824件のtest splitにquestion、answer、Wikipedia source URL、reasoning typeを持つ。 | URLだけではWikipedia本文が可変なので、revisionまたはpage snapshotを追加で固定できる場合だけ採用する。 |
+| [HDS-QA](https://openreview.net/forum?id=rXpTZyucal) (2026; access: 2026-08-22) | Natural Questions由来のparallel/sequential search reasoningを狙うsynthetic dataset。 | 公開schema、gold evidence、licenseを確認できるまで実験入力に採用しない。 |
+| [Qwen3.6-35B-A3B-FP8 model card](https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8) (2026; access: 2026-08-22) | Issue #2で固定されたFP8 MoE LLM。 | model revision、server version、GPU、generation parameterをrun manifestに固定する。 |
+| [vLLM Qwen3.6 recipe](https://github.com/vllm-project/recipes/blob/main/models/Qwen/Qwen3.6-35B-A3B.yaml) (2026; access: 2026-08-22) | FP8 checkpointのmodel ID、対応vLLM、最低VRAM 42GBを示す。 | #4の実行環境確認に用いる。ローカルGPUが使えない場合はendpointまたは別の承認済み計算環境が必要。 |
+
+## AI Scientist / Research Workflow
+
+| 資料 | 方式と位置づけ | 本研究への含意 |
+| --- | --- | --- |
+| [Spark-to-Paper: End-to-End Research Paper Generation as a Composable Skill](https://arxiv.org/abs/2608.11924) (Qian et al., 2026; access: 2026-08-17) | 既存 coding assistant 内で13個の composable skill を実行し、文献検索、実験、claim revision、図生成、review を共有 artifact で接続する。計画と報告を分離し、deterministic integrity check と self-critique を組み合わせる。 | 本 project の `survey`、`spec`、実験結果、paper、review を分離する設計の近接先。検索方式のbaselineではなく、AI Scientist workflow と artifact-grounded claim 管理の関連研究として扱う。 |
 
 ## 設計上の結論
 

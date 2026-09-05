@@ -1,0 +1,15 @@
+experiment:
+  id: exp-015
+  title: LLM-as-a-judge精度算出のための正常subset実装確認
+  status: planned
+  parent_issue: 4
+objective: >-
+  Qwenが32,768 tokenでもlength終了した1 documentを明示的に除外し、残る短文2 contextで
+  LightRAG hybrid/naive回答とGPT-4o-mini pairwise judge入力を生成する。
+constraints:
+  - 除外はQwen生成不具合の切り分けであり、論文準拠の全量精度ではない
+  - 全量index化はこの小規模実装確認の後に別runで行う
+success_criteria:
+  - 全documentがprocessedになる
+  - 2方式それぞれ5 queryへの回答を生成する
+  - GPT-4o-mini Batch APIがjudge requestを受理する

@@ -1,0 +1,26 @@
+experiment:
+  id: exp-026
+  title: Gemma 4 JSON抽出の重複抑止・件数上限・反復検出の統合検証
+  status: failed
+objective: >-
+  Qwenで反復生成を検出した同一文書に対し、Gemma 4で重複禁止prompt、
+  entity 30件・relation 50件上限、および実装側の反復検出を検証する。
+target_document: ultradomain-c58b4831f2d6fec6
+input:
+  dataset: UltraDomain unique contexts
+  selection: single known-failure document
+extractor:
+  model: RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 8192
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+validation:
+  repetition_detection: line unique ratio below 0.5 with at least 20 nonempty lines
+success_criteria:
+  - 全chunkがfinish_reason=stopで完了する
+  - document statusがprocessedとなる
+  - 反復検出が発火しない

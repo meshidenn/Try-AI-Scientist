@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "category-grounded-agentic-search"
+version = "0.1.0"
+description = "Reproducible artifacts for category-grounded agentic-search experiments"
+requires-python = ">=3.12"
+dependencies = [
+    "lightrag-hku",
+    "openai>=3.3.1",
+    "python-dotenv>=1.2.3",
+    "sentence-transformers>=6.0.0",
+    "transformers>=5.16.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv.sources]
+lightrag-hku = { git = "https://github.com/HKUDS/LightRAG.git", rev = "5183dec553da29e123d45f663045e8efe24cbedf" }

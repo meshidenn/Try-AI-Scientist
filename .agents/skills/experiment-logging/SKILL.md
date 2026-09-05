@@ -24,6 +24,18 @@ description: 実験結果をMarkdownとJSONで残し、後続agentが読み返�
 - 再現手順は共通workspaceのscriptと明示した`--root`を記載する。実験番号を含む実装pathを参照しない。
 - 新規expは`inputs/`と`outputs/`にsnapshotと生成物を置く。legacyの`workspace/` snapshotを残す場合は、READMEまたはmanifestに理由を書く。
 
+## Reproduction Implementation Runs
+
+- token上限探索、endpoint疎通、parser/実装修正、再試行、性能診断は正式な研究実験ではない。`experiments/exp-xxx/`を作らず、`workspace/reproduction-runs/<issue-or-workflow>/runs/run-xxx/`に記録する。
+- 各workflowの`README.md`に、目的、正式experimentとの境界、run一覧、旧pathを移した場合の対応表を残す。各runには設定、短い結果要約、判断を残す。
+- 独立した仮説、比較、評価指標、成功判定を定めて研究上の結果として扱う段階でのみ、`experiments/exp-xxx/`を新設する。
+
+## Git Tracking
+
+- Gitには設定、manifest、入力hash、集計済み結果、判断記録を置く。raw completion、重複context snapshot、embedding、vector/index、途中storeなど再生成可能な大型生成物は`.gitignore`にする。
+- stageは対象ファイルを明示する。`git add .`やproject全体の一括stageを使わず、commit前に`git diff --cached --name-only`と`git diff --cached --stat`で内容と容量を確認する。
+- 生成物または非codeファイルが1 MiB以上なら、Git管理の必要性とmanifestによる代替を確認し、利用者の明示承認なしにstageしない。
+
 ## results.md Structure
 
 ```markdown

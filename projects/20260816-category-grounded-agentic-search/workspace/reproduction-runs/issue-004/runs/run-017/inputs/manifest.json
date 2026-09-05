@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "experiment_id": "exp-017",
+  "purpose": "LightRAG paper-protocol Qwen variant small-subset implementation pilot",
+  "source": {
+    "dataset": "TommyChien/UltraDomain",
+    "revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d",
+    "file": "mix.jsonl",
+    "url": "https://huggingface.co/datasets/TommyChien/UltraDomain/resolve/aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/mix.jsonl?download=true",
+    "license": "Apache-2.0",
+    "full_file_sha256": "3e438f40c91a183a246446dd8435a8c1f0de004533e9e90f97ddf862d5c39bc9"
+  },
+  "selection": {
+    "selection_rule": "unique contextを文字数昇順、同長ならSHA-256昇順で選ぶ",
+    "source_unique_context_count": 61,
+    "selected_unique_context_count": 61,
+    "documents": [
+      {
+        "document_id": "ultradomain-6f949e61ed0f3bf1",
+        "context_sha256": "6f949e61ed0f3bf1dfee832d8bcfc2d5485365b7fde9981208b8bc70ebdceb98"
+      },
+      {
+        "document_id": "ultradomain-aa606ac3abb17877",
+        "context_sha256": "aa606ac3abb178772097781c9f923f148da330af68c2394bdf6e2932aa8360b7"
+      },
+      {
+        "document_id": "ultradomain-484d15c0b885089b",
+        "context_sha256": "484d15c0b885089b898a174afd7f45bb76b54ea5b003d671d35e0f762875e0e4"
+      },
+      {
+        "document_id": "ultradomain-3cdcb99709b9683d",
+        "context_sha256": "3cdcb99709b9683d8af023744ebffcc803d51f1fa16f10167204f28377fa07a1"
+      },
+      {
+        "document_id": "ultradomain-c58b4831f2d6fec6",
+        "context_sha256": "c58b4831f2d6fec6a201fc17475a3d799f513999e9d7bea6ae119c5ca5dcd2d4"
+      },
+      {
+        "document_id": "ultradomain-c4ee744980fab926",
+        "context_sha256": "c4ee744980fab9262c6068e9633bcb1edd35b1674cf16df76143f69408a75236"
+      },
+      {
+        "document_id": "ultradomain-3387b04e36399798",
+        "context_sha256": "3387b04e36399798be3ef7f6cf70cca602ce0f561fbd168f6c9c3591d5116068"
+      },
+      {
+        "document_id": "ultradomain-4a189ff9c9480a6a",
+        "context_sha256": "4a189ff9c9480a6aefe4ab36e2bfe7009cb2e2b1a6d938f640002e9e3c587ec4"
+      },
+      {
+        "document_id": "ultradomain-668c7426b8388629",
+        "context_sha256": "668c7426b8388629e7bf14cc4c2a068c8583702f2003d936329f63bfc2f9dfdb"
+      },
+      {
+        "document_id": "ultradomain-48d9750a9bc0d65f",
+        "context_sha256": "48d9750a9bc0d65f84c016f5fec361632a6cf3302505fc1079bcc6a9811ad387"
+      },
+      {
+        "document_id": "ultradomain-191e7bb4307052ff",
+        "context_sha256": "191e7bb4307052ff1f8ea35d1ec7f34be4fb0e8747adc58e30a6f2ee6b6600ad"
+      },
+      {
+        "document_id": "ultradomain-e47a4d74063733dc",
+        "context_sha256": "e47a4d74063733dc34fd0f251dc308158e941a1c059c46fd51a0c3e9b91fe935"
+      },
+      {
+        "document_id": "ultradomain-f2a889f8dd005d4c",
+        "context_sha256": "f2a889f8dd005d4ccfcc915543731f34315dc55e11732ffc7a88f3e7c81ecad1"
+      },
+      {
+        "document_id": "ultradomain-dafe42c549b2fbd3",
+        "context_sha256": "dafe42c549b2fbd31537575e00de9b380d3d2dafbf49688c02cb8e7907f72e8e"
+      },
+      {
+        "document_id": "ultradomain-f426f01829305993",
+        "context_sha256": "f426f0182930599312f4b7fb78b5c99ba1ef645d4337c016f755f2518db8ce4b"
+      },
+      {
+        "document_id": "ultradomain-ea2172e555034cb5",
+        "context_sha256": "ea2172e555034cb53fec0cb0ad93befb9059e51b829fdc3cb5914a265cb73290"
+      },
+      {
+        "document_id": "ultradomain-d13e6e1bdf0f3fd2",
+        "context_sha256": "d13e6e1bdf0f3fd27b72287aa58b4460d3bf79773e67f9ed4508d98a9cff40d6"
+      },
+      {
+        "document_id": "ultradomain-2cc2b77f9f35b5b5",
+        "context_sha256": "2cc2b77f9f35b5b5df20f25b625932404afbcf932e498e05c5ada9c588a6f30d"
+      },
+      {
+        "document_id": "ultradomain-0671d30b5d6a3137",
+        "context_sha256": "0671d30b5d6a31375238490425e47f3767df0145b4027ca34c7338e10fdf29ec"
+      },
+      {
+        "document_id": "ultradomain-ffd78bef3fabc7f5",
+        "context_sha256": "ffd78bef3fabc7f5dd18831db20a54f416fcf86dc1c216ecb995e841d5d07640"
+      },
+      {
+        "document_id": "ultradomain-931195425980779d",
+        "context_sha256": "931195425980779d053c219c579dd1e173ef9c73cb40897116d15d8dc2113778"
+      },
+      {
+        "document_id": "ultradomain-1992a30f4e3ce244",
+        "context_sha256": "1992a30f4e3ce2447b345afb3a5c9bc7a910b215611b54651795095dbdfb1092"
+      },
+      {
+        "document_id": "ultradomain-cad6176f1f386c66",
+        "context_sha256": "cad6176f1f386c66cb1e7fa892b088d89ecd9030bbcdb2c54b18015487c70061"
+      },
+      {
+        "document_id": "ultradomain-6173dc1018c1d60a",
+        "context_sha256": "6173dc1018c1d60a6a8a45969649140aab4f5b4f228e4bf852ca429b4156a5ea"
+      },
+      {
+        "document_id": "ultradomain-adf2de189dbb844c",
+        "context_sha256": "adf2de189dbb844c8b07814b912e5bcfdf7d54d3327baa15571c9ba1ae663a9e"
+      },
+      {
+        "document_id": "ultradomain-b1c14a2684fb0b27",
+        "context_sha256": "b1c14a2684fb0b27f9ea7d82db71a34217fa0f39629caef34e49fca318ed7e0a"
+      },
+      {
+        "document_id": "ultradomain-236cdae83e41983c",
+        "context_sha256": "236cdae83e41983c78ac7fac9bbc8ec9e0a850a08a83a977bf17d00df4a3030a"
+      },
+      {
+        "document_id": "ultradomain-75e69b72367ed150",
+        "context_sha256": "75e69b72367ed15038fb18618be778c16d0f78a8799e31d5a603f9b1c9fb9fd9"
+      },
+      {
+        "document_id": "ultradomain-6e8686563b6bb504",
+        "context_sha256": "6e8686563b6bb50479fb0027445357a617e277512c3a5d922d836762e42d0cc5"
+      },
+      {
+        "document_id": "ultradomain-75498c823026b5c9",
+        "context_sha256": "75498c823026b5c9b95cfeb27a8d22d3d3d755336fb233d689eb24f42d7b2465"
+      },
+      {
+        "document_id": "ultradomain-ef90980426c17963",
+        "context_sha256": "ef90980426c179636cebddb8868004850d7b2aa1bf96e6c26bad8b411c4b8d93"
+      },
+      {
+        "document_id": "ultradomain-05b9074ec3beff2c",
+        "context_sha256": "05b9074ec3beff2cf74cb2699def2d0172e684c0d2d991bac51f50d5211cef53"
+      },
+      {
+        "document_id": "ultradomain-874abee3f6d391e5",
+        "context_sha256": "874abee3f6d391e56a8eff58e6989506b5e4a9a87120d3e98249e4e5caf50c3e"
+      },
+      {
+        "document_id": "ultradomain-96a9735499432f8f",
+        "context_sha256": "96a9735499432f8f40eef8b88586b71a6588dbc3bb5b5ba04826224403324c4a"
+      },
+      {
+        "document_id": "ultradomain-b4cec348685b1cf4",
+        "context_sha256": "b4cec348685b1cf49d1e8fbf483f10ef19a4a4f3ec80a17d877080558c25ec21"
+      },
+      {
+        "document_id": "ultradomain-b9012ffa78e7d071",
+        "context_sha256": "b9012ffa78e7d071423e71bfeaa8178179e13a474f0315aea1fe68d2e749f769"
+      },
+      {
+        "document_id": "ultradomain-4f2ea1308bf5dc9f",
+        "context_sha256": "4f2ea1308bf5dc9fea84bfe1f09e58e102bd2d9577f79a835ba162a353f95921"
+      },
+      {
+        "document_id": "ultradomain-11850133158569d3",
+        "context_sha256": "11850133158569d36704996d2da2e40e02b3951918f6d55afaf9d19ebbcd6c25"
+      },
+      {
+        "document_id": "ultradomain-27df907df710ce55",
+        "context_sha256": "27df907df710ce5513ce4a3a2efc41cd40ead2e8dd6a558fbf76fa5fc5f88c14"
+      },
+      {
+        "document_id": "ultradomain-52f9d765f9798857",
+        "context_sha256": "52f9d765f97988573fb1732f343e5f155684d1f6e2ed15668aeb47ba72e68af9"
+      },
+      {
+        "document_id": "ultradomain-9779be246fb92124",
+        "context_sha256": "9779be246fb921242473d22112577b4484c9f693a9d8a667ba53230d0e0c1969"
+      },
+      {
+        "document_id": "ultradomain-ff59fede231a95d1",
+        "context_sha256": "ff59fede231a95d1dcc84a080a5e1e159d1332c404ffafd8028ccfb429a124d3"
+      },
+      {
+        "document_id": "ultradomain-6dcb8ca885063b11",
+        "context_sha256": "6dcb8ca885063b1107ce85dffd83bc66adbbd0f6d99d34d65a20d969af7264b2"
+      },
+      {
+        "document_id": "ultradomain-d5fe1928f9f1f738",
+        "context_sha256": "d5fe1928f9f1f7385057338c13db39b8e6f8fef7043d1f9a8cec078b19e96769"
+      },
+      {
+        "document_id": "ultradomain-0c8ac8bb9192dc88",
+        "context_sha256": "0c8ac8bb9192dc88969f63789b000dce405438e28a7775c70a7933f44ab6ee23"
+      },
+      {
+        "document_id": "ultradomain-d98470d7aac1037a",
+        "context_sha256": "d98470d7aac1037a6734720e13dd4f7a4e5189b74e2da3cac5e6462d56099e83"
+      },
+      {
+        "document_id": "ultradomain-55029696dc68350b",
+        "context_sha256": "55029696dc68350bfe6c559ac149f379e55f1e169a17073339d16ca46f65452e"
+      },
+      {
+        "document_id": "ultradomain-8a1ad34674c17bba",
+        "context_sha256": "8a1ad34674c17bbad48e05f1b708e3a4dd3a8e2cde05fe379223753f5f287da7"
+      },
+      {
+        "document_id": "ultradomain-d2f1cf671fe34bd6",
+        "context_sha256": "d2f1cf671fe34bd6f848636b85aaad3ff8945f144725a444d4be10fac740eba3"
+      },
+      {
+        "document_id": "ultradomain-50ec955f9d53b87c",
+        "context_sha256": "50ec955f9d53b87c3075608a8e2aa04e58d6dd07da8fd1b4831205c10f9ba96f"
+      },
+      {
+        "document_id": "ultradomain-e4589b684e0a2301",
+        "context_sha256": "e4589b684e0a2301ad85b6b8c56b7465720a5d152989e8bafbd31a178ee30640"
+      },
+      {
+        "document_id": "ultradomain-39aecd2c50fb2fa8",
+        "context_sha256": "39aecd2c50fb2fa81886a2299505ef507dcac11d903e841d0fac78c618fddc49"
+      },
+      {
+        "document_id": "ultradomain-3a1e6a7791902451",
+        "context_sha256": "3a1e6a7791902451020d7feadcc902f06afb6b0ee2d1cfbf3cbab5fb10b6b621"
+      },
+      {
+        "document_id": "ultradomain-a154e110bef510d6",
+        "context_sha256": "a154e110bef510d6b4fce640f23974f16be6bfa101f7f0b524c99f74bb2b6f8a"
+      },
+      {
+        "document_id": "ultradomain-8ad84164d1686749",
+        "context_sha256": "8ad84164d1686749cda5e82aec61d99a75fbab67c0f314124a57703e587f6ec8"
+      },
+      {
+        "document_id": "ultradomain-3ca7b3d718dd846a",
+        "context_sha256": "3ca7b3d718dd846a84af8afca4cd25402406d007caa3e8a4e9844c131e7951bb"
+      },
+      {
+        "document_id": "ultradomain-2edbb7cecc11783e",
+        "context_sha256": "2edbb7cecc11783efdcb59eb8d4989f12227f80d90808070b663c2dd21441855"
+      },
+      {
+        "document_id": "ultradomain-973627f0e3aa0cd2",
+        "context_sha256": "973627f0e3aa0cd2cd198bd95cf31c8e2d84b19e31aaa5fb9e6056dd56082a03"
+      },
+      {
+        "document_id": "ultradomain-5f21d89c9ace0b78",
+        "context_sha256": "5f21d89c9ace0b78dab2823ea382930ed84b23905df77e9159e36154d70ad467"
+      },
+      {
+        "document_id": "ultradomain-6a7cb621a5218266",
+        "context_sha256": "6a7cb621a5218266bb212e22def400bf66439ed39abca834fe85dc7b4cef04f4"
+      },
+      {
+        "document_id": "ultradomain-b428f0ba3d419848",
+        "context_sha256": "b428f0ba3d419848c59a5b39290b701420193f20fd5c58ee778dd9be47a8d08a"
+      }
+    ],
+    "limitation": "論文の全量評価ではなく、実装確認用の縮小subsetである。",
+    "excluded_document_ids": []
+  },
+  "context_snapshot_sha256": "ccd3d476bb12b6f1d7c28b6d1904df6e8cd0fd3e511be456c3a114edc20abb65",
+  "protocol": {
+    "query_generation": "Qwenによる高水準query生成。原論文のGPT-4o生成を置換したQwen variant。",
+    "methods": [
+      "lightrag_hybrid",
+      "lightrag_naive"
+    ],
+    "judge_model": "gpt-4o-mini",
+    "judge": "GPT-4o-mini pairwise LLM-as-a-judge、回答順を交互にする。"
+  }
+}

@@ -1,0 +1,1 @@
+{"project":"category-grounded-agentic-search","experiment_id":"exp-011","parent_issue":4,"status":"planned","objective":"extract max_tokens=16382で最終検証する。","inputs":{"spec":"spec.yaml"},"artifacts":{"inputs":"inputs/","outputs":"outputs/","results":"results/results.md","scores":"results/scores.json","review":"review/","logs":"logs/"}}

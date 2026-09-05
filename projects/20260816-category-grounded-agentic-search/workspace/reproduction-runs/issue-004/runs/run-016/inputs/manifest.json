@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "experiment_id": "exp-016",
+  "purpose": "LightRAG paper-protocol Qwen variant small-subset implementation pilot",
+  "source": {
+    "dataset": "TommyChien/UltraDomain",
+    "revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d",
+    "file": "mix.jsonl",
+    "url": "https://huggingface.co/datasets/TommyChien/UltraDomain/resolve/aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/mix.jsonl?download=true",
+    "license": "Apache-2.0",
+    "full_file_sha256": "3e438f40c91a183a246446dd8435a8c1f0de004533e9e90f97ddf862d5c39bc9"
+  },
+  "selection": {
+    "selection_rule": "unique contextを文字数昇順、同長ならSHA-256昇順で選ぶ",
+    "source_unique_context_count": 61,
+    "selected_unique_context_count": 1,
+    "documents": [
+      {
+        "document_id": "ultradomain-484d15c0b885089b",
+        "context_sha256": "484d15c0b885089b898a174afd7f45bb76b54ea5b003d671d35e0f762875e0e4"
+      }
+    ],
+    "limitation": "論文の全量評価ではなく、実装確認用の縮小subsetである。",
+    "excluded_document_ids": [
+      "ultradomain-6f949e61ed0f3bf1",
+      "ultradomain-aa606ac3abb17877"
+    ]
+  },
+  "context_snapshot_sha256": "18c3b67072a199a0abe36fb4489c06760d27f18453fd28f76ee1aa3d1fb8f1db",
+  "protocol": {
+    "query_generation": "Qwenによる高水準query生成。原論文のGPT-4o生成を置換したQwen variant。",
+    "methods": [
+      "lightrag_hybrid",
+      "lightrag_naive"
+    ],
+    "judge_model": "gpt-4o-mini",
+    "judge": "GPT-4o-mini pairwise LLM-as-a-judge、回答順を交互にする。"
+  },
+  "generated_queries_sha256": "1269686f561bdd85db4649b8981365b2864bcf0ff8ce353409d9437bf22f59e7"
+}

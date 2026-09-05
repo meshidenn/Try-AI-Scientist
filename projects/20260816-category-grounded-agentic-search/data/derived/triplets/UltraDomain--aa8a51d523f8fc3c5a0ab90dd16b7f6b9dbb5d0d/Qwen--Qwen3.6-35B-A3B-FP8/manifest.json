@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "stage": "triplets",
+  "artifact_paths": {
+    "root": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/data/derived",
+    "corpus_id": "UltraDomain",
+    "corpus_revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d",
+    "extractor_model": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "embedding_model": "BAAI/bge-m3"
+  },
+  "corpus": {
+    "id": "UltraDomain",
+    "revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d"
+  },
+  "models": {
+    "extractor": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "embedding": "BAAI/bge-m3"
+  },
+  "inputs": {
+    "lightrag_store": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/workspace/reproduction-runs/issue-004/runs/run-033/outputs/lightrag-store",
+    "document_status": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/workspace/reproduction-runs/issue-004/runs/run-033/outputs/lightrag-store/kv_store_doc_status.json"
+  },
+  "outputs": {
+    "triplets_jsonl": "/home/hiroki/work/Try-AI-Scientist/projects/20260816-category-grounded-agentic-search/data/derived/triplets/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/Qwen--Qwen3.6-35B-A3B-FP8/triplets.jsonl",
+    "sha256": "6a5f7eaab019fe8a0c68ed0c89f80c27d5caba8418c11e665a6abd1a11b7d059",
+    "processed_document_count": 61,
+    "failed_document_count": 0
+  }
+}

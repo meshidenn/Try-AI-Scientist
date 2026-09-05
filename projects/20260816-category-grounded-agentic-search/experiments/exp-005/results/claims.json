@@ -1,0 +1,31 @@
+{
+  "experiment_id": "exp-005",
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "同一の1-document smoke pilot条件では、extract max_tokensを512から1536へ増やすと、保存relation数は0件から80件へ増加した。",
+      "scope": "固定したLightRAG、Qwen endpoint、UltraDomain入力snapshot、chunking、hash embeddingの条件に限る。",
+      "evidence": [
+        "../exp-002/results/scores.json",
+        "../exp-003/results/scores.json",
+        "../exp-004/results/scores.json",
+        "results/scores.json"
+      ],
+      "status": "supported"
+    },
+    {
+      "id": "C2",
+      "statement": "max_tokens=1536でもextract truncationは完全には解消しない。",
+      "scope": "exp-005の6 extract call。",
+      "evidence": ["outputs/run_summary.json", "logs/run.log", "results/scores.json"],
+      "status": "supported"
+    },
+    {
+      "id": "C3",
+      "statement": "token上限の増加によりretrieval品質が改善した。",
+      "scope": "該当なし。",
+      "evidence": [],
+      "status": "not_evaluated"
+    }
+  ]
+}

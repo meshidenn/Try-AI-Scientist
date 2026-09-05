@@ -1,0 +1,28 @@
+{
+  "experiment_id": "exp-002",
+  "status": "completed_with_warnings",
+  "metrics": {
+    "primary": {
+      "name": "query_completion_rate",
+      "value": 1.0,
+      "higher_is_better": true,
+      "numerator": 4,
+      "denominator": 4
+    },
+    "query_non_stop_finish_count": 0,
+    "indexed_document_count": 1,
+    "indexed_chunk_count": 6,
+    "graph_entity_count": 69,
+    "graph_relation_count": 0,
+    "retrieval_quality": "not_evaluated",
+    "llm_total_tokens": 30613,
+    "llm_latency_seconds": 87.305
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "query_results": "outputs/query_results.json",
+    "run_summary": "outputs/run_summary.json",
+    "figures": [],
+    "logs": ["logs/run.log"]
+  }
+}

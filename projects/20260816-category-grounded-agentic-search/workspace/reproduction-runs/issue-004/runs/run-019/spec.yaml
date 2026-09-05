@@ -1,0 +1,15 @@
+experiment:
+  id: exp-019
+  title: Qwen triplet抽出とBGE-M3 embeddingの分離pipeline
+  status: planned
+  parent_issue: 4
+objective: >-
+  UltraDomain全61 unique contextについて、Qwenによるtriplet抽出artifactをembedding前に確定し、
+  BGE-M3によるentity/relation/chunk vector化を再実行可能な独立stageとして実装する。
+stages:
+  - extract: Qwenがraw tripletと終了reasonを保存する
+  - embed: BGE-M3が抽出済みentity/relation/chunkをbatch vector化する
+  - index: graph/vector storeへのupsertとstatus集計を行う
+success_criteria:
+  - extract失敗とembed失敗が異なるartifactで記録される
+  - extract成功artifactはembedding再試行で再利用できる

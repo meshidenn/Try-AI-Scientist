@@ -1,0 +1,63 @@
+{
+  "project": "category-grounded-agentic-search",
+  "experiment_id": "exp-002",
+  "parent_issue": 4,
+  "status": "completed_with_warnings",
+  "objective": "固定したLightRAG条件でQwen/Qwen3.6-35B-A3B-FP8を用いる小規模index/query pilotを実行する。",
+  "agent_runs": [
+    {
+      "kind": "endpoint_probe",
+      "status": "completed",
+      "date": "2026-08-25"
+    },
+    {
+      "kind": "lightrag_pilot",
+      "status": "completed_with_warnings",
+      "run_summary": "outputs/run_summary.json"
+    },
+    {
+      "kind": "interrupted_attempt",
+      "status": "failed",
+      "artifacts": "outputs/failed-interrupted-20260825T0044/"
+    },
+    {
+      "kind": "strict_truncation_attempt",
+      "status": "failed",
+      "artifacts": "outputs/failed-strict-truncation-20260825T0048/"
+    }
+  ],
+  "inputs": {
+    "spec": "spec.yaml",
+    "snapshot": "inputs/pilot_inputs.jsonl",
+    "input_manifest": "inputs/manifest.json",
+    "lightrag_revision": "5183dec553da29e123d45f663045e8efe24cbedf",
+    "ultradomain_revision": "aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d"
+  },
+  "llm": {
+    "endpoint_verified_at": "2026-08-25",
+    "endpoint": "http://192.168.100.11:8000/v1",
+    "served_model_name": "llm",
+    "model_root": "Qwen/Qwen3.6-35B-A3B-FP8",
+    "server_fingerprint": "vllm-0.27.0-5fc4282d",
+    "max_model_len": 8192,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "artifacts": {
+    "inputs": "inputs/",
+    "outputs": "outputs/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "claims": "results/claims.json",
+    "figures": "figures/",
+    "review": "review/",
+    "logs": "logs/"
+  },
+  "summary": "1 documentを6 chunkでindex化し、4 hybrid queryを完走した。query completionはすべてstopだが、extract roleは6/6でtoken上限に達し、69 entity・0 relationのため比較性能は未評価である。",
+  "next_actions": [
+    "pinした実embedding modelを導入してhash embeddingを置き換える。",
+    "extract outputのtruncationを解消してrelation extractionを検証する。",
+    "複数document・gold evidence・baselineを固定してRecall@k/MRRを測定する。"
+  ]
+}

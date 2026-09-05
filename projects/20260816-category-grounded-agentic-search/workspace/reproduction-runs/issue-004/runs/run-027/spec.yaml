@@ -1,0 +1,27 @@
+experiment:
+  id: exp-027
+  title: Qwen JSON抽出の反復警告モードでの再現性検証
+  status: failed
+objective: >-
+  反復傾向を失敗条件ではなく診断値として記録し、Qwenのstop応答をLightRAGへ投入して
+  同一入力・設定におけるKG抽出の完了可能性を検証する。
+target_document: ultradomain-c58b4831f2d6fec6
+input:
+  dataset: UltraDomain unique contexts
+  selection: single known-repetition document
+extractor:
+  model: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 8192
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+validation:
+  completion_required: finish_reason=stop and nonempty content
+  repetition_detection: diagnostic only; record nonempty-line unique ratio
+success_criteria:
+  - 全chunkがstop応答としてLightRAGに取り込まれる
+  - document statusがprocessedとなる
+  - 反復統計と入力snapshotが保存される

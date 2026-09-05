@@ -1,0 +1,30 @@
+{
+  "experiment_id": "exp-028",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "document_processed_rate",
+      "value": 1.0,
+      "higher_is_better": true
+    },
+    "chunk_completion": {
+      "name": "stop_response_rate",
+      "value": 1.0,
+      "higher_is_better": true,
+      "numerator": 11,
+      "denominator": 11
+    },
+    "diagnostic": {
+      "name": "repetition_warning_rate",
+      "value": 1.0,
+      "higher_is_better": false,
+      "numerator": 11,
+      "denominator": 11
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "figures": [],
+    "logs": ["logs/index.log", "logs/repetition_warnings.jsonl"]
+  }
+}

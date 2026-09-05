@@ -1,0 +1,36 @@
+experiment:
+  id: exp-003
+  title: Qwen entity extraction token上限の段階的増加
+  status: completed_with_warnings
+  parent_issue: 4
+
+objective: >-
+  exp-002と同じLightRAG revision、UltraDomain input、Qwen endpoint、chunking、
+  retrieval設定を保ち、extract roleのmax_tokensだけを768、1024、1536へ段階的に増やす。
+
+comparability:
+  must_hold_constant:
+    - LightRAG_revision_5183dec553da29e123d45f663045e8efe24cbedf
+    - UltraDomain_input_snapshot_and_checksum
+    - Qwen_endpoint_and_chat_template
+    - chunk_size_512_and_overlap_64
+    - hybrid_retrieval_top_k_5_chunk_top_k_5
+    - deterministic_hash_128_embedding
+  changed_factor: extract_role_max_tokens
+
+schedule:
+  - extract_max_tokens: 768
+  - extract_max_tokens: 1024
+  - extract_max_tokens: 1536
+  stopping_rule: >-
+    最初に全extract callがfinish_reason=stopとなった上限で停止する。
+    1536でもlengthが残る場合は、上限増加だけでは解消不能として記録する。
+
+success_criteria:
+  - 各試行のmax_tokens、finish reason、token使用量、entity/relation数を保存する
+  - exp-002の6/6 extract truncationとrelation数0件を比較できる
+  - indexと4件のhybrid queryを完走する
+
+limitations:
+  - 1 documentのsmoke pilotであり、性能比較・retrieval品質評価ではない
+  - embeddingはexp-002と同じdeterministic-hash-128-v1である

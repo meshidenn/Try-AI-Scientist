@@ -1,0 +1,29 @@
+experiment:
+  id: exp-007
+  title: LightRAG論文プロトコル準拠Qwen variantの実装確認
+  status: planned
+  parent_issue: 4
+
+objective: >-
+  UltraDomainのunique contextから高水準queryを生成し、Qwenを回答生成器とする
+  LightRAG hybrid対naive比較とGPT-4o-mini pairwise judgeの接続を確認する。
+
+protocol:
+  source: TommyChien/UltraDomain mix.jsonl revision aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+  context_selection: unique contextのSHA-256昇順先頭3件
+  query_generation: Qwenによる5件の高水準query
+  methods: [lightrag_hybrid, lightrag_naive]
+  generation_model: Qwen/Qwen3.6-35B-A3B-FP8
+  extract_max_tokens: 2048
+  judge_model: gpt-4o-mini
+  judge_mode: OpenAI Batch API pairwise evaluation with alternating answer order
+
+success_criteria:
+  - Qwen query generationが5件の非重複queryを保存する
+  - hybridとnaiveが各queryへ正常応答する
+  - GPT-4o-mini judge batchが受理される
+
+limitations:
+  - 3 context・5 queryの実装確認であり、論文の全量再現ではない
+  - 原論文のGPT-4o query生成をQwenに置換したvariantである
+  - deterministic-hash-128-v1 embeddingは接続確認用である

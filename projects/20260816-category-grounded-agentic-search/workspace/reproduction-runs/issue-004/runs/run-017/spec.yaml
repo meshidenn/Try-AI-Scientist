@@ -1,0 +1,17 @@
+experiment:
+  id: exp-017
+  title: UltraDomain全unique contextのLightRAG index化
+  status: planned
+  parent_issue: 4
+objective: >-
+  固定revisionのUltraDomain mix.jsonlから抽出した全61 unique contextを、
+  QwenでLightRAG knowledge graphへindex化する。
+inputs:
+  selection: 全unique context（重複はcontext SHA-256で除去）
+  source_revision: aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+constraints:
+  - 文書ごとの抽出終了reasonと処理statusを保存する
+  - truncationを正常終了として集計しない
+success_criteria:
+  - 61 unique contextすべてのindex statusをartifactへ記録する
+  - 失敗がある場合は成功数・失敗数と原因を明記する

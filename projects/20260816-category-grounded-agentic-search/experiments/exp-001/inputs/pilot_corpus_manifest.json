@@ -1,0 +1,11 @@
+{
+  "corpus_id": "synthetic-multihop-fixture",
+  "corpus_version": "v1",
+  "snapshot_date": "2026-08-22",
+  "document_unit": "passage",
+  "document_to_passage_mapping": "identity mapping in pilot fixture",
+  "preprocessing": "none; fixture passages are pre-tokenized",
+  "splits": {
+    "pilot": "inputs/pilot_queries.jsonl"
+  }
+}

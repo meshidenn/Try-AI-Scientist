@@ -1,0 +1,22 @@
+experiment:
+  id: exp-013
+  title: Qwen抽出の出力上限32768 token再検証
+  status: planned
+  parent_issue: 4
+objective: >-
+  max_model_len=262144のQwen endpointでextract roleのmax_tokensを32768へ段階的に増やし、
+  短文3 context subsetに対するstrict extract完走を確認する。
+comparability:
+  reference_experiments: [exp-012]
+  changed_factor: extract_role_max_tokens=32768
+  held_constant:
+    - server_max_model_len=262144_user_reported
+    - UltraDomain_revision_aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+    - shortest_three_unique_contexts_selection
+    - Qwen_query_generation_count_5
+    - lightrag_hybrid_and_naive_modes
+    - GPT-4o-mini_pairwise_judge_protocol
+success_criteria:
+  - すべてのextract callがstopで終わる
+  - hybridとnaiveが各5 queryへ正常応答する
+  - GPT-4o-mini judge batchが受理される

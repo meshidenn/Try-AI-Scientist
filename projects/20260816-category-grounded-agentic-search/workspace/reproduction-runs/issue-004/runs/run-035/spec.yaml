@@ -1,0 +1,45 @@
+experiment:
+  id: exp-035
+  title: BGE-M3全量LightRAG indexによるQwen再評価pilot
+  status: completed
+  parent_issue: 4
+objective: >-
+  exp-033/034で確定したUltraDomain全61文書のQwen tripletおよびBGE-M3 LightRAG indexを再利用し、
+  Qwen回答生成によるhybrid対naiveの5問pilotと、Prometheus-2およびgpt-oss-20bの
+  pairwise judgeを実行する。
+input:
+  corpus:
+    dataset: TommyChien/UltraDomain
+    revision: aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+    unique_context_count: 61
+  index: >-
+    data/derived/indexes/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/
+    Qwen--Qwen3.6-35B-A3B-FP8__BAAI--bge-m3/lightrag-store
+  query_subset:
+    source_experiment: exp-016
+    query_count: 5
+    generated_queries_sha256: 1269686f561bdd85db4649b8981365b2864bcf0ff8ce353409d9437bf22f59e7
+    context_document_id: ultradomain-484d15c0b885089b
+  gold_evidence:
+    status: unavailable
+    reason: UltraDomain mix.jsonlにはこのpilot用の独立したtest query/gold evidence対応がない。
+protocol:
+  query_generator: Qwen/Qwen3.6-35B-A3B-FP8 (exp-016で事前生成、temperature=0)
+  answer_generator: Qwen/Qwen3.6-35B-A3B-FP8
+  answer_temperature: 0
+  answer_max_tokens: 768
+  retrieval_modes: [hybrid, naive]
+  top_k: 5
+  chunk_top_k: 5
+  judges:
+    - prometheus-2 pairwise, alternating answer order, no reference answer
+    - gpt-oss-20b pairwise, alternating answer order, no reference answer
+constraints:
+  - Qwen entity/relation抽出を再実行しない
+  - BGE-M3 indexを変更しない
+  - pairwise勝率をgold evidenceに基づく検索精度・正解率として解釈しない
+success_criteria:
+  - 全61文書のBGE-M3 indexを開ける
+  - hybrid/naiveそれぞれ5回答を生成する
+  - Prometheus-2が全5対を判定する
+  - gpt-oss-20bが同一の全5対を判定する

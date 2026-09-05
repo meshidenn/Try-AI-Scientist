@@ -1,6 +1,6 @@
 name: category-grounded-agentic-search
 title: Category-Grounded Agentic Search
-status: planning
+status: active
 created: "2026-08-14"
 language: ja
 
@@ -9,12 +9,13 @@ research_question: >-
   取得証拠に条件付けて次の検索行動を選ぶ agentic retrieval の差は何によって生じるか。
 
 scope:
-  current_experiment: exp-001
+  current_experiment: exp-006
   included:
-    - multi-hop open-domain QA における open-loop と closed-loop retrieval の比較
+    - FanOutQA、FRAMES、MuSiQue、HDS-QA の入力監査
     - SIRA 型の語彙拡張
     - LightRAG 型の本文由来 entity/relation graph
-    - agentic search の turn 数と cumulative top-N の切り分け
+    - LightRAG条件を保ったQwen3.6-35B-A3B-FP8での再評価
+    - prompt-based agentic search の設計（実装は方針決定後）
   excluded:
     - A-MEM と時系列エージェント記憶
     - 外部カテゴリ、taxonomy、ontology、knowledge graph
@@ -25,9 +26,16 @@ artifacts:
   baseline_plan: BASELINE_PLAN.md
   research_plan: RESEARCH_PLAN.md
   survey_sources: survey/sources.md
+  paper_plan: paper/plan.md
   experiment_spec: experiments/exp-001/spec.yaml
-  paper_draft: experiments/exp-001/paper/draft.md
+  lightrag_qwen_re_evaluation_spec: experiments/exp-002/spec.yaml
+  dataset_audit: data/dataset_audit.md
+  dataset_manifest: data/dataset_manifest.json
+  experiment_readme: experiments/exp-001/README.md
+  source_package: src/category_grounded_agentic_search/
+  tests: tests/
+  paper_draft: paper/draft.md
 
 research_state:
-  evidence_status: 未実装・未実行
+  evidence_status: 入力監査と評価・予算会計基盤を実装済み。Qwen endpointによるLightRAG小規模pilotでextract max_tokensを512から2048へ段階的に増やし、2048では6/6 extractがstopで完走した。比較再評価に必要なsemantic embedding、relation品質確認、baselineは未実施
   interpretation_rule: 推測と実測を明確に分離し、実測結果は experiment artifact に保存する

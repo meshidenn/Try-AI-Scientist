@@ -1,0 +1,7 @@
+[
+  "How does the film \"The Black King\" satirize the life and movement of Marcus Garvey, and what specific critiques does it offer regarding the back-to-Africa ideology?",
+  "In the context of propaganda detection, what are the key differences between the Sentence-level Classification (SLC) and Fragment-level Classification (FLC) tasks, and how does the MIC-CIS system address them?",
+  "What linguistic, layout, and topical features were utilized by the MIC-CIS system to improve performance in both sentence-level and fragment-level propaganda detection?",
+  "How does the ensemble strategy employed by the MIC-CIS system, including the use of relax-voting and post-processing for repetition, contribute to its ranking in the shared tasks?",
+  "What is the role of multi-tasking and multi-granularity architectures in the proposed system, and how do they impact the detection of propagandistic fragments and their types?"
+]

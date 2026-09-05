@@ -1,0 +1,12 @@
+experiment:
+  id: exp-023
+  title: gpt-oss-120b JSON extractionの反復失敗文書再検証
+  status: planned
+objective: >-
+  QwenでJSON抽出がlength終了した文書に対し、同一endpointで提供される
+  openai/gpt-oss-120bを用いてJSON structured extractionを検証する。
+target_document: ultradomain-c58b4831f2d6fec6
+changed_factor: extractor_model=openai/gpt-oss-120b
+success_criteria:
+  - 11 chunkすべてがfinish_reason=stop
+  - document statusがprocessed

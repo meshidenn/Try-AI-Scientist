@@ -4,6 +4,14 @@
 
 **計画中。未実装・未実行。**
 
+### Current Execution Scope (Issue #2, 2026-08-22)
+
+この文書のうちHotpotQA、2WikiMultiHopQA、MeSHを含む将来計画はProposal Modeの設計案として残す。現在実行する正本はIssue #2と`experiments/exp-001/spec.yaml`であり、FanOutQA、FRAMES、MuSiQue、HDS-QAを対象に、`Qwen/Qwen3.6-35B-A3B-FP8`を固定してSIRA型・LightRAG型を比較する。
+
+- datasetの採用は`data/dataset_manifest.json`で`accepted`になったものに限定する。
+- LightRAGのQwen再評価は`experiments/exp-002/spec.yaml`で管理する。corpusを変更せず、LLM変更を伴う再評価と表現する。
+- Sequential / Parallel agentの実装方針は2026-08-25に固定した。採用データセットが`accepted`になるまで実装・実行は開始しない。
+
 本書を研究全体の設計正本とする。`experiments/exp-001/spec.yaml` は、外部の人手構造を使わない基準線実験の仕様である。MeSH を含む主実験は、入力データ監査後に別 experiment として固定する。
 
 ## 中心となる問い
@@ -55,6 +63,23 @@ H3 は事前ラベルとして仮定しない。agent trajectory と gold eviden
 | M3 | Agentic search | 観察結果に基づき query を更新して再検索 |
 
 SIRA は実行時の one-shot retrieval として扱う。LightRAG が内部で local/global retrieval を併用しても、取得結果を観察して次の検索意図を変更しない限り one-shot と定義する。
+
+### Prompt-only agent baseline decision（2026-08-25）
+
+agent条件では、全条件を`Qwen/Qwen3.6-35B-A3B-FP8`の**prompt-only**実装とする。SFT、RL、論文著者が配布する学習済みagent checkpointは利用しない。したがって以下は原論文の完全再現ではなく、論文の推論時workflowを同一LLM・同一retrieval APIへ移した`-style`条件として報告する。
+
+| family | condition ID | 方針 | 位置づけ |
+| --- | --- | --- | --- |
+| Sequential | `ircot_style_sequential` | 推論と単一query retrievalを交互に行い、観察した証拠を次queryへ反映する。 | [IRCoT](https://aclanthology.org/2023.acl-long.557/)に基づく比較条件。 |
+| Sequential | `search_o1_style_sequential` | 不足知識を判定して検索し、取得文書から短いevidence noteを作って次の推論へ渡す。 | [Search-o1](https://aclanthology.org/2025.emnlp-main.276/)のagentic retrievalとReason-in-Documentsを移した主条件。 |
+| Parallel | `decomp_style_parallel` | 質問を独立に解けるsub-questionへ分解し、各queryを同時に検索して根拠を統合する。 | [Decomposed Prompting](https://openreview.net/forum?id=_nGgzQjzaRy)に基づく比較条件。 |
+| Parallel | `rag_r1_style_multi_query_parallel` | 各retrieval roundで複数の検索queryを生成・同時実行し、結果を融合してから次roundまたは回答を選ぶ。 | [RAG-R1](https://ojs.aaai.org/index.php/AAAI/article/view/40603)のmulti-query parallelismを移した主条件。 |
+
+`rag_r1_style_multi_query_parallel`は、各round内の検索を並列化する方式であり、round間の次行動は統合済み観察に依存して逐次に選ぶ。RAG-R1原論文の`w/o RL`条件にもformat-learning SFTが残るため、本条件をRAG-R1の`w/o RL`再現とは表現しない。
+
+RAG-Fusionは複数queryの結果を統合する補助手段として、必要時にReciprocal Rank Fusion（RRF）を用いる。[RAG-Fusion](https://arxiv.org/abs/2402.03367)を独立した主agent条件にはしない。DeepResearcherは実Web検索・閲覧をRLで学習する方式であり、固定corpus retrievalを対象とする本実験では主比較に採用しない。複数文書を並列に要約して統合する処理だけは、将来のevidence-reading ablation候補として扱う。[DeepResearcher](https://aclanthology.org/2025.emnlp-main.22/)
+
+全agent条件で、モデルrevision、temperature、最大推論token、最大retrieval round、cumulative top-N、最終readerのpassage数・context token上限、reranker、回答promptを固定する。Sequentialの最大turn数`T`とParallelの各roundのquery数`M`は別々にログし、検索call数、LLM token、p50/p95 latency、融合前後のunique passage数を併記する。これにより、正答差と並列化によるlatency差を混同しない。
 
 ### 構造条件
 

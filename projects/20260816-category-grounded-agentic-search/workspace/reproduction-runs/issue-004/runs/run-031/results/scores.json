@@ -1,0 +1,16 @@
+{
+  "experiment_id": "exp-031",
+  "status": "failed",
+  "metrics": {
+    "primary": {
+      "name": "document_processed_rate",
+      "value": 0.0,
+      "higher_is_better": true
+    }
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "figures": [],
+    "logs": ["logs/index.log"]
+  }
+}

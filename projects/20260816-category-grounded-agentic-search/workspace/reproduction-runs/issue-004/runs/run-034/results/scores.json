@@ -1,0 +1,26 @@
+{
+  "experiment_id": "exp-034",
+  "status": "completed",
+  "metrics": {
+    "primary": {
+      "name": "indexed_vector_count",
+      "value": 45525,
+      "higher_is_better": true
+    },
+    "processed_document_count": 61,
+    "chunk_vector_count": 1375,
+    "entity_vector_count": 20281,
+    "relationship_vector_count": 23869,
+    "embedding_dimension": 1024,
+    "embedding_failure_count": 0
+  },
+  "artifacts": {
+    "results_md": "results/results.md",
+    "index_manifest": "../../data/derived/indexes/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/Qwen--Qwen3.6-35B-A3B-FP8__BAAI--bge-m3/manifest.json",
+    "lightrag_store": "../../data/derived/indexes/UltraDomain--aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d/Qwen--Qwen3.6-35B-A3B-FP8__BAAI--bge-m3/lightrag-store",
+    "figures": [],
+    "logs": [
+      "logs/index.log"
+    ]
+  }
+}

@@ -33,6 +33,14 @@
 - `pip install`、`python -m venv`、手作業の `.venv` 作成は原則使わない。既存環境の都合で一時的に使った場合は、理由をartifactに残す。
 - project固有の生成データ、submission、環境ディレクトリはartifact本文に要約し、必要以上にgit管理しない。
 
+## Artifact And Commit Hygiene
+
+- `experiments/exp-xxx/` は、独立した仮説・比較・評価指標・成功判定を持つ正式な研究実験だけに使う。token上限探索、endpoint疎通、parser修正、再試行、性能診断など再現実装の試行錯誤に新しい`exp`番号を割り当てない。
+- 再現実装の試行記録は `workspace/reproduction-runs/<issue-or-workflow>/runs/run-xxx/` に置く。追跡性のため設定、要約、判断記録はGit管理し、正式実験と混同しない。
+- raw completion、重複したcontext snapshot、embedding、vector/index、生成途中のstoreなど再生成可能な大型生成物はGitに入れない。manifest、入力hash、設定、集計結果、判断記録をGitで追跡する。
+- commit前に対象ファイルを明示してstageし、`git add .`やproject全体を対象にした一括stageを使わない。必ず`git diff --cached --name-only`と`git diff --cached --stat`を確認する。
+- 生成物または非codeファイルが1 MiB以上の場合、Git管理の必要性と代替となるmanifestを確認し、利用者の明示承認なしにstageしない。
+
 ## Architecture And Testing
 
 - 新規projectと大規模な再編ではClean Architectureを意識し、依存方向を `interfaces -> application -> domain`、`infrastructure -> application/domain` に保つ。
@@ -82,7 +90,14 @@ projects/<project-name>/
     interfaces/
   tests/                     # projectのunit/integration test
   workspace/                 # legacy互換script、実験補助、移行中の共有実装
-  data/                      # 共有のsource dataとmetadata
+    reproduction-runs/       # 正式実験ではない再現実装の試行記録
+      <issue-or-workflow>/
+        README.md
+        runs/
+          run-001/
+  data/                      # 共有のsource data、metadata、再利用可能な派生data
+    raw/                     # 取得元snapshotとsource manifest
+    derived/                 # triplet、embedding、indexなどの共有中間生成物
   survey/
   paper/                    # project全体の論文・原稿
   experiments/
@@ -105,8 +120,10 @@ projects/<project-name>/
 - `src/<package-name>/` はinstall可能なproject本体とし、Clean Architectureの責務別packageを置く。
 - `tests/` はprojectのunit/integration testの正本とする。
 - `workspace/` はlegacy互換script、実験補助、移行中の共有実装に限定する。新規の本体実装とtestは置かない。
-- 実行器は`--root projects/<project-name>/experiments/<exp-id>`で結果保存先を明示する。
-- `data/` は共有の入力・metadataを置く。`experiments/<exp-id>/` は設計とevidenceだけを置き、`.py`、`.sh`、notebook、`__pycache__/`を置かない。
+- 実行器は`--root projects/<project-name>/experiments/<exp-id>`または実装試行用の`--root projects/<project-name>/workspace/reproduction-runs/<issue-or-workflow>/runs/<run-id>`で結果保存先を明示する。
+- `data/` は複数実験で共有・再利用する入力、metadata、派生dataの正本を置く。`data/raw/` は取得元snapshotとsource manifest、`data/derived/` はtriplet、embedding、indexなど実験の前提となる再利用可能な中間生成物に使う。
+- `data/derived/` の各artifactは `manifest.json` にcorpus revision、入力hash、生成model・設定、依存artifactを記録する。`experiments/<exp-id>/` は派生data本体を複製せず、使用artifactのpath・manifest hash・実験固有の評価結果とlogを残す。
+- `experiments/<exp-id>/` は独立した仮説、比較、評価指標、成功判定を持つ正式実験の設計とevidenceだけを置く。token探索・再試行などの再現実装は`workspace/reproduction-runs/`に置き、`.py`、`.sh`、notebook、`__pycache__/`を置かない。
 - 既存runの追跡性を守るため、legacyの`experiments/<exp-id>/workspace/`はinput/output snapshotとして残せるが、source codeを置かない。新規expは`inputs/`と`outputs/`を使う。
 - 既存projectをpackage化するときは、過去artifactのpathを無断で移動・削除しない。互換wrapperまたはmigration READMEを用意し、新規実行の正本だけをpackage pathへ移す。
 - `spec.yaml` は実験設計の正本であり、仮説、baseline、入力、評価指標、sample、制約、成功判定を定義する。`experiment-logging`は設計を決めず、実行済みの条件と結果を記録する。

@@ -1,0 +1,29 @@
+experiment:
+  id: exp-032
+  title: Qwen再起動後のrepetition_penalty=1.05再抽出
+  status: completed
+objective: >-
+  再起動後のQwenで、失敗文書を32,768 output tokensとrepetition_penalty=1.05の条件で
+  全36チャンク再抽出し、停止性を検証する。
+target_document: ultradomain-6a7cb621a5218266
+baseline:
+  experiment: exp-029
+  max_tokens: 32768
+  repetition_penalty: 1.0
+  failure: chunk 11/36 reached finish_reason=length
+extractor:
+  model: Qwen/Qwen3.6-35B-A3B-FP8
+  served_model_name: llm
+  endpoint: http://192.168.100.11:8000/v1
+  extraction_format: JSON
+  max_tokens: 32768
+  repetition_penalty: 1.05
+  entity_limit: 30
+  relation_limit: 50
+  max_gleaning: 0
+validation:
+  completion_required: finish_reason=stop and nonempty content
+  repetition_detection: diagnostic only
+success_criteria:
+  - 全36チャンクがstop応答で完結する
+  - document statusがprocessedとなる

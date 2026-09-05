@@ -1,0 +1,9 @@
+experiment:
+  id: exp-022
+  title: JSON structured extractionによるQwen反復回避確認
+  status: planned
+objective: >-
+  delimiter形式でlength反復した文書に対し、LightRAG JSON extractionを使用して
+  正常終了と処理可否を確認する。
+target_document: ultradomain-c58b4831f2d6fec6
+changed_factor: entity_extraction_use_json=true

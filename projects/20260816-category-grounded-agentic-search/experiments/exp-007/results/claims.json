@@ -1,0 +1,28 @@
+{
+  "claims": [
+    {
+      "claim": "この固定125問・Qwen回答設定では、GPT-4o-mini pairwise judgeはhybridを50勝、naiveを58勝、Tieを17件と判定した。",
+      "source": "results/results.md",
+      "artifacts": [
+        "outputs/gpt_4o_mini_judge_results.json",
+        "results/scores.json"
+      ],
+      "status": "supported",
+      "support_level": "direct",
+      "notes": "初回BatchでJSON未完了となった6件は、同じモデル・temperatureでmax tokens 1,024として再判定済み。"
+    },
+    {
+      "claim": "この結果だけでLightRAG hybridとnaiveの一般的な優劣を結論づけることはできない。",
+      "source": "results/results.md",
+      "artifacts": [
+        "results/scores.json",
+        "outputs/gpt_oss_20b_low_reasoning_2048_judge_results.json",
+        "outputs/prometheus_7b_v2_1024_judge_results.json",
+        "outputs/gpt_oss_120b_low_reasoning_2048_judge_results.json"
+      ],
+      "status": "supported",
+      "support_level": "indirect",
+      "notes": "主評価と三つの代替judgeで勝率が一致せず、質問・回答生成モデルも原論文から置換している。"
+    }
+  ]
+}

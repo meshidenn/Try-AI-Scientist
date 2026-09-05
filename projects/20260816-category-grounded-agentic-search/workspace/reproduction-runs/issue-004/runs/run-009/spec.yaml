@@ -1,0 +1,27 @@
+experiment:
+  id: exp-009
+  title: 4096 tokenでのLightRAG論文プロトコル準拠Qwen variant実装確認
+  status: planned
+  parent_issue: 4
+
+objective: >-
+  exp-008で2048 tokenではtruncationした短文3 context subsetに対し、extract roleのmax_tokensを4096へ増やし、
+  Qwen LightRAG hybrid対naiveとGPT-4o-mini judgeまで完走するかを確認する。
+
+comparability:
+  reference_experiment: exp-008
+  changed_factor: extract_role_max_tokens=4096
+  held_constant:
+    - UltraDomain_revision_aa8a51d523f8fc3c5a0ab90dd16b7f6b9dbb5d0d
+    - shortest_three_unique_contexts_selection
+    - Qwen_query_generation_count_5
+    - lightrag_hybrid_and_naive_modes
+    - GPT-4o-mini_pairwise_judge_protocol
+
+success_criteria:
+  - すべてのextract callがstopで終わる
+  - hybridとnaiveが各5 queryへ正常応答する
+  - GPT-4o-mini judge batchが受理される
+
+limits:
+  max_allowed_extract_tokens: 16382

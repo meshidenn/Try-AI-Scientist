@@ -1,0 +1,3 @@
+# exp-008: LightRAG論文プロトコル準拠Qwen variantの短文subset実装確認
+
+exp-007で初期選択した3 contextが小規模pilotとして過大だったため、同じ固定sourceから短いunique contextを決定的に選ぶ。実行条件とjudge protocolはexp-007と同じである。

@@ -1,0 +1,16 @@
+{
+  "project": "category-grounded-agentic-search",
+  "experiment_id": "exp-009",
+  "parent_issue": 4,
+  "status": "planned",
+  "objective": "extract max_tokens=4096で論文プロトコル準拠Qwen variantを実装確認する。",
+  "inputs": {"spec": "spec.yaml"},
+  "artifacts": {
+    "inputs": "inputs/",
+    "outputs": "outputs/",
+    "results": "results/results.md",
+    "scores": "results/scores.json",
+    "review": "review/",
+    "logs": "logs/"
+  }
+}
